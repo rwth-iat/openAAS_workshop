@@ -31,19 +31,19 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType, ch
      /* convert input to UA types */
      UA_Identification AASId;
      AASId.idType = AASIdType;
-     AASId.idSpec = UA_String_fromChars(AASIdSpec);
+     AASId.idSpec = UA_String_fromChars("abcdef");
      UA_Identification assetId;
      assetId.idType = AssetIdType;
-     assetId.idSpec = UA_String_fromChars(AssetIdSpec);
-     UA_String AASName = UA_String_fromChars(name);
+     assetId.idSpec = UA_String_fromChars("e=mc^2");
+     UA_String AASName = UA_String_fromChars("enemenemu");
      UA_Variant_setScalarCopy(&inputArgs[0], &AASId, &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
      UA_Variant_setScalarCopy(&inputArgs[1], &AASName, &UA_TYPES[UA_TYPES_STRING]);
-     UA_Variant_setScalarCopy(&inputArgs[2], &assetId, &UA_TYPES[UA_OPENAAS_IDENTIFICATION]);
+     UA_Variant_setScalarCopy(&inputArgs[2], &assetId, &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
      UA_Variant *output;
      UA_NodeId methNodeId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS||createAAS");
      UA_NodeId objectId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS");
-     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,&argOutSize, &output);
+     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs, &argOutSize, &output);
 
      if(retval == UA_STATUSCODE_GOOD) {
          printf("Method call was successful, and %lu returned values available.\n",
