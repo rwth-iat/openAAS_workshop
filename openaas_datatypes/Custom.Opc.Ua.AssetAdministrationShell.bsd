@@ -1,0 +1,81 @@
+<opc:TypeDictionary
+  xmlns:opc="http://opcfoundation.org/BinarySchema/"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ua="http://opcfoundation.org/UA/"
+  xmlns:tns="http://opcfoundation.org/UA/"
+  DefaultByteOrder="LittleEndian"
+  TargetNamespace="http://openaas.org/UA/"
+>
+
+  <opc:Import Namespace="http://opcfoundation.org/BinarySchema/" />
+
+<!-- AAS types begin  -->
+
+  <opc:EnumeratedType Name="RelationalExpressionEnum" LengthInBits="32">
+    <opc:Documentation>Specifies the relational semantic of the expression</opc:Documentation>
+    <opc:EnumeratedValue Name="GREATER_THAN" Value="0" />
+    <opc:EnumeratedValue Name="GREATER_EQUAL" Value="1" />
+    <opc:EnumeratedValue Name="EQUAL" Value="2" />
+    <opc:EnumeratedValue Name="NOT_EQUAL" Value="3" />
+    <opc:EnumeratedValue Name="LESS_EQUAL" Value="4" />
+    <opc:EnumeratedValue Name="LESS_THAN" Value="5" />
+  </opc:EnumeratedType>
+
+  <opc:EnumeratedType Name="ExpressionSemanticEnum" LengthInBits="32">
+    <opc:Documentation>Specifies the semantic of the property value statement</opc:Documentation>
+    <opc:EnumeratedValue Name="ASSURANCE" Value="0" />
+    <opc:EnumeratedValue Name="SETTING" Value="1" />
+    <opc:EnumeratedValue Name="MEASUREMENT" Value="2" />
+    <opc:EnumeratedValue Name="REQUIREMENT" Value="3" />
+  </opc:EnumeratedType>
+ 
+  <opc:EnumeratedType Name="IdEnum" LengthInBits="32">
+    <opc:Documentation>Determines which kind of Id is specified</opc:Documentation>
+    <opc:EnumeratedValue Name="URI" Value="0" />
+    <opc:EnumeratedValue Name="ISO" Value="1" />
+  </opc:EnumeratedType>
+
+  <opc:EnumeratedType Name="ViewEnum" LengthInBits="32">
+    <opc:Documentation>Kind of View</opc:Documentation>
+    <opc:EnumeratedValue Name="BUSINESS" Value="0" />
+    <opc:EnumeratedValue Name="CONSTRUCTION" Value="1" />
+    <opc:EnumeratedValue Name="POWER" Value="2" />
+    <opc:EnumeratedValue Name="FUNCTIONAL" Value="3" />
+    <opc:EnumeratedValue Name="LOCATION" Value="4" />
+    <opc:EnumeratedValue Name="SECURITY" Value="5" />
+    <opc:EnumeratedValue Name="NETWORK" Value="6" />
+    <opc:EnumeratedValue Name="LIFECYCLE" Value="7" />
+    <opc:EnumeratedValue Name="HUMAN" Value="8" />
+  </opc:EnumeratedType>
+
+   <opc:StructuredType Name="Identification">
+    <opc:Documentation>Identification</opc:Documentation>
+    <opc:Field Name="IdSpec" TypeName="opc:String" />
+    <opc:Field Name="IdType" TypeName="opc:IdEnum" />
+  </opc:StructuredType>
+
+   <opc:StructuredType Name="PropertyValueStatement">
+    <opc:Documentation>Property Value Statement</opc:Documentation>
+    <opc:Field Name="ExpressionSemantic" TypeName="opc:UInt32" />
+    <opc:Field Name="RelationalExpression" TypeName="opc:UInt32" />
+    <opc:Field Name="Unit" TypeName="opc:String" />
+    <opc:Field Name="Value" TypeName="opc:Variant" />
+    <opc:Field Name="PropertyReference" TypeName="opc:Identification" />
+    <opc:Field Name="View" TypeName="opc:ViewEnum" />
+  </opc:StructuredType>
+
+  <opc:StructuredType Name="LifeCycleEntry">
+    <opc:Documentation>LifeCycleEntry </opc:Documentation>
+    <opc:Field Name="CreatingInstance" TypeName="opc:Identification" />
+    <opc:Field Name="WritingInstance" TypeName="opc:Identification" />
+    <opc:Field Name="Data" TypeName="opc:Variant" />
+    <opc:Field Name="Subject" TypeName="opc:String" />
+    <opc:Field Name="EventClass" TypeName="opc:String" />
+    <opc:Field Name="View" TypeName="opc:ViewEnum" />
+  </opc:StructuredType>
+
+
+
+<!-- AAS types end -->
+
+</opc:TypeDictionary>
