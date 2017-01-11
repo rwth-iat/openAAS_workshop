@@ -1,8 +1,8 @@
 cmake_minimum_required(VERSION 2.8.11)
-project(dht22ua C)
+project(openaas_engineering C)
 include(ExternalProject)
 
-set (CMAKE_C_FLAGS "--std=gnu99 ${CMAKE_C_FLAGS}") #dht22 driver needs gnu99
+set (CMAKE_C_FLAGS "--std=c99 ${CMAKE_C_FLAGS}")
 
 # Set default build type.
 if(NOT CMAKE_BUILD_TYPE)
@@ -10,9 +10,7 @@ if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Choose the type of build." FORCE)
 endif()
 set(CMAKE_VERBOSE_MAKEFILE ON) 
-#dht22 driver business
-#set(DHT22_PLATFORM_PREFIX "${PROJECT_SOURCE_DIR}/external/Adafruit_Python_DHT/source/Raspberry_Pi/")
-#include_directories(${DHT22_PLATFORM_PREFIX})
+
 
 #open62541 business
 set(OPEN62541_DIR "${CMAKE_SOURCE_DIR}/external/open62541")
