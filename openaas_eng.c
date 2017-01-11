@@ -26,7 +26,7 @@
 
 
 int main(void) {
-UA_StatusCode retval = call_CreateAAS("ip","abc",1,"abc","abc",1); 
+UA_StatusCode retval = call_CreateAAS("opc.tcp://127.0.0.1:16664","abc",1,"abc","abc",1);
 printf("return value from call_CreateAAS: %i \n",(int)retval);
 return 0;
 //    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);

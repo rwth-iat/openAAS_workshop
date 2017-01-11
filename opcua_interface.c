@@ -41,7 +41,9 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType, ch
      UA_Variant_setScalarCopy(&inputArgs[2], &assetId, &UA_TYPES[UA_OPENAAS_IDENTIFICATION]);
 
      UA_Variant *output;
-     retval = UA_Client_call(client, AAS_FACTORY_NODEID, AAS_FACTORY_CREATEAAS_NODEID, argInSize, inputArgs,&argOutSize, &output);
+     UA_NodeId methNodeId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS||createAAS");
+     UA_NodeId objectId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS");
+     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,&argOutSize, &output);
 
      if(retval == UA_STATUSCODE_GOOD) {
          printf("Method call was successful, and %lu returned values available.\n",
