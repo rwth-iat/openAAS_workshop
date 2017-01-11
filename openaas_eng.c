@@ -11,23 +11,28 @@
 #include "ua_client_highlevel.h"
 #endif
 #include "opcua_interface.h"
-#define AAS_FACTORY_NODEID UA_NODEID_STRING(4, "/TechUnits/AASFolder/ModelmanagerOpenAAS")
-#define AAS_FACTORY_NODEID UA_NODEID_NUMERIC(3, 1005)
-
-#define AAS_FACTORY_CREATEAAS_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_CREATELCE_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_CREATEPVS_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_CREATEPVSLIST_NODEID UA_NODEID_NUMERIC(3, 7001)
-
-#define AAS_FACTORY_DELETEAAS_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_DELETELCE_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_DELETEPVS_NODEID UA_NODEID_NUMERIC(3, 7001)
-#define AAS_FACTORY_DELETEPVSLIST_NODEID UA_NODEID_NUMERIC(3, 7001)
 
 
 int main(void) {
-UA_StatusCode retval = call_CreateAAS("opc.tcp://127.0.0.1:16664","abc",1,"abc","abc",1);
-printf("return value from call_CreateAAS: %i \n",(int)retval);
+UA_StatusCode retval = call_CreateAAS("opc.tcp://134.130.125.38:16664","abc",1,"abc","abc",1);
+if(retval!=UA_STATUSCODE_GOOD){
+    printf("AAS creation failed with: %i \n",(int)retval);
+    return -1;
+}
+printf("AAS created \n");
+retval = call_CreatePVSL("opc.tcp://134.130.125.38:16664","abc",1,"abc","abcddd",1);
+if(retval!=UA_STATUSCODE_GOOD){
+    printf("PVSL creation failed with: %i \n",(int)retval);
+    return -1;
+}
+printf("PVSL created \n");
+
+retval = call_CreatePVS("opc.tcp://134.130.125.38:16664","abc",1, "abc", "durchmesser", 1, 1, "10",1, "mm");
+if(retval!=UA_STATUSCODE_GOOD){
+    printf("PVS creation failed with: %i \n",(int)retval);
+    return -1;
+}
+printf("PVS created \n");
 return 0;
 //    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
 //    UA_StatusCode retval = UA_Client_connect(client, "opc.tcp://127.0.0.1:16664");
