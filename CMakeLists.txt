@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8.11)
 project(openaas_engineering C)
 include(ExternalProject)
-
+find_package(PythonInterp REQUIRED)
 set (CMAKE_C_FLAGS "--std=c99 ${CMAKE_C_FLAGS}")
 
 # Set default build type.
@@ -27,7 +27,7 @@ INSTALL_COMMAND ""
 include_directories(${CMAKE_SOURCE_DIR}/external_generated)
 link_directories(${PROJECT_SOURCE_DIR}/external_generated)
 include_directories(${PROJECT_BINARY_DIR}) #for nodeset.h
-set (PYTHON_EXECUTABLE /usr/bin/python)
+
 set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas_nodeset.xml)
 
 
