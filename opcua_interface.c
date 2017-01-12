@@ -157,13 +157,13 @@ UA_StatusCode call_CreatePVS(char* ipAddress,char* AASIdSpec, int AASIdType, cha
     UA_Variant_setScalarCopy(&inputArgs[0], &AASId, &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[1], &listName, &UA_TYPES[UA_TYPES_STRING]);
     UA_Variant_setScalarCopy(&inputArgs[2], &propertyname, &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &RelationalExpression, &UA_TYPES[UA_TYPES_INT32]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &ExpressionSemantic, &UA_TYPES[UA_TYPES_INT32]);
+    UA_Variant_setScalarCopy(&inputArgs[3], &RelationalExpression, &UA_OPENAAS[UA_OPENAAS_RELATIONALEXPRESSIONENUM]);
+    UA_Variant_setScalarCopy(&inputArgs[4], &ExpressionSemantic, &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
     UA_Variant_setScalarCopy(&inputArgs[5], &dataValue, &UA_TYPES[UA_TYPES_DATAVALUE]);
     UA_Variant_setScalarCopy(&inputArgs[6], &unitStr,  &UA_TYPES[UA_TYPES_STRING]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS||createPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS");
+    UA_NodeId objectId =   UA_NODEID_STRING(4,"/TechUnits/AASFolder/ModelmanagerOpenAAS");
 
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs, &argOutSize, &output);

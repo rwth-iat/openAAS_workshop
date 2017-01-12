@@ -56,7 +56,7 @@ add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_gene
                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_encoding_binary.h
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
-                           --typedescriptions ${PROJECT_SOURCE_DIR}/openaas_datatypes/NodeIds_openaas.csv
+                           --typedescriptions ${PROJECT_SOURCE_DIR}/openaas_datatypes/NodeIds_openaas.csv_1
                            --namespace=2 --selected_types=${PROJECT_SOURCE_DIR}/openaas_datatypes/datatypes_openaas.txt
                            ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
                            ${PROJECT_SOURCE_DIR}/openaas_datatypes/Custom.Opc.Ua.AssetAdministrationShell.bsd

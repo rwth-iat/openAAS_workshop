@@ -12,22 +12,34 @@
 #endif
 #include "opcua_interface.h"
 
+#define IP "opc.tcp://134.130.125.38:16664"
+
+#define ASSET_ID_STRING "http://acplt.org/Sensor4711"
+#define AAS_ID_TYPE 0
+#define AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define AAS_ID_TYPE 0
+#define AAS_NAME "Sensor4711"
+#define PVSL_NAME "AssetProperties"
+
+#define CARRIER_ID_STRING "http://acplt.org/Sensor4711"
+#define CARRIER_ID_TYPE 0
 
 int main(void) {
-UA_StatusCode retval = call_CreateAAS("opc.tcp://134.130.125.38:16664","abc",1,"abc","abc",1);
-if(retval!=UA_STATUSCODE_GOOD){
-    printf("AAS creation failed with: %i \n",(int)retval);
-    return -1;
-}
-printf("AAS created \n");
-retval = call_CreatePVSL("opc.tcp://134.130.125.38:16664","abc",1,"abc","abcddd",1);
-if(retval!=UA_STATUSCODE_GOOD){
-    printf("PVSL creation failed with: %i \n",(int)retval);
-    return -1;
-}
-printf("PVSL created \n");
+UA_StatusCode retval = UA_STATUSCODE_GOOD;
+//retval = call_CreateAAS(IP,AAS_ID_STRING,AAS_ID_TYPE,AAS_NAME,ASSET_ID_STRING,AAS_ID_TYPE);
+//if(retval!=UA_STATUSCODE_GOOD){
+//    printf("AAS creation failed with: %i \n",(int)retval);
+//    return -1;
+//}
+//printf("AAS created \n");
+//retval = call_CreatePVSL(IP,ASSET_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE);
+//if(retval!=UA_STATUSCODE_GOOD){
+//    printf("PVSL creation failed with: %i \n",(int)retval);
+//    return -1;
+//}
+//printf("PVSL created \n");
 
-retval = call_CreatePVS("opc.tcp://134.130.125.38:16664","abc",1, "abc", "durchmesser", 1, 1, "10",1, "mm");
+retval = call_CreatePVS(IP,"abc",1, "abc", "durchmesser", 1, 1, "10",1, "mm");
 if(retval!=UA_STATUSCODE_GOOD){
     printf("PVS creation failed with: %i \n",(int)retval);
     return -1;
