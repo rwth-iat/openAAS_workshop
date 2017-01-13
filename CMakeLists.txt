@@ -28,7 +28,7 @@ include_directories(${CMAKE_SOURCE_DIR}/external_generated)
 link_directories(${PROJECT_SOURCE_DIR}/external_generated)
 include_directories(${PROJECT_BINARY_DIR}) #for nodeset.h
 
-set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas_nodeset.xml)
+set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas.xml)
 
 
 
@@ -56,7 +56,7 @@ add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_gene
                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_encoding_binary.h
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
-                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/aas_nodeids.csv
+                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/aas.csv
                            --namespace=2 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
                            ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
                            ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
@@ -64,7 +64,7 @@ add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_gene
                    DEPENDS ${OPEN62541_DIR}/tools/generate_datatypes.py
                            ${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
                            ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
-                           ${PROJECT_SOURCE_DIR}/models/aas_nodeids.csv
+                           ${PROJECT_SOURCE_DIR}/models/aas.csv
                            ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd)
 
 add_definitions(-DUA_NO_AMALGAMATION)

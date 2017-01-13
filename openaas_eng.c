@@ -41,20 +41,19 @@
 
 int main(void) {
 UA_StatusCode retval = UA_STATUSCODE_GOOD;
-retval = call_CreateAAS(IP,AAS_ID_STRING,AAS_ID_TYPE,AAS_NAME,ASSET_ID_STRING,AAS_ID_TYPE);
+retval = call_CreateAAS(IP,AAS_ID_STRING,AAS_ID_TYPE, AAS_NAME, ASSET_ID_STRING,AAS_ID_TYPE);
 if(retval!=UA_STATUSCODE_GOOD){
     printf("AAS creation failed with: %i \n",(int)retval);
     return -1;
 }
 printf("AAS created \n");
-retval = call_CreatePVSL(IP,ASSET_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE);
+retval = call_CreatePVSL(IP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE);
 if(retval!=UA_STATUSCODE_GOOD){
     printf("PVSL creation failed with: %i \n",(int)retval);
     return -1;
 }
 printf("PVSL created \n");
-
-retval = call_CreatePVS(IP,"abc",1, "abc", "durchmesser", 1, 1, "10",1, "mm");
+retval = call_CreatePVS(IP,"abc",1, "abc", "diameter", 1, 1, "10",1, "mm","https://openaas.org/properties/diameter",0,3);
 if(retval!=UA_STATUSCODE_GOOD){
     printf("PVS creation failed with: %i \n",(int)retval);
     return -1;

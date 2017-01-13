@@ -48,13 +48,13 @@
     <opc:EnumeratedValue Name="HUMAN" Value="8" />
   </opc:EnumeratedType>
 
-   <opc:StructuredType Name="Identification">
+  <opc:StructuredType BaseType="ua:ExtensionObject" Name="Identification">
     <opc:Documentation>Identification</opc:Documentation>
     <opc:Field Name="IdSpec" TypeName="opc:String" />
     <opc:Field Name="IdType" TypeName="opc:IdEnum" />
   </opc:StructuredType>
 
-   <opc:StructuredType Name="PropertyValueStatement">
+   <opc:StructuredType BaseType="ua:ExtensionObject" Name="PropertyValueStatement">
     <opc:Documentation>Property Value Statement</opc:Documentation>
     <opc:Field Name="ExpressionSemantic" TypeName="opc:UInt32" />
     <opc:Field Name="RelationalExpression" TypeName="opc:UInt32" />
@@ -64,11 +64,11 @@
     <opc:Field Name="View" TypeName="opc:ViewEnum" />
   </opc:StructuredType>
 
-  <opc:StructuredType Name="LifeCycleEntry">
+  <opc:StructuredType BaseType="ua:ExtensionObject" Name="LifeCycleEntry">
     <opc:Documentation>LifeCycleEntry </opc:Documentation>
     <opc:Field Name="CreatingInstance" TypeName="opc:Identification" />
     <opc:Field Name="WritingInstance" TypeName="opc:Identification" />
-    <opc:Field Name="Data" TypeName="opc:Variant" />
+    <opc:Field Name="Data" TypeName="opc:DataValue" />
     <opc:Field Name="Subject" TypeName="opc:String" />
     <opc:Field Name="EventClass" TypeName="opc:String" />
     <opc:Field Name="View" TypeName="opc:ViewEnum" />
