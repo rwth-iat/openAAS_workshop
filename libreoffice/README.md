@@ -1,0 +1,1 @@
+In this directory, you find the libreoffice file to create an AAS and its static ingredients, i.e., the property value statement lists and its statements. The libreoffice files uses python macros to access OPC UA functionality (with open62541 client).
