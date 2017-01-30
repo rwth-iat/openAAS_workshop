@@ -23,7 +23,7 @@ git clone --recursive https://github.com/acplt/openAAS_workshop
 # Building the library (Engineering Client)
 Configure the project with CMake
 ```sh
-CMake .
+cmake .
 ```
 Build it:
 ```sh
