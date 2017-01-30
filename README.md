@@ -15,6 +15,24 @@ The server: Linux (tested on Ubuntu 14.4) / Windows 7
 The Engineering Client: (tested on Ubuntu 14.4) 
 
 ## Getting Started
+# Cloning
+To download the full repository you have to clone it:
+```sh
+git clone --recursive https://github.com/acplt/openAAS_workshop
+```
+# Building the library (Engineering Client)
+Configure the project with CMake
+```sh
+CMake .
+```
+Build it:
+```sh
+make
+```
+Afterwards you will get the library libopcua_interface.so that provides functionality to access an AAS.
+
+
+CMake is needed to configure
 First, you need to start up the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/) which is capable to host AAS:
 (Windows)
 ```sh
