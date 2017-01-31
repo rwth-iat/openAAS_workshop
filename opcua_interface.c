@@ -126,9 +126,9 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
 
     UA_Variant *output;
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||createAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||createAAS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
 
@@ -172,9 +172,9 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
 
     UA_Variant *output;
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||deleteAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteAAS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
 
@@ -228,9 +228,9 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[2], &carrierId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||createPVSL");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVSL");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -278,9 +278,9 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||deletePVSL");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVSL");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -360,9 +360,9 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||createPVS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
 
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -415,9 +415,9 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||deletePVS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
 
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -497,9 +497,9 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||setPVS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||setPVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
 
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -519,7 +519,8 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Client_delete(client);
     return retval;
 }
-static void getNodeIdOfChild(UA_Client *client, UA_NodeId startId,
+// get the node id of a specific child node by its browse name
+static void getNodeIdOfChildByBrowseName(UA_Client *client, UA_NodeId startId,
         UA_String browseNameToFind,UA_NodeId *foundId) {
 
     UA_BrowseRequest bReq;
@@ -631,6 +632,8 @@ static void getAllPVSLInFolder(UA_Client *client,UA_NodeId entryPoint, UA_Refere
     FindChildrenWithSpecialType(client, entryPoint, tmpStr, foundListIds, foundListIdsSize);
     UA_String_deleteMembers(&tmpStr);
 }
+
+
 static int getAllPVSFromList(UA_Client *client,UA_NodeId entryPoint, UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize){
     /*all property value statements are attached via HasProperty Reference */
     UA_String tmpStr = UA_String_fromChars("PropertyType");
@@ -678,11 +681,52 @@ static int getAllPVSFromList(UA_Client *client,UA_NodeId entryPoint, UA_Referenc
     return 0;
 }
 
-UA_Boolean getAASNodeId(UA_Identification AASId, UA_NodeId* nodeId){
+UA_Boolean findAASNodeId(UA_Client *client,UA_Identification AASId, UA_NodeId* nodeId){
 //dummy
+    UA_Boolean found = false;
     UA_NodeId tmpNodeId = UA_NODEID_STRING(4,"/TechUnits/AASFolder/Sensor4711");
     UA_NodeId_copy(&tmpNodeId,nodeId);
-    return 0;
+
+    size_t argInSize = 1;
+    size_t argOutSize;
+    UA_Variant *inputArgs = UA_Array_new(argInSize,
+            &UA_TYPES[UA_TYPES_VARIANT]);
+    for (size_t i = 0; i < argInSize; i++) {
+        UA_Variant_init(&inputArgs[i]);
+    }
+
+    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+
+    UA_NodeId methNodeId = UA_NODEID_STRING(4,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||findAASNodeId");
+    UA_NodeId objectId = UA_NODEID_STRING(4,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+    UA_Variant *output;
+
+    UA_StatusCode retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+            &argOutSize, &output);
+
+    if (retval == UA_STATUSCODE_GOOD) {
+        printf(
+                "Method call was successful, and %lu returned values available.\n",
+                (unsigned long) argOutSize);
+        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    } else {
+        found = false;
+        printf(
+                "Method call was unsuccessful, and %x returned values available.\n",
+                retval);
+        goto clean;
+    }
+    if(!UA_Variant_hasScalarType(output,&UA_TYPES[UA_TYPES_NODEID])){
+        found = false;
+        goto clean;
+    }
+    nodeId = (UA_NodeId *)output->data;
+    clean:
+      UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+      return found;
 }
 
 int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName, UA_PropertyValueStatement *propertyValueStatement, pvsType *pvs){
@@ -731,6 +775,8 @@ int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName, UA_Proper
     return 0;
 
 }
+
+
 int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* listname, pvsType **pvs_c) {
 
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
@@ -747,13 +793,13 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
     AASIdentification.idType = AASIdType;
 
     UA_NodeId AASNodeId;
-    getAASNodeId(AASIdentification,&AASNodeId);
+    findAASNodeId(client,AASIdentification,&AASNodeId);
     UA_Identification_deleteMembers(&AASIdentification);
 
     //find body folder of AAS
     UA_NodeId BodyFolderId;
     UA_String bodyStr = UA_String_fromChars("Body");
-    getNodeIdOfChild(client,
+    getNodeIdOfChildByBrowseName(client,
             AASNodeId,
             bodyStr,&BodyFolderId);
 
@@ -867,9 +913,9 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||getPVS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||getPVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output;
 
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -974,9 +1020,9 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_DATAVALUE]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||createLCE");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||createLCE");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -1024,9 +1070,9 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||deleteLCE");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteLCE");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -1104,9 +1150,9 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_DATAVALUE]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||setLCE");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||setLCE");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -1155,9 +1201,9 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS||getLCE");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCE");
     UA_NodeId objectId = UA_NODEID_STRING(4,
-            "/TechUnits/AASFolder/ModelmanagerOpenAAS");
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -1199,3 +1245,6 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return retval;
 }
+
+
+

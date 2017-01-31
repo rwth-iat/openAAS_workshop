@@ -66,7 +66,7 @@ int main(void) {
     pvsType *pvs = NULL;
     int count;
 
-    count = getPVSFromListByName(IP,"http://acplt.org/Sensor4711",0,"AssetProperties",&pvs);
+   // count = getPVSFromListByName(IP,"http://acplt.org/Sensor4711",0,"AssetProperties",&pvs);
 
 //    for(int i=0;i<count;i++){
 //        printf("pvs.value: %.*s \n",8,pvs->value);
@@ -85,7 +85,7 @@ int main(void) {
 	    return -1;
 	}
 	printf("PVSL created \n");
-
+return -1;
 
 	retval = call_CreatePVS(IP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, PVS_NAME, RELATIONALEXPRESSION, EXPRESSIONSEMANTIC, VALUE, VALUETYPE, UNIT, PROPERTYREFERENCE_ID_STRING, PROPERTYREFERENCE_ID_TYPE, VIEW);
 	if(retval!=UA_STATUSCODE_GOOD){

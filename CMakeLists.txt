@@ -57,7 +57,7 @@ add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_gene
                    PRE_BUILD
                    COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
                            --typedescriptions ${PROJECT_SOURCE_DIR}/models/aas.csv
-                           --namespace=2 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+                           --namespace=3 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
                            ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
                            ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
                            ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas

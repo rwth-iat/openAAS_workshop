@@ -64,7 +64,16 @@ typedef struct pvsType{
     char propertyReferenceIdSpec[256];
     int propertyReferenceIdType;
 }pvsType;
-
+typedef struct lifeCycleEntry{
+    char timestamp[256];
+    char subject[256];
+    char eventClass[256];
+    char creatingInstanceSpec[256];
+    int creatingInstanceType;
+    char writingInstanceSpec[256];
+    int writingInstanceType;
+    char data[256];
+}lifeCycleEntry;
 typedef struct opcua_pvs{
     UA_PropertyValueStatement statement;
     UA_NodeId id;
@@ -77,6 +86,8 @@ typedef struct PVSL{
 typedef struct pvslist{
     char name[256];
 }pvslist;
+
+
 int getAllPVS(char* ipAddress, pvsType **pvs);
 int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* listname, pvsType **pvs_c);
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
