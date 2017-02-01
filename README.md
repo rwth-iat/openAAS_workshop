@@ -25,20 +25,14 @@ The AAS are hosted by the [ACPLT/RTE](https://github.com/acplt/rte). Compile it 
 ```sh
 LIBRARY openaas
 ```
-to load the openaas library at start up.
-(Windows)
-```sh
-acplt\servers\MANAGER\build_database.bat
-acplt\servers\MANAGER\start_server.bat
-```
 Start the Linux Version:
 (Linux)
 ```sh
 acplt\servers\MANAGER\build_database.bat
 acplt\servers\MANAGER\start_server.bat
 ```
-
-## Setting up the Client
+The ACPLT/RTE should now be available to be explored with ACPLT/KS (iFBsPro) or OPC UA (e.g., uaExpert)
+## Setting up the Engineering Client
 **Download the client software**
 
 To download the full repository you have to clone it:
