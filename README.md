@@ -21,7 +21,7 @@ The Engineering Client: (tested on Ubuntu 14.4)
 
 # Getting Started
 ## Setting up the Server
-The AAS are hosted by the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/). Download the corre
+The AAS are hosted by the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/). Download the proper version and run it.
 
 (Windows)
 ```sh
