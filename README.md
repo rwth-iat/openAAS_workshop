@@ -2,7 +2,7 @@
 Development Repository for Workshop (2/21/2017) Demonstrator
 
 # Introduction
-This demo requires the ACPLT/RTE to be running. The ACPLT/RTE works as a host for the Asset Administration Shells. Besides hosting AAS, the ACPLT/RTE provides functionality to access and manipulate data of the AAS. It also serves as a local evironment for message-based communication with the industrie 4.0 component.
+This demo requires the ACPLT/RTE to be running. The ACPLT/RTE works as a host for the Asset Administration Shells. Besides hosting AAS, the ACPLT/RTE provides functionality to access and manipulate data of the AAS. The structure is discoverable with standard OPC UA services. However, the message-based It also serves as a local evironment for message-based communication with the industrie 4.0 component.
 With this repository you can create the needed structures for an Asset Administration Shell, i.e., overall Container, Property Value Statement lists with their statements, Life Cycle Archive and its entries.
 
 <img src="/pics/structure.png" alt="general structure" width="500">
