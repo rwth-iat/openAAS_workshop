@@ -21,8 +21,11 @@ The Engineering Client: (tested on Ubuntu 14.4)
 
 # Getting Started
 ## Setting up the Server
-The AAS are hosted by the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/). Download the proper version and run it.
-
+The AAS are hosted by the [ACPLT/RTE](https://github.com/acplt/rte). Compile it as described and add in the ov_server.conf following line at the end:
+```sh
+LIBRARY openaas
+```
+to load the openaas library at start up.
 (Windows)
 ```sh
 acplt\servers\MANAGER\build_database.bat
