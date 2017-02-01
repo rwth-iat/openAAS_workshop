@@ -18,6 +18,21 @@ The server: Linux (tested on Ubuntu 14.4) / Windows 7
 The Engineering Client: (tested on Ubuntu 14.4) 
 
 # Getting Started
+## Setting up the Server
+The AAS are hosted by the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/). Download the corre
+
+(Windows)
+```sh
+acplt\servers\MANAGER\build_database.bat
+acplt\servers\MANAGER\start_server.bat
+```
+Start the Linux Version:
+(Linux)
+```sh
+acplt\servers\MANAGER\build_database.bat
+acplt\servers\MANAGER\start_server.bat
+```
+
 ## Setting up the Client
 **Download the client software**
 
@@ -35,22 +50,12 @@ Build it:
 ```sh
 make
 ```
-Afterwards you will get the library libopcua_interface.so that provides functionality to access an AAS.
+Afterwards you will get the library *libopcua_interface.so* that provides several OPC UA functions. A basic example application *openaas_eng.c* shows how to use these.
+
 ** **
 
-CMake is needed to configure
-First, you need to start up the [ACPLT/RTE](http://acplt.github.io/rte-www/releases/) which is capable to host AAS:
-(Windows)
-```sh
-acplt\servers\MANAGER\build_database.bat
-acplt\servers\MANAGER\start_server.bat
-```
-Start the Linux Version:
-(Linux)
-```sh
-acplt\servers\MANAGER\build_database.bat
-acplt\servers\MANAGER\start_server.bat
-```
+
+
 
 
 
