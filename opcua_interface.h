@@ -41,28 +41,28 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 /* Property value statement */
 UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int RelationalExpression,
+        char* PVSLName, char* Name, int ExpressionLogic,
         int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view);
+        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view, int visibility);
 
 UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* PVSLName, char* Name);
 
 UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int RelationalExpression,
+        char* PVSLName, char* Name, int ExpressionLogic,
         int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view);
+        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view, int visibility);
 typedef struct pvsType{
     char name[256];
     char value[256];
     int valueType;
     char unit[256];
-    int relationalExpression;
+    int expressionLogic;
     int expressionSemantic;
     int view;
-    int accessControl;
-    char propertyReferenceIdSpec[256];
-    int propertyReferenceIdType;
+    char IDIdSpec[256];
+    int IDIdType;
+    int visibility;
 }pvsType;
 typedef struct lifeCycleEntry{
     char timestamp[256];
@@ -91,9 +91,9 @@ typedef struct pvslist{
 int getAllPVS(char* ipAddress, pvsType **pvs);
 int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* listname, pvsType **pvs_c);
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int* RelationalExpression,
+        char* PVSLName, char* Name, int* ExpressionLogic,
         int* ExpressionSemantic, char** Value, int* ValueType, char** Unit,
-        char** propertyReferenceIdSpec, int* propertyReferenceIdType, int* view);
+        char** propertyReferenceIdSpec, int* propertyReferenceIdType, int* view, int* visibility);
 
 /* LifeCycle Entry */
 UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,

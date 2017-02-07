@@ -63,9 +63,9 @@
 int main ( int argc, char *argv[] ){
     char* serverIP = NULL;
     if(argc < 2){
-        printf("using standard serverIP opc.tcp://127.0.0.1:16664 \n");
+        printf("using standard serverIP opc.tcp://134.130.125.81:16664 \n");
         serverIP = malloc(26);
-        serverIP = "opc.tcp://127.0.0.1:16664";
+        serverIP = "opc.tcp://134.130.125.81:16664";
     }else
         serverIP = argv[1];
 
@@ -87,29 +87,32 @@ int main ( int argc, char *argv[] ){
 	}
 	printf("AAS created \n");
 
+
+//    retval = call_DeleteAAS(serverIP,AAS_ID_STRING,AAS_ID_TYPE);
+//    return -1;
 	retval = call_CreatePVSL(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE);
 	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("PVSL creation failed with: %i \n",(int)retval);
+	    printf("PVSL creation failed: %i \n",(int)retval);
 	    return -1;
 	}
 	printf("PVSL created \n");
 
 
-	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, PVS_NAME, RELATIONALEXPRESSION, EXPRESSIONSEMANTIC, VALUE, VALUETYPE, UNIT, PROPERTYREFERENCE_ID_STRING, PROPERTYREFERENCE_ID_TYPE, VIEW);
+	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, PVS_NAME, RELATIONALEXPRESSION, EXPRESSIONSEMANTIC, VALUE, VALUETYPE, UNIT, PROPERTYREFERENCE_ID_STRING, PROPERTYREFERENCE_ID_TYPE, VIEW, 1);
 	if(retval!=UA_STATUSCODE_GOOD){
 	    printf("PVS creation failed with: %i \n",(int)retval);
 	    return -1;
 	}
 	printf("PVS created \n");
 
-	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 2, 2, "33", 1, "dm", "https://openaas.org/properties/Property", 1, 2);
+	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 2, 2, "33", 1, "dm", "https://openaas.org/properties/Property", 1, 2, 1);
 	if(retval!=UA_STATUSCODE_GOOD){
 	    printf("PVS creation failed with: %i \n",(int)retval);
 	    return -1;
 	}
 	printf("PVS created \n");
 
-	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Assembly", 1, 0, "900", 0, "m", "https://openaas.org/properties/Assembly", 2, 0);
+	retval = call_CreatePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Assembly", 1, 0, "900", 0, "m", "https://openaas.org/properties/Assembly", 2, 0, 0);
 		if(retval!=UA_STATUSCODE_GOOD){
 		    printf("PVS creation failed with: %i \n",(int)retval);
 		    return -1;
@@ -147,7 +150,7 @@ int main ( int argc, char *argv[] ){
 	printf("PVS deleted \n");
 
 
-	retval = call_SetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 0, 3, "54", 0, "mm", "https://openaas.org/properties/Property", 1, 1);
+	retval = call_SetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 0, 3, "54", 0, "mm", "https://openaas.org/properties/Property", 1, 1, 1);
 	if(retval!=UA_STATUSCODE_GOOD){
 	    printf("Setting PVS failed with: %i \n",(int)retval);
 	    return -1;
@@ -171,46 +174,45 @@ int main ( int argc, char *argv[] ){
 	printf("LCE successfully set \n");
 
 
-/*
-	//Get-Methoden
-	int relExpress = 0;
-	int expressSem = 0;
-  	char *getValue = "";
-	int getValueType = 0;
-	char *getUnit = "";
-	char *getPropRefSpec = "";
-	int getPropRefType = 0;
-	int getView = 0;
-	retval = call_GetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, PVS_NAME, relExpress, expressSem, &getValue, getValueType, &getUnit, &getPropRefSpec, getPropRefType, getView);
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("Getting PVS failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("Got PVS \n");
 
 
-	char *changeCreatingString = "";
-	int changeCreatingType = 0;
-	char *changeWritingString = "";
-	int changeWritingType = 0;
-	char *changeEventclass = "";
-	char *changeSubject = "";
-	UA_DateTime changeTimestamp = 0;
-	char *changeValue2 = "0";
-	int changeValuetype2 = 0;
-	retval = call_GetLCE (serverIP,AAS_ID_STRING,AAS_ID_TYPE,2, &changeCreatingString, &changeCreatingType, &changeWritingString, &changeWritingType, &changeEventclass, &changeSubject, &changeTimestamp, &changeValue2, &changeValuetype2);
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("Getting LCE failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("Got LCE \n");*/
-
-
-
-
-//	Ende Vorbereitung für nächsten Arbeitstag
-
-
+	pvsType *pvs_c;
+	int pvscount = getPVSFromListByName(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,&pvs_c);
+	for(int i=0;i<pvscount; i++){
+	    printf("pvs view %i \n", pvs->view);
+	 }
+//    //Get-Methoden
+//    int relExpress = 0;
+//    int expressSem = 0;
+//    char *getValue = "";
+//    int getValueType = 0;
+//    char *getUnit = "";
+//    char *getPropRefSpec = "";
+//    int getPropRefType = 0;
+//    int getView = 0;
+//	retval = call_GetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, PVS_NAME, relExpress, expressSem, &getValue, getValueType, &getUnit, &getPropRefSpec, getPropRefType, getView);
+//	if(retval!=UA_STATUSCODE_GOOD){
+//	    printf("Getting PVS failed with: %i \n",(int)retval);
+//	    return -1;
+//	}
+//	printf("Got PVS \n");
+//
+//
+//	char *changeCreatingString = "";
+//	int changeCreatingType = 0;
+//	char *changeWritingString = "";
+//	int changeWritingType = 0;
+//	char *changeEventclass = "";
+//	char *changeSubject = "";
+//	UA_DateTime changeTimestamp = 0;
+//	char *changeValue2 = "0";
+//	int changeValuetype2 = 0;
+//	retval = call_GetLCE (serverIP,AAS_ID_STRING,AAS_ID_TYPE,2, &changeCreatingString, &changeCreatingType, &changeWritingString, &changeWritingType, &changeEventclass, &changeSubject, &changeTimestamp, &changeValue2, &changeValuetype2);
+//	if(retval!=UA_STATUSCODE_GOOD){
+//	    printf("Getting LCE failed with: %i \n",(int)retval);
+//	    return -1;
+//	}
+//	printf("Got LCE \n");
 
 
 /*	AAS Create, Delete

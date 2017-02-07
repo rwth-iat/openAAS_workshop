@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.11)
 project(openaas_engineering C)
 include(ExternalProject)
 find_package(PythonInterp REQUIRED)
-set (CMAKE_C_FLAGS "--std=c99 ${CMAKE_C_FLAGS}")
+set (CMAKE_C_FLAGS "--std=c99 -Werror ${CMAKE_C_FLAGS}")
 
 # Set default build type.
 if(NOT CMAKE_BUILD_TYPE)

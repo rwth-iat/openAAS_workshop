@@ -302,16 +302,16 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 /* Property value statement */
 UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int RelationalExpression,
+        char* PVSLName, char* Name, int ExpressionLogic,
         int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view) {
+        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view, int visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
         UA_Client_delete(client);
         return (int) retval;
     }
-    size_t argInSize = 9;
+    size_t argInSize = 10;
     size_t argOutSize;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
             &UA_TYPES[UA_TYPES_VARIANT]);
@@ -346,8 +346,8 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
     UA_Variant_setScalarCopy(&inputArgs[2], &propertyname,
             &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &RelationalExpression,
-            &UA_OPENAAS[UA_OPENAAS_RELATIONALEXPRESSIONENUM]);
+    UA_Variant_setScalarCopy(&inputArgs[3], &ExpressionLogic,
+            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
     UA_Variant_setScalarCopy(&inputArgs[4], &ExpressionSemantic,
             &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
     UA_Variant_setScalarCopy(&inputArgs[5], &dataValue,
@@ -359,6 +359,8 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[8], &view,
             &UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
 
+    UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
+            &UA_TYPES[UA_TYPES_INT32]);
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
@@ -439,9 +441,9 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 }
 
 UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int RelationalExpression,
+        char* PVSLName, char* Name, int ExpressionLogic,
         int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view) {
+        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view,int visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -483,8 +485,8 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
     UA_Variant_setScalarCopy(&inputArgs[2], &propertyname,
             &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &RelationalExpression,
-            &UA_OPENAAS[UA_OPENAAS_RELATIONALEXPRESSIONENUM]);
+    UA_Variant_setScalarCopy(&inputArgs[3], &ExpressionLogic,
+            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
     UA_Variant_setScalarCopy(&inputArgs[4], &ExpressionSemantic,
             &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
     UA_Variant_setScalarCopy(&inputArgs[5], &dataValue,
@@ -496,6 +498,8 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[8], &view,
             &UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
 
+    UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
+            &UA_TYPES[UA_TYPES_BOOLEAN]);
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||setPVS");
     UA_NodeId objectId = UA_NODEID_STRING(4,
@@ -730,25 +734,25 @@ UA_Boolean findAASNodeId(UA_Client *client,UA_Identification AASId, UA_NodeId* n
 }
 
 int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName, UA_PropertyValueStatement *propertyValueStatement, pvsType *pvs){
-    pvs->accessControl = 0;
+
     pvs->expressionSemantic = propertyValueStatement->expressionSemantic;
 
     if(propertyName.name.length>=MAX_STRING_SIZE-1)
         return -1;
     memcpy(pvs->name,propertyName.name.data,propertyName.name.length);
 
-    if(propertyValueStatement->propertyReference.idSpec.length>=MAX_STRING_SIZE-1)
+    if(propertyValueStatement->iD.idSpec.length>=MAX_STRING_SIZE-1)
         return -1;
-    memcpy(pvs->propertyReferenceIdSpec,propertyValueStatement->propertyReference.idSpec.data,propertyValueStatement->propertyReference.idSpec.length);
-    pvs->propertyReferenceIdSpec[propertyValueStatement->propertyReference.idSpec.length] = 0;
-    pvs->propertyReferenceIdType = propertyValueStatement->propertyReference.idType;
+    memcpy(pvs->IDIdSpec,propertyValueStatement->iD.idSpec.data,propertyValueStatement->iD.idSpec.length);
+    pvs->IDIdSpec[propertyValueStatement->iD.idSpec.length] = 0;
+    pvs->IDIdType = propertyValueStatement->iD.idType;
 
-    pvs->relationalExpression = propertyValueStatement->relationalExpression;
+    pvs->expressionLogic = propertyValueStatement->expressionLogic;
     if(propertyValueStatement->unit.length>=MAX_STRING_SIZE-1)
         return -1;
     memcpy(pvs->unit,propertyValueStatement->unit.data,propertyValueStatement->unit.length);
     pvs->unit[propertyValueStatement->unit.length] = 0;
-
+    pvs->visibility = propertyValueStatement->visibility;
     if(UA_Variant_hasScalarType(&propertyValueStatement->value, &UA_TYPES[UA_TYPES_INT16])) {
         sprintf(pvs->value,"%d",*(UA_Int16*)propertyValueStatement->value.data);
         pvs->valueType = 0;
@@ -860,7 +864,7 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
             UA_ExtensionObject* ext = variant.data;
             size_t offset = 0;
             UA_PropertyValueStatement_decodeBinary(&ext->content.encoded.body,&offset,&propertyValueStatements[i]);
-            printf("property reference id: %.*s\n",propertyValueStatements[i].propertyReference.idSpec.length,propertyValueStatements[i].propertyReference.idSpec.data);
+            printf("property reference id: %.*s\n",propertyValueStatements[i].iD.idSpec.length,propertyValueStatements[i].iD.idSpec.data);
             if(UA_Variant_hasArrayType(&propertyValueStatements->value,&UA_TYPES[UA_TYPES_DOUBLE]))
                 printf("value: %lf \n",*(UA_Double*)propertyValueStatements[i].value.data);
             if(UA_Variant_hasArrayType(&propertyValueStatements->value,&UA_TYPES[UA_TYPES_INT32]))
@@ -879,9 +883,9 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
 
 }
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int* RelationalExpression,
+        char* PVSLName, char* Name, int* ExpressionLogic,
         int* ExpressionSemantic, char** Value, int* ValueType, char** Unit,
-        char** propertyReferenceIdSpec, int* propertyReferenceIdType, int* view) {
+        char** IDIdSpec, int* IDIdType, int* view,int *visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -926,9 +930,9 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
                 "Method call was successful, and %lu returned values available.\n",
                 (unsigned long) argOutSize);
 
-        UA_RelationalExpressionEnum* UARelationalExpression =
-                (UA_RelationalExpressionEnum*) output[0].data;
-        *RelationalExpression = *UARelationalExpression;
+        UA_ExpressionLogicEnum* UAExpressionLogic =
+                (UA_ExpressionLogicEnum*) output[0].data;
+        *ExpressionLogic = *UAExpressionLogic;
 
         UA_ExpressionSemanticEnum* UAExpressionSemantic =
                 (UA_ExpressionSemanticEnum*) output[1].data;
@@ -940,16 +944,19 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_String *unitstr = (UA_String*) output[3].data;
         copyOPCUAStringToChar(*unitstr, Unit);
 
-        UA_Identification *UAPropertyReference =
+        UA_Identification *UAId =
                 (UA_Identification*) output[4].data;
-        copyOPCUAStringToChar(UAPropertyReference->idSpec,
-                propertyReferenceIdSpec);
-        *propertyReferenceIdType = UAPropertyReference->idType;
+        copyOPCUAStringToChar(UAId->idSpec,
+                IDIdSpec);
+        *IDIdType = UAId->idType;
 
         UA_ViewEnum* UAView = (UA_ViewEnum*) output[5].data;
         *view = *UAView;
 
-        UA_StatusCode *status = (UA_StatusCode*) output[6].data;
+
+        *visibility = *(int*)output[6].data;
+        
+        UA_StatusCode *status = (UA_StatusCode*) output[7].data;
         retval = *status;
 
         UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);

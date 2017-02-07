@@ -1,7 +1,8 @@
 ExpressionSemanticEnum
-RelationalExpressionEnum
+ExpressionLogicEnum
 IdEnum
 ViewEnum
 Identification
 PropertyValueStatement
 LifeCycleEntry
+VisibilityEnum

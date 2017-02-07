@@ -4,26 +4,22 @@
   xmlns:ua="http://opcfoundation.org/UA/"
   xmlns:tns="http://opcfoundation.org/UA/"
   DefaultByteOrder="LittleEndian"
-  TargetNamespace="http://openaas.org/UA/"
->
+  TargetNamespace="http://openaas.org/UA/">
 
   <opc:Import Namespace="http://opcfoundation.org/BinarySchema/" />
 
-<!-- AAS types begin  -->
-
-  <opc:EnumeratedType Name="RelationalExpressionEnum" LengthInBits="32">
-    <opc:Documentation>Specifies the relational semantic of the expression</opc:Documentation>
-    <opc:EnumeratedValue Name="GREATER_THAN" Value="0" />
-    <opc:EnumeratedValue Name="GREATER_EQUAL" Value="1" />
-    <opc:EnumeratedValue Name="EQUAL" Value="2" />
-    <opc:EnumeratedValue Name="NOT_EQUAL" Value="3" />
-    <opc:EnumeratedValue Name="LESS_EQUAL" Value="4" />
-    <opc:EnumeratedValue Name="LESS_THAN" Value="5" />
+  <opc:EnumeratedType LengthInBits="32" Name="ExpressionLogicEnum">
+    <opc:EnumeratedValue Name="GREATER_THAN" Value="0"/>
+    <opc:EnumeratedValue Name="GREATER_EQUAL" Value="1"/>
+    <opc:EnumeratedValue Name="EQUAL" Value="2"/>
+    <opc:EnumeratedValue Name="NOT_EQUAL" Value="3"/>
+    <opc:EnumeratedValue Name="LESS_EQUAL" Value="4"/>
+    <opc:EnumeratedValue Name="LESS_THAN" Value="5"/>
   </opc:EnumeratedType>
 
   <opc:EnumeratedType Name="ExpressionSemanticEnum" LengthInBits="32">
     <opc:Documentation>Specifies the semantic of the property value statement</opc:Documentation>
-    <opc:EnumeratedValue Name="ASSURANCE" Value="0" />
+    <opc:EnumeratedValue Name="CONFIRMATION" Value="0" />
     <opc:EnumeratedValue Name="SETTING" Value="1" />
     <opc:EnumeratedValue Name="MEASUREMENT" Value="2" />
     <opc:EnumeratedValue Name="REQUIREMENT" Value="3" />
@@ -48,6 +44,13 @@
     <opc:EnumeratedValue Name="HUMAN" Value="8" />
   </opc:EnumeratedType>
 
+  <opc:EnumeratedType Name="VisibilityEnum" LengthInBits="32">
+    <opc:Documentation>Kind of Visibilty</opc:Documentation>
+    <opc:EnumeratedValue Name="PRIVATE" Value="0"/>
+    <opc:EnumeratedValue Name="CONTRACT" Value="1"/>
+    <opc:EnumeratedValue Name="PUBLIC" Value="2"/>
+  </opc:EnumeratedType>
+  
   <opc:StructuredType BaseType="ua:ExtensionObject" Name="Identification">
     <opc:Documentation>Identification</opc:Documentation>
     <opc:Field Name="IdSpec" TypeName="opc:String" />
@@ -56,12 +59,13 @@
 
    <opc:StructuredType BaseType="ua:ExtensionObject" Name="PropertyValueStatement">
     <opc:Documentation>Property Value Statement</opc:Documentation>
-    <opc:Field Name="ExpressionSemantic" TypeName="opc:UInt32" />
-    <opc:Field Name="RelationalExpression" TypeName="opc:UInt32" />
+    <opc:Field Name="ExpressionSemantic" TypeName="opc:ExpressionSemanticEnum" />
+    <opc:Field Name="ExpressionLogic" TypeName="opc:ExpressionLogicEnum" />
     <opc:Field Name="Unit" TypeName="opc:String" />
     <opc:Field Name="Value" TypeName="opc:Variant" />
-    <opc:Field Name="PropertyReference" TypeName="opc:Identification" />
+    <opc:Field Name="ID" TypeName="opc:Identification" />
     <opc:Field Name="View" TypeName="opc:ViewEnum" />
+    <opc:Field Name="Visibility" TypeName="opc:VisibilityEnum" />
   </opc:StructuredType>
 
   <opc:StructuredType BaseType="ua:ExtensionObject" Name="LifeCycleEntry">
@@ -71,11 +75,8 @@
     <opc:Field Name="Data" TypeName="opc:DataValue" />
     <opc:Field Name="Subject" TypeName="opc:String" />
     <opc:Field Name="EventClass" TypeName="opc:String" />
-    <opc:Field Name="View" TypeName="opc:ViewEnum" />
   </opc:StructuredType>
 
 
-
-<!-- AAS types end -->
 
 </opc:TypeDictionary>
