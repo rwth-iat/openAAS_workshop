@@ -65,20 +65,17 @@ int main ( int argc, char *argv[] ){
     if(argc < 2){
         printf("using standard serverIP opc.tcp://134.130.125.81:16664 \n");
         serverIP = malloc(26);
-        serverIP = "opc.tcp://134.130.125.81:16664";
+        serverIP = "opc.tcp://127.0.0.1:16664";
     }else
         serverIP = argv[1];
 
+    UA_Boolean deleteElements =false;
+    if(argc == 3){
+        UA_String arg3 = UA_String_fromChars(argv[2]);
+        UA_String argDelete = UA_String_fromChars("delete");
+        deleteElements = UA_String_equal(&arg3,&argDelete);
+    }
 	UA_StatusCode retval = UA_STATUSCODE_GOOD;
-
-    pvsType *pvs = NULL;
-    int count;
-
-   // count = getPVSFromListByName(serverIP,"http://acplt.org/Sensor4711",0,"AssetProperties",&pvs);
-
-//    for(int i=0;i<count;i++){
-//        printf("pvs.value: %.*s \n",8,pvs->value);
-//    }
 
 	retval = call_CreateAAS(serverIP,AAS_ID_STRING,AAS_ID_TYPE, AAS_NAME, ASSET_ID_STRING,AAS_ID_TYPE);
 	if(retval!=UA_STATUSCODE_GOOD){
@@ -88,11 +85,10 @@ int main ( int argc, char *argv[] ){
 	printf("AAS created \n");
 
 
-//    retval = call_DeleteAAS(serverIP,AAS_ID_STRING,AAS_ID_TYPE);
-//    return -1;
-	retval = call_CreatePVSL(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE);
+
+    retval = call_CreatePVSL(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,CARRIER_ID_STRING,CARRIER_ID_TYPE,CREATINGINSTANCE_ID_STRING,CREATINGINSTANCE_ID_TYPE);
 	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("PVSL creation failed: %i \n",(int)retval);
+	    printf("A creation failed: %i \n",(int)retval);
 	    return -1;
 	}
 	printf("PVSL created \n");
@@ -134,52 +130,61 @@ int main ( int argc, char *argv[] ){
 	printf("LCE created \n");
 
 	retval = call_CreateLCE(serverIP,AAS_ID_STRING,AAS_ID_TYPE,CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE, WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "spot", "run", 77455774, "2213", 2);
-		if(retval!=UA_STATUSCODE_GOOD){
-		    printf("LCE creation failed with: %i \n",(int)retval);
-		    return -1;
-		}
-		printf("LCE created \n");
+    if(retval!=UA_STATUSCODE_GOOD){
+        printf("LCE creation failed with: %i \n",(int)retval);
+        return -1;
+    }
+    printf("LCE created \n");
+
+    retval = call_SetLCE(serverIP,AAS_ID_STRING,AAS_ID_TYPE,2, CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE, WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "movie", "actress", 464646, "644", 1);
+    if(retval!=UA_STATUSCODE_GOOD){
+        printf("Setting LCE failed with: %i \n",(int)retval);
+        return -1;
+    }
+    printf("LCE successfully set \n");
+
+    if(deleteElements){
+        retval = call_DeletePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Assembly");
+        if(retval!=UA_STATUSCODE_GOOD){
+            printf("PVS deletion failed with: %i \n",(int)retval);
+            return -1;
+        }
+        printf("PVS deleted \n");
 
 
-
-	retval = call_DeletePVS(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Assembly");
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("PVS deletion failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("PVS deleted \n");
-
-
-	retval = call_SetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 0, 3, "54", 0, "mm", "https://openaas.org/properties/Property", 1, 1, 1);
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("Setting PVS failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("PVS successfully set \n");
+        retval = call_SetPVS(serverIP, AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME, "Property", 0, 3, "54", 0, "mm", "https://openaas.org/properties/Property", 1, 1, 1);
+        if(retval!=UA_STATUSCODE_GOOD){
+            printf("Setting PVS failed with: %i \n",(int)retval);
+            return -1;
+        }
+        printf("PVS successfully set \n");
 
 
-	retval = call_DeleteLCE(serverIP,AAS_ID_STRING,AAS_ID_TYPE,1);
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("LCE deletion failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("LCE deleted \n");
-
-
-	retval = call_SetLCE(serverIP,AAS_ID_STRING,AAS_ID_TYPE,2, CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE, WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "movie", "actress", 464646, "644", 1);
-	if(retval!=UA_STATUSCODE_GOOD){
-	    printf("Setting LCE failed with: %i \n",(int)retval);
-	    return -1;
-	}
-	printf("LCE successfully set \n");
-
-
+        retval = call_DeleteLCE(serverIP,AAS_ID_STRING,AAS_ID_TYPE,1);
+        if(retval!=UA_STATUSCODE_GOOD){
+            printf("LCE deletion failed with: %i \n",(int)retval);
+            return -1;
+        }
+        printf("LCE deleted \n");
+        call_DeleteAAS(serverIP,AAS_ID_STRING,AAS_ID_TYPE);
+        if(retval!=UA_STATUSCODE_GOOD){
+            printf("AAS deletion failed with: %i \n",(int)retval);
+            return -1;
+        }
+        printf("AAS deleted \n");
+    }
 
 
 	pvsType *pvs_c;
 	int pvscount = getPVSFromListByName(serverIP,AAS_ID_STRING,AAS_ID_TYPE,PVSL_NAME,&pvs_c);
 	for(int i=0;i<pvscount; i++){
-	    printf("pvs view %i \n", pvs->view);
+	    printf("pvs view %i \n", pvs_c->view);
+	    printf("pvs unit %s \n", pvs_c->unit);
+	    printf("pvs value %s \n", pvs_c->value);
+	    printf("pvs IDSpec %s \n", pvs_c->IDIdSpec);
+        printf("pvs IDType %i \n", pvs_c->IDIdType);
+        printf("pvs Expression semantic %i \n", pvs_c->expressionSemantic);
+        printf("pvs Expression logic %i \n", pvs_c->expressionLogic);
 	 }
 //    //Get-Methoden
 //    int relExpress = 0;

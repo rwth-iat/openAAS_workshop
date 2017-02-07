@@ -1,46 +1,33 @@
 from ctypes import *
 import uno
 
- #   typedef struct pvsType{
- #   char name[256];
- #   char value[256];
- #   int valueType;
- #   char unit[256];
- #   int expressionLogic;
- #   int expressionSemantic;
- #   int view;
- #   char IDIdSpec[256];
- #   int IDIdType;
- #   int visibility;
-#}pvsType;
 class PVS(Structure):
-    _fields_ = [("name", c_char*256),
-    ("value",c_char*256),
-    ("valueType",c_int),
-    ("unit",c_char*256),
-    ("expressionLogic", c_int),
-    ("expressionSemantic", c_int),
-    ("view",c_int),
-    ("IDIdSpec",c_char*256),
-    ("IDIdType",c_int),
-    ("visibility",c_int)]
+    _fields_ = [("PVSName", c_char*256),
+    ("RelationalExpression", c_int),
+    ("ExpressionSemantic", c_int),
+    ("Value",c_char*256),("ValueType",c_int),
+    ("Unit",c_char*256),
+    ("propertyReferenceIdSpec",c_char*256),
+    ("propertyReferenceIdType",c_int),
+    ("view",c_int)
+    ("visibility",c_int]
 
 
 #ID#################
-def TypeToInt_Id(typ):
+def TypeToInt(typ):
     #URI=0;ISO=1
     typ = typ.upper()
     if typ == "URI":
         return 0
     return 1
 
-def IntToType_Id(Int):
+def IntToType(Int):
     if Int == 0:
         return "URI"
     return "ISO"
 #######################
 #expression logic
-def TypeToInt_EL(typ):
+def TypeToInt_RE(typ):
     typ = typ.upper()
     return {
         "GREATER_THAN": 0,
@@ -51,7 +38,7 @@ def TypeToInt_EL(typ):
         "LESS_THAN":5,
     }.get(typ, 99) #return 99 if not found
 
-def IntToType_EL(Int):
+def IntToType_RE(Int):
     return {
         0: "GREATER_THAN",
         1: "GREATER_EQUAL",
@@ -98,7 +85,7 @@ def IntToType_VT(Int):
     }.get(Int, "Not Defined")
 ########################
 #view####################
-def TypeToInt_VIEW(typ):
+def TypeToInt_View(typ):
     typ = typ.upper()
     return {
         "BUSINESS": 0,
@@ -112,7 +99,7 @@ def TypeToInt_VIEW(typ):
         "HUMAN":8,
     }.get(typ, 99) 
 
-def IntToType_VIEW(Int):
+def IntToType_View(Int):
     return {
         0:"BUSINESS",
         1:"CONSTRUCTION",
@@ -124,18 +111,11 @@ def IntToType_VIEW(Int):
         7:"LIFECYCLE",
         8:"HUMAN",
     }.get(Int, "Not Defined")
-def IntToType_VIS(Int):
+def AccessToInt(Int):
     return {
-      0 : "PRIVATE",
-      1 : "CONTRACT",
-      2 : "PUBLIC"}.get(Int,"not defined")
-
-def TypeToInt_VIS(Int):  
-    return {
-        0:"PRIVATE",
-        1:"CONTRACT",
-        2:"PUBLIC"
-    }.get(Int, "Not Defined") 
+      0 : "private",
+      1 : "public"}.get(Int,"not defined")
+      
 def call_createAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
@@ -146,12 +126,12 @@ def call_createAAS(self):
 
     ip = oSheet.getCellRangeByName("B5").String
     AASIdSpec = oSheet.getCellRangeByName("B6").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B7").String)
 
     AASName = oSheet.getCellRangeByName("B8").String
 
     AssetIdSpec = oSheet.getCellRangeByName("B9").String
-    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+    AssetIdType = TypeToInt(oSheet.getCellRangeByName("B10").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -174,12 +154,12 @@ def call_deleteAAS(self):
 
     ip = oSheet.getCellRangeByName("B16").String
     AASIdSpec = oSheet.getCellRangeByName("B17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B18").String)
 
  #   AASName = oSheet.getCellRangeByName("B8").String
 
  #   AssetIdSpec = oSheet.getCellRangeByName("B9").String
- #   AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+ #   AssetIdType = TypeToInt(oSheet.getCellRangeByName("B10").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -208,19 +188,19 @@ def call_createLCE(self):
 
     ip = oSheet.getCellRangeByName("B4").String
     AASIdSpec = oSheet.getCellRangeByName("B5").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B6").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B6").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 	
     creatingInstanceIdSpec = oSheet.getCellByPosition(0,i+7).String #i starts with 0, i+7 is the first entry
-    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(1,i+7).String)
+    creatingInstanceIdType = TypeToInt(oSheet.getCellByPosition(1,i+7).String)
     writingInstanceIdSpec = oSheet.getCellByPosition(2,i+7).String
-    writingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(3,i+7).String)
+    writingInstanceIdType = TypeToInt(oSheet.getCellByPosition(3,i+7).String)
     
     eventClass = oSheet.getCellByPosition(4,i+7).String
     subject = oSheet.getCellByPosition(5,i+7).String
 
     value = oSheet.getCellByPosition(7,i+7).String
-    valueType = TypeToInt_Id(oSheet.getCellByPosition(8,i+7).String)
+    valueType = TypeToInt(oSheet.getCellByPosition(8,i+7).String)
 
     #type conversion
     ip_c = ip.encode('utf-8')
@@ -256,7 +236,7 @@ def call_deleteLCE(self):
 
     ip = oSheet.getCellRangeByName("B4").String
     AASIdSpec = oSheet.getCellRangeByName("B5").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B6").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B6").String)
 
     LCEId = oSheet.getCellRangeByName("B24").String
     ip_c = ip.encode('utf-8')
@@ -279,19 +259,19 @@ def call_createLCE1(self):
 
     ip = oSheet.getCellRangeByName("B5").String
     AASIdSpec = oSheet.getCellRangeByName("B6").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7"))
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B7"))
 
     creatingInstanceIdSpec = oSheet.getCellRangeByName("B8").String
-    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellRangeByName("B9").String)
+    creatingInstanceIdType = TypeToInt(oSheet.getCellRangeByName("B9").String)
     writingInstanceIdSpec = oSheet.getCellRangeByName("B10").String
-    writingInstanceIdType = TypeToInt_Id(oSheet.getCellRangeByName("B11").String)
+    writingInstanceIdType = TypeToInt(oSheet.getCellRangeByName("B11").String)
     
     eventClass = oSheet.getCellRangeByName("B12").String
     subject = oSheet.getCellRangeByName("B13").String
     #time string conversion?
-    timeStamp = TypeToInt_Id(oSheet.getCellRangeByName("B14").String)
+    timeStamp = TypeToInt(oSheet.getCellRangeByName("B14").String)
     value = oSheet.getCellRangeByName("B15").String
-    valueType = TypeToInt_Id(oSheet.getCellRangeByName("B16").String)
+    valueType = TypeToInt(oSheet.getCellRangeByName("B16").String)
 
     #type conversion
     ip_c = ip.encode('utf-8')
@@ -326,10 +306,10 @@ def call_createPVSL(self):
 
     ip = oSheet.getCellRangeByName("B5").String
     AASIdSpec = oSheet.getCellRangeByName("B6").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B7").String)
     listName = oSheet.getCellRangeByName("B8").String
     carrierIdSpec = oSheet.getCellRangeByName("B9").String
-    carrierIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+    carrierIdType = TypeToInt(oSheet.getCellRangeByName("B10").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -355,7 +335,7 @@ def call_deletePVSL(self):
 
     ip = oSheet.getCellRangeByName("B16").String
     AASIdSpec = oSheet.getCellRangeByName("B17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B18").String)
     name = oSheet.getCellRangeByName("B17").String
 
     ip_c = ip.encode('utf-8')
@@ -381,7 +361,7 @@ def call_createPVS(self):
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B3").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B4").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B4").String)
     AASIdSpec = oSheet.getCellRangeByName("B5").String
     PVSLName = oSheet.getCellRangeByName("B6").String
 
@@ -394,7 +374,7 @@ def call_createPVS(self):
     VT = oSheet.getCellByPosition(4,i+7).String #type to int?
     Unit = oSheet.getCellByPosition(5,i+7).String
     PRIdSpec = oSheet.getCellByPosition(6,i+7).String
-    PRIdType = TypeToInt_Id(oSheet.getCellByPosition(7,i+7).String)
+    PRIdType = TypeToInt(oSheet.getCellByPosition(7,i+7).String)
     View = oSheet.getCellByPosition(8,i+7).String    
 
     #type conversion
@@ -403,14 +383,14 @@ def call_createPVS(self):
     AASIdType_c = c_int(AASIdType)
     PVSLName_c = PVSLName.encode('utf-8')
     PVSName_c = PVSName.encode('utf-8') #name
-    RE_c = c_int(TypeToInt_EL(RE)) #re
+    RE_c = c_int(TypeToInt_RE(RE)) #re
     ES_c = c_int(TypeToInt_ES(ES)) #es
     Value_c = Value.encode('utf-8') #val
     VT_c = c_int(TypeToInt_VT(VT)) #val type
     Unit_c = Unit.encode('utf-8') #unit
     PRIdSpec_c = PRIdSpec.encode('utf-8') #pr
-    PRIdType_c = c_int(TypeToInt_Id(PRIdType))
-    View_c = c_int(TypeToInt_VIEW(View)) #view
+    PRIdType_c = c_int(TypeToInt(PRIdType))
+    View_c = c_int(TypeToInt_View(View)) #view
 
     StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(PVSLName_c), c_char_p(PVSName_c), RE_c, ES_c, c_char_p(Value_c), VT_c, c_char_p(Unit_c), c_char_p(PRIdSpec_c), PRIdType_c, View_c)
 
@@ -430,7 +410,7 @@ def call_createPVS(self):
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B3").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B4").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B4").String)
     AASIdSpec = oSheet.getCellRangeByName("B5").String
     PVSLName = oSheet.getCellRangeByName("B6").String
 
@@ -443,7 +423,7 @@ def call_createPVS(self):
     VT = oSheet.getCellByPosition(4,i+7).String #type to int?
     Unit = oSheet.getCellByPosition(5,i+7).String
     PRIdSpec = oSheet.getCellByPosition(6,i+7).String
-    PRIdType = TypeToInt_Id(oSheet.getCellByPosition(7,i+7).String)
+    PRIdType = TypeToInt(oSheet.getCellByPosition(7,i+7).String)
     View = oSheet.getCellByPosition(8,i+7).String    
 
     #type conversion
@@ -452,14 +432,14 @@ def call_createPVS(self):
     AASIdType_c = c_int(AASIdType)
     PVSLName_c = PVSLName.encode('utf-8')
     PVSName_c = PVSName.encode('utf-8') #name
-    RE_c = c_int(TypeToInt_EL(RE)) #re
+    RE_c = c_int(TypeToInt_RE(RE)) #re
     ES_c = c_int(TypeToInt_ES(ES)) #es
     Value_c = Value.encode('utf-8') #val
     VT_c = c_int(TypeToInt_VT(VT)) #val type
     Unit_c = Unit.encode('utf-8') #unit
     PRIdSpec_c = PRIdSpec.encode('utf-8') #pr
     PRIdType_c = c_int(PRIdType)
-    View_c = c_int(TypeToInt_VIEW(View)) #view
+    View_c = c_int(TypeToInt_View(View)) #view
 
     StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c))
 
@@ -479,7 +459,7 @@ def call_GetPVS(self):
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B22").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B23").String)
+    AASIdType = TypeToInt(oSheet.getCellRangeByName("B23").String)
     AASIdSpec = oSheet.getCellRangeByName("B5").String
     PVSLName = oSheet.getCellRangeByName("B6").String
 
@@ -501,55 +481,4 @@ def call_GetPVS(self):
     oSheet.getCellRangeByName("B39").Value = i+1 #increment number of entries
     del lib
     return None
-    
-       
-def getPVS(self):
-    oDoc = XSCRIPTCONTEXT.getDocument()
-    oSheet = oDoc.CurrentController.ActiveSheet
-    
-    #Parameter parsing
-    ip = oSheet.getCellRangeByName("B22").String
-    AASIdSpec = oSheet.getCellRangeByName("B23").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B24").String)
-    PVSLName = oSheet.getCellRangeByName("B25").String
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    lib = CDLL(pathToLibrary)
-    
-    ip_c = ip.encode('utf-8')
-    AASIdSpec_c = AASIdSpec.encode('utf-8')
-    AASIdTypeInt_c = c_int(AASIdType)
-    PVSLName_c = PVSLName.encode('utf8')
-    propertyValueStatements = c_void_p()
-    
-    count = lib.getPVSFromListByName(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(PVSLName_c), byref(propertyValueStatements))
-    #oSheet.getCellByPosition(0,42).String = count
-    
-    if count > 0:   
-        PVSArray = POINTER(PVS * count)
-        pvs_array = PVSArray.from_address(addressof(propertyValueStatements))
-        print_start_x = 0
-        print_start_y = 27
-        for i in range(count):
-            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = "-"
-            oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = pvs_array.contents[i].name
-            oSheet.getCellByPosition(print_start_x+2,print_start_y+i).String = IntToType_Id(pvs_array.contents[i].IDIdType)
-            oSheet.getCellByPosition(print_start_x+3,print_start_y+i).String = pvs_array.contents[i].IDIdSpec
-            oSheet.getCellByPosition(print_start_x+4,print_start_y+i).String = "-"
-
-            oSheet.getCellByPosition(print_start_x+5,print_start_y+i).String = pvs_array.contents[i].unit
-            oSheet.getCellByPosition(print_start_x+6,print_start_y+i).String = IntToType_VT(pvs_array.contents[i].valueType)
-            oSheet.getCellByPosition(print_start_x+7,print_start_y+i).String = "-"
-            oSheet.getCellByPosition(print_start_x+8,print_start_y+i).String = pvs_array.contents[i].value
-            oSheet.getCellByPosition(print_start_x+9,print_start_y+i).String = IntToType_ES(pvs_array.contents[i].expressionSemantic)
-            oSheet.getCellByPosition(print_start_x+10,print_start_y+i).String = IntToType_EL(pvs_array.contents[i].expressionLogic)
-            oSheet.getCellByPosition(print_start_x+11,print_start_y+i).String = IntToType_VIS(pvs_array.contents[i].visibility)
-            oSheet.getCellByPosition(print_start_x+12,print_start_y+i).String = IntToType_VIEW(pvs_array.contents[i].view)
-            oSheet.getCellByPosition(print_start_x+13,print_start_y+i).String = "-"            
-            oSheet.getCellByPosition(print_start_x+14,print_start_y+i).String = "-"           
-            
-            
-    del lib
-
-    
-    
   

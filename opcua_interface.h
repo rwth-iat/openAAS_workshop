@@ -34,7 +34,7 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType);
 
 /* Property value statement list */
 UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* name, char* CarrierIdSpec, int CarrierIdType);
+        char* name, char* CarrierIdSpec, int CarrierIdType, char* CreatingInstanceIdSpec, int CreatingInstanceIdType);
 
 UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* name);
@@ -64,7 +64,7 @@ typedef struct pvsType{
     int IDIdType;
     int visibility;
 }pvsType;
-typedef struct lifeCycleEntry{
+typedef struct lifeCycleEntryType{
     char timestamp[256];
     char subject[256];
     char eventClass[256];
@@ -73,7 +73,8 @@ typedef struct lifeCycleEntry{
     char writingInstanceSpec[256];
     int writingInstanceType;
     char data[256];
-}lifeCycleEntry;
+    int dataType;
+}lifeCycleEntryType;
 typedef struct opcua_pvs{
     UA_PropertyValueStatement statement;
     UA_NodeId id;
@@ -116,3 +117,4 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType, long 
         char** writingInstanceIdSpec, int* writingInstanceIdType,
         char** EventClass, char** Subject, UA_DateTime* timeStamp, char** value,
         int* valueType);
+UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries, unsigned int lifeCycleEntriesCount);
