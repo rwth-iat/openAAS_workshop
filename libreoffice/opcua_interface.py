@@ -1,4 +1,7 @@
 from ctypes import *
+import datetime
+from datetime import *
+import time
 import uno
 
  #   typedef struct pvsType{
@@ -86,7 +89,7 @@ def TypeToInt_VT(typ):
         "INTEGER": 0,
         "DOUBLE": 1,
         "STRING":2,
-        "DATATIME":3,
+        "DATETIME":3,
     }.get(typ, 99) 
 
 def IntToType_VT(Int):
@@ -94,7 +97,7 @@ def IntToType_VT(Int):
         0:"INTEGER",
         1:"DOUBLE",
         2:"STRING",
-        3:"DATATIME",
+        3:"DATETIME",
     }.get(Int, "Not Defined")
 ########################
 #view####################
@@ -130,12 +133,13 @@ def IntToType_VIS(Int):
       1 : "CONTRACT",
       2 : "PUBLIC"}.get(Int,"not defined")
 
-def TypeToInt_VIS(Int):  
+def TypeToInt_VIS(typ):
+    typ = typ.upper()  
     return {
-        0:"PRIVATE",
-        1:"CONTRACT",
-        2:"PUBLIC"
-    }.get(Int, "Not Defined") 
+        "PRIVATE":0,
+        "CONTRACT":1,
+        "PUBLIC":2
+    }.get(typ, "Not Defined") 
 def call_createAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
@@ -381,26 +385,38 @@ def call_createPVS(self):
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B3").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B4").String)
-    AASIdSpec = oSheet.getCellRangeByName("B5").String
-    PVSLName = oSheet.getCellRangeByName("B6").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
 
+    PVSLName = oSheet.getCellRangeByName("B6").String
+  
     #quasi interation
     #position begins with 0. E.g.: A8=0,7
     PVSName = oSheet.getCellByPosition(0,i+7).String #i starts with 0, i+7 is the first entry
+    print(PVSName)
     RE = oSheet.getCellByPosition(1,i+7).String #this is col B (relational expr)
+    print(RE)
     ES = oSheet.getCellByPosition(2,i+7).String
+    print(ES)
     Value = oSheet.getCellByPosition(3,i+7).String
+    print(Value)
     VT = oSheet.getCellByPosition(4,i+7).String #type to int?
+    print(VT)
     Unit = oSheet.getCellByPosition(5,i+7).String
+    print(Unit)
     PRIdSpec = oSheet.getCellByPosition(6,i+7).String
-    PRIdType = TypeToInt_Id(oSheet.getCellByPosition(7,i+7).String)
+    print(PRIdSpec)
+    PRIdType = oSheet.getCellByPosition(7,i+7).String
+    print(PRIdType)
     View = oSheet.getCellByPosition(8,i+7).String    
-
+    print(View)
+    Visibility = oSheet.getCellByPosition(9,i+7).String    
+    print(Visibility)
     #type conversion
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
+    print(AASIdType_c)
     PVSLName_c = PVSLName.encode('utf-8')
     PVSName_c = PVSName.encode('utf-8') #name
     RE_c = c_int(TypeToInt_EL(RE)) #re
@@ -411,98 +427,17 @@ def call_createPVS(self):
     PRIdSpec_c = PRIdSpec.encode('utf-8') #pr
     PRIdType_c = c_int(TypeToInt_Id(PRIdType))
     View_c = c_int(TypeToInt_VIEW(View)) #view
+    Visibility_c = c_int(TypeToInt_VIS(Visibility))
 
-    StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(PVSLName_c), c_char_p(PVSName_c), RE_c, ES_c, c_char_p(Value_c), VT_c, c_char_p(Unit_c), c_char_p(PRIdSpec_c), PRIdType_c, View_c)
-
-    oSheet.getCellByPosition(9,i+7).String = StatusCall #this is col_J
-    oSheet.getCellRangeByName("B20").Value = i+1 #increment number of entries
+    StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(PVSLName_c), c_char_p(PVSName_c),RE_c,ES_c, c_char_p(Value_c),VT_c,c_char_p(Unit_c),c_char_p(PRIdSpec_c),PRIdType_c,View_c,Visibility_c)
+    print(StatusCall)
+    
+    
+    oSheet.getCellByPosition(10,i+10).String = StatusCall #this is col_J
+    #oSheet.getCellRangeByName("B20").Value = i+1 #increment number of entries
     del lib
     return None
-
-def call_createPVS(self):
-    oDoc = XSCRIPTCONTEXT.getDocument()
-    oSheet = oDoc.CurrentController.ActiveSheet
-    
-    #row counter
-    i = oSheet.getCellRangeByName("B20").Value
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    lib = CDLL(pathToLibrary)
-
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B4").String)
-    AASIdSpec = oSheet.getCellRangeByName("B5").String
-    PVSLName = oSheet.getCellRangeByName("B6").String
-
-    #quasi interation
-    #position begins with 0. E.g.: A8=0,7
-    PVSName = oSheet.getCellByPosition(0,i+7).String #i starts with 0, i+7 is the first entry
-    RE = oSheet.getCellByPosition(1,i+7).String #this is col B (relational expr)
-    ES = oSheet.getCellByPosition(2,i+7).String
-    Value = oSheet.getCellByPosition(3,i+7).String
-    VT = oSheet.getCellByPosition(4,i+7).String #type to int?
-    Unit = oSheet.getCellByPosition(5,i+7).String
-    PRIdSpec = oSheet.getCellByPosition(6,i+7).String
-    PRIdType = TypeToInt_Id(oSheet.getCellByPosition(7,i+7).String)
-    View = oSheet.getCellByPosition(8,i+7).String    
-
-    #type conversion
-    ip_c = ip.encode('utf-8')
-    AASIdSpec_c = AASIdSpec.encode('utf-8')
-    AASIdType_c = c_int(AASIdType)
-    PVSLName_c = PVSLName.encode('utf-8')
-    PVSName_c = PVSName.encode('utf-8') #name
-    RE_c = c_int(TypeToInt_EL(RE)) #re
-    ES_c = c_int(TypeToInt_ES(ES)) #es
-    Value_c = Value.encode('utf-8') #val
-    VT_c = c_int(TypeToInt_VT(VT)) #val type
-    Unit_c = Unit.encode('utf-8') #unit
-    PRIdSpec_c = PRIdSpec.encode('utf-8') #pr
-    PRIdType_c = c_int(PRIdType)
-    View_c = c_int(TypeToInt_VIEW(View)) #view
-
-    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c))
-
-    oSheet.getCellByPosition(9,i+7).String = StatusCall #this is col_J
-    oSheet.getCellRangeByName("B20").Value = i+1 #increment number of entries
-    del lib
-    return None
-
-def call_GetPVS(self):
-    oDoc = XSCRIPTCONTEXT.getDocument()
-    oSheet = oDoc.CurrentController.ActiveSheet
-    
-    #row counter
-    i = oSheet.getCellRangeByName("B39").Value
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    lib = CDLL(pathToLibrary)
-
-    ip = oSheet.getCellRangeByName("B22").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B23").String)
-    AASIdSpec = oSheet.getCellRangeByName("B5").String
-    PVSLName = oSheet.getCellRangeByName("B6").String
-
-    #type conversion
-    ip_c = ip.encode('utf-8')
-    AASIdSpec_c = AASIdSpec.encode('utf-8')
-    AASIdType_c = c_int(AASIdType)
-    PVSLName_c = PVSLName.encode('utf-8')
-
-    #pass by ref, need rewriting
-    myStruct = c_void_p()
-    StatusCall = lib.call_GetPVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(PVSLName_c), byref(myStruct))
-    oSheet.getCellByPosition(9,i+7).String = StatusCall #this is col_J
-    if StatusCall == 0:
-        #define a new type StructArray
-        StructArray = Struct * StatusCall
-        struct_array = StructArray.from_address(myStruct.value)
-
-    oSheet.getCellRangeByName("B39").Value = i+1 #increment number of entries
-    del lib
-    return None
-    
-       
+  
 def getPVS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
@@ -542,12 +477,10 @@ def getPVS(self):
             oSheet.getCellByPosition(print_start_x+8,print_start_y+i).String = pvs_array.contents[i].value
             oSheet.getCellByPosition(print_start_x+9,print_start_y+i).String = IntToType_ES(pvs_array.contents[i].expressionSemantic)
             oSheet.getCellByPosition(print_start_x+10,print_start_y+i).String = IntToType_EL(pvs_array.contents[i].expressionLogic)
-            oSheet.getCellByPosition(print_start_x+11,print_start_y+i).String = IntToType_VIS(pvs_array.contents[i].visibility)
-            oSheet.getCellByPosition(print_start_x+12,print_start_y+i).String = IntToType_VIEW(pvs_array.contents[i].view)
+            oSheet.getCellByPosition(print_start_x+11,print_start_y+i).String = IntToType_VIEW(pvs_array.contents[i].view)
+            oSheet.getCellByPosition(print_start_x+12,print_start_y+i).String = IntToType_VIS(pvs_array.contents[i].visibility)
             oSheet.getCellByPosition(print_start_x+13,print_start_y+i).String = "-"            
             oSheet.getCellByPosition(print_start_x+14,print_start_y+i).String = "-"           
-            
-            
     del lib
 
     
