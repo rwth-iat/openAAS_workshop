@@ -1,4 +1,4 @@
-This folder provides the needed OPC UA models to handle Asset Administration Shells,Property Value Statement Lists, Property Value Statements, Lifecyle Entries etc.  
+In this folder, you can find the needed OPC UA models to handle Asset Administration Shells,Property Value Statement Lists, Property Value Statements, Lifecyle Entries etc.  
 
 aas.xml - the nodeset
 
