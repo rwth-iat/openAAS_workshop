@@ -1439,7 +1439,7 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
     if(!UA_Variant_hasArrayType(&output[1],&UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
         return -1;
 
-    for(size_t i = 0; i < count;i++){
+    for(size_t i = 0; i < lceCount;i++){
         UA_LifeCycleEntry lce;
         UA_LifeCycleEntry_init(&lce);
         UA_ExtensionObject ext = ((UA_ExtensionObject*)output[1].data)[i];

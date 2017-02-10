@@ -190,9 +190,9 @@ int main ( int argc, char *argv[] ){
         printf("pvs Expression logic: %i \n", pvs_c->expressionLogic);
 	 }
 	free(pvs_c);
-    lifeCycleEntryType *lce;
-    int lcecount = 0;
-    lcecount = call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce);
+    lifeCycleEntryType *lce = NULL;
+
+    int lcecount = call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce);
 
     printf("------------------------------\n");
     printf("lifecycle\n");
@@ -210,8 +210,8 @@ int main ( int argc, char *argv[] ){
         printf("lce id:" "%" PRId64 "\n", lce->id);
         printf("lce data: %s \n", lce->data);
         printf("lce timestamp: %s \n", lce->timestamp);
+    }
 
-     }
     free(lce);
 
 
