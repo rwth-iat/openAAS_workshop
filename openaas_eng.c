@@ -61,6 +61,11 @@
 
 
 int main ( int argc, char *argv[] ){
+
+    UA_DateTime dt = UA_DateTime_now();//(UA_DateTime_now());
+
+    printf("%" PRIu64 "\n", dt);
+    return -1;
     char* serverIP;
     if(argc < 2){
         printf("using standard serverIP opc.tcp://134.130.125.81:16664 \n");
@@ -192,27 +197,27 @@ int main ( int argc, char *argv[] ){
 	free(pvs_c);
     lifeCycleEntryType *lce = NULL;
 
-    int lcecount = call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce);
+//    int lcecount = call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce);
 
-    printf("------------------------------\n");
-    printf("lifecycle\n");
+//    printf("------------------------------\n");
+//    printf("lifecycle\n");
 
 
-    for(int i=0;i<lcecount; i++){
-        printf("#%i ----\n",i);
-        printf("lce writing instance spec: %s \n", lce->writingInstanceSpec);
-        printf("lce writing instance type: %i \n", lce->writingInstanceType);
-        printf("lce creating instance spec: %s \n", lce->creatingInstanceSpec);
-        printf("lce creating instance type: %i \n", lce->creatingInstanceType);
-        printf("lce subject: %s \n", lce->subject);
-        printf("lce eventClass: %s \n", lce->eventClass);
-        printf("lce dataType: %i \n", lce->dataType);
-        printf("lce id:" "%" PRId64 "\n", lce->id);
-        printf("lce data: %s \n", lce->data);
-        printf("lce timestamp: %s \n", lce->timestamp);
-    }
+//    for(int i=0;i<lcecount; i++){
+//        printf("#%i ----\n",i);
+//        printf("lce writing instance spec: %s \n", lce->writingInstanceSpec);
+//        printf("lce writing instance type: %i \n", lce->writingInstanceType);
+//        printf("lce creating instance spec: %s \n", lce->creatingInstanceSpec);
+//        printf("lce creating instance type: %i \n", lce->creatingInstanceType);
+//        printf("lce subject: %s \n", lce->subject);
+//        printf("lce eventClass: %s \n", lce->eventClass);
+//        printf("lce dataType: %i \n", lce->dataType);
+//        printf("lce id:" "%" PRId64 "\n", lce->id);
+//        printf("lce data: %s \n", lce->data);
+//        printf("lce timestamp: %s \n", lce->timestamp);
+//    }
 
-    free(lce);
+//    free(lce);
 
 
     clean:

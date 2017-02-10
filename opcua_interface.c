@@ -1466,6 +1466,10 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
         parseFromVariant(lce.data.value,(*lifeCycleEntries)[i].data,&(*lifeCycleEntries)[i].dataType);
         (*lifeCycleEntries)[i].id = lce.id;
 
+
+        (*lifeCycleEntries)[i].timestamp = lce.data.sourceTimestamp;
+
+
         UA_LifeCycleEntry_deleteMembers(&lce);
     }
 

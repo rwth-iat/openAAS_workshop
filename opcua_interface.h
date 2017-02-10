@@ -66,7 +66,7 @@ typedef struct pvsType{
     int visibility;
 }pvsType;
 typedef struct lifeCycleEntryType{
-    char timestamp[MAX_STRING_SIZE];
+    int64_t timestamp;
     char subject[MAX_STRING_SIZE];
     char eventClass[MAX_STRING_SIZE];
     char creatingInstanceSpec[MAX_STRING_SIZE];
