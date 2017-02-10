@@ -62,10 +62,7 @@
 
 int main ( int argc, char *argv[] ){
 
-    UA_DateTime dt = UA_DateTime_now();//(UA_DateTime_now());
 
-    printf("%" PRIu64 "\n", dt);
-    return -1;
     char* serverIP;
     if(argc < 2){
         printf("using standard serverIP opc.tcp://134.130.125.81:16664 \n");
