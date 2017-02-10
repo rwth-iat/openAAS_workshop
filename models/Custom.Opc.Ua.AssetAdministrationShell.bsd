@@ -75,6 +75,7 @@
     <opc:Field Name="Data" TypeName="opc:DataValue" />
     <opc:Field Name="Subject" TypeName="opc:String" />
     <opc:Field Name="EventClass" TypeName="opc:String" />
+    <opc:Field Name="Id" TypeName="opc:Int64"/>
   </opc:StructuredType>
 
 

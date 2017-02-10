@@ -52,44 +52,32 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* PVSLName, char* Name, int ExpressionLogic,
         int ExpressionSemantic, char* Value, int ValueType, char* Unit,
         char* propertyReferenceIdSpec, int propertyReferenceIdType, int view, int visibility);
+/* simple interface types */
 typedef struct pvsType{
-    char name[256];
-    char value[256];
+    char name[MAX_STRING_SIZE];
+    char value[MAX_STRING_SIZE];
     int valueType;
-    char unit[256];
+    char unit[MAX_STRING_SIZE];
     int expressionLogic;
     int expressionSemantic;
     int view;
-    char IDIdSpec[256];
+    char IDIdSpec[MAX_STRING_SIZE];
     int IDIdType;
     int visibility;
 }pvsType;
 typedef struct lifeCycleEntryType{
-    char timestamp[256];
-    char subject[256];
-    char eventClass[256];
-    char creatingInstanceSpec[256];
+    char timestamp[MAX_STRING_SIZE];
+    char subject[MAX_STRING_SIZE];
+    char eventClass[MAX_STRING_SIZE];
+    char creatingInstanceSpec[MAX_STRING_SIZE];
     int creatingInstanceType;
-    char writingInstanceSpec[256];
+    char writingInstanceSpec[MAX_STRING_SIZE];
     int writingInstanceType;
     char data[256];
     int dataType;
+    int64_t id;
 }lifeCycleEntryType;
-typedef struct opcua_pvs{
-    UA_PropertyValueStatement statement;
-    UA_NodeId id;
-}opcua_pvs;
-typedef struct PVSL{
-    UA_Identification Carrier;
-    opcua_pvs* statements;
-    size_t statementsSize;
-}PVSL;
-typedef struct pvslist{
-    char name[256];
-}pvslist;
 
-
-int getAllPVS(char* ipAddress, pvsType **pvs);
 int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* listname, pvsType **pvs_c);
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* PVSLName, char* Name, int* ExpressionLogic,
@@ -102,7 +90,6 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* writingInstanceIdSpec, int writingInstanceIdType,
         char* EventClass, char* Subject, UA_DateTime timeStamp, char* value,
         int valueType);
-
 UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         long long LCEId);
 
@@ -117,4 +104,5 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType, long 
         char** writingInstanceIdSpec, int* writingInstanceIdType,
         char** EventClass, char** Subject, UA_DateTime* timeStamp, char** value,
         int* valueType);
-UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries, unsigned int lifeCycleEntriesCount);
+        
+int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries, int *lifeCycleEntriesCount);

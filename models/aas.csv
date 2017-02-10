@@ -90,6 +90,9 @@ PropertyValueStatementListType_CreatingInstance,6063,Variable
 AssetAdministrationShellType_Header_CreationTime,6064,Variable
 AssetAdministrationShellType_Header_CreatingInstance,6065,Variable
 SubModel_ModelId,6066,Variable
+AASFactoryType_triggerGetCoreData_InputArguments,6067,Variable
+AASFactoryType_triggerGetCoreData_OutputArguments,6068,Variable
+LifeCycleEntryType_Id,6069,Variable
 AASFactoryType_createAAS,7001,Method
 AASFactoryType_deleteAAS,7002,Method
 AASFactoryType_createPVSL,7003,Method
@@ -104,3 +107,4 @@ AASFactoryType_setPVS,7011,Method
 AASFactoryType_getLCE,7012,Method
 AASFactoryType_getAASNodeId,7013,Method
 AASFactoryType_getLastLCEs,7014,Method
+AASFactoryType_triggerGetCoreData,7015,Method
