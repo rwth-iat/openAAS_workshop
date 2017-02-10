@@ -28,6 +28,29 @@ class PVS(Structure):
     ("IDIdType",c_int),
     ("visibility",c_int)]
 
+#typedef struct lifeCycleEntryType{
+#   char timestamp[MAX_STRING_SIZE];
+#   char subject[MAX_STRING_SIZE];
+#   char eventClass[MAX_STRING_SIZE];
+#    char creatingInstanceSpec[MAX_STRING_SIZE];
+#    int creatingInstanceType;
+#    char writingInstanceSpec[MAX_STRING_SIZE];
+#    int writingInstanceType;
+#    char data[256];
+#    int dataType;
+#    int64_t id;
+#}lifeCycleEntryType;
+class LCE(Structure):
+    _fields_ = [("timestamp", c_char*256),
+    ("value",c_char*256),
+    ("valueType",c_int),
+    ("unit",c_char*256),
+    ("expressionLogic", c_int),
+    ("expressionSemantic", c_int),
+    ("view",c_int),
+    ("IDIdSpec",c_char*256),
+    ("IDIdType",c_int),
+    ("visibility",c_int)]
 
 #ID#################
 def TypeToInt_Id(typ):
@@ -86,18 +109,30 @@ def IntToType_ES(Int):
 def TypeToInt_valueType(typ):
     typ = typ.upper()
     return {
-        "INTEGER": 0,
-        "DOUBLE": 1,
-        "STRING":2,
-        "DATETIME":3,
+        "BOOL" : 1,
+        "FLOAT": 2,
+        "INT32": 3,
+        "INT64": 4,
+        "UINT32": 6,
+        "UINT64": 7,
+        "DOUBLE": 8,
+        "STRING": 9,
+        "DATETIME":10,
+        "IDENTIFICATION":11,
     }.get(typ, 99) 
 
 def IntToType_valueType(Int):
     return {
-        0:"INTEGER",
-        1:"DOUBLE",
-        2:"STRING",
-        3:"DATETIME",
+        1 :"BOOL",
+        2 :"FLOAT",
+        3 :"INT32",
+        4 :"INT64",
+        6:"UINT32",
+        7:"UINT64",
+        8:"DOUBLE",
+        9:"STRING",
+        10:"DATETIME",
+        11:"IDENTIFICATION",
     }.get(Int, "Not Defined")
 ########################
 #view####################
@@ -140,22 +175,23 @@ def TypeToInt_VIS(typ):
         "CONTRACT":1,
         "PUBLIC":2
     }.get(typ, "Not Defined") 
+    
 def call_createAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
     
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B4").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B5").String
-    AASIdSpec = oSheet.getCellRangeByName("B6").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
 
-    AASName = oSheet.getCellRangeByName("B8").String
+    AASName = oSheet.getCellRangeByName("B6").String
 
-    AssetIdSpec = oSheet.getCellRangeByName("B9").String
-    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+    AssetIdSpec = oSheet.getCellRangeByName("B7").String
+    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -164,7 +200,10 @@ def call_createAAS(self):
     AssetIdSpec_c = AssetIdSpec.encode('utf-8')
     AssetIdType_c = c_int(AssetIdType)
     StatusCall = lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
-    oSheet.getCellRangeByName("B11").String = StatusCall
+    if(StatusCall!=0):
+       oSheet.getCellRangeByName("B9").String = "failed"
+    else:
+       oSheet.getCellRangeByName("B9").String = "good" 
     del lib
     return None
 
@@ -173,7 +212,7 @@ def call_deleteAAS(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B4").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B16").String
@@ -207,12 +246,12 @@ def call_createLCE(self):
     i = count%11
 
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B3").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B4").String
-    AASIdSpec = oSheet.getCellRangeByName("B5").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B6").String)
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 	
     creatingInstanceIdSpec = oSheet.getCellByPosition(0,i+7).String #i starts with 0, i+7 is the first entry
@@ -325,17 +364,17 @@ def call_createPVSL(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B4").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B5").String
-    AASIdSpec = oSheet.getCellRangeByName("B6").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
-    listName = oSheet.getCellRangeByName("B8").String
-    carrierIdSpec = oSheet.getCellRangeByName("B9").String
-    carrierIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
-    creatingInstanceSpec = oSheet.getCellRangeByName("B11").String
-    creatingInstanceType = TypeToInt_Id(oSheet.getCellRangeByName("B12").String)
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    listName = oSheet.getCellRangeByName("B6").String
+    carrierIdSpec = oSheet.getCellRangeByName("B7").String
+    carrierIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
+    creatingInstanceSpec = oSheet.getCellRangeByName("B9").String
+    creatingInstanceType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
     
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -345,12 +384,15 @@ def call_createPVSL(self):
     carrierIdType_c = c_int(carrierIdType)
     
     creatingInstanceIdType_c = c_int(creatingInstanceType)
-    creatingInstanceSpec_c = creatingInstanceSpec.encode('utf-8')
+    creatingInstancec_c = creatingInstanceSpec.encode('utf-8')
     
     StatusCall = 0
     print(carrierIdSpec)
     StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceSpec_c),creatingInstanceIdType_c)
-    oSheet.getCellRangeByName("B13").String = StatusCall
+    if(StatusCall!=0):
+      oSheet.getCellRangeByName("B11").String = "failed"
+    else:
+      oSheet.getCellRangeByName("B11").String = "good"
     del lib
     return None
 
@@ -375,7 +417,10 @@ def call_deletePVSL(self):
     name_c = name.encode('utf-8')
  
     StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(name_c))
-    oSheet.getCellRangeByName("B20").String = StatusCall
+    if(StatusCall!=0):
+      oSheet.getCellRangeByName("B20").String = "failed"
+    else:
+      oSheet.getCellRangeByName("B20").String = "good"   
     del lib
     return None
 
@@ -534,5 +579,46 @@ def getPVS(self):
             oSheet.getCellByPosition(print_start_x+12,print_start_y+i).String = IntToType_VIS(pvs_array.contents[i].visibility)
             oSheet.getCellByPosition(print_start_x+13,print_start_y+i).String = "-"            
             oSheet.getCellByPosition(print_start_x+14,print_start_y+i).String = "-"           
+    del lib
+    return None
+    
+    
+def call_getLastLCEs(self):
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    #Parameter parsing
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+
+    lib = CDLL(pathToLibrary)
+    
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdTypeInt_c = c_int(AASIdType)
+
+    lifeCycleEntries = c_void_p()
+    
+    count = lib.Call_getLastLCEs(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, byref(lifeCycleEntries))
+    #oSheet.getCellByPosition(0,42).String = count
+
+        
+    if count > 0:   
+        LCEArray = POINTER(LCE * count)
+        lce_array = LCEArray.from_address(addressof(lifeCycleEntries))
+        print_start_x = 0
+        print_start_y = 27
+        
+        
+        n = 0
+        while (len(oSheet.getCellByPosition(print_start_x+0,print_start_y+n).String) > 0):
+          n = n + 1
+        for i in range(n):
+          for j in range(15):
+            oSheet.getCellByPosition(print_start_x+j,print_start_y+i).String=""
+        for i in range(count):
+            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = "-"         
     del lib
     return None
