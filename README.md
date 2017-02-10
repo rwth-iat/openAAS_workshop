@@ -21,7 +21,7 @@ The Engineering Client: (tested on Ubuntu 14.4)
 
 # Getting Started
 ## Setting up the Server
-The AAS are hosted by the [ACPLT/RTE](https://github.com/acplt/rte). Compile it as described and add in the ov_server.conf following line at the end:
+Within this demo, it is assumed that the AAS are stored in a organization-bound repository which implements an OPC UA interface to interact with the AAS. In this example, the repository server is implemented with [ACPLT/RTE](https://github.com/acplt/rte). Compile it as described and add in the ov_server.conf following line at the end:
 ```sh
 LIBRARY openaas
 ```
