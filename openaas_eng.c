@@ -192,7 +192,7 @@ int main ( int argc, char *argv[] ){
 	free(pvs_c);
     lifeCycleEntryType *lce;
     int lcecount = 0;
-    call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce,&lcecount);
+    lcecount = call_GetLastLCEs(serverIP,AAS_ID_STRING,AAS_ID_TYPE,10,&lce);
 
     printf("------------------------------\n");
     printf("lifecycle\n");

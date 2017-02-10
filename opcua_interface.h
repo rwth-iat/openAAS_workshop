@@ -105,4 +105,4 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType, long 
         char** EventClass, char** Subject, UA_DateTime* timeStamp, char** value,
         int* valueType);
         
-int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries, int *lifeCycleEntriesCount);
+int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries);

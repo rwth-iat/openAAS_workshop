@@ -983,6 +983,7 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
        UA_Variant_deleteMembers(&variant);
 
     }
+
     UA_Array_delete(propertyValueStatements,foundStatementIdsSize,&UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
     UA_Array_delete(foundStatementIds, foundStatementIdsSize, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
     UA_NodeId_deleteMembers(&AASNodeId);
@@ -1388,7 +1389,7 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 }
 
 
-int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries, int *lifeCycleEntriesCount) {
+int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -1432,13 +1433,13 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
     }
 
 
-    *lifeCycleEntriesCount = output[1].arrayLength;
-    *lifeCycleEntries = calloc((*lifeCycleEntriesCount),sizeof(lifeCycleEntryType) );
+    int lceCount = output[1].arrayLength;
+    *lifeCycleEntries = calloc(lceCount,sizeof(lifeCycleEntryType) );
 
     if(!UA_Variant_hasArrayType(&output[1],&UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
         return -1;
 
-    for(size_t i = 0; i < *lifeCycleEntriesCount;i++){
+    for(size_t i = 0; i < count;i++){
         UA_LifeCycleEntry lce;
         UA_LifeCycleEntry_init(&lce);
         UA_ExtensionObject ext = ((UA_ExtensionObject*)output[1].data)[i];
@@ -1473,7 +1474,7 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
     UA_Client_delete(client);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return *lifeCycleEntriesCount;
+    return lceCount;
 }
 
 

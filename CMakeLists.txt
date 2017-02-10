@@ -33,22 +33,22 @@ set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas.xml)
 
 
 #nodeset generation
-add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/nodeset.h ${PROJECT_BINARY_DIR}/nodeset.c
-                  PRE_BUILD
-                  COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/pyUANamespace/generate_open62541CCode.py
-                                                -i ${OPEN62541_DIR}/tools/pyUANamespace/NodeID_Blacklist_FullNS0.txt
-                                                ${OPEN62541_DIR}/tools/schema/namespace0/Opc.Ua.NodeSet2.xml
-                                                ${MODELS}
-                                                ${PROJECT_BINARY_DIR}/nodeset
-                  DEPENDS ${OPEN62541_DIR}/tools/pyUANamespace/generate_open62541CCode.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/open62541_MacroHelper.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_builtin_types.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_constants.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_namespace.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_node_types.py
-                          ${OPEN62541_DIR}/tools/pyUANamespace/NodeID_Blacklist_FullNS0.txt
-                          ${MODELS}
-                  )
+#add_custom_command(OUTPUT ${PROJECT_BINARY_DIR}/nodeset.h ${PROJECT_BINARY_DIR}/nodeset.c
+#                  PRE_BUILD
+#                  COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/pyUANamespace/generate_open62541CCode.py
+#                                                -i ${OPEN62541_DIR}/tools/pyUANamespace/NodeID_Blacklist_FullNS0.txt
+#                                                ${OPEN62541_DIR}/tools/schema/namespace0/Opc.Ua.NodeSet2.xml
+#                                                ${MODELS}
+#                                                ${PROJECT_BINARY_DIR}/nodeset
+#                  DEPENDS ${OPEN62541_DIR}/tools/pyUANamespace/generate_open62541CCode.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/open62541_MacroHelper.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_builtin_types.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_constants.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_namespace.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/ua_node_types.py
+#                          ${OPEN62541_DIR}/tools/pyUANamespace/NodeID_Blacklist_FullNS0.txt
+#                          ${MODELS}
+#                  )
 # openaas data types
 add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c
                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.h
@@ -76,7 +76,7 @@ target_link_libraries(opcua_interface libopen62541.a)
 #test client for shared object
 
 add_executable(openaas_eng    openaas_eng.c 
-                              ${PROJECT_BINARY_DIR}/nodeset.c
+                             # ${PROJECT_BINARY_DIR}/nodeset.c
                               ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c)
 target_include_directories(openaas_eng PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
 #find_library(${PROJECT_BINARY_DIR} opcua_interface)
