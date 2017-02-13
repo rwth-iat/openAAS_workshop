@@ -41,16 +41,16 @@ class PVS(Structure):
 #    int64_t id;
 #}lifeCycleEntryType;
 class LCE(Structure):
-    _fields_ = [("timestamp", c_char*256),
-    ("value",c_char*256),
-    ("valueType",c_int),
-    ("unit",c_char*256),
-    ("expressionLogic", c_int),
-    ("expressionSemantic", c_int),
-    ("view",c_int),
-    ("IDIdSpec",c_char*256),
-    ("IDIdType",c_int),
-    ("visibility",c_int)]
+    _fields_ = [("timestamp", c_int64),
+    ("subject",c_char*256),
+    ("eventClass",c_char*256),
+    ("creatingInstanceSpec",c_char*256),
+    ("creatingInstanceType",c_int),
+    ("writingInstanceSpec",c_char*256),
+    ("writingInstanceType",c_int),
+    ("data",c_char*256),
+    ("dataType", c_int),
+    ("id", c_int64)]
 
 #ID#################
 def TypeToInt_Id(typ):
@@ -85,7 +85,7 @@ def IntToType_EL(Int):
         3: "NOT_EQUAL",
         4: "LESS_EQUAL",
         5: "LESS_THAN",
-    }.get(Int, "Not Defined")
+    }.get(Int, "not defined")
 #####################
 #expression semantic
 def TypeToInt_ES(typ):
@@ -103,7 +103,7 @@ def IntToType_ES(Int):
         1:"SETTING",
         2:"MEASUREMENT",
         3:"REQUIREMENT",
-    }.get(Int, "Not Defined")
+    }.get(Int, "not defined")
 ########################
 #data type(value type)
 def TypeToInt_valueType(typ):
@@ -133,7 +133,7 @@ def IntToType_valueType(Int):
         9:"STRING",
         10:"DATETIME",
         11:"IDENTIFICATION",
-    }.get(Int, "Not Defined")
+    }.get(Int, "not defined")
 ########################
 #view####################
 def TypeToInt_view(typ):
@@ -161,7 +161,7 @@ def IntToType_view(Int):
         6:"NETWORK",
         7:"LIFECYCLE",
         8:"HUMAN",
-    }.get(Int, "Not Defined")
+    }.get(Int, "not defined")
 def IntToType_VIS(Int):
     return {
       0 : "PRIVATE",
@@ -174,7 +174,7 @@ def TypeToInt_VIS(typ):
         "PRIVATE":0,
         "CONTRACT":1,
         "PUBLIC":2
-    }.get(typ, "Not Defined") 
+    }.get(typ, "not defined") 
     
 def call_createAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
@@ -201,9 +201,10 @@ def call_createAAS(self):
     AssetIdType_c = c_int(AssetIdType)
     StatusCall = lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
     if(StatusCall!=0):
-       oSheet.getCellRangeByName("B9").String = "failed"
+      status_str = "failed"
     else:
-       oSheet.getCellRangeByName("B9").String = "good" 
+      status_str = "good"  
+    oSheet.getCellRangeByName("B9").String = status_str;
     del lib
     return None
 
@@ -231,7 +232,11 @@ def call_deleteAAS(self):
 #    AssetIdSpec_c = AssetIdSpec.encode('utf-8')
 #    AssetIdType_c = c_int(AssetIdType)
     StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
-    oSheet.getCellRangeByName("B19").String = StatusCall
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"  
+    oSheet.getCellRangeByName("B19").String = status_str;
     del lib
     return None
 
@@ -243,7 +248,7 @@ def call_createLCE(self):
     count = oSheet.getCellRangeByName("B20").Value
     if count < 0:
         oSheet.getCellRangeByName("B20").Value = "#entries can't be negative!"
-    i = count%11
+
 
     #Parameter parsing
     pathToLibrary = oSheet.getCellRangeByName("B2").String
@@ -254,16 +259,17 @@ def call_createLCE(self):
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 	
-    creatingInstanceIdSpec = oSheet.getCellByPosition(0,i+7).String #i starts with 0, i+7 is the first entry
-    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(1,i+7).String)
-    writingInstanceIdSpec = oSheet.getCellByPosition(2,i+7).String
-    writingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(3,i+7).String)
+    creatingInstanceIdSpec = oSheet.getCellByPosition(0,8).String #i starts with 0, i+7 is the first entry
+    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(1,8).String)
+    writingInstanceIdSpec = oSheet.getCellByPosition(2,8).String
+    writingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(3,8).String)
     
-    eventClass = oSheet.getCellByPosition(4,i+7).String
-    subject = oSheet.getCellByPosition(5,i+7).String
+    eventClass = oSheet.getCellByPosition(4,8).String
+    subject = oSheet.getCellByPosition(5,8).String
 
-    value = oSheet.getCellByPosition(7,i+7).String
-    valueType = TypeToInt_Id(oSheet.getCellByPosition(8,i+7).String)
+    valueType = TypeToInt_Id(oSheet.getCellByPosition(7,8).String)    
+    value = oSheet.getCellByPosition(8,8).String
+
 
     #type conversion
     ip_c = ip.encode('utf-8')
@@ -283,9 +289,13 @@ def call_createLCE(self):
 
     StatusCall = lib.call_CreateLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(creatingInstanceIdSpec_c), creatingInstanceIdType_c, c_char_p(writingInstanceIdSpec_c), writingInstanceIdType_c, c_char_p(eventClass_c), c_char_p(subject_c), c_int(int(time.time()*10000000+116444736000000000)), c_char_p(value_c), valueType_c)
     #time string
-    oSheet.getCellByPosition(6,i+7).String = str(datetime.utcnow())
-    oSheet.getCellByPosition(9,i+7).String = StatusCall #this is col_J
-    oSheet.getCellRangeByName("B20").Value = count+1 #increment number of entries
+    oSheet.getCellByPosition(6,7).String = str(datetime.utcnow())
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"  
+    oSheet.getCellRangeByName("K8").String = status_str;
+
     del lib
     return None
 
@@ -592,16 +602,15 @@ def call_getLastLCEs(self):
     ip = oSheet.getCellRangeByName("B3").String
     AASIdSpec = oSheet.getCellRangeByName("B4").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
-
+    lceCountToReturn = int(oSheet.getCellRangeByName("B38").String)
     lib = CDLL(pathToLibrary)
     
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdTypeInt_c = c_int(AASIdType)
-
+    lceCountToReturn_c = c_int(lceCountToReturn)
     lifeCycleEntries = c_void_p()
-    
-    count = lib.Call_getLastLCEs(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, byref(lifeCycleEntries))
+    count = lib.call_GetLastLCEs(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c,lceCountToReturn_c, byref(lifeCycleEntries))
     #oSheet.getCellByPosition(0,42).String = count
 
         
@@ -609,9 +618,7 @@ def call_getLastLCEs(self):
         LCEArray = POINTER(LCE * count)
         lce_array = LCEArray.from_address(addressof(lifeCycleEntries))
         print_start_x = 0
-        print_start_y = 27
-        
-        
+        print_start_y = 39
         n = 0
         while (len(oSheet.getCellByPosition(print_start_x+0,print_start_y+n).String) > 0):
           n = n + 1
@@ -619,6 +626,22 @@ def call_getLastLCEs(self):
           for j in range(15):
             oSheet.getCellByPosition(print_start_x+j,print_start_y+i).String=""
         for i in range(count):
-            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = "-"         
+            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = lce_array.contents[i].creatingInstanceSpec
+            oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = IntToType_Id(lce_array.contents[i].creatingInstanceType)
+            
+            oSheet.getCellByPosition(print_start_x+2,print_start_y+i).String = lce_array.contents[i].writingInstanceSpec
+            oSheet.getCellByPosition(print_start_x+3,print_start_y+i).String = IntToType_Id(lce_array.contents[i].writingInstanceType)
+            
+            oSheet.getCellByPosition(print_start_x+4,print_start_y+i).String = lce_array.contents[i].eventClass
+            oSheet.getCellByPosition(print_start_x+5,print_start_y+i).String = lce_array.contents[i].subject
+            if lce_array.contents[i].timestamp > 116444736000000000:
+              ticks = int((lce_array.contents[i].timestamp-116444736000000000)/10000000)
+              dt = datetime.fromtimestamp(ticks);
+              oSheet.getCellByPosition(print_start_x+6,print_start_y+i).String = dt.strftime('%Y%m%d%H%M%S%f')
+            else:
+              oSheet.getCellByPosition(print_start_x+6,print_start_y+i).String = "not defined"
+            oSheet.getCellByPosition(print_start_x+7,print_start_y+i).String = IntToType_valueType(lce_array.contents[i].dataType)
+            oSheet.getCellByPosition(print_start_x+8,print_start_y+i).String = lce_array.contents[i].data
+            oSheet.getCellByPosition(print_start_x+9,print_start_y+i).String = lce_array.contents[i].id
     del lib
     return None
