@@ -51,7 +51,7 @@ make
 ```
 Afterwards you will get the library *libopcua_interface.so* that provides several OPC UA functions. A basic example application *openaas_eng.c* shows how to use these.
 
-**Using the libreOffice Engineering Interface (Ubuntu)**
+**Using the LibreOffice Engineering Interface (Ubuntu)**
 
 If you have Ubuntu, LibreOffice is already installed and you can create the folders /Scripts/python within
 ```
