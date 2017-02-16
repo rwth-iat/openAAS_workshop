@@ -112,3 +112,7 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 UA_StatusCode call_triggerGetCoreData(char* ipAddress, char* srcAASIdSpec,
         int srcAASIdType, char* dstAASIdSpec, int dstAASIdType);
+
+// gather Lifecylce Data from Asset
+UA_StatusCode call_startGetAssetLCEData(char* ipAddress, char* AASIdSpec, int AASIdType,char* assetIp, char* AssetIdSpec, int AssetIdType);
+UA_StatusCode call_stopGetAssetLCEData(char* ipAddress, char* AASIdSpec, int AASIdType);

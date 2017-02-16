@@ -255,10 +255,10 @@ def call_createLCE(self):
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 	
-    creatingInstanceIdSpec = oSheet.getCellByPosition(0,8).String #i starts with 0, i+7 is the first entry
-    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(1,8).String)
-    writingInstanceIdSpec = oSheet.getCellByPosition(2,8).String
-    writingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(3,8).String)
+    creatingInstanceIdSpec = oSheet.getCellByPosition(1,8).String #i starts with 0, i+7 is the first entry
+    creatingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(0,8).String)
+    writingInstanceIdSpec = oSheet.getCellByPosition(3,8).String
+    writingInstanceIdType = TypeToInt_Id(oSheet.getCellByPosition(2,8).String)
     
     eventClass = oSheet.getCellByPosition(4,8).String
     subject = oSheet.getCellByPosition(5,8).String
@@ -301,21 +301,25 @@ def call_deleteLCE(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B3").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B4").String
-    AASIdSpec = oSheet.getCellRangeByName("B5").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B6").String)
+    ip = oSheet.getCellRangeByName("M16").String
+    AASIdSpec = oSheet.getCellRangeByName("M17").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("M18").String)
 
-    LCEId = oSheet.getCellRangeByName("B24").String
+    LCEId = oSheet.getCellRangeByName("M19").String
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
     LCEId_c = c_longlong(int(LCEId))
  
     StatusCall = lib.call_DeleteLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,LCEId_c)
-    oSheet.getCellRangeByName("B25").String = StatusCall
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"  
+    oSheet.getCellRangeByName("M20").String = status_str;
     del lib
     return None
 
@@ -417,13 +421,13 @@ def call_deletePVSL(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B4").String
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B16").String
     AASIdSpec = oSheet.getCellRangeByName("B17").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
-    name = oSheet.getCellRangeByName("B17").String
+    name = oSheet.getCellRangeByName("B19").String
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -521,12 +525,12 @@ def call_deletePVS(self):
     pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
-    PVSLName = oSheet.getCellRangeByName("B6").String
+    ip = oSheet.getCellRangeByName("R7").String
+    PVSLName = oSheet.getCellRangeByName("R10").String
     PVSLName_c = PVSLName.encode('utf-8')
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
-    PVSName = oSheet.getCellRangeByName("Q8").String
+    AASIdSpec = oSheet.getCellRangeByName("R8").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("R9").String)
+    PVSName = oSheet.getCellRangeByName("R11").String
     PVSName_c = PVSName.encode('utf-8') 
     
     ip_c = ip.encode('utf-8')
@@ -534,7 +538,12 @@ def call_deletePVS(self):
     AASIdType_c = c_int(AASIdType)
 
     StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSLName_c),c_char_p(PVSName_c))
-    print(StatusCall)
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"   
+    oSheet.getCellRangeByName("R12").String = status_str
+      
     del lib
     return None
   
@@ -562,20 +571,21 @@ def getPVS(self):
     count = lib.getPVSFromListByName(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(PVSLName_c), byref(propertyValueStatements))
     #oSheet.getCellByPosition(0,42).String = count
 
-        
+    print("count %s \n" %count)
     if count > 0:   
         PVSArray = POINTER(PVS * count)
         pvs_array = PVSArray.from_address(addressof(propertyValueStatements))
         print_start_x = 0
-        print_start_y = 27
-        
-        
+        print_start_y = 28
         n = 0
         while (len(oSheet.getCellByPosition(print_start_x+0,print_start_y+n).String) > 0):
           n = n + 1
         for i in range(n):
           for j in range(15):
             oSheet.getCellByPosition(print_start_x+j,print_start_y+i).String=""
+            
+            
+        
         for i in range(count):
             oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = "-"
             oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = pvs_array.contents[i].name
@@ -622,19 +632,19 @@ def call_getLastLCEs(self):
         LCEArray = POINTER(LCE * count)
         lce_array = LCEArray.from_address(addressof(lifeCycleEntries))
         print_start_x = 0
-        print_start_y = 17
+        print_start_y = 18
         n = 0
         while (len(oSheet.getCellByPosition(print_start_x+0,print_start_y+n).String) > 0):
           n = n + 1
         for i in range(n):
-          for j in range(15):
+          for j in range(10):
             oSheet.getCellByPosition(print_start_x+j,print_start_y+i).String=""
         for i in range(count):
-            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = lce_array.contents[i].creatingInstanceSpec
-            oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = IntToType_Id(lce_array.contents[i].creatingInstanceType)
+            oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = lce_array.contents[i].creatingInstanceSpec
+            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = IntToType_Id(lce_array.contents[i].creatingInstanceType)
             
-            oSheet.getCellByPosition(print_start_x+2,print_start_y+i).String = lce_array.contents[i].writingInstanceSpec
-            oSheet.getCellByPosition(print_start_x+3,print_start_y+i).String = IntToType_Id(lce_array.contents[i].writingInstanceType)
+            oSheet.getCellByPosition(print_start_x+3,print_start_y+i).String = lce_array.contents[i].writingInstanceSpec
+            oSheet.getCellByPosition(print_start_x+2,print_start_y+i).String = IntToType_Id(lce_array.contents[i].writingInstanceType)
             
             oSheet.getCellByPosition(print_start_x+4,print_start_y+i).String = lce_array.contents[i].eventClass
             oSheet.getCellByPosition(print_start_x+5,print_start_y+i).String = lce_array.contents[i].subject
@@ -673,4 +683,65 @@ def call_triggerGetCoreData(self):
     dstAASIdTypeInt_c = c_int(dstAASIdType)
     
     count = lib.call_triggerGetCoreData(c_char_p(ip_c), c_char_p(srcAASIdSpec_c), srcAASIdTypeInt_c,c_char_p(dstAASIdSpec_c), dstAASIdTypeInt_c)
+    
+def call_startGetAssetLCEData(self):
+
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    #Parameter parsing
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = oSheet.getCellRangeByName("B3").String
+
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    AssetIp = oSheet.getCellRangeByName("B6").String
+    AssetIdSpec = oSheet.getCellRangeByName("B7").String
+    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
+    
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+    
+    AssetIdSpec_c = AssetIdSpec.encode('utf-8')
+    AssetIdType_c = c_int(AASIdType)
+    
+    AssetIp_c = AssetIp.encode('utf-8')
+
+    StatusCall = lib.call_startGetAssetLCEData(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AssetIp_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
+    if(StatusCall!=0):
+      oSheet.getCellRangeByName("B9").String = "failed"
+    else:
+      oSheet.getCellRangeByName("B9").String = "good"
+    del lib
+    return None
+  
+def call_stopGetAssetLCEData(self):
+
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    #Parameter parsing
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = oSheet.getCellRangeByName("B3").String
+
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+    
+    StatusCall = lib.call_stopGetAssetLCEData(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
+    if(StatusCall!=0):
+      oSheet.getCellRangeByName("B9").String = "failed"
+    else:
+      oSheet.getCellRangeByName("B9").String = "good"
+    del lib
+    return None
+
     

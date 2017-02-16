@@ -222,8 +222,12 @@ int main(int argc, char *argv[]) {
     }
 
     pvsType *pvs_c = NULL;
-    int pvscount = getPVSFromListByName(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
-            PVSL_NAME, &pvs_c);
+    //testing with wrong list name
+    int pvscount = getPVSFromListByName(serverIP, "http://acplt.org/Sensor4711_AAS1", 0,
+            "thing4711_properti", &pvs_c);
+    //now with correct list name
+    pvscount = getPVSFromListByName(serverIP, "http://acplt.org/Sensor4711_AAS1", 0,
+            "thing4711_properties", &pvs_c);
     printf("------------------------------\n");
     printf("property value statements\n");
     for (int i = 0; i < pvscount; i++) {
@@ -267,7 +271,25 @@ int main(int argc, char *argv[]) {
     }
 
     free(lce);
+/*
 
+    call_startGetAssetLCEData(serverIP,AAS_ID_STRING,AAS_ID_TYPE,"127.0.0.1",ASSET_ID_STRING,ASSET_ID_TYPE);
+    int w = 7;
+    for(int i=0;i<100;i++)
+    {
+        for(int j=0;j<1000000;j++)
+        {
+            w=w+1;
+            w=w-1;
+        }
+        if(i%2==0)
+            printf("waiting..\n");
+        else
+            printf("waiting...\n");
+
+    }
+    call_stopGetAssetLCEData(serverIP,AAS_ID_STRING,AAS_ID_TYPE);
+*/
     clean:
 
     return 0;
