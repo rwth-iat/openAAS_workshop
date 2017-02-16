@@ -59,6 +59,20 @@ folder.
 
 Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file from /libreOffice folder and start to create AAS, Property Value Statements and Lifecycle-Entries. 
 
+You need to activate python macro support in libreoffice:
+Install python support:
+```
+sudo apt-get install libreoffice-script-provider-python
+```
+and
+```
+sudo apt-get install python-uno
+```
+Now you should find the entry "Python..." in:
+
+Tools->Macros->Organize Macros
+
+
 
 
 
