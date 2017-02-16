@@ -55,11 +55,11 @@ Afterwards you will get the library *libopcua_interface.so* that provides severa
 
 If you have Ubuntu, LibreOffice is already installed and you can create the folders /Scripts/python within
 ```
-~/.conf/libreoffice/<version>/user/
+~/.config/libreoffice/<version>/user/
 ```
 and copy *opcua_interface.py* to:
 ```
-~/.conf/libreoffice/<version>/user/Scropts/python
+~/.config/libreoffice/<version>/user/Scripts/python
 ```
 
 Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file (aas_client.ods) from /libreOffice folder and start to create AAS, Property Value Statements and Lifecycle-Entries. 
