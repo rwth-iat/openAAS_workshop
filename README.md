@@ -51,23 +51,23 @@ make
 ```
 Afterwards you will get the library *libopcua_interface.so* that provides several OPC UA functions. A basic example application *openaas_eng.c* shows how to use these.
 ** Using the libreOffice Engineering Interface (Ubuntu) **
-If you have Ubuntu, LibreOffice is already installed and you can copy the *opcua_interface.py* into 
+If you have Ubuntu, LibreOffice is already installed and you can create the folders /Scripts/python within
 ```
-~/.conf/libreoffice/<version>/user/Script/python
+~/.conf/libreoffice/<version>/user/
 ```
-folder.
+and copy *opcua_interface.py* to:
+```
+~/.conf/libreoffice/<version>/user/Scropts/python
+```
 
-Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file from /libreOffice folder and start to create AAS, Property Value Statements and Lifecycle-Entries. 
+Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file (aas_client.ods) from /libreOffice folder and start to create AAS, Property Value Statements and Lifecycle-Entries. 
 
 You need to activate python macro support in libreoffice:
 Install python support:
 ```
 sudo apt-get install libreoffice-script-provider-python
 ```
-and
-```
-sudo apt-get install python-uno
-```
+
 Now you should find the entry "Python..." in:
 
 Tools->Macros->Organize Macros
