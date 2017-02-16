@@ -25,10 +25,9 @@ return -1; \
 memcpy(DST,SRC.data,SRC.length); \
 DST[SRC.length] = 0;
 
+static UA_StatusCode parseIdentification(UA_Identification *ident, char* str) {
 
-static UA_StatusCode parseIdentification(UA_Identification *ident,char* str){
-
-    switch(ident->idType){
+    switch (ident->idType) {
     case UA_IDENUM_ISO:
         str[0] = 'I';
         str[1] = 'S';
@@ -42,7 +41,7 @@ static UA_StatusCode parseIdentification(UA_Identification *ident,char* str){
         str[3] = ':';
         break;
     }
-    SET_CHAR_STR(ident->idSpec,str)
+    SET_CHAR_STR(ident->idSpec, str)
     return 0;
 }
 static UA_StatusCode parseToVariant(char* value, int valueType,
@@ -62,7 +61,7 @@ static UA_StatusCode parseToVariant(char* value, int valueType,
     }
     case 2: {
         UA_Float val;
-        val = (UA_Float)strtold(value, &tail);
+        val = (UA_Float) strtold(value, &tail);
         UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_FLOAT]);
         break;
     }
@@ -94,12 +93,12 @@ static UA_StatusCode parseToVariant(char* value, int valueType,
     case 7: {
         UA_Double val;
         val = strtold(value, &tail);
-        UA_Variant_setScalar(variant, &val, &UA_TYPES[UA_TYPES_DOUBLE]);
+        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DOUBLE]);
         break;
     }
     case 8: {
         UA_String val = UA_String_fromChars(value);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DATETIME]);
+        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_STRING]);
         UA_String_deleteMembers(&val);
         break;
     }
@@ -111,13 +110,17 @@ static UA_StatusCode parseToVariant(char* value, int valueType,
     }
     case 10: {
         UA_Identification val;
-        if(value[0]=='U' && value[1]=='R'&&  value[2]=='I'&& value[3]==':'){
+        if (value[0] == 'U' && value[1] == 'R' && value[2] == 'I'
+                && value[3] == ':') {
             val.idType = UA_IDENUM_URI;
-        }else if(value[0]=='I' && value[1]=='S'&&  value[2]=='O'&& value[3]==':'){
+        } else if (value[0] == 'I' && value[1] == 'S' && value[2] == 'O'
+                && value[3] == ':') {
             val.idType = UA_IDENUM_ISO;
-        }
+        }else
+            return UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED;
         val.idSpec = UA_String_fromChars(&value[4]);
-        UA_Variant_setScalarCopy(variant, &val, &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+        UA_Variant_setScalarCopy(variant, &val,
+                &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
         UA_Identification_deleteMembers(&val);
         break;
     }
@@ -127,41 +130,45 @@ static UA_StatusCode parseToVariant(char* value, int valueType,
     }
     return UA_STATUSCODE_GOOD;
 }
-static UA_StatusCode parseFromVariant(UA_Variant variant, char *value, int* valueType) {
+static UA_StatusCode parseFromVariant(UA_Variant variant, char *value,
+        int* valueType) {
 
-    if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_BOOLEAN])){
-        sprintf(value,"%d",*(UA_Boolean*)variant.data);
+    if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_BOOLEAN])) {
+        sprintf(value, "%d", *(UA_Boolean*) variant.data);
         *valueType = 1;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_FLOAT])){
-        sprintf(value,"%f",*(UA_Float*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_FLOAT])) {
+        sprintf(value, "%f", *(UA_Float*) variant.data);
         *valueType = 2;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_INT32])){
-        sprintf(value,"%d",*(UA_Int32*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT32])) {
+        sprintf(value, "%d", *(UA_Int32*) variant.data);
         *valueType = 3;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_INT64])){
-        sprintf(value,"%" PRId64 "",*(UA_Int64*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT64])) {
+        sprintf(value, "%" PRId64 "", *(UA_Int64*) variant.data);
         *valueType = 4;
-    } else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_UINT32])){
-        sprintf(value,"%d",*(UA_UInt32*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT32])) {
+        sprintf(value, "%d", *(UA_UInt32*) variant.data);
         *valueType = 5;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_UINT64])){
-        sprintf(value,"%" PRId64 "",*(UA_Int64*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT64])) {
+        sprintf(value, "%" PRId64 "", *(UA_Int64*) variant.data);
         *valueType = 6;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_DOUBLE])){
-        sprintf(value,"%f",*(UA_Double*)variant.data);
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_DOUBLE])) {
+        sprintf(value, "%f", *(UA_Double*) variant.data);
         *valueType = 7;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_STRING])){
-        UA_String *tmpString = (UA_String*)variant.data;
-        SET_CHAR_STR((*tmpString),value)
+    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_STRING])) {
+        UA_String *tmpString = (UA_String*) variant.data;
+        SET_CHAR_STR((*tmpString), value)
         *valueType = 8;
-    }else if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_DATETIME])){
-        UA_String tmpDateTimeStr =  UA_DateTime_toString(*((UA_DateTime*)variant.data));
-        SET_CHAR_STR(tmpDateTimeStr,value)
+    } else if (UA_Variant_hasScalarType(&variant,
+            &UA_TYPES[UA_TYPES_DATETIME])) {
+        UA_String tmpDateTimeStr = UA_DateTime_toString(
+                *((UA_DateTime*) variant.data));
+        SET_CHAR_STR(tmpDateTimeStr, value)
         *valueType = 9;
         UA_String_deleteMembers(&tmpDateTimeStr);
-    }else if(UA_Variant_hasScalarType(&variant,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION])){
-        UA_Identification* ident = (UA_Identification*)variant.data;
-        parseIdentification(ident,value);
+    } else if (UA_Variant_hasScalarType(&variant,
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION])) {
+        UA_Identification* ident = (UA_Identification*) variant.data;
+        parseIdentification(ident, value);
         *valueType = 10;
     }
     return 0;
@@ -227,8 +234,7 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
                 retval);
         goto clean;
     }
-    clean:
-    UA_Identification_deleteMembers(&AASId);
+    clean: UA_Identification_deleteMembers(&AASId);
     UA_String_deleteMembers(&AASName);
 
     UA_Identification_deleteMembers(&assetId);
@@ -291,7 +297,8 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
 
 /* Property value statement list */
 UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* name, char* CarrierIdSpec, int CarrierIdType, char* CreatingInstanceIdSpec, int CreatingInstanceIdType) {
+        char* name, char* CarrierIdSpec, int CarrierIdType,
+        char* CreatingInstanceIdSpec, int CreatingInstanceIdType) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -317,7 +324,7 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
 
     UA_Identification creatingInstance;
-    creatingInstance.idType  = CreatingInstanceIdType;
+    creatingInstance.idType = CreatingInstanceIdType;
     creatingInstance.idSpec = UA_String_fromChars(CreatingInstanceIdSpec);
 
     UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
@@ -327,8 +334,7 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[2], &carrierId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[3], &creatingInstance,
-                &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(4,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVSL");
@@ -350,8 +356,7 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
         goto clean;
     }
 
-    clean:
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 
     UA_Identification_deleteMembers(&AASId);
@@ -408,8 +413,7 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
                 retval);
         goto clean;
     }
-    clean:
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    clean: UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Client_delete(client);
     return retval;
@@ -417,9 +421,9 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 /* Property value statement */
 UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int ExpressionLogic,
-        int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view, int visibility) {
+        char* PVSLName, char* Name, int ExpressionLogic, int ExpressionSemantic,
+        char* Value, int ValueType, char* Unit, char* propertyReferenceIdSpec,
+        int propertyReferenceIdType, int view, int visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -445,6 +449,7 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_DataValue dataValue;
     UA_DataValue_init(&dataValue);
     parseToVariant(Value, ValueType, &dataValue.value);
+
     dataValue.hasSourceTimestamp = true;
     dataValue.sourceTimestamp = UA_DateTime_now();
     dataValue.hasValue = true;
@@ -496,8 +501,7 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
                 retval);
         goto clean;
     }
-    clean:
-    UA_DataValue_deleteMembers(&dataValue);
+    clean: UA_DataValue_deleteMembers(&dataValue);
     UA_Identification_deleteMembers(&AASIdK);
     UA_Identification_deleteMembers(&ID);
 
@@ -566,9 +570,9 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 }
 
 UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int ExpressionLogic,
-        int ExpressionSemantic, char* Value, int ValueType, char* Unit,
-        char* propertyReferenceIdSpec, int propertyReferenceIdType, int view,int visibility) {
+        char* PVSLName, char* Name, int ExpressionLogic, int ExpressionSemantic,
+        char* Value, int ValueType, char* Unit, char* propertyReferenceIdSpec,
+        int propertyReferenceIdType, int view, int visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -593,7 +597,10 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 
     UA_DataValue dataValue;
     UA_DataValue_init(&dataValue);
-    parseToVariant(Value, ValueType, &dataValue.value);
+    retval = parseToVariant(Value, ValueType, &dataValue.value);
+    if (retval != UA_STATUSCODE_GOOD) {
+        return retval;
+    }
     dataValue.hasSourceTimestamp = true;
     dataValue.sourceTimestamp = UA_DateTime_now();
     dataValue.hasValue = true;
@@ -644,20 +651,20 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
                 "Method call was unsuccessful, and %x returned values available.\n",
                 retval);
     }
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Client_delete(client);
     return retval;
 }
 // get the node id of a specific child node by its browse name
 static void getNodeIdOfChildByBrowseName(UA_Client *client, UA_NodeId startId,
-        UA_String browseNameToFind,UA_NodeId *foundId) {
+        UA_String browseNameToFind, UA_NodeId *foundId) {
 
     UA_BrowseRequest bReq;
     UA_BrowseRequest_init(&bReq);
     bReq.requestedMaxReferencesPerNode = 0;
     bReq.nodesToBrowse = UA_BrowseDescription_new();
     bReq.nodesToBrowseSize = 1;
-    UA_NodeId_copy(&startId,&bReq.nodesToBrowse[0].nodeId);
+    UA_NodeId_copy(&startId, &bReq.nodesToBrowse[0].nodeId);
 
     bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
 
@@ -666,23 +673,23 @@ static void getNodeIdOfChildByBrowseName(UA_Client *client, UA_NodeId startId,
         for (size_t j = 0; j < bResp.results[i].referencesSize; j++) {
             if (UA_String_equal(&browseNameToFind,
                     &bResp.results[i].references[j].displayName.text)) {
-                UA_NodeId_copy(&bResp.results[i].references[j].nodeId.nodeId,foundId);
+                UA_NodeId_copy(&bResp.results[i].references[j].nodeId.nodeId,
+                        foundId);
                 goto clean;
             }
         }
     }
 
-    UA_NodeId tmpNodeId = UA_NODEID_NUMERIC(0,0);
+    UA_NodeId tmpNodeId = UA_NODEID_NUMERIC(0, 0);
     UA_NodeId_copy(&tmpNodeId, foundId);
-    clean:
-      UA_BrowseRequest_deleteMembers(&bReq);
-      UA_BrowseResponse_deleteMembers(&bResp);
+    clean: UA_BrowseRequest_deleteMembers(&bReq);
+    UA_BrowseResponse_deleteMembers(&bResp);
     return;
 }
 
-
 static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
-        UA_String TypedefinitionBrowseName, UA_ReferenceDescription **ids, size_t *idsSize) {
+        UA_String TypedefinitionBrowseName, UA_ReferenceDescription **ids,
+        size_t *idsSize) {
     UA_BrowseRequest bReq;
     UA_BrowseRequest_init(&bReq);
     bReq.requestedMaxReferencesPerNode = 0;
@@ -693,7 +700,7 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
     bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
     size_t n = 0;
     UA_BrowseResponse bResp = UA_Client_Service_browse(client, bReq);
-    if(bResp.resultsSize==0){
+    if (bResp.resultsSize == 0) {
         *ids = NULL;
         *idsSize = 0;
         goto clean;
@@ -704,10 +711,12 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
         bReq1.requestedMaxReferencesPerNode = 0;
         bReq1.nodesToBrowse = UA_BrowseDescription_new();
         bReq1.nodesToBrowseSize = 1;
-        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,&bReq1.nodesToBrowse[0].nodeId ); //could be a string node id
+        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
+                &bReq1.nodesToBrowse[0].nodeId); //could be a string node id
 
         bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
-        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,UA_NS0ID_HASTYPEDEFINITION);
+        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
+                UA_NS0ID_HASTYPEDEFINITION);
         UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
         for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
             if (UA_String_equal(
@@ -720,14 +729,14 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
         UA_BrowseResponse_deleteMembers(&bResp1);
     }
     *idsSize = n;
-    if(!n)
+    if (!n)
         goto clean;
     size_t m = 0;
     *ids = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    for(size_t i=0;i<n;i++){
+    for (size_t i = 0; i < n; i++) {
         UA_ReferenceDescription_init(&(*ids)[i]);
     }
-    if(!*ids)
+    if (!*ids)
         goto clean;
 
     for (size_t i = 0; i < bResp.results[0].referencesSize; i++) {
@@ -736,88 +745,101 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
         bReq1.requestedMaxReferencesPerNode = 0;
         bReq1.nodesToBrowse = UA_BrowseDescription_new();
         bReq1.nodesToBrowseSize = 1;
-        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,&bReq1.nodesToBrowse[0].nodeId ); //could be a string node id
+        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
+                &bReq1.nodesToBrowse[0].nodeId); //could be a string node id
 
         bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
-        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,UA_NS0ID_HASTYPEDEFINITION);
+        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
+                UA_NS0ID_HASTYPEDEFINITION);
         UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
         for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
             if (UA_String_equal(
                     &bResp1.results[0].references[j].displayName.text,
                     &TypedefinitionBrowseName)) {
-                UA_ReferenceDescription_copy(&bResp.results[0].references[i], &((*ids)[m]));
+                UA_ReferenceDescription_copy(&bResp.results[0].references[i],
+                        &((*ids)[m]));
                 m++;
             }
         }
         UA_BrowseRequest_deleteMembers(&bReq1);
         UA_BrowseResponse_deleteMembers(&bResp1);
-        if(m>=n){
+        if (m >= n) {
             goto clean;
         }
     }
-    clean:
-    UA_BrowseRequest_deleteMembers(&bReq);
+    clean: UA_BrowseRequest_deleteMembers(&bReq);
     UA_BrowseResponse_deleteMembers(&bResp);
     return;
 }
-static void getAllPVSLInFolder(UA_Client *client, UA_NodeId entryPoint, UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize){
+static void getAllPVSLInFolder(UA_Client *client, UA_NodeId entryPoint,
+        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
     UA_String tmpStr = UA_String_fromChars("PropertyValueStatementListType");
-    FindChildrenWithSpecialType(client, entryPoint, tmpStr, foundListIds, foundListIdsSize);
+    FindChildrenWithSpecialType(client, entryPoint, tmpStr, foundListIds,
+            foundListIdsSize);
     UA_String_deleteMembers(&tmpStr);
 }
 
-
-static int getAllPVSFromList(UA_Client *client,UA_NodeId entryPoint, UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize){
+static int getAllPVSFromList(UA_Client *client, UA_NodeId entryPoint,
+        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
     /*all property value statements are attached via HasProperty Reference */
     UA_String tmpStr = UA_String_fromChars("PropertyType");
     UA_ReferenceDescription *subNodes = NULL;
 
     size_t subNodesSize = 0;
-    FindChildrenWithSpecialType(client, entryPoint,tmpStr, &subNodes, &subNodesSize);
+    FindChildrenWithSpecialType(client, entryPoint, tmpStr, &subNodes,
+            &subNodesSize);
 
     //filter out only nodes that have the datatype "PropertyValueStatement"
-    size_t n=0;
-    for(size_t i=0;i<subNodesSize;i++){
+    size_t n = 0;
+    for (size_t i = 0; i < subNodesSize; i++) {
         UA_NodeId dataTypeNodeId;
-        if(UA_STATUSCODE_GOOD==UA_Client_readDataTypeAttribute(client,subNodes[i].nodeId.nodeId,&dataTypeNodeId)){
-            if(UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric == dataTypeNodeId.identifier.numeric){ //ignore namespace index
+        if (UA_STATUSCODE_GOOD
+                == UA_Client_readDataTypeAttribute(client,
+                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
+            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
+                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
                 n++;
             }
         }
     }
 
-    *foundListIds = UA_Array_new(n,&UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    if(!foundListIds){
+    *foundListIds = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+    if (!foundListIds) {
         *foundListIdsSize = 0;
         return -1;
     }
 
     *foundListIdsSize = n;
     n = 0;
-    for(size_t i=0;i<subNodesSize;i++){
+    for (size_t i = 0; i < subNodesSize; i++) {
         UA_NodeId dataTypeNodeId;
-        if(UA_STATUSCODE_GOOD==UA_Client_readDataTypeAttribute(client,subNodes[i].nodeId.nodeId,&dataTypeNodeId)){
-            if(UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric == dataTypeNodeId.identifier.numeric){ //ignore namespace index
-                if(n<*foundListIdsSize){
-                  //UA_ReferenceDescription *pref;
-                  //UA_ReferenceDescription_new(pref);
+        if (UA_STATUSCODE_GOOD
+                == UA_Client_readDataTypeAttribute(client,
+                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
+            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
+                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
+                if (n < *foundListIdsSize) {
+                    //UA_ReferenceDescription *pref;
+                    //UA_ReferenceDescription_new(pref);
 
-                  UA_ReferenceDescription_copy(&subNodes[i], &(*foundListIds)[n]);
-                  n++;
-                }else
+                    UA_ReferenceDescription_copy(&subNodes[i],
+                            &(*foundListIds)[n]);
+                    n++;
+                } else
                     return subNodesSize;
             }
         }
     }
-    UA_Array_delete(subNodes,subNodesSize,&UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+    UA_Array_delete(subNodes, subNodesSize,
+            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
     UA_String_deleteMembers(&tmpStr);
     return 0;
 }
 
-UA_Boolean findAASNodeId(UA_Client *client,UA_Identification AASId, UA_NodeId* nodeId){
+UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
+        UA_NodeId* nodeId) {
 //dummy
     UA_Boolean found = false;
-
 
     size_t argInSize = 1;
     size_t argOutSize = 0;
@@ -836,8 +858,8 @@ UA_Boolean findAASNodeId(UA_Client *client,UA_Identification AASId, UA_NodeId* n
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
-    UA_StatusCode retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+    UA_StatusCode retval = UA_Client_call(client, objectId, methNodeId,
+            argInSize, inputArgs, &argOutSize, &output);
 
     if (retval == UA_STATUSCODE_GOOD) {
         printf(
@@ -850,47 +872,50 @@ UA_Boolean findAASNodeId(UA_Client *client,UA_Identification AASId, UA_NodeId* n
                 retval);
         goto clean;
     }
-    if(!UA_Variant_hasScalarType(output,&UA_TYPES[UA_TYPES_NODEID])){
+    if (!UA_Variant_hasScalarType(output, &UA_TYPES[UA_TYPES_NODEID])) {
         found = false;
         goto clean;
     }
-    UA_NodeId_copy((UA_NodeId *)output->data,nodeId);
+    UA_NodeId_copy((UA_NodeId *) output->data, nodeId);
 
     found = true;
-    clean:
-      UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-      UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-      return found;
+    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    return found;
 }
 
-int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName, UA_PropertyValueStatement *propertyValueStatement, pvsType *pvs){
+int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName,
+        UA_PropertyValueStatement *propertyValueStatement, pvsType *pvs) {
 
     pvs->expressionSemantic = propertyValueStatement->expressionSemantic;
 
-    if(propertyName.name.length>=MAX_STRING_SIZE-1)
+    if (propertyName.name.length >= MAX_STRING_SIZE - 1)
         return -1;
-    memcpy(pvs->name,propertyName.name.data,propertyName.name.length);
+    memcpy(pvs->name, propertyName.name.data, propertyName.name.length);
 
-    if(propertyValueStatement->iD.idSpec.length>=MAX_STRING_SIZE-1)
+    if (propertyValueStatement->iD.idSpec.length >= MAX_STRING_SIZE - 1)
         return -1;
-    memcpy(pvs->IDIdSpec,propertyValueStatement->iD.idSpec.data,propertyValueStatement->iD.idSpec.length);
+    memcpy(pvs->IDIdSpec, propertyValueStatement->iD.idSpec.data,
+            propertyValueStatement->iD.idSpec.length);
     pvs->IDIdSpec[propertyValueStatement->iD.idSpec.length] = 0;
     pvs->IDIdType = propertyValueStatement->iD.idType;
 
     pvs->expressionLogic = propertyValueStatement->expressionLogic;
-    if(propertyValueStatement->unit.length>=MAX_STRING_SIZE-1)
+    if (propertyValueStatement->unit.length >= MAX_STRING_SIZE - 1)
         return -1;
-    memcpy(pvs->unit,propertyValueStatement->unit.data,propertyValueStatement->unit.length);
+    memcpy(pvs->unit, propertyValueStatement->unit.data,
+            propertyValueStatement->unit.length);
     pvs->unit[propertyValueStatement->unit.length] = 0;
     pvs->visibility = propertyValueStatement->visibility;
-    parseFromVariant(propertyValueStatement->value,pvs->value,&pvs->valueType);
+    parseFromVariant(propertyValueStatement->value, pvs->value,
+            &pvs->valueType);
     pvs->view = propertyValueStatement->view;
     return 0;
 
 }
 
-
-int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* listname, pvsType **pvs_c) {
+int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
+        char* listname, pvsType **pvs_c) {
 
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
@@ -899,22 +924,19 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
         return (int) retval;
     }
 
-
     UA_Identification AASIdentification;
 
     AASIdentification.idSpec = UA_String_fromChars(AASIdSpec);
     AASIdentification.idType = AASIdType;
 
     UA_NodeId AASNodeId;
-    findAASNodeId(client,AASIdentification,&AASNodeId);
+    findAASNodeId(client, AASIdentification, &AASNodeId);
     UA_Identification_deleteMembers(&AASIdentification);
 
     //find body folder of AAS
     UA_NodeId BodyFolderId;
     UA_String bodyStr = UA_String_fromChars("Body");
-    getNodeIdOfChildByBrowseName(client,
-            AASNodeId,
-            bodyStr,&BodyFolderId);
+    getNodeIdOfChildByBrowseName(client, AASNodeId, bodyStr, &BodyFolderId);
 
     UA_String_deleteMembers(&bodyStr);
     //print all found PVSL of found AAS
@@ -931,19 +953,21 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
                     idsPVSL[i].nodeId.nodeId.identifier.numeric);
             break;
         case UA_NODEIDTYPE_STRING:
-            printf("Found NodeId Id: %.*s \n",idsPVSL[i].nodeId.nodeId.identifier.string.length,
+            printf("Found NodeId Id: %.*s \n",
+                    idsPVSL[i].nodeId.nodeId.identifier.string.length,
                     idsPVSL[i].nodeId.nodeId.identifier.string.data);
             break;
         }
     }
-    if(!idsPVSLSize){
+    if (!idsPVSLSize) {
         return -1;
     }
     UA_ReferenceDescription *foundStatementIds = NULL;
     size_t foundStatementIdsSize = 0;
     //print first list
 
-    getAllPVSFromList(client, idsPVSL[0].nodeId.nodeId ,&foundStatementIds, &foundStatementIdsSize);
+    getAllPVSFromList(client, idsPVSL[0].nodeId.nodeId, &foundStatementIds,
+            &foundStatementIdsSize);
 
     for (size_t i = 0; i < foundStatementIdsSize; i++) {
         switch (foundStatementIds[i].nodeId.nodeId.identifierType) {
@@ -952,40 +976,55 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
                     foundStatementIds[i].nodeId.nodeId.identifier.numeric);
             break;
         case UA_NODEIDTYPE_STRING:
-            printf("Found statement with Id: %.*s \n",foundStatementIds[i].nodeId.nodeId.identifier.string.length,
+            printf("Found statement with Id: %.*s \n",
+                    foundStatementIds[i].nodeId.nodeId.identifier.string.length,
                     foundStatementIds[i].nodeId.nodeId.identifier.string.data);
             break;
         }
     }
-    UA_Array_delete(idsPVSL,idsPVSLSize,&UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    *pvs_c = calloc(foundStatementIdsSize,sizeof(pvsType));
+    UA_Array_delete(idsPVSL, idsPVSLSize,
+            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+    *pvs_c = calloc(foundStatementIdsSize, sizeof(pvsType));
 
-    UA_PropertyValueStatement *propertyValueStatements = UA_Array_new(foundStatementIdsSize,&UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
-    for(size_t i=0;i<foundStatementIdsSize;i++)
-    {
+    UA_PropertyValueStatement *propertyValueStatements = UA_Array_new(
+            foundStatementIdsSize,
+            &UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
+    for (size_t i = 0; i < foundStatementIdsSize; i++) {
         UA_PropertyValueStatement_init(&propertyValueStatements[i]);
     }
-    for(size_t i=0;i<foundStatementIdsSize;i++){
+    for (size_t i = 0; i < foundStatementIdsSize; i++) {
         UA_Variant variant;
-        UA_Client_readValueAttribute(client,foundStatementIds[i].nodeId.nodeId,&variant);
+        UA_Client_readValueAttribute(client, foundStatementIds[i].nodeId.nodeId,
+                &variant);
 
-        if(UA_Variant_hasScalarType(&variant,&UA_TYPES[UA_TYPES_EXTENSIONOBJECT])){
+        if (UA_Variant_hasScalarType(&variant,
+                &UA_TYPES[UA_TYPES_EXTENSIONOBJECT])) {
             UA_ExtensionObject* ext = variant.data;
             size_t offset = 0;
-            UA_PropertyValueStatement_decodeBinary(&ext->content.encoded.body,&offset,&propertyValueStatements[i]);
-            printf("property reference id: %.*s\n",propertyValueStatements[i].iD.idSpec.length,propertyValueStatements[i].iD.idSpec.data);
-            if(UA_Variant_hasArrayType(&propertyValueStatements->value,&UA_TYPES[UA_TYPES_DOUBLE]))
-                printf("value: %lf \n",*(UA_Double*)propertyValueStatements[i].value.data);
-            if(UA_Variant_hasArrayType(&propertyValueStatements->value,&UA_TYPES[UA_TYPES_INT32]))
-                printf("value: %i \n",*(UA_Int32*)propertyValueStatements[i].value.data);
-            UA_PropertyValueStatement_toPvsType(foundStatementIds[i].browseName,&propertyValueStatements[i],&((*pvs_c)[i]));
-       }
-       UA_Variant_deleteMembers(&variant);
+            UA_PropertyValueStatement_decodeBinary(&ext->content.encoded.body,
+                    &offset, &propertyValueStatements[i]);
+            printf("property reference id: %.*s\n",
+                    propertyValueStatements[i].iD.idSpec.length,
+                    propertyValueStatements[i].iD.idSpec.data);
+            if (UA_Variant_hasArrayType(&propertyValueStatements->value,
+                    &UA_TYPES[UA_TYPES_DOUBLE]))
+                printf("value: %lf \n",
+                        *(UA_Double*) propertyValueStatements[i].value.data);
+            if (UA_Variant_hasArrayType(&propertyValueStatements->value,
+                    &UA_TYPES[UA_TYPES_INT32]))
+                printf("value: %i \n",
+                        *(UA_Int32*) propertyValueStatements[i].value.data);
+            UA_PropertyValueStatement_toPvsType(foundStatementIds[i].browseName,
+                    &propertyValueStatements[i], &((*pvs_c)[i]));
+        }
+        UA_Variant_deleteMembers(&variant);
 
     }
 
-    UA_Array_delete(propertyValueStatements,foundStatementIdsSize,&UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
-    UA_Array_delete(foundStatementIds, foundStatementIdsSize, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+    UA_Array_delete(propertyValueStatements, foundStatementIdsSize,
+            &UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
+    UA_Array_delete(foundStatementIds, foundStatementIdsSize,
+            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
     UA_NodeId_deleteMembers(&AASNodeId);
     UA_Client_delete(client);
     return foundStatementIdsSize;
@@ -995,7 +1034,7 @@ int getPVSFromListByName(char* ipAddress,char*AASIdSpec,int AASIdType,char* list
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         char* PVSLName, char* Name, int* ExpressionLogic,
         int* ExpressionSemantic, char** Value, int* ValueType, char** Unit,
-        char** IDIdSpec, int* IDIdType, int* view,int *visibility) {
+        char** IDIdSpec, int* IDIdType, int* view, int *visibility) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -1049,23 +1088,20 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         *ExpressionSemantic = *UAExpressionSemantic;
 
         UA_DataValue *dataValue = (UA_DataValue*) output[2].data;
-        parseFromVariant(dataValue->value,*Value, ValueType);
+        parseFromVariant(dataValue->value, *Value, ValueType);
 
         UA_String *unitstr = (UA_String*) output[3].data;
         copyOPCUAStringToChar(*unitstr, Unit);
 
-        UA_Identification *UAId =
-                (UA_Identification*) output[4].data;
-        copyOPCUAStringToChar(UAId->idSpec,
-                IDIdSpec);
+        UA_Identification *UAId = (UA_Identification*) output[4].data;
+        copyOPCUAStringToChar(UAId->idSpec, IDIdSpec);
         *IDIdType = UAId->idType;
 
         UA_ViewEnum* UAView = (UA_ViewEnum*) output[5].data;
         *view = *UAView;
 
+        *visibility = *(int*) output[6].data;
 
-        *visibility = *(int*)output[6].data;
-        
         UA_StatusCode *status = (UA_StatusCode*) output[7].data;
         retval = *status;
 
@@ -1119,7 +1155,10 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 
     UA_DataValue dataValue;
     UA_DataValue_init(&dataValue);
-    parseToVariant(value, valueType, &dataValue.value);
+    retval = parseToVariant(value, valueType, &dataValue.value);
+    if(retval != UA_STATUSCODE_GOOD){
+        return retval;
+    }
     dataValue.hasSourceTimestamp = true;
     dataValue.sourceTimestamp = timeStamp;
     dataValue.hasValue = true;
@@ -1150,14 +1189,13 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         printf(
                 "Method call was successful, and %lu returned values available.\n",
                 (unsigned long) argOutSize);
-            goto clean;
+        goto clean;
     } else {
         printf(
                 "Method call was unsuccessful, and %x returned values available.\n",
                 retval);
     }
-    clean:
-    UA_DataValue_deleteMembers(&dataValue);
+    clean: UA_DataValue_deleteMembers(&dataValue);
     UA_Client_delete(client);
     UA_Identification_deleteMembers(&AASId);
     UA_Identification_deleteMembers(&creatingInstance);
@@ -1217,8 +1255,7 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
                 retval);
     }
 
-    clean:
-    UA_Identification_deleteMembers(&AASId);
+    clean: UA_Identification_deleteMembers(&AASId);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return retval;
@@ -1300,8 +1337,7 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
                 retval);
     }
 
-    clean:
-    UA_DataValue_deleteMembers(&dataValue);
+    clean: UA_DataValue_deleteMembers(&dataValue);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
 
@@ -1373,7 +1409,7 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 
         UA_DataValue *dataValue = (UA_DataValue*) output[4].data;
         *timeStamp = dataValue->sourceTimestamp;
-        parseFromVariant(dataValue->value,*value, valueType);
+        parseFromVariant(dataValue->value, *value, valueType);
 
         UA_StatusCode *status = (UA_StatusCode*) output[5].data;
         retval = *status;
@@ -1388,8 +1424,8 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     return retval;
 }
 
-
-int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned int count, lifeCycleEntryType **lifeCycleEntries) {
+int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
+        unsigned int count, lifeCycleEntryType **lifeCycleEntries) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
     if (retval != UA_STATUSCODE_GOOD) {
@@ -1432,19 +1468,20 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
         goto clean;
     }
 
-
     int lceCount = output[1].arrayLength;
-    *lifeCycleEntries = calloc(lceCount,sizeof(lifeCycleEntryType) );
+    *lifeCycleEntries = calloc(lceCount, sizeof(lifeCycleEntryType));
 
-    if(!UA_Variant_hasArrayType(&output[1],&UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
+    if (!UA_Variant_hasArrayType(&output[1],
+            &UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
         return -1;
 
-    for(size_t i = 0; i < lceCount;i++){
+    for (size_t i = 0; i < lceCount; i++) {
         UA_LifeCycleEntry lce;
         UA_LifeCycleEntry_init(&lce);
-        UA_ExtensionObject ext = ((UA_ExtensionObject*)output[1].data)[i];
+        UA_ExtensionObject ext = ((UA_ExtensionObject*) output[1].data)[i];
         size_t offset = 0;
-        UA_LifeCycleEntry_decodeBinary(&ext.content.encoded.body, &offset, &lce);
+        UA_LifeCycleEntry_decodeBinary(&ext.content.encoded.body, &offset,
+                &lce);
 
 //
 //        printf("lce.eventClass:  %.*s \n",lce.eventClass.length,lce.eventClass.data);
@@ -1453,32 +1490,85 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,unsigned in
 //        printf("lce.writingInstance.idSpec:  %.*s \n",lce.writingInstance.idSpec.length,lce.writingInstance.idSpec.data);
 //
 
+        SET_CHAR_STR(lce.creatingInstance.idSpec,
+                (*lifeCycleEntries)[i].creatingInstanceSpec)
+        (*lifeCycleEntries)[i].creatingInstanceType =
+                lce.creatingInstance.idType;
 
-        SET_CHAR_STR(lce.creatingInstance.idSpec,(*lifeCycleEntries)[i].creatingInstanceSpec)
-        (*lifeCycleEntries)[i].creatingInstanceType = lce.creatingInstance.idType;
-
-
-        SET_CHAR_STR(lce.eventClass,(*lifeCycleEntries)[i].eventClass)
-        SET_CHAR_STR(lce.subject,(*lifeCycleEntries)[i].subject)
-        SET_CHAR_STR(lce.writingInstance.idSpec,(*lifeCycleEntries)[i].writingInstanceSpec)
+        SET_CHAR_STR(lce.eventClass, (*lifeCycleEntries)[i].eventClass)
+        SET_CHAR_STR(lce.subject, (*lifeCycleEntries)[i].subject)
+        SET_CHAR_STR(lce.writingInstance.idSpec,
+                (*lifeCycleEntries)[i].writingInstanceSpec)
 
         (*lifeCycleEntries)[i].writingInstanceType = lce.writingInstance.idType;
-        parseFromVariant(lce.data.value,(*lifeCycleEntries)[i].data,&(*lifeCycleEntries)[i].dataType);
+        parseFromVariant(lce.data.value, (*lifeCycleEntries)[i].data,
+                &(*lifeCycleEntries)[i].dataType);
         (*lifeCycleEntries)[i].id = lce.id;
 
-
         (*lifeCycleEntries)[i].timestamp = lce.data.sourceTimestamp;
-
 
         UA_LifeCycleEntry_deleteMembers(&lce);
     }
 
-    clean:
-    UA_Identification_deleteMembers(&AASId);
+    clean: UA_Identification_deleteMembers(&AASId);
     UA_Client_delete(client);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return lceCount;
 }
 
+UA_StatusCode call_triggerGetCoreData(char* ipAddress, char* srcAASIdSpec,
+        int srcAASIdType, char* dstAASIdSpec, int dstAASIdType) {
+    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+    if (retval != UA_STATUSCODE_GOOD) {
+        UA_Client_delete(client);
+        return (int) retval;
+    }
+    size_t argInSize = 2;
+    size_t argOutSize = 0;
+    UA_Variant *inputArgs = UA_Array_new(argInSize,
+            &UA_TYPES[UA_TYPES_VARIANT]);
+    for (size_t i = 0; i < argInSize; i++) {
+        UA_Variant_init(&inputArgs[i]);
+    }
+    /* convert input to UA types */
+    UA_Identification srcAASId;
+    UA_Identification dstAASId;
 
+    srcAASId.idType = srcAASIdType;
+    srcAASId.idSpec = UA_String_fromChars(srcAASIdSpec);
+
+    dstAASId.idType = dstAASIdType;
+    dstAASId.idSpec = UA_String_fromChars(dstAASIdSpec);
+
+    UA_Variant_setScalarCopy(&inputArgs[0], &srcAASId,
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+    UA_Variant_setScalarCopy(&inputArgs[1], &dstAASId,
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+    UA_NodeId methNodeId = UA_NODEID_STRING(4,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||trigerGetCoreData");
+    UA_NodeId objectId = UA_NODEID_STRING(4,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+
+    UA_Variant *output = NULL;
+    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+            &argOutSize, &output);
+
+    if (retval == UA_STATUSCODE_GOOD) {
+        printf(
+                "Method call was successful, and %lu returned values available.\n",
+                (unsigned long) argOutSize);
+        goto clean;
+    } else {
+        printf(
+                "Method call was unsuccessful, and %x returned values available.\n",
+                retval);
+    }
+
+    clean: UA_Identification_deleteMembers(&srcAASId);
+    UA_Identification_deleteMembers(&dstAASId);
+    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    return retval;
+}

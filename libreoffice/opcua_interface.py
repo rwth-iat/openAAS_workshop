@@ -394,11 +394,11 @@ def call_createPVSL(self):
     carrierIdType_c = c_int(carrierIdType)
     
     creatingInstanceIdType_c = c_int(creatingInstanceType)
-    creatingInstancec_c = creatingInstanceSpec.encode('utf-8')
+    creatingInstanceIdSpec_c = creatingInstanceSpec.encode('utf-8')
     
     StatusCall = 0
     print(carrierIdSpec)
-    StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceSpec_c),creatingInstanceIdType_c)
+    StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceIdSpec_c),creatingInstanceIdType_c)
     if(StatusCall!=0):
       oSheet.getCellRangeByName("B11").String = "failed"
     else:
