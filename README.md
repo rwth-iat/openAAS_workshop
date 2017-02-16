@@ -54,7 +54,8 @@ Afterwards you will get the library *libopcua_interface.so* that provides severa
 If you have Ubuntu, LibreOffice is already installed and you can copy the *opcua_interface.py* into 
 ```
 ~/.conf/libreoffice/<version>/user/Script/python
-```folder.
+```
+folder.
 
 Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file from /libreOffice folder. 
 
