@@ -57,7 +57,7 @@ If you have Ubuntu, LibreOffice is already installed and you can copy the *opcua
 ```
 folder.
 
-Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file from /libreOffice folder. 
+Afterwards, start the [ACPLT/RTE](https://github.com/acplt/rte) with the openAAS Library. Now, you can open the provided LibreOffice Calc file from /libreOffice folder and start to create AAS, Property Value Statements and Lifecycle-Entries. 
 
 
 
