@@ -45,7 +45,10 @@ Create the AAS specific OPC UA interface
 ```
 http://<YOUR_OV_SERVER_IP>:7509/createObject?format=tcl&factory=/acplt/openaasOPCUAInterface/interface&path=/TechUnits/opcuaAASInterface
 ```
-
+Add AAS-factory methods to the OPC UA interface with the web interface
+```
+http://<YOUR_OV_SERVER_IP>:7509/createObject?format=tcl&factory=/acplt/openaas/modelmanager&path=/TechUnits/modelManager
+```
 The ACPLT/RTE should now be available to be explored with ACPLT/KS (iFBsPro) or OPC UA (e.g., uaExpert)
 ## Setting up the Engineering Client
 **Download the client software**
