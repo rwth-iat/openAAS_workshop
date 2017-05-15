@@ -23,13 +23,18 @@ The Engineering Client: (tested on Ubuntu 14.4)
 ## Setting up the Server
 Within this demo, it is assumed that the AAS are stored in a organization-bound repository which implements an OPC UA interface to interact with the AAS. In this example, the repository server is implemented with [ACPLT/RTE](https://github.com/acplt/rte). Compile it as described and add in the ov_server.conf following line at the end:
 ```sh
+LIBRARY opcua
+LIBRARY lifeCycleEntry
+LIBRARY propertyValueStatement
 LIBRARY openaas
+LIBRARY openaasOPCUAInterface
+LIBRARY openAASDiscoveryServer
 ```
 Start the Linux Version:
 (Linux)
 ```sh
-acplt\servers\MANAGER\build_database.bat
-acplt\servers\MANAGER\start_server.bat
+acplt\servers\MANAGER\build_database.sh
+acplt\servers\MANAGER\start_server.sh
 ```
 The ACPLT/RTE should now be available to be explored with ACPLT/KS (iFBsPro) or OPC UA (e.g., uaExpert)
 ## Setting up the Engineering Client
