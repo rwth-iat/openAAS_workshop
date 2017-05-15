@@ -36,6 +36,16 @@ Start the Linux Version:
 acplt\servers\MANAGER\build_database.sh
 acplt\servers\MANAGER\start_server.sh
 ```
+Create the generic OPC UA Interface via web interface (Browser)
+
+```
+http://<YOUR_OV_SERVER_IP>:7509/createObject?format=tcl&factory=/acplt/opcua/uaServer&path=/TechUnits/opcuaInterface
+```
+Create the AAS specific OPC UA interface
+```
+http://<YOUR_OV_SERVER_IP>:7509/createObject?format=tcl&factory=/acplt/openaasOPCUAInterface/interface&path=/TechUnits/opcuaAASInterface
+```
+
 The ACPLT/RTE should now be available to be explored with ACPLT/KS (iFBsPro) or OPC UA (e.g., uaExpert)
 ## Setting up the Engineering Client
 **Download the client software**
