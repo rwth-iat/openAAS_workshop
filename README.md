@@ -23,6 +23,7 @@ The Engineering Client: (tested on Ubuntu 14.4)
 ## Setting up the Server
 Within this demo, it is assumed that the AAS are stored in a organization-bound repository which implements an OPC UA interface to interact with the AAS. In this example, the repository server is implemented with [ACPLT/RTE](https://github.com/acplt/rte). Compile it as described and add in the ov_server.conf following line at the end:
 ```sh
+LIBRARY MessageSys
 LIBRARY opcua
 LIBRARY lifeCycleEntry
 LIBRARY propertyValueStatement
