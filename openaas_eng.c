@@ -27,28 +27,119 @@
 #endif
 #include "opcua_interface.h"
 
+// createAAS
 #define AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
 #define AAS_ID_TYPE 0
 #define AAS_NAME "Sensor4711"
 #define ASSET_ID_STRING "http://acplt.org/Sensor4711"
 #define ASSET_ID_TYPE 0
 
-#define DST_AAS_ID_TYPE 0
-#define DST_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS1"
-#define DST_AAS_NAME  "Sensor4712"
-#define ASSET_ID_TYPE 0
+// deleteAAS
+#define AAS_2_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define AAS_2_ID_TYPE 0
 
+//createSubModel
+#define SM_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define SM_AAS_ID_TYPE 0
+#define SM_PARENT_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body"
+#define SM_PARENT_ID_TYPE 0
+#define SM_MODEL_ID_STRING "http://acplt.org/model1"
+#define SM_MODEL_ID_TYPE 0
+#define SM_NAME "SubModel1"
+#define SM_REVISION 2
+#define SM_VERSION 3
+
+// deleteSubModel
+#define SM_DEL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define SM_DEL_AAS_ID_TYPE 0
+#define SM_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1"
+#define SM_ID_TYPE 0
+
+// create PVSL
+#define PVSL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVSL_AAS_ID_TYPE 0
+#define PVSL_PARENT_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1"
+#define PVSL_PARENT_ID_TYPE 0
 #define PVSL_NAME "AssetProperties"
-#define CARRIER_ID_STRING "http://acplt.org/Sensor4711"
-#define CARRIER_ID_TYPE 0
+#define PVSL_MASK 3
+#define PVSL_CARRIER_ID_STRING "http://acplt.org/Sensor4711"
+#define PVSL_CARRIER_ID_TYPE 0
+#define PVSL_EXPRESSIONLOGIC 1
+#define PVSL_EXPRESSIONSEMANTIC 2
+#define PVSL_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter"
+#define PVSL_PROPERTY_ID_TYPE 0
+#define PVSL_VIEW 1
+#define PVSL_VISIBILITY 2
 
+// deletePVSL
+#define PVSL_DEL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVSL_DEL_AAS_ID_TYPE 0
+#define PVSL_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties"
+#define PVSL_ID_TYPE 0
+
+// createPVS
+#define PVS_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVS_AAS_ID_TYPE 0
+#define PVS_LIST_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties"
+#define PVS_LIST_ID_TYPE 0
 #define PVS_NAME "Diameter"
-#define RELATIONALEXPRESSION 1
-#define EXPRESSIONSEMANTIC 1
-#define VALUE	"10"
+#define PVS_MASK 3
+#define PVS_CARRIER_ID_STRING "http://acplt.org/Sensor4711"
+#define PVS_CARRIER_ID_TYPE 0
+#define PVS_EXPRESSIONLOGIC 1
+#define PVS_EXPRESSIONSEMANTIC 2
+#define PVS_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter"
+#define PVS_PROPERTY_ID_TYPE 0
+#define PVS_VIEW 1
+#define PVS_VISIBILITY 2
+#define PVS_VALUE	"10"
+#define PVS_VALUETYPE 3
+
+// deletePVS
+#define PVS_DEL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVS_DEL_AAS_ID_TYPE 0
+#define PVS_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties/Diameter"
+#define PVS_ID_TYPE 0
+
+// setPVS
+#define PVS_SET_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVS_SET_AAS_ID_TYPE 0
+#define PVS_SET_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties/Diameter"
+#define PVS_SET_ID_TYPE 0
+#define PVS_SET_MASK 254
+#define PVS_SET_NAME "Diameter_New"
+#define PVS_SET_CARRIER_ID_STRING "http://acplt.org/Sensor4711_New"
+#define PVS_SET_CARRIER_ID_TYPE 0
+#define PVS_SET_EXPRESSIONLOGIC 3
+#define PVS_SET_EXPRESSIONSEMANTIC 4
+#define PVS_SET_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter_New"
+#define PVS_SET_PROPERTY_ID_TYPE 1
+#define PVS_SET_VIEW 3
+#define PVS_SET_VISIBILITY 2
+#define PVS_SET_VALUE	"Hallo"
+#define PVS_SET_VALUETYPE 8
+
+// getPVS
+#define PVS_GET_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVS_GET_AAS_ID_TYPE 0
+#define PVS_GET_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties/Diameter"
+#define PVS_GET_ID_TYPE 0
+char* PVS_GET_PVSName = NULL;
+char* PVS_GET_CarrierIdSpec = NULL;
+int PVS_GET_CarrierIdType = 0;
+int PVS_GET_ExpressionLogic = 0;
+int PVS_GET_ExpressionSemantic = 0;
+char* PVS_GET_propertyIdSpec = NULL;
+int PVS_GET_propertyIdType = 0;
+int PVS_GET_view = 0;
+int PVS_GET_visibility = 0;
+char* PVS_GET_Value = NULL;
+int PVS_GET_ValueType = 0;
+
+#define LCE_TIMESTAMP 116444736000000000 + 6444736000000000
+// Data types
 #define DT_BOOL 1
 #define DT_FLOAT 2
-// Data types
 #define DT_INT32 3
 #define DT_INT64 4
 #define DT_UINT32 5
@@ -57,24 +148,6 @@
 #define DT_STRING 8
 #define DT_DATETIME 9
 #define DT_IDENTIFICATION 10
-
-#define VALUETYPE 2
-#define UNIT "cm"
-#define PROPERTYREFERENCE_ID_STRING "https://openaas.org/properties/Diameter"
-#define PROPERTYREFERENCE_ID_TYPE 0
-#define VIEW 3
-
-#define CREATINGINSTANCE_ID_STRING "http://acplt.org/Sensor4711_creating"
-#define CREATINGINSTANCE_ID_TYPE 0
-#define WRITINGINSTANCE_ID_STRING "http://acplt.org/Sensor4711_writing"
-#define WRITINGINSTANCE_ID_TYPE 0
-#define EVENTCLASS "eventclass"
-#define SUBJECT "subject"
-#define VALUE2 "15"
-#define VALUETYPE2 3
-#define TIMESTAMP1 116444736000000000 + 6444736000000000
-#define TIMESTAMP2 116444736000000000 + 1444736000000000
-#define TIMESTAMP3 116444736000000000 + 3444736000000000
 
 int main(int argc, char *argv[]) {
 
@@ -101,44 +174,109 @@ int main(int argc, char *argv[]) {
         goto clean;
     }
     printf("AAS created \n");
+/*
+    retval = call_DeleteAAS(serverIP, AAS_2_ID_STRING, AAS_2_ID_TYPE);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("AAS deletion failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("AAS deleted \n");
+*/
 
-    retval = call_CreatePVSL(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-            CARRIER_ID_STRING, CARRIER_ID_TYPE, CREATINGINSTANCE_ID_STRING,
-            CREATINGINSTANCE_ID_TYPE);
+    retval = call_CreateSubModel(serverIP, SM_AAS_ID_STRING, SM_AAS_ID_TYPE,
+    		SM_PARENT_ID_STRING, SM_PARENT_ID_TYPE, SM_MODEL_ID_STRING, SM_MODEL_ID_TYPE,
+    		SM_NAME, SM_REVISION, SM_VERSION);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("SM creation failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("SM created \n");
+
+/*
+	retval = call_DeleteSubModel(serverIP, SM_AAS_ID_STRING, SM_AAS_ID_TYPE, SM_ID_STRING, SM_ID_TYPE);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("SM deletion failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("SM deleted \n");
+*/
+
+    retval = call_CreatePVSL(serverIP, PVSL_AAS_ID_STRING, PVSL_AAS_ID_TYPE,
+    		PVSL_PARENT_ID_STRING, PVSL_PARENT_ID_TYPE, PVSL_NAME, PVSL_MASK,
+    		PVSL_CARRIER_ID_STRING, PVSL_CARRIER_ID_TYPE, PVSL_EXPRESSIONLOGIC, PVSL_EXPRESSIONSEMANTIC,
+    		PVSL_PROPERTY_ID_STRING, PVSL_PROPERTY_ID_TYPE, PVSL_VIEW, PVSL_VISIBILITY);
     if (retval != UA_STATUSCODE_GOOD) {
-        printf("A creation failed: %i \n", (int) retval);
+        printf("PVSL creation failed: %i \n", (int) retval);
         goto clean;;
     }
     printf("PVSL created \n");
+/*
+    retval = call_DeletePVSL(serverIP, PVSL_DEL_AAS_ID_STRING, PVSL_DEL_AAS_ID_TYPE,
+       		PVSL_PVSL_ID_STRING, PVSL_PVSL_ID_TYPE);
+   if (retval != UA_STATUSCODE_GOOD) {
+	   printf("PVSL deletion failed: %i \n", (int) retval);
+	   goto clean;;
+   }
+   printf("PVSL deleted \n");
+*/
 
-    retval = call_CreatePVS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-            PVS_NAME, RELATIONALEXPRESSION, EXPRESSIONSEMANTIC, VALUE,
-            VALUETYPE, UNIT, PROPERTYREFERENCE_ID_STRING,
-            PROPERTYREFERENCE_ID_TYPE, VIEW, 1);
+    retval = call_CreatePVS(serverIP, PVS_AAS_ID_STRING, PVS_AAS_ID_TYPE, PVS_LIST_ID_STRING,
+            PVS_LIST_ID_TYPE, PVS_NAME, PVS_VALUE, PVS_VALUETYPE, PVS_MASK,
+    		PVS_CARRIER_ID_STRING, PVS_CARRIER_ID_TYPE, PVS_EXPRESSIONLOGIC, PVS_EXPRESSIONSEMANTIC,
+    		PVS_PROPERTY_ID_STRING, PVS_PROPERTY_ID_TYPE, PVS_VIEW, PVS_VISIBILITY);
     if (retval != UA_STATUSCODE_GOOD) {
         printf("PVS creation failed with: %i \n", (int) retval);
         goto clean;
     }
     printf("PVS created \n");
 
-    retval = call_CreatePVS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-            "Property", 2, 2, "33", 2, "dm",
-            "https://openaas.org/properties/Property", 1, 2, 1);
+/*
+    retval = call_DeletePVS(serverIP, PVS_DEL_AAS_ID_STRING, PVS_DEL_AAS_ID_TYPE, PVS_ID_STRING,
+            PVS_ID_TYPE);
     if (retval != UA_STATUSCODE_GOOD) {
-        printf("PVS creation failed with: %i \n", (int) retval);
+        printf("PVS deletion failed with: %i \n", (int) retval);
         goto clean;
     }
-    printf("PVS created \n");
+    printf("PVS deleted \n");
+*/
 
-    retval = call_CreatePVS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-            "Assembly", 1, 0, "900", 2, "m",
-            "https://openaas.org/properties/Assembly", 2, 1, 1);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("PVS creation failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("PVS created \n");
+    retval = call_GetPVS(serverIP, PVS_GET_AAS_ID_STRING, PVS_GET_AAS_ID_TYPE, PVS_GET_ID_STRING,
+			PVS_GET_ID_TYPE, &PVS_GET_PVSName, &PVS_GET_CarrierIdSpec, &PVS_GET_CarrierIdType,
+			&PVS_GET_ExpressionLogic, &PVS_GET_ExpressionSemantic, &PVS_GET_propertyIdSpec, &PVS_GET_propertyIdType,
+			&PVS_GET_view, &PVS_GET_visibility, &PVS_GET_Value, &PVS_GET_ValueType);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("PVS getting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("PVS getted \n");
+	printf("%s\t%s\t%i\t%i\t%i\t%s\t%i\t%i\t%i\t%s\t%i", PVS_GET_PVSName, PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType,
+				PVS_GET_ExpressionLogic, PVS_GET_ExpressionSemantic, PVS_GET_propertyIdSpec, PVS_GET_propertyIdType,
+				PVS_GET_view, PVS_GET_visibility, PVS_GET_Value, PVS_GET_ValueType);
 
+    retval = call_SetPVS(serverIP, PVS_SET_AAS_ID_STRING, PVS_SET_AAS_ID_TYPE, PVS_SET_ID_STRING,
+			PVS_SET_ID_TYPE, PVS_SET_MASK, PVS_SET_NAME, PVS_SET_CARRIER_ID_STRING,
+			PVS_SET_CARRIER_ID_TYPE, PVS_SET_EXPRESSIONLOGIC, PVS_SET_EXPRESSIONSEMANTIC,
+			PVS_SET_PROPERTY_ID_STRING, PVS_SET_PROPERTY_ID_TYPE, PVS_SET_VIEW, PVS_SET_VISIBILITY,
+			PVS_SET_VALUE, PVS_SET_VALUETYPE);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("PVS setting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("PVS setted \n");
+
+	retval = call_GetPVS(serverIP, PVS_GET_AAS_ID_STRING, PVS_GET_AAS_ID_TYPE, PVS_GET_ID_STRING,
+			PVS_GET_ID_TYPE, &PVS_GET_PVSName, &PVS_GET_CarrierIdSpec, &PVS_GET_CarrierIdType,
+			&PVS_GET_ExpressionLogic, &PVS_GET_ExpressionSemantic, &PVS_GET_propertyIdSpec, &PVS_GET_propertyIdType,
+			&PVS_GET_view, &PVS_GET_visibility, &PVS_GET_Value, &PVS_GET_ValueType);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("PVS getting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("PVS getted \n");
+	printf("%s\t%s\t%i\t%i\t%i\t%s\t%i\t%i\t%i\t%s\t%i", PVS_GET_PVSName, PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType,
+				PVS_GET_ExpressionLogic, PVS_GET_ExpressionSemantic, PVS_GET_propertyIdSpec, PVS_GET_propertyIdType,
+				PVS_GET_view, PVS_GET_visibility, PVS_GET_Value, PVS_GET_ValueType);
+/*
     retval = call_CreateLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
             CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
             WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, EVENTCLASS,
@@ -271,6 +409,8 @@ int main(int argc, char *argv[]) {
     }
 
     free(lce);
+
+    */
 /*
 
     call_startGetAssetLCEData(serverIP,AAS_ID_STRING,AAS_ID_TYPE,"127.0.0.1",ASSET_ID_STRING,ASSET_ID_TYPE);

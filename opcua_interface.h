@@ -31,38 +31,49 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType);
 
+/* SubModel */
+UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec, int AASIdType,
+		char* ParentIdSpec, int ParentIdType, char* ModelIdSpec, int ModelIdType,
+        char* name, int revision, int version);
+
+UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec, int AASIdType, char* SMIdSpec, int SMIdType);
+
 /* Property value statement list */
 UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* name, char* CarrierIdSpec, int CarrierIdType,
-        char* CreatingInstanceIdSpec, int CreatingInstanceIdType);
+		char* ParentIdSpec, int ParentIdType, char* PVSLName, int mask,
+		char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic, int ExpressionSemantic,
+		char* propertyIdSpec, int propertyIdType, int view, int visibility);
 
 UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* name);
+		char* PVSLIdSpec, int PVSLIdType);
 
 /* Property value statement */
 UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int ExpressionLogic, int ExpressionSemantic,
-        char* Value, int ValueType, char* Unit, char* propertyReferenceIdSpec,
-        int propertyReferenceIdType, int view, int visibility);
+		char* ListIdSpec, int ListIdType, char* PVSName, char* Value, int ValueType,
+		int mask, char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic,
+		int ExpressionSemantic,	char* propertyIdSpec, int propertyIdType,
+		int view, int visibility);
 
 UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name);
+		char* PVSIdSpec, int PVSIdType);
 
 UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int ExpressionLogic, int ExpressionSemantic,
-        char* Value, int ValueType, char* Unit, char* propertyReferenceIdSpec,
-        int propertyReferenceIdType, int view, int visibility);
+		char* PVSIdSpec, int PVSIdType, int mask, char* PVSName,
+		char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic,
+		int ExpressionSemantic,	char* propertyIdSpec, int propertyIdType,
+		int view, int visibility, char* Value, int ValueType);
 /* simple interface types */
 typedef struct pvsType {
     char name[MAX_STRING_SIZE];
     char value[MAX_STRING_SIZE];
     int valueType;
-    char unit[MAX_STRING_SIZE];
+    char carrierIdIdSpec[MAX_STRING_SIZE];
+	int carrierIdIdType;
     int expressionLogic;
     int expressionSemantic;
+    char propertyIdIdSpec[MAX_STRING_SIZE];
+	int propertyIdIdType;
     int view;
-    char IDIdSpec[MAX_STRING_SIZE];
-    int IDIdType;
     int visibility;
 } pvsType;
 typedef struct lifeCycleEntryType {
@@ -80,11 +91,12 @@ typedef struct lifeCycleEntryType {
 
 int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
         char* listname, pvsType **pvs_c);
+
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* PVSLName, char* Name, int* ExpressionLogic,
-        int* ExpressionSemantic, char** Value, int* ValueType, char** Unit,
-        char** propertyReferenceIdSpec, int* propertyReferenceIdType, int* view,
-        int* visibility);
+		char* PVSIdSpec, int PVSIdType, char** PVSName,
+		char** CarrierIdSpec, int* CarrierIdType, int* ExpressionLogic,
+		int* ExpressionSemantic, char** propertyIdSpec, int* propertyIdType,
+		int* view, int* visibility, char** Value, int* ValueType);
 
 /* LifeCycle Entry */
 UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
@@ -96,23 +108,31 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         long long LCEId);
 
 UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
+        long long lceId, lifeCycleEntryType lceData);
+
+UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
+        long long lceId, lifeCycleEntryType* lceData);
+
+UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
         long long lceId, char* creatingInstanceIdSpec,
         int creatingInstanceIdType, char* writingInstanceIdSpec,
         int writingInstanceIdType, char* EventClass, char* Subject,
         UA_DateTime timeStamp, char* value, int valueType);
 
-UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
+UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
         long long lceId, char** creatingInstanceIdSpec,
         int* creatingInstanceIdType, char** writingInstanceIdSpec,
         int* writingInstanceIdType, char** EventClass, char** Subject,
         UA_DateTime* timeStamp, char** value, int* valueType);
 
 int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
-        unsigned int count, lifeCycleEntryType **lifeCycleEntries);
+        unsigned int count, unsigned int* lastLCEsCount, lifeCycleEntryType **lifeCycleEntries);
 
+/*
 UA_StatusCode call_triggerGetCoreData(char* ipAddress, char* srcAASIdSpec,
         int srcAASIdType, char* dstAASIdSpec, int dstAASIdType);
 
 // gather Lifecylce Data from Asset
 UA_StatusCode call_startGetAssetLCEData(char* ipAddress, char* AASIdSpec, int AASIdType,char* assetIp, char* AssetIdSpec, int AssetIdType);
 UA_StatusCode call_stopGetAssetLCEData(char* ipAddress, char* AASIdSpec, int AASIdType);
+*/
