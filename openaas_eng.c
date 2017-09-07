@@ -14,6 +14,7 @@
  *limitations under the License.
  */
 #include <stdio.h>
+#include <string.h>
 #include <inttypes.h>
 #include "ua_openaas_generated_encoding_binary.h"
 #include "ua_openaas_generated_handling.h"
@@ -82,18 +83,18 @@
 #define PVS_AAS_ID_TYPE 0
 #define PVS_LIST_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties"
 #define PVS_LIST_ID_TYPE 0
-#define PVS_NAME "Diameter"
-#define PVS_MASK 3
-#define PVS_CARRIER_ID_STRING "http://acplt.org/Sensor4711"
+#define PVS_NAME "Diameter2"
+#define PVS_MASK 255
+#define PVS_CARRIER_ID_STRING "http://acplt.org/Sensor4711_2"
 #define PVS_CARRIER_ID_TYPE 0
-#define PVS_EXPRESSIONLOGIC 1
-#define PVS_EXPRESSIONSEMANTIC 2
-#define PVS_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter"
+#define PVS_EXPRESSIONLOGIC 3
+#define PVS_EXPRESSIONSEMANTIC 3
+#define PVS_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter2"
 #define PVS_PROPERTY_ID_TYPE 0
-#define PVS_VIEW 1
-#define PVS_VISIBILITY 2
-#define PVS_VALUE	"10"
-#define PVS_VALUETYPE 3
+#define PVS_VIEW 2
+#define PVS_VISIBILITY 1
+#define PVS_VALUE	"Hallo"
+#define PVS_VALUETYPE 8
 
 // deletePVS
 #define PVS_DEL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
@@ -108,15 +109,15 @@
 #define PVS_SET_ID_TYPE 0
 #define PVS_SET_MASK 254
 #define PVS_SET_NAME "Diameter_New"
-#define PVS_SET_CARRIER_ID_STRING "http://acplt.org/Sensor4711_New"
+#define PVS_SET_CARRIER_ID_STRING "http://acplt.org/Sensor4711_Old"
 #define PVS_SET_CARRIER_ID_TYPE 0
-#define PVS_SET_EXPRESSIONLOGIC 3
-#define PVS_SET_EXPRESSIONSEMANTIC 4
-#define PVS_SET_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter_New"
+#define PVS_SET_EXPRESSIONLOGIC 2
+#define PVS_SET_EXPRESSIONSEMANTIC 2
+#define PVS_SET_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter_Old"
 #define PVS_SET_PROPERTY_ID_TYPE 1
-#define PVS_SET_VIEW 3
-#define PVS_SET_VISIBILITY 2
-#define PVS_SET_VALUE	"Hallo"
+#define PVS_SET_VIEW 2
+#define PVS_SET_VISIBILITY 1
+#define PVS_SET_VALUE	"asdd"
 #define PVS_SET_VALUETYPE 8
 
 // getPVS
@@ -136,7 +137,68 @@ int PVS_GET_visibility = 0;
 char* PVS_GET_Value = NULL;
 int PVS_GET_ValueType = 0;
 
+// getPVSFromList
+#define PVS_GETFROMLIST_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define PVS_GETFROMLIST_AAS_ID_TYPE 0
+#define PVS_GETFROMLIST_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties"
+#define PVS_GETFROMLIST_ID_TYPE 0
+
+// createLCE
+#define LCE_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define LCE_AAS_ID_TYPE 0
+#define LCE_CREATINGINSTANCE_ID_STRING "Creating1"
+#define LCE_CREATINGINSTANCE_ID_TYPE 0
+#define LCE_WRITINGINSTANCE_ID_STRING "Writing1"
+#define LCE_WRITINGINSTANCE_ID_TYPE 0
+#define LCE_EVENTCLASS "Event1"
+#define LCE_SUBJECT "Sub1"
 #define LCE_TIMESTAMP 116444736000000000 + 6444736000000000
+#define LCE_VALUE	"10"
+#define LCE_VALUETYPE 3
+
+// deleteLCE
+#define LCE_DEL_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define LCE_DEL_AAS_ID_TYPE 0
+#define LCE_ID 1
+
+// setLCE
+#define LCE_SET_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define LCE_SET_AAS_ID_TYPE 0
+#define LCE_SET_ID 2
+#define LCE_SET_CREATINGINSTANCE_ID_STRING "Creating7"
+#define LCE_SET_CREATINGINSTANCE_ID_TYPE 0
+#define LCE_SET_WRITINGINSTANCE_ID_STRING "Writing7"
+#define LCE_SET_WRITINGINSTANCE_ID_TYPE 0
+#define LCE_SET_EVENTCLASS "Event7"
+#define LCE_SET_SUBJECT "Sub7"
+#define LCE_SET_TIMESTAMP 226444736000000000 + 6444736000000000
+#define LCE_SET_VALUE	"sd"
+#define LCE_SET_VALUETYPE 8
+lifeCycleEntryType LCE_SET_lceData;
+
+// getLCE
+#define LCE_GET_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define LCE_GET_AAS_ID_TYPE 0
+#define LCE_GET_ID 2
+char* LCE_GET_CreatingInstanceIdSpec = NULL;
+int LCE_GET_CreatingInstanceIdType = 0;
+char* LCE_GET_WritingInstanceIdSpec = NULL;
+int LCE_GET_WritingInstanceIdType = 0;
+char* LCE_GET_EventClass = NULL;
+char* LCE_GET_Subject = NULL;
+UA_DateTime LCE_GET_TimeStamp = NULL;
+char* LCE_GET_Value = NULL;
+int LCE_GET_ValueType = 0;
+lifeCycleEntryType LCE_GET_lceData;
+
+// getLastLCE
+#define LCE_GET_LAST_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
+#define LCE_GET_LAST_AAS_ID_TYPE 0
+lifeCycleEntryType *LCE_GET_LAST_lceData = NULL;
+#define LCE_GET_LAST_COUNT 2
+unsigned int LCE_GET_LAST_lastLCEsCount = 0;
+
+
 // Data types
 #define DT_BOOL 1
 #define DT_FLOAT 2
@@ -249,9 +311,14 @@ int main(int argc, char *argv[]) {
 		goto clean;
 	}
 	printf("PVS getted \n");
-	printf("%s\t%s\t%i\t%i\t%i\t%s\t%i\t%i\t%i\t%s\t%i", PVS_GET_PVSName, PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType,
-				PVS_GET_ExpressionLogic, PVS_GET_ExpressionSemantic, PVS_GET_propertyIdSpec, PVS_GET_propertyIdType,
-				PVS_GET_view, PVS_GET_visibility, PVS_GET_Value, PVS_GET_ValueType);
+	printf("pvs name: %s \n", PVS_GET_PVSName);
+	printf("pvs carrierId: %s, %i \n", PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType);
+	printf("pvs Expression logic: %i \n", PVS_GET_ExpressionLogic);
+	printf("pvs Expression semantic: %i \n", PVS_GET_ExpressionSemantic);
+	printf("pvs propertyId: %s, %i \n", PVS_GET_propertyIdSpec, PVS_GET_propertyIdType);
+	printf("pvs view: %i \n", PVS_GET_view);
+	printf("pvs visibility: %i \n", PVS_GET_visibility);
+	printf("pvs value: %s, %i \n", PVS_GET_Value, PVS_GET_ValueType);
 
     retval = call_SetPVS(serverIP, PVS_SET_AAS_ID_STRING, PVS_SET_AAS_ID_TYPE, PVS_SET_ID_STRING,
 			PVS_SET_ID_TYPE, PVS_SET_MASK, PVS_SET_NAME, PVS_SET_CARRIER_ID_STRING,
@@ -273,163 +340,161 @@ int main(int argc, char *argv[]) {
 		goto clean;
 	}
 	printf("PVS getted \n");
-	printf("%s\t%s\t%i\t%i\t%i\t%s\t%i\t%i\t%i\t%s\t%i", PVS_GET_PVSName, PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType,
-				PVS_GET_ExpressionLogic, PVS_GET_ExpressionSemantic, PVS_GET_propertyIdSpec, PVS_GET_propertyIdType,
-				PVS_GET_view, PVS_GET_visibility, PVS_GET_Value, PVS_GET_ValueType);
+	printf("pvs name: %s \n", PVS_GET_PVSName);
+	printf("pvs carrierId: %s, %i \n", PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType);
+	printf("pvs Expression logic: %i \n", PVS_GET_ExpressionLogic);
+	printf("pvs Expression semantic: %i \n", PVS_GET_ExpressionSemantic);
+	printf("pvs propertyId: %s, %i \n", PVS_GET_propertyIdSpec, PVS_GET_propertyIdType);
+	printf("pvs view: %i \n", PVS_GET_view);
+	printf("pvs visibility: %i \n", PVS_GET_visibility);
+	printf("pvs value: %s, %i \n", PVS_GET_Value, PVS_GET_ValueType);
+
+
+	retval = call_CreateLCE(serverIP, LCE_AAS_ID_STRING, LCE_AAS_ID_TYPE, LCE_CREATINGINSTANCE_ID_STRING,
+			LCE_CREATINGINSTANCE_ID_TYPE, LCE_WRITINGINSTANCE_ID_STRING, LCE_WRITINGINSTANCE_ID_TYPE,
+			LCE_EVENTCLASS, LCE_SUBJECT, LCE_TIMESTAMP, LCE_VALUE, LCE_VALUETYPE);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCE creation failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCE created \n");
+
+
+	retval = call_DeleteLCE(serverIP, LCE_DEL_AAS_ID_STRING, LCE_DEL_AAS_ID_TYPE, LCE_ID);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCE deletion failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCE deleted \n");
+
+
+	retval = call_GetLCESimple(serverIP, LCE_GET_AAS_ID_STRING, LCE_GET_AAS_ID_TYPE, LCE_GET_ID,
+			&LCE_GET_CreatingInstanceIdSpec, &LCE_GET_CreatingInstanceIdType, &LCE_GET_WritingInstanceIdSpec,
+			&LCE_GET_WritingInstanceIdType, &LCE_GET_EventClass, &LCE_GET_Subject, &LCE_GET_TimeStamp,
+			&LCE_GET_Value, &LCE_GET_ValueType);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCESimple getting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCESimple getted \n");
+	printf("#%i ----\n", LCE_GET_ID);
+	printf("lce creating instance: %s, %i \n",LCE_GET_CreatingInstanceIdSpec, LCE_GET_CreatingInstanceIdType);
+	printf("lce writing instance: %s, %i \n", LCE_GET_WritingInstanceIdSpec, LCE_GET_WritingInstanceIdType);
+	printf("lce eventClass: %s \n", LCE_GET_EventClass);
+	printf("lce subject: %s \n", LCE_GET_Subject);
+	printf("lce timestamp" "%" PRId64 "\n", LCE_GET_TimeStamp);
+	printf("lce data: %s, %i \n", LCE_GET_Value, LCE_GET_ValueType);
+
+	LCE_GET_lceData.creatingInstanceSpec = NULL;
+	LCE_GET_lceData.data = NULL;
+	LCE_GET_lceData.eventClass = NULL;
+	LCE_GET_lceData.subject = NULL;
+	LCE_GET_lceData.writingInstanceSpec = NULL;
+	retval = call_GetLCE(serverIP, LCE_GET_AAS_ID_STRING, LCE_GET_AAS_ID_TYPE, LCE_GET_ID,
+			&LCE_GET_lceData);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCE getting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCE getted \n");
+    printf("#%i ----\n", LCE_GET_ID);
+	printf("lce creating instance: %s, %i \n",LCE_GET_lceData.creatingInstanceSpec, LCE_GET_lceData.creatingInstanceType);
+	printf("lce writing instance: %s, %i \n", LCE_GET_lceData.writingInstanceSpec, LCE_GET_lceData.writingInstanceType);
+	printf("lce eventClass: %s \n", LCE_GET_lceData.eventClass);
+	printf("lce subject: %s \n", LCE_GET_lceData.subject);
+	printf("lce timestamp" "%" PRId64 "\n", LCE_GET_lceData.timestamp);
+	printf("lce data: %s, %i \n", LCE_GET_lceData.data, LCE_GET_lceData.dataType);
+
 /*
-    retval = call_CreateLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
-            CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
-            WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, EVENTCLASS,
-            SUBJECT, TIMESTAMP1, VALUE2, VALUETYPE2);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("LCE creation failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("LCE created \n");
+	retval = call_SetLCESimple(serverIP, LCE_SET_AAS_ID_STRING, LCE_SET_AAS_ID_TYPE, LCE_SET_ID, LCE_SET_CREATINGINSTANCE_ID_STRING,
+			LCE_SET_CREATINGINSTANCE_ID_TYPE, LCE_SET_WRITINGINSTANCE_ID_STRING, LCE_SET_WRITINGINSTANCE_ID_TYPE,
+			LCE_SET_EVENTCLASS, LCE_SET_SUBJECT, LCE_SET_TIMESTAMP, LCE_SET_VALUE, LCE_SET_VALUETYPE);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCESimple setting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCESimple setted \n");
+*/
+	lifeCycleEntryType LCE_SET_lceData;
+	LCE_SET_lceData.creatingInstanceSpec = malloc(sizeof(LCE_SET_CREATINGINSTANCE_ID_STRING));
+	LCE_SET_lceData.data = malloc(sizeof(LCE_SET_VALUE));
+	LCE_SET_lceData.eventClass = malloc(sizeof(LCE_SET_EVENTCLASS));
+	LCE_SET_lceData.subject = malloc(sizeof(LCE_SET_SUBJECT));
+	LCE_SET_lceData.writingInstanceSpec = malloc(sizeof(LCE_SET_WRITINGINSTANCE_ID_STRING));
 
-    retval = call_CreateLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
-            CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
-            WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "memory",
-            "memoSubject", TIMESTAMP2, "85", VALUETYPE2);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("LCE creation failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("LCE created \n");
+	strcpy(LCE_SET_lceData.creatingInstanceSpec, LCE_SET_CREATINGINSTANCE_ID_STRING);
+	LCE_SET_lceData.creatingInstanceType = LCE_SET_CREATINGINSTANCE_ID_TYPE;
+	strcpy(LCE_SET_lceData.data, LCE_SET_VALUE);
+	LCE_SET_lceData.dataType = LCE_SET_VALUETYPE;
+	strcpy(LCE_SET_lceData.eventClass, LCE_SET_EVENTCLASS);
+	LCE_SET_lceData.id = LCE_SET_ID;
+	strcpy(LCE_SET_lceData.subject, LCE_SET_SUBJECT);
+	LCE_SET_lceData.timestamp = LCE_SET_TIMESTAMP;
+	strcpy(LCE_SET_lceData.writingInstanceSpec, LCE_SET_WRITINGINSTANCE_ID_STRING);
+	LCE_SET_lceData.writingInstanceType = LCE_SET_WRITINGINSTANCE_ID_TYPE;
 
-    retval = call_CreateLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
-            CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
-            WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "spot", "run",
-            TIMESTAMP1, "2213", VALUETYPE2);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("LCE creation failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("LCE created \n");
+	retval = call_SetLCE(serverIP, LCE_SET_AAS_ID_STRING, LCE_SET_AAS_ID_TYPE, LCE_SET_ID, LCE_SET_lceData);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCE setting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCE setted \n");
 
-    retval = call_CreateLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE,
-            CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
-            WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "DOUBLE_VALUE", "DOUBLE_VALUE",
-            TIMESTAMP1, "221123423423433", DT_DOUBLE);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("LCE creation failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("LCE created \n");
-
-    retval = call_SetLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE, 2,
-            CREATINGINSTANCE_ID_STRING, CREATINGINSTANCE_ID_TYPE,
-            WRITINGINSTANCE_ID_STRING, WRITINGINSTANCE_ID_TYPE, "movie",
-            "actress", TIMESTAMP3, "644", VALUETYPE2);
-    if (retval != UA_STATUSCODE_GOOD) {
-        printf("Setting LCE failed with: %i \n", (int) retval);
-        goto clean;
-    }
-    printf("LCE successfully set \n");
-
-    if (deleteElements) {
-        retval = call_DeletePVS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-                "Assembly");
-        if (retval != UA_STATUSCODE_GOOD) {
-            printf("PVS deletion failed with: %i \n", (int) retval);
-            goto clean;
-        }
-        printf("PVS deleted \n");
-
-        retval = call_SetPVS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, PVSL_NAME,
-                "Property", 0, 3, "54", 0, "mm",
-                "https://openaas.org/properties/Property", 1, 1, 1);
-        if (retval != UA_STATUSCODE_GOOD) {
-            printf("Setting PVS failed with: %i \n", (int) retval);
-            goto clean;
-        }
-        printf("PVS successfully set \n");
-
-        retval = call_DeleteLCE(serverIP, AAS_ID_STRING, AAS_ID_TYPE, 1);
-        if (retval != UA_STATUSCODE_GOOD) {
-            printf("LCE deletion failed with: %i \n", (int) retval);
-            goto clean;
-        }
-        printf("LCE deleted \n");
-        call_DeleteAAS(serverIP, AAS_ID_STRING, AAS_ID_TYPE);
-        if (retval != UA_STATUSCODE_GOOD) {
-            printf("AAS deletion failed with: %i \n", (int) retval);
-            goto clean;
-        }
-        printf("AAS deleted \n");
-    }
+	retval = call_GetLCE(serverIP, LCE_GET_AAS_ID_STRING, LCE_GET_AAS_ID_TYPE, LCE_GET_ID,
+			&LCE_GET_lceData);
+	if (retval != UA_STATUSCODE_GOOD) {
+		printf("LCE getting failed with: %i \n", (int) retval);
+		goto clean;
+	}
+	printf("LCE getted \n");
+    printf("#%i ----\n", LCE_GET_ID);
+    printf("lce creating instance: %s, %i \n",LCE_GET_lceData.creatingInstanceSpec, LCE_GET_lceData.creatingInstanceType);
+    printf("lce writing instance: %s, %i \n", LCE_GET_lceData.writingInstanceSpec, LCE_GET_lceData.writingInstanceType);
+    printf("lce eventClass: %s \n", LCE_GET_lceData.eventClass);
+    printf("lce subject: %s \n", LCE_GET_lceData.subject);
+    printf("lce timestamp" "%" PRId64 "\n", LCE_GET_lceData.timestamp);
+    printf("lce data: %s, %i \n", LCE_GET_lceData.data, LCE_GET_lceData.dataType);
 
     pvsType *pvs_c = NULL;
     //testing with wrong list name
-    int pvscount = getPVSFromListByName(serverIP, "http://acplt.org/Sensor4711_AAS1", 0,
-            "thing4711_properti", &pvs_c);
-    //now with correct list name
-    pvscount = getPVSFromListByName(serverIP, "http://acplt.org/Sensor4711_AAS1", 0,
-            "thing4711_properties", &pvs_c);
+    int pvscount = getPVSFromListByName(serverIP, PVS_GETFROMLIST_AAS_ID_STRING, PVS_GETFROMLIST_AAS_ID_TYPE,
+    		PVS_GETFROMLIST_ID_STRING, PVS_GETFROMLIST_ID_TYPE, &pvs_c);
+
     printf("------------------------------\n");
     printf("property value statements\n");
     for (int i = 0; i < pvscount; i++) {
         printf("#%i ----\n", i);
         printf("pvs name: %s \n", pvs_c[i].name);
-        printf("pvs view: %i \n", pvs_c[i].view);
-        printf("pvs unit: %s \n", pvs_c[i].unit);
-        printf("pvs value: %s \n", pvs_c[i].value);
-        printf("pvs IDSpec: %s \n", pvs_c[i].IDIdSpec);
-        printf("pvs IDType: %i \n", pvs_c[i].IDIdType);
-        printf("pvs Expression semantic: %i \n", pvs_c[i].expressionSemantic);
+        printf("pvs carrierId: %s, %i \n", pvs_c[i].carrierIdIdSpec, pvs_c[i].carrierIdIdType);
         printf("pvs Expression logic: %i \n", pvs_c[i].expressionLogic);
-
+        printf("pvs Expression semantic: %i \n", pvs_c[i].expressionSemantic);
+        printf("pvs propertyId: %s, %i \n", pvs_c[i].propertyIdIdSpec, pvs_c[i].propertyIdIdType);
+        printf("pvs view: %i \n", pvs_c[i].view);
+        printf("pvs visibility: %i \n", pvs_c[i].visibility);
+        printf("pvs value: %s, %i \n", pvs_c[i].value, pvs_c[i].valueType);
     }
     free(pvs_c);
 
-    //create a dst-AAS to test the getCoreData function
-    call_CreateAAS(serverIP, DST_AAS_ID_STRING, DST_AAS_ID_TYPE, DST_AAS_NAME,
-            ASSET_ID_STRING, ASSET_ID_TYPE);
 
-    lifeCycleEntryType *lce = NULL;
-    int lcecount = call_GetLastLCEs(serverIP, AAS_ID_STRING, AAS_ID_TYPE, 10,
-            &lce);
+    int lcecount = call_GetLastLCEs(serverIP, LCE_GET_LAST_AAS_ID_STRING, LCE_GET_LAST_AAS_ID_TYPE,
+    		LCE_GET_LAST_COUNT, &LCE_GET_LAST_lastLCEsCount, &LCE_GET_LAST_lceData);
     printf("------------------------------\n");
     printf("lifecycle\n");
 
-    for (int i = 0; i < lcecount; i++) {
+    for (int i = 0; i < LCE_GET_LAST_lastLCEsCount; i++) {
         printf("#%i ----\n", i);
-        printf("lce writing instance spec: %s \n", lce[i].writingInstanceSpec);
-        printf("lce writing instance type: %i \n", lce[i].writingInstanceType);
-        printf("lce creating instance spec: %s \n",
-                lce[i].creatingInstanceSpec);
-        printf("lce creating instance type: %i \n",
-                lce[i].creatingInstanceType);
-        printf("lce subject: %s \n", lce[i].subject);
-        printf("lce eventClass: %s \n", lce[i].eventClass);
-        printf("lce dataType: %i \n", lce[i].dataType);
-        printf("lce id:" "%" PRId64 "\n", lce[i].id);
-        printf("lce data: %s \n", lce[i].data);
-        printf("lce timestamp" "%" PRId64 "\n", lce[i].timestamp);
+        printf("lce id:" "%" PRId64 "\n", LCE_GET_LAST_lceData[i].id);
+        printf("lce writing instance: %s, %i \n", LCE_GET_LAST_lceData[i].writingInstanceSpec, LCE_GET_LAST_lceData[i].writingInstanceType);
+        printf("lce creating instance: %s, %i \n", LCE_GET_LAST_lceData[i].creatingInstanceSpec, LCE_GET_LAST_lceData[i].creatingInstanceType);
+        printf("lce subject: %s \n", LCE_GET_LAST_lceData[i].subject);
+        printf("lce eventClass: %s \n", LCE_GET_LAST_lceData[i].eventClass);
+        printf("lce dataType: %i \n", LCE_GET_LAST_lceData[i].dataType);
+        printf("lce data: %s, %i \n", LCE_GET_LAST_lceData[i].data, LCE_GET_LAST_lceData[i].dataType);
+        printf("lce timestamp" "%" PRId64 "\n", LCE_GET_LAST_lceData[i].timestamp);
     }
 
-    free(lce);
 
-    */
-/*
 
-    call_startGetAssetLCEData(serverIP,AAS_ID_STRING,AAS_ID_TYPE,"127.0.0.1",ASSET_ID_STRING,ASSET_ID_TYPE);
-    int w = 7;
-    for(int i=0;i<100;i++)
-    {
-        for(int j=0;j<1000000;j++)
-        {
-            w=w+1;
-            w=w-1;
-        }
-        if(i%2==0)
-            printf("waiting..\n");
-        else
-            printf("waiting...\n");
-
-    }
-    call_stopGetAssetLCEData(serverIP,AAS_ID_STRING,AAS_ID_TYPE);
-*/
     clean:
 
     return 0;

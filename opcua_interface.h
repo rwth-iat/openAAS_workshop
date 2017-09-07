@@ -64,33 +64,33 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		int view, int visibility, char* Value, int ValueType);
 /* simple interface types */
 typedef struct pvsType {
-    char name[MAX_STRING_SIZE];
-    char value[MAX_STRING_SIZE];
+    char* name;
+    char* value;
     int valueType;
-    char carrierIdIdSpec[MAX_STRING_SIZE];
+    char* carrierIdIdSpec;
 	int carrierIdIdType;
     int expressionLogic;
     int expressionSemantic;
-    char propertyIdIdSpec[MAX_STRING_SIZE];
+    char* propertyIdIdSpec;
 	int propertyIdIdType;
     int view;
     int visibility;
 } pvsType;
 typedef struct lifeCycleEntryType {
     int64_t timestamp;
-    char subject[MAX_STRING_SIZE];
-    char eventClass[MAX_STRING_SIZE];
-    char creatingInstanceSpec[MAX_STRING_SIZE];
+    char* subject;
+    char* eventClass;
+    char* creatingInstanceSpec;
     int creatingInstanceType;
-    char writingInstanceSpec[MAX_STRING_SIZE];
+    char* writingInstanceSpec;
     int writingInstanceType;
-    char data[256];
+    char* data;
     int dataType;
     int64_t id;
 } lifeCycleEntryType;
 
 int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
-        char* listname, pvsType **pvs_c);
+		char* PVSIdSpec, int PVSIdType, pvsType **pvs_c);
 
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* PVSIdSpec, int PVSIdType, char** PVSName,
@@ -125,7 +125,7 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
         int* writingInstanceIdType, char** EventClass, char** Subject,
         UA_DateTime* timeStamp, char** value, int* valueType);
 
-int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
+UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
         unsigned int count, unsigned int* lastLCEsCount, lifeCycleEntryType **lifeCycleEntries);
 
 /*

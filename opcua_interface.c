@@ -900,11 +900,11 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
                 UA_NS0ID_HASTYPEDEFINITION);
         UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
         for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
-            if (UA_String_equal(
-                    &bResp1.results[0].references[j].displayName.text,
-                    &TypedefinitionBrowseName)) {
-                n++;
-            }
+        	if (UA_String_equal(
+					&bResp1.results[0].references[j].displayName.text,
+					&TypedefinitionBrowseName)) {
+				n++;
+        	}
         }
         UA_BrowseRequest_deleteMembers(&bReq1);
         UA_BrowseResponse_deleteMembers(&bResp1);
@@ -934,13 +934,13 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
                 UA_NS0ID_HASTYPEDEFINITION);
         UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
         for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
-            if (UA_String_equal(
-                    &bResp1.results[0].references[j].displayName.text,
-                    &TypedefinitionBrowseName)) {
-                UA_ReferenceDescription_copy(&bResp.results[0].references[i],
-                        &((*ids)[m]));
-                m++;
-            }
+        	if (UA_String_equal(
+					&bResp1.results[0].references[j].displayName.text,
+					&TypedefinitionBrowseName)) {
+				UA_ReferenceDescription_copy(&bResp.results[0].references[i],
+						&((*ids)[m]));
+				m++;
+        	}
         }
         UA_BrowseRequest_deleteMembers(&bReq1);
         UA_BrowseResponse_deleteMembers(&bResp1);
@@ -952,20 +952,15 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
     UA_BrowseResponse_deleteMembers(&bResp);
     return;
 }
-static void getAllPVSLInFolder(UA_Client *client, UA_NodeId entryPoint,
-        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
-    UA_String tmpStr = UA_String_fromChars("PropertyValueStatementListType");
-    FindChildrenWithSpecialType(client, entryPoint, tmpStr, foundListIds,
-            foundListIdsSize);
-    UA_String_deleteMembers(&tmpStr);
-}
+
 
 static int getAllPVSFromList(UA_Client *client, UA_NodeId entryPoint,
         UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
-    /*all property value statements are attached via HasProperty Reference */
-    UA_String tmpStr = UA_String_fromChars("PropertyType");
+	/*all property value statements are attached via HasComponent Reference */
+    UA_String tmpStr = UA_String_fromChars("PropertyValueStatementType");
     UA_ReferenceDescription *subNodes = NULL;
 
+    // get all Children that have HasProperty Reference
     size_t subNodesSize = 0;
     FindChildrenWithSpecialType(client, entryPoint, tmpStr, &subNodes,
             &subNodesSize);
@@ -1065,37 +1060,8 @@ UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
     return found;
 }
 
-int UA_PropertyValueStatement_toPvsType(UA_QualifiedName propertyName,
-        UA_PropertyValueStatement *propertyValueStatement, pvsType *pvs) {
-
-    pvs->expressionSemantic = propertyValueStatement->expressionSemantic;
-
-    if (propertyName.name.length >= MAX_STRING_SIZE - 1)
-        return -1;
-    memcpy(pvs->name, propertyName.name.data, propertyName.name.length);
-
-    if (propertyValueStatement->iD.idSpec.length >= MAX_STRING_SIZE - 1)
-        return -1;
-    memcpy(pvs->propertyIdIdSpec, propertyValueStatement->iD.idSpec.data,
-            propertyValueStatement->iD.idSpec.length);
-    pvs->propertyIdIdSpec[propertyValueStatement->iD.idSpec.length] = 0;
-    pvs->propertyIdIdType = propertyValueStatement->iD.idType;
-
-    pvs->expressionLogic = propertyValueStatement->expressionLogic;
-    if (propertyValueStatement->unit.length >= MAX_STRING_SIZE - 1)
-        return -1;
-
-    pvs->visibility = propertyValueStatement->visibility;
-    char *tmpPtr = pvs->value;
-    parseFromVariant(propertyValueStatement->value, &tmpPtr,
-            &pvs->valueType);
-    pvs->view = propertyValueStatement->view;
-    return 0;
-
-}
-
 int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
-        char* listname, pvsType **pvs_c) {
+		char*ListIdSpec, int ListIdType, pvsType **pvs_c) {
 
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
@@ -1105,107 +1071,53 @@ int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
     }
 
     UA_Identification AASIdentification;
-
     AASIdentification.idSpec = UA_String_fromChars(AASIdSpec);
     AASIdentification.idType = AASIdType;
 
+    /* for message transmission - NOT IMPLEMENTED
     UA_NodeId AASNodeId;
     findAASNodeId(client, AASIdentification, &AASNodeId);
     UA_Identification_deleteMembers(&AASIdentification);
+    */
+    UA_NodeId idPVSL = UA_NODEID_STRING_ALLOC(10, ListIdSpec);
+	UA_ReferenceDescription *foundStatementIds = NULL;
+	size_t foundStatementIdsSize = 0;
 
-    //find body folder of AAS
-    UA_NodeId BodyFolderId;
-    UA_String bodyStr = UA_String_fromChars("Body");
-    getNodeIdOfChildByBrowseName(client, AASNodeId, bodyStr, &BodyFolderId);
+	getAllPVSFromList(client, idPVSL, &foundStatementIds,
+			&foundStatementIdsSize);
 
-    UA_String_deleteMembers(&bodyStr);
-    //print all found PVSL of found AAS
-    UA_ReferenceDescription *idsPVSL = NULL;
-    size_t idsPVSLSize;
+	for (size_t i = 0; i < foundStatementIdsSize; i++) {
+		switch (foundStatementIds[i].nodeId.nodeId.identifierType) {
+		case UA_NODEIDTYPE_NUMERIC:
+			printf("Found statement with Id: %i \n",
+					foundStatementIds[i].nodeId.nodeId.identifier.numeric);
+			break;
+		case UA_NODEIDTYPE_STRING:
+			printf("Found statement with Id: %.*s \n",
+					foundStatementIds[i].nodeId.nodeId.identifier.string.length,
+					foundStatementIds[i].nodeId.nodeId.identifier.string.data);
+			break;
+		}
+	}
 
-    getAllPVSLInFolder(client, BodyFolderId, &idsPVSL, &idsPVSLSize);
-    UA_NodeId_deleteMembers(&BodyFolderId);
-    //print found PVSL node Ids
-    UA_String pvslName = UA_String_fromChars(listname);
-    size_t index_i;
-    UA_Boolean found = false;
-    for (index_i = 0; index_i < idsPVSLSize; index_i++) {
-        if(UA_String_equal(&idsPVSL[index_i].browseName.name,&pvslName)){
-            found = true;
-            break;
-        }
-    }
-    UA_String_deleteMembers(&pvslName);
-    if (!idsPVSLSize || found != true) {
-        return -1;
-    }
-    UA_ReferenceDescription *foundStatementIds = NULL;
-    size_t foundStatementIdsSize = 0;
-    //print first list
-
-    getAllPVSFromList(client, idsPVSL[index_i].nodeId.nodeId, &foundStatementIds,
-            &foundStatementIdsSize);
-
-    for (size_t i = 0; i < foundStatementIdsSize; i++) {
-        switch (foundStatementIds[i].nodeId.nodeId.identifierType) {
-        case UA_NODEIDTYPE_NUMERIC:
-            printf("Found statement with Id: %i \n",
-                    foundStatementIds[i].nodeId.nodeId.identifier.numeric);
-            break;
-        case UA_NODEIDTYPE_STRING:
-            printf("Found statement with Id: %.*s \n",
-                    foundStatementIds[i].nodeId.nodeId.identifier.string.length,
-                    foundStatementIds[i].nodeId.nodeId.identifier.string.data);
-            break;
-        }
-    }
-    UA_Array_delete(idsPVSL, idsPVSLSize,
-            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
     *pvs_c = calloc(foundStatementIdsSize, sizeof(pvsType));
 
-    UA_PropertyValueStatement *propertyValueStatements = UA_Array_new(
-            foundStatementIdsSize,
-            &UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
     for (size_t i = 0; i < foundStatementIdsSize; i++) {
-        UA_PropertyValueStatement_init(&propertyValueStatements[i]);
-    }
-    for (size_t i = 0; i < foundStatementIdsSize; i++) {
-        UA_Variant variant;
-        UA_Client_readValueAttribute(client, foundStatementIds[i].nodeId.nodeId,
-                &variant);
-
-        if (UA_Variant_hasScalarType(&variant,
-                &UA_TYPES[UA_TYPES_EXTENSIONOBJECT])) {
-            UA_ExtensionObject* ext = variant.data;
-            size_t offset = 0;
-            UA_PropertyValueStatement_decodeBinary(&ext->content.encoded.body,
-                    &offset, &propertyValueStatements[i]);
-            printf("property reference id: %.*s\n",
-                    propertyValueStatements[i].iD.idSpec.length,
-                    propertyValueStatements[i].iD.idSpec.data);
-            if (UA_Variant_hasArrayType(&propertyValueStatements->value,
-                    &UA_TYPES[UA_TYPES_DOUBLE]))
-                printf("value: %lf \n",
-                        *(UA_Double*) propertyValueStatements[i].value.data);
-            if (UA_Variant_hasArrayType(&propertyValueStatements->value,
-                    &UA_TYPES[UA_TYPES_INT32]))
-                printf("value: %i \n",
-                        *(UA_Int32*) propertyValueStatements[i].value.data);
-            UA_PropertyValueStatement_toPvsType(foundStatementIds[i].browseName,
-                    &propertyValueStatements[i], &((*pvs_c)[i]));
-        }
-        UA_Variant_deleteMembers(&variant);
-
+    	char* PVSIdSpec = NULL;
+    	copyOPCUAStringToChar(foundStatementIds[i].nodeId.nodeId.identifier.string, &PVSIdSpec);
+    	(*pvs_c)[i].carrierIdIdSpec = NULL;
+    	(*pvs_c)[i].name = NULL;
+    	(*pvs_c)[i].propertyIdIdSpec = NULL;
+    	(*pvs_c)[i].value = NULL;
+    	call_GetPVS(ipAddress, AASIdSpec, AASIdType, PVSIdSpec, 0, &((*pvs_c)[i].name), &((*pvs_c)[i].carrierIdIdSpec), &((*pvs_c)[i].carrierIdIdType), &((*pvs_c)[i].expressionLogic), &((*pvs_c)[i].expressionSemantic), &((*pvs_c)[i].propertyIdIdSpec), &((*pvs_c)[i].propertyIdIdType), &((*pvs_c)[i].view), &((*pvs_c)[i].visibility), &((*pvs_c)[i].value), &((*pvs_c)[i].valueType));
+    	UA_free(PVSIdSpec);
     }
 
-    UA_Array_delete(propertyValueStatements, foundStatementIdsSize,
-            &UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT]);
     UA_Array_delete(foundStatementIds, foundStatementIdsSize,
             &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    UA_NodeId_deleteMembers(&AASNodeId);
+    UA_NodeId_deleteMembers(&idPVSL);
     UA_Client_delete(client);
     return foundStatementIdsSize;
-//UA_StatusCode call_GetAllPVS(char* ipAddress, char* AASIdSpec, int AASIdType,char* PVSLName){
 
 }
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
@@ -1323,7 +1235,7 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
-    size_t argInSize = 6;
+    size_t argInSize = 2;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
             &UA_TYPES[UA_TYPES_VARIANT]);
@@ -1335,40 +1247,30 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     AASId.idType = AASIdType;
     AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification creatingInstance;
-    creatingInstance.idSpec = UA_String_fromChars(creatingInstanceIdSpec);
-    creatingInstance.idType = creatingInstanceIdType;
+    UA_LifeCycleEntry lce;
 
-    UA_Identification writingInstance;
-    writingInstance.idSpec = UA_String_fromChars(writingInstanceIdSpec);
-    writingInstance.idType = writingInstanceIdType;
+    lce.creatingInstance.idSpec = UA_String_fromChars(creatingInstanceIdSpec);
+    lce.creatingInstance.idType = creatingInstanceIdType;
 
-    UA_String eventClassStr = UA_String_fromChars(EventClass);
+    lce.writingInstance.idSpec = UA_String_fromChars(writingInstanceIdSpec);
+    lce.writingInstance.idType = writingInstanceIdType;
 
-    UA_String subjectStr = UA_String_fromChars(Subject);
+    lce.eventClass = UA_String_fromChars(EventClass);
 
-    UA_DataValue dataValue;
-    UA_DataValue_init(&dataValue);
-    retval = parseToVariant(value, valueType, &dataValue.value);
+    lce.subject = UA_String_fromChars(Subject);
+
+    retval = parseToVariant(value, valueType, &lce.data.value);
     if(retval != UA_STATUSCODE_GOOD){
         return retval;
     }
-    dataValue.hasSourceTimestamp = true;
-    dataValue.sourceTimestamp = timeStamp;
-    dataValue.hasValue = true;
+    lce.data.hasSourceTimestamp = true;
+    lce.data.sourceTimestamp = timeStamp;
+    lce.data.hasValue = true;
 
     UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &creatingInstance,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &writingInstance,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &eventClassStr,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &subjectStr,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &dataValue,
-            &UA_TYPES[UA_TYPES_DATAVALUE]);
+    UA_Variant_setScalarCopy(&inputArgs[1], &lce,
+            &UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY]);
 
     UA_NodeId methNodeId = UA_NODEID_STRING(10,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createLCE");
@@ -1389,15 +1291,10 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
                 "Method call was unsuccessful, and %x returned values available.\n",
                 retval);
     }
-    clean: UA_DataValue_deleteMembers(&dataValue);
+    clean:
     UA_Client_delete(client);
     UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&creatingInstance);
-    UA_Identification_deleteMembers(&writingInstance);
-
-    UA_String_deleteMembers(&eventClassStr);
-    UA_String_deleteMembers(&subjectStr);
-
+    UA_LifeCycleEntry_deleteMembers(&lce);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return retval;
@@ -1453,6 +1350,78 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return retval;
+}
+
+UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
+        long long lceId, lifeCycleEntryType lceData){
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 3;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
+
+	UA_LifeCycleEntry tmplceData;
+	UA_LifeCycleEntry_init(&tmplceData);
+
+	tmplceData.creatingInstance.idSpec = UA_String_fromChars(lceData.creatingInstanceSpec);
+	tmplceData.creatingInstance.idType = lceData.creatingInstanceType;
+
+	UA_Identification writingInstance;
+	tmplceData.writingInstance.idSpec = UA_String_fromChars(lceData.writingInstanceSpec);
+	tmplceData.writingInstance.idType = lceData.writingInstanceType;
+
+	tmplceData.eventClass = UA_String_fromChars(lceData.eventClass);
+
+	tmplceData.subject = UA_String_fromChars(lceData.subject);
+
+	parseToVariant(lceData.data, lceData.dataType, &tmplceData.data.value);
+	tmplceData.data.hasSourceTimestamp = true;
+	tmplceData.data.sourceTimestamp = lceData.timestamp;
+	tmplceData.data.hasValue = true;
+
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &tmplceData,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY]);
+
+	UA_NodeId methNodeId = UA_NODEID_STRING(10,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||setLCE");
+	UA_NodeId objectId = UA_NODEID_STRING(10,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
+
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+		goto clean;
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
+
+	clean:
+	UA_Identification_deleteMembers(&AASId);
+	UA_LifeCycleEntry_deleteMembers(&tmplceData);
+		UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
@@ -1586,27 +1555,40 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
                 "Method call was successful, and %lu returned values available.\n",
                 (unsigned long) argOutSize);
 
-        UA_Identification *creatingInstance =
-                (UA_Identification*) output[0].data;
-        copyOPCUAStringToChar(creatingInstance->idSpec, creatingInstanceIdSpec);
-        *creatingInstanceIdType = creatingInstance->idType;
+        UA_StatusCode *status = (UA_StatusCode*) output[0].data;
+        retval = *status;
 
-        UA_Identification *writingInstance = (UA_Identification*) output[1].data;
-        copyOPCUAStringToChar(writingInstance->idSpec, writingInstanceIdSpec);
-        *writingInstanceIdType = writingInstance->idType;
 
-        UA_String *eventClassStr = (UA_String*) output[2].data;
+        UA_Identification creatingInstance;
+		UA_Identification_init(&creatingInstance);
+        UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
+		size_t offset = 0;
+		UA_Identification_decodeBinary(&(ext->content.encoded.body), &offset,
+				&creatingInstance);
+		copyOPCUAStringToChar(creatingInstance.idSpec, creatingInstanceIdSpec);
+		*creatingInstanceIdType = creatingInstance.idType;
+		UA_Identification_deleteMembers(&creatingInstance);
+
+		UA_Identification writingInstance;
+		UA_Identification_init(&writingInstance);
+		ext = (UA_ExtensionObject*) output[2].data;
+		offset = 0;
+		UA_Identification_decodeBinary(&(ext->content.encoded.body), &offset,
+				&writingInstance);
+		copyOPCUAStringToChar(writingInstance.idSpec, writingInstanceIdSpec);
+		*writingInstanceIdType = writingInstance.idType;
+		UA_Identification_deleteMembers(&writingInstance);
+
+        UA_String *eventClassStr = (UA_String*) output[3].data;
         copyOPCUAStringToChar(*eventClassStr, EventClass);
 
-        UA_String *subjectStr = (UA_String*) output[3].data;
+        UA_String *subjectStr = (UA_String*) output[4].data;
         copyOPCUAStringToChar(*subjectStr, Subject);
 
-        UA_DataValue *dataValue = (UA_DataValue*) output[4].data;
+        UA_DataValue *dataValue = (UA_DataValue*) output[5].data;
         *timeStamp = dataValue->sourceTimestamp;
         parseFromVariant(dataValue->value, value, valueType);
 
-        UA_StatusCode *status = (UA_StatusCode*) output[5].data;
-        retval = *status;
         UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     } else {
         printf(
@@ -1618,7 +1600,83 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
     return retval;
 }
 
-int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
+UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
+        long long lceId, lifeCycleEntryType* lceData) {
+    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+    if (retval != UA_STATUSCODE_GOOD) {
+        UA_Client_delete(client);
+        return (int) retval;
+    }
+    size_t argInSize = 2;
+    size_t argOutSize = 0;
+    UA_Variant *inputArgs = UA_Array_new(argInSize,
+            &UA_TYPES[UA_TYPES_VARIANT]);
+    for (size_t i = 0; i < argInSize; i++) {
+        UA_Variant_init(&inputArgs[i]);
+    }
+    /* convert input to UA types */
+    UA_Identification AASId;
+    AASId.idType = AASIdType;
+    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+
+    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+    UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+
+    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCE");
+    UA_NodeId objectId = UA_NODEID_STRING(10,
+            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+
+    UA_Variant *output = NULL;
+    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+            &argOutSize, &output);
+
+    if (retval == UA_STATUSCODE_GOOD) {
+        printf(
+                "Method call was successful, and %lu returned values available.\n",
+                (unsigned long) argOutSize);
+
+
+        UA_StatusCode *status = (UA_StatusCode*) output[0].data;
+        retval = *status;
+
+        UA_LifeCycleEntry tmplceData;
+        UA_LifeCycleEntry_init(&tmplceData);
+        UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
+		size_t offset = 0;
+		UA_LifeCycleEntry_decodeBinary(&(ext->content.encoded.body), &offset,
+				&tmplceData);
+
+		copyOPCUAStringToChar(tmplceData.creatingInstance.idSpec, &lceData->creatingInstanceSpec);
+		lceData->creatingInstanceType = tmplceData.creatingInstance.idType;
+
+		copyOPCUAStringToChar(tmplceData.writingInstance.idSpec, &lceData->writingInstanceSpec);
+		lceData->writingInstanceType = tmplceData.writingInstance.idType;
+
+		copyOPCUAStringToChar(tmplceData.eventClass, &lceData->eventClass);
+
+		copyOPCUAStringToChar(tmplceData.subject, &lceData->subject);
+
+		lceData->timestamp = tmplceData.data.sourceTimestamp;
+
+		parseFromVariant(tmplceData.data.value, &lceData->data, &lceData->dataType);
+
+		UA_LifeCycleEntry_deleteMembers(&tmplceData);
+
+        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    } else {
+        printf(
+                "Method call was unsuccessful, and %x returned values available.\n",
+                retval);
+    }
+    UA_Client_delete(client);
+    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+    return retval;
+}
+
+UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
         unsigned int count, unsigned int* lastLCEsCount, lifeCycleEntryType **lifeCycleEntries) {
     UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
     UA_StatusCode retval = UA_Client_connect(client, ipAddress);
@@ -1662,14 +1720,14 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
         goto clean;
     }
 
-    int lceCount = output[1].arrayLength;
-    *lifeCycleEntries = calloc(lceCount, sizeof(lifeCycleEntryType));
+    *lastLCEsCount = output[1].arrayLength;
+    *lifeCycleEntries = calloc(*lastLCEsCount, sizeof(lifeCycleEntryType));
 
     if (!UA_Variant_hasArrayType(&output[1],
             &UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
         return -1;
 
-    for (size_t i = 0; i < lceCount; i++) {
+    for (size_t i = 0; i < *lastLCEsCount; i++) {
         UA_LifeCycleEntry lce;
         UA_LifeCycleEntry_init(&lce);
         UA_ExtensionObject ext = ((UA_ExtensionObject*) output[1].data)[i];
@@ -1677,28 +1735,22 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_LifeCycleEntry_decodeBinary(&ext.content.encoded.body, &offset,
                 &lce);
 
-//
-//        printf("lce.eventClass:  %.*s \n",lce.eventClass.length,lce.eventClass.data);
-//        printf("lce.subject:  %.*s \n",lce.subject.length,lce.subject.data);
-//        printf("lce.creatingInstance.idSpec:  %.*s \n",lce.creatingInstance.idSpec.length,lce.creatingInstance.idSpec.data);
-//        printf("lce.writingInstance.idSpec:  %.*s \n",lce.writingInstance.idSpec.length,lce.writingInstance.idSpec.data);
-//
-        char *tmpPtr = (*lifeCycleEntries)[i].creatingInstanceSpec;
-        SET_CHAR_STR(lce.creatingInstance.idSpec, &tmpPtr);
+        (*lifeCycleEntries)[i].creatingInstanceSpec = NULL;
+        copyOPCUAStringToChar(lce.creatingInstance.idSpec, &(*lifeCycleEntries)[i].creatingInstanceSpec);
         (*lifeCycleEntries)[i].creatingInstanceType =
                 lce.creatingInstance.idType;
 
-        tmpPtr = (*lifeCycleEntries)[i].eventClass;
-        SET_CHAR_STR(lce.eventClass, &tmpPtr)
-        tmpPtr = (*lifeCycleEntries)[i].subject;
-        SET_CHAR_STR(lce.subject, &tmpPtr);
+        (*lifeCycleEntries)[i].eventClass = NULL;
+        copyOPCUAStringToChar(lce.eventClass, &(*lifeCycleEntries)[i].eventClass);
+        (*lifeCycleEntries)[i].subject = NULL;
+        copyOPCUAStringToChar(lce.subject, &(*lifeCycleEntries)[i].subject);
 
-        tmpPtr = (*lifeCycleEntries)[i].writingInstanceSpec;
-        SET_CHAR_STR(lce.writingInstance.idSpec, &tmpPtr)
+        (*lifeCycleEntries)[i].writingInstanceSpec = NULL;
+        copyOPCUAStringToChar(lce.writingInstance.idSpec, &(*lifeCycleEntries)[i].writingInstanceSpec);
         (*lifeCycleEntries)[i].writingInstanceType = lce.writingInstance.idType;
 
-        tmpPtr = (*lifeCycleEntries)[i].data;
-        parseFromVariant(lce.data.value, &tmpPtr,
+        (*lifeCycleEntries)[i].data = NULL;
+        parseFromVariant(lce.data.value, &(*lifeCycleEntries)[i].data,
                 &(*lifeCycleEntries)[i].dataType);
         (*lifeCycleEntries)[i].id = lce.id;
 
@@ -1711,7 +1763,7 @@ int call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Client_delete(client);
     UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return lceCount;
+    return retval;
 }
 
 //
