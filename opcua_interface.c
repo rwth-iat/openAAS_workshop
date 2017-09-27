@@ -1211,7 +1211,7 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_DataValue *dataValue = (UA_DataValue*) output[8].data;
         parseFromVariant(dataValue->value, Value, ValueType);
 
-        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+        //UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     } else {
         printf(
                 "Method call was unsuccessful, and %x returned values available.\n",

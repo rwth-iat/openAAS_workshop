@@ -23,7 +23,7 @@
 #include "open62541.h"
 #include "ua_client_highlevel.h"
 #endif
-
+//open62541 L 6850 Encoding von Extension Objects
 #define MAX_STRING_SIZE 256
 /* Asset administration shell */
 UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,

@@ -67,7 +67,7 @@
 #define PVSL_CARRIER_ID_TYPE 0
 #define PVSL_EXPRESSIONLOGIC 1
 #define PVSL_EXPRESSIONSEMANTIC 2
-#define PVSL_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter"
+#define PVSL_PROPERTY_ID_STRING "https://openaas.org/properties/Diameter2"
 #define PVSL_PROPERTY_ID_TYPE 0
 #define PVSL_VIEW 1
 #define PVSL_VISIBILITY 2
@@ -123,7 +123,7 @@
 // getPVS
 #define PVS_GET_AAS_ID_STRING "http://acplt.org/Sensor4711_AAS"
 #define PVS_GET_AAS_ID_TYPE 0
-#define PVS_GET_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties/Diameter"
+#define PVS_GET_ID_STRING "/TechUnits/openAAS/AASFolder/Sensor4711.Body/SubModel1/AssetProperties/Diameter2"
 #define PVS_GET_ID_TYPE 0
 char* PVS_GET_PVSName = NULL;
 char* PVS_GET_CarrierIdSpec = NULL;
@@ -215,7 +215,7 @@ int main(int argc, char *argv[]) {
 
     char* serverIP;
     if (argc < 2) {
-        printf("using standard serverIP opc.tcp://134.130.125.81:16664 \n");
+        printf("using standard serverIP opc.tcp://134.130.125.80:16664 \n");
         //serverIP = malloc(26);
         serverIP = "opc.tcp://127.0.0.1:16664";
     } else
@@ -264,9 +264,7 @@ int main(int argc, char *argv[]) {
 */
 
     retval = call_CreatePVSL(serverIP, PVSL_AAS_ID_STRING, PVSL_AAS_ID_TYPE,
-    		PVSL_PARENT_ID_STRING, PVSL_PARENT_ID_TYPE, PVSL_NAME, PVSL_MASK,
-    		PVSL_CARRIER_ID_STRING, PVSL_CARRIER_ID_TYPE, PVSL_EXPRESSIONLOGIC, PVSL_EXPRESSIONSEMANTIC,
-    		PVSL_PROPERTY_ID_STRING, PVSL_PROPERTY_ID_TYPE, PVSL_VIEW, PVSL_VISIBILITY);
+    		PVSL_PARENT_ID_STRING, PVSL_PARENT_ID_TYPE, PVSL_NAME, PVSL_MASK, PVSL_CARRIER_ID_STRING, PVSL_CARRIER_ID_TYPE, PVSL_EXPRESSIONLOGIC, PVSL_EXPRESSIONSEMANTIC, PVSL_PROPERTY_ID_STRING, PVSL_PROPERTY_ID_TYPE, PVSL_VIEW, PVSL_VISIBILITY);
     if (retval != UA_STATUSCODE_GOOD) {
         printf("PVSL creation failed: %i \n", (int) retval);
         goto clean;;
@@ -282,10 +280,7 @@ int main(int argc, char *argv[]) {
    printf("PVSL deleted \n");
 */
 
-    retval = call_CreatePVS(serverIP, PVS_AAS_ID_STRING, PVS_AAS_ID_TYPE, PVS_LIST_ID_STRING,
-            PVS_LIST_ID_TYPE, PVS_NAME, PVS_VALUE, PVS_VALUETYPE, PVS_MASK,
-    		PVS_CARRIER_ID_STRING, PVS_CARRIER_ID_TYPE, PVS_EXPRESSIONLOGIC, PVS_EXPRESSIONSEMANTIC,
-    		PVS_PROPERTY_ID_STRING, PVS_PROPERTY_ID_TYPE, PVS_VIEW, PVS_VISIBILITY);
+    retval = call_CreatePVS(serverIP, PVS_AAS_ID_STRING, PVS_AAS_ID_TYPE, PVS_LIST_ID_STRING, PVS_LIST_ID_TYPE, PVS_NAME, PVS_VALUE, PVS_VALUETYPE, PVS_MASK, PVS_CARRIER_ID_STRING, PVS_CARRIER_ID_TYPE, PVS_EXPRESSIONLOGIC, PVS_EXPRESSIONSEMANTIC, PVS_PROPERTY_ID_STRING, PVS_PROPERTY_ID_TYPE, PVS_VIEW, PVS_VISIBILITY);
     if (retval != UA_STATUSCODE_GOOD) {
         printf("PVS creation failed with: %i \n", (int) retval);
         goto clean;
@@ -310,7 +305,7 @@ int main(int argc, char *argv[]) {
 		printf("PVS getting failed with: %i \n", (int) retval);
 		goto clean;
 	}
-	printf("PVS getted \n");
+	printf("PVS received \n");
 	printf("pvs name: %s \n", PVS_GET_PVSName);
 	printf("pvs carrierId: %s, %i \n", PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType);
 	printf("pvs Expression logic: %i \n", PVS_GET_ExpressionLogic);
@@ -329,7 +324,7 @@ int main(int argc, char *argv[]) {
 		printf("PVS setting failed with: %i \n", (int) retval);
 		goto clean;
 	}
-	printf("PVS setted \n");
+	printf("PVS set \n");
 
 	retval = call_GetPVS(serverIP, PVS_GET_AAS_ID_STRING, PVS_GET_AAS_ID_TYPE, PVS_GET_ID_STRING,
 			PVS_GET_ID_TYPE, &PVS_GET_PVSName, &PVS_GET_CarrierIdSpec, &PVS_GET_CarrierIdType,
@@ -339,7 +334,7 @@ int main(int argc, char *argv[]) {
 		printf("PVS getting failed with: %i \n", (int) retval);
 		goto clean;
 	}
-	printf("PVS getted \n");
+	printf("PVS received \n");
 	printf("pvs name: %s \n", PVS_GET_PVSName);
 	printf("pvs carrierId: %s, %i \n", PVS_GET_CarrierIdSpec, PVS_GET_CarrierIdType);
 	printf("pvs Expression logic: %i \n", PVS_GET_ExpressionLogic);
