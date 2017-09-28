@@ -241,6 +241,86 @@ def call_deleteAAS(self):
     del lib
     return None
 
+        
+        
+def call_createSubModel(self):
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    #Parameter parsing
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+
+    ParentIdSpec = oSheet.getCellRangeByName("B6").String
+    ParentIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+    
+    ModelIdSpec = oSheet.getCellRangeByName("B8").String
+    ModelIdType = TypeToInt_Id(oSheet.getCellRangeByName("B9").String)
+    
+    ModelName = oSheet.getCellRangeByName("B10").String
+    Revision = int(oSheet.getCellRangeByName("B11").String)
+    Version = int(oSheet.getCellRangeByName("B12").String)
+    
+    
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+
+    ParentIdSpec_c = ParentIdSpec.encode('utf-8')
+    ParentIdType_c = c_int(ParentIdType)
+
+    ModelIdSpec_c = ModelIdSpec.encode('utf-8')
+    ModelIdType_c = c_int(ModelIdType)
+
+    ModelName_c = ModelName.encode('utf-8')
+    Revision_c = c_int(Revision)
+    Version_c = c_int(Version)
+    
+    StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"  
+    oSheet.getCellRangeByName("B13").String = status_str;
+    del lib
+    return None
+
+def call_deleteSubModel(self):
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    
+    #Parameter parsing
+    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = oSheet.getCellRangeByName("B16").String
+    AASIdSpec = oSheet.getCellRangeByName("B17").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+
+ #   AASName = oSheet.getCellRangeByName("B8").String
+
+ #   AssetIdSpec = oSheet.getCellRangeByName("B9").String
+ #   AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+#    AASName_c = AASName.encode('utf-8')
+#    AssetIdSpec_c = AssetIdSpec.encode('utf-8')
+#    AssetIdType_c = c_int(AssetIdType)
+    StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
+    if(StatusCall!=0):
+      status_str = "failed"
+    else:
+      status_str = "good"  
+    oSheet.getCellRangeByName("B19").String = status_str;
+    del lib
+    return None
+
 
 def call_createLCE(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
@@ -394,6 +474,9 @@ def call_createPVSL(self):
     creatingInstanceSpec = oSheet.getCellRangeByName("B9").String
     creatingInstanceType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
     
+    subModelSpec =  oSheet.getCellRangeByName("B11").String
+    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("B12").String)
+    
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
@@ -401,16 +484,18 @@ def call_createPVSL(self):
     carrierIdSpec_c = carrierIdSpec.encode('utf-8')
     carrierIdType_c = c_int(carrierIdType)
     
+    subModelType_c = subModelSpec.encode('utf-8')
+
     creatingInstanceIdType_c = c_int(creatingInstanceType)
     creatingInstanceIdSpec_c = creatingInstanceSpec.encode('utf-8')
     
     StatusCall = 0
     print(carrierIdSpec)
-    StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceIdSpec_c),creatingInstanceIdType_c)
+    StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(subModelType_c),subModelType,c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceIdSpec_c),creatingInstanceIdType_c)
     if(StatusCall!=0):
-      oSheet.getCellRangeByName("B11").String = "failed"
+      oSheet.getCellRangeByName("B13").String = "failed"
     else:
-      oSheet.getCellRangeByName("B11").String = "good"
+      oSheet.getCellRangeByName("B13").String = "good"
     del lib
     return None
 
@@ -432,13 +517,18 @@ def call_deletePVSL(self):
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
+    
+    subModelSpec =  oSheet.getCellRangeByName("B20").String
+    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("B21").String)
+    
     name_c = name.encode('utf-8')
- 
-    StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(name_c))
+    subModelType_c = subModelSpec.encode('utf-8')
+    
+    StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(name_c))
     if(StatusCall!=0):
-      oSheet.getCellRangeByName("B20").String = "failed"
+      oSheet.getCellRangeByName("B22").String = "failed"
     else:
-      oSheet.getCellRangeByName("B20").String = "good"   
+      oSheet.getCellRangeByName("B22").String = "good"   
     del lib
     return None
 
@@ -463,6 +553,9 @@ def call_createPVS(self):
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
     
+    subModelSpec =  oSheet.getCellRangeByName("G2").String
+    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
+    subModelType_c = subModelSpec.encode('utf-8')
     offsetY = 8
 
     for i in range(5):
@@ -510,7 +603,7 @@ def call_createPVS(self):
         view_c = c_int(TypeToInt_view(view)) 
         visibility_c = c_int(TypeToInt_VIS(visibility))
         print(valueType_c)
-        StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(PVSLName_c), c_char_p(PVSName_c),expressionLogic_c,expressionSemantic_c, c_char_p(Value_c),valueType_c,c_char_p(unit_c),c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
+        StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(PVSLName_c), c_char_p(PVSName_c),expressionLogic_c,expressionSemantic_c, c_char_p(Value_c),valueType_c,c_char_p(unit_c),c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
         if(StatusCall!=0):
           break
         oSheet.getCellRangeByName("B16").Value = i+1
@@ -533,11 +626,16 @@ def call_deletePVS(self):
     PVSName = oSheet.getCellRangeByName("R11").String
     PVSName_c = PVSName.encode('utf-8') 
     
+    subModelSpec =  oSheet.getCellRangeByName("R12").String
+    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("R13").String)
+    subModelType_c = subModelSpec.encode('utf-8')
+    
+    
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
 
-    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSLName_c),c_char_p(PVSName_c))
+    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(PVSLName_c),c_char_p(PVSName_c))
     if(StatusCall!=0):
       status_str = "failed"
     else:
@@ -568,7 +666,12 @@ def getPVS(self):
     PVSLName_c = PVSLName.encode('utf8')
     propertyValueStatements = c_void_p()
     
-    count = lib.getPVSFromListByName(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(PVSLName_c), byref(propertyValueStatements))
+    subModelSpec =  oSheet.getCellRangeByName("G22").String
+    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("G23").String)
+    subModelType_c = subModelSpec.encode('utf-8')
+    
+    
+    count = lib.getPVSFromListByName(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c,c_char_p(subModelType_c),subModelType, c_char_p(PVSLName_c), byref(propertyValueStatements))
     #oSheet.getCellByPosition(0,42).String = count
 
     print("count %s \n" %count)
