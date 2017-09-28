@@ -297,27 +297,28 @@ def call_deleteSubModel(self):
     pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B16").String
-    AASIdSpec = oSheet.getCellRangeByName("B17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+    ip = oSheet.getCellRangeByName("B19").String
+    AASIdSpec = oSheet.getCellRangeByName("B20").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B21").String)
 
- #   AASName = oSheet.getCellRangeByName("B8").String
-
- #   AssetIdSpec = oSheet.getCellRangeByName("B9").String
- #   AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+    SubModelIdSpec = oSheet.getCellRangeByName("B22").String
+    SubModelIdType = TypeToInt_Id(oSheet.getCellRangeByName("B23").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
-#    AASName_c = AASName.encode('utf-8')
-#    AssetIdSpec_c = AssetIdSpec.encode('utf-8')
-#    AssetIdType_c = c_int(AssetIdType)
-    StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
+
+    SubModelIdSpec_c = SubModelIdSpec.encode('utf-8')
+    SubModelIdType_c = c_int(SubModelIdType)
+
+
+    StatusCall = lib.call_DeleteSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(SubModelIdSpec_c), SubModelIdType_c)
+
     if(StatusCall!=0):
       status_str = "failed"
     else:
       status_str = "good"  
-    oSheet.getCellRangeByName("B19").String = status_str;
+    oSheet.getCellRangeByName("B24").String = status_str;
     del lib
     return None
 
@@ -466,36 +467,77 @@ def call_createPVSL(self):
     lib = CDLL(pathToLibrary)
 
     ip = oSheet.getCellRangeByName("B3").String
+    
     AASIdSpec = oSheet.getCellRangeByName("B4").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    
     listName = oSheet.getCellRangeByName("B6").String
+    
     carrierIdSpec = oSheet.getCellRangeByName("B7").String
     carrierIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
-    creatingInstanceSpec = oSheet.getCellRangeByName("B9").String
-    creatingInstanceType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
     
-    subModelSpec =  oSheet.getCellRangeByName("B11").String
-    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("B12").String)
+    parentIdSpec = oSheet.getCellRangeByName("B9").String
+    parentIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
+    
+    #subModelIdSpec =  oSheet.getCellRangeByName("B11").String
+    #subModelIdType  = TypeToInt_Id(oSheet.getCellRangeByName("B12").String)
     
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
-    listName_c = listName.encode('utf-8')
-    carrierIdSpec_c = carrierIdSpec.encode('utf-8')
-    carrierIdType_c = c_int(carrierIdType)
     
-    subModelType_c = subModelSpec.encode('utf-8')
-
-    creatingInstanceIdType_c = c_int(creatingInstanceType)
-    creatingInstanceIdSpec_c = creatingInstanceSpec.encode('utf-8')
+    listName_c = listName.encode('utf-8')
+    
+    parentIdType_c = c_int(parentIdType)
+    parentIdSpec_c = parentIdSpec.encode('utf-8')
+    
+    #subModelIdType_c = c_int(subModelIdType)
+    #subModelIdSpec_c = subModelIdSpec.encode('utf-8')
+    
+    carrierIdType_c = c_int(carrierIdType)
+    carrierIdSpec_c = carrierIdSpec.encode('utf-8')
+    
+    
+    propertyIdSpec = "dummy property id"
+    propertyIdType_c = c_int(0)
+    propertyIdSpec_c = propertyIdSpec.encode('utf-8')
+    
+    mask = c_int(1);
+    expressionLogic_c = c_int(0);
+    expressionSemantic_c = c_int(0);
+    view_c = c_int(0);
+    visibility_c = c_int(0);
     
     StatusCall = 0
     print(carrierIdSpec)
-    StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listName_c),c_char_p(subModelType_c),subModelType,c_char_p(carrierIdSpec_c),carrierIdType_c,c_char_p(creatingInstanceIdSpec_c),creatingInstanceIdType_c)
+    StatusCall = lib.call_CreatePVSL(
+    c_char_p(ip_c), 
+ 
+    c_char_p(AASIdSpec_c), 
+    AASIdType_c, 
+      
+    c_char_p(parentIdSpec_c), 
+    parentIdType_c, 
+      
+    c_char_p(listName_c),
+    mask,
+      
+    c_char_p(carrierIdSpec_c),
+    carrierIdType_c,
+    expressionLogic_c,
+    expressionSemantic_c,
+    c_char_p(propertyIdSpec_c), 
+    propertyIdType_c, 
+    view_c,
+    visibility_c)
+
+
     if(StatusCall!=0):
-      oSheet.getCellRangeByName("B13").String = "failed"
+      status_str = "failed"
     else:
-      oSheet.getCellRangeByName("B13").String = "good"
+      status_str = "good"  
+    oSheet.getCellRangeByName("B13").String = status_str;
+
     del lib
     return None
 
@@ -512,23 +554,24 @@ def call_deletePVSL(self):
     ip = oSheet.getCellRangeByName("B16").String
     AASIdSpec = oSheet.getCellRangeByName("B17").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
-    name = oSheet.getCellRangeByName("B19").String
+    
+    listIdSpec =  oSheet.getCellRangeByName("B19").String
+    listIdType  = TypeToInt_Id(oSheet.getCellRangeByName("B20").String)
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
+
+    listIdSpec_c = listIdSpec.encode('utf-8')
+    listIdType_c = c_int(listIdType)
     
-    subModelSpec =  oSheet.getCellRangeByName("B20").String
-    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("B21").String)
-    
-    name_c = name.encode('utf-8')
-    subModelType_c = subModelSpec.encode('utf-8')
-    
-    StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(name_c))
+    StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listIdSpec_c),listIdType_c)
+
     if(StatusCall!=0):
-      oSheet.getCellRangeByName("B22").String = "failed"
+      status_str = "failed"
     else:
-      oSheet.getCellRangeByName("B22").String = "good"   
+      status_str = "good"  
+    oSheet.getCellRangeByName("B21").String = status_str;
     del lib
     return None
 
