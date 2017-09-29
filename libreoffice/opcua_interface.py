@@ -581,6 +581,23 @@ def call_createPVS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
     
+#ipAddress, 
+#char* AASIdSpec,
+#int AASIdType,
+#char* ListIdSpec,
+#int ListIdType,
+#char* PVSName,
+#char* Value,
+#int ValueType,
+#int mask,
+#char* CarrierIdSpec,
+#int CarrierIdType,
+#int ExpressionLogic,
+#int ExpressionSemantic,
+#char* propertyIdSpec,
+#int propertyIdType,
+#int view,
+#int visibility
 
     #Parameter parsing
     pathToLibrary = oSheet.getCellRangeByName("B2").String
@@ -590,15 +607,30 @@ def call_createPVS(self):
     AASIdSpec = oSheet.getCellRangeByName("B4").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
 
-    PVSLName = oSheet.getCellRangeByName("B6").String
-    PVSLName_c = PVSLName.encode('utf-8')
+    #SubModelIdSpec   =  oSheet.getCellRangeByName("G2").String
+    #SubModelIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
+    
+    
+    ListIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G2").String)
+    ListIdSpec   =  oSheet.getCellRangeByName("G3").String
+    #PVSLName = oSheet.getCellRangeByName("B6").String
+    #PVSLName_c = PVSLName.encode('utf-8')
+    
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
     
-    subModelSpec =  oSheet.getCellRangeByName("G2").String
-    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
-    subModelType_c = subModelSpec.encode('utf-8')
+    #SubModelIdSpec_c = SubModelIdSpec.encode('utf-8')
+    #SubModelIdType_c = c_int(SubModelType)
+    
+    ListIdSpec_c = ListIdSpec.encode('utf-8')
+    ListIdType_c = c_int(ListIdType)
+    
+    #dont use the carrier Id in this case
+    CarrierIdSpec_c = ListIdSpec_c  # dummy
+    CarrierIdType_c = ListIdType_c  # dummy
+    
+    mask = 1 | 4 | 8 | 16 | 32
     offsetY = 8
 
     for i in range(5):
@@ -645,8 +677,28 @@ def call_createPVS(self):
         PRIdType_c = c_int(TypeToInt_Id(PRIdType))
         view_c = c_int(TypeToInt_view(view)) 
         visibility_c = c_int(TypeToInt_VIS(visibility))
-        print(valueType_c)
-        StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(PVSLName_c), c_char_p(PVSName_c),expressionLogic_c,expressionSemantic_c, c_char_p(Value_c),valueType_c,c_char_p(unit_c),c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
+        mask_c = c_int(mask)
+        print(mask_c)
+#ipAddress, 
+#char* AASIdSpec,
+#int AASIdType,
+#char* ListIdSpec,
+#int ListIdType,
+#char* PVSName,
+#char* Value,
+#int ValueType,
+#int mask,
+#char* CarrierIdSpec,
+#int CarrierIdType,
+#int ExpressionLogic,
+#int ExpressionSemantic,
+#char* propertyIdSpec,
+#int propertyIdType,
+#int view,
+#int visibility
+
+       
+        StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(ListIdSpec_c),ListIdType_c, c_char_p(PVSName_c), c_char_p(Value_c),valueType_c,mask_c,c_char_p(CarrierIdSpec_c),CarrierIdType_c,expressionLogic_c,expressionSemantic_c,c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
         if(StatusCall!=0):
           break
         oSheet.getCellRangeByName("B16").Value = i+1
