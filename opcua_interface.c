@@ -181,6 +181,23 @@ static UA_StatusCode parseFromVariant(UA_Variant variant, char **value,
     return 0;
 }
 
+static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+	UA_Variant v;
+	UA_Variant_init(&v);
+	UA_String openAASURI = UA_String_fromChars("http://acplt.org/openaas/Ov");
+	UA_Client_readValueAttribute(client,UA_NODEID_NUMERIC(0,2255),&v);
+	if(UA_Variant_hasArrayType(&v,&UA_TYPES[UA_TYPES_STRING])){
+		for(size_t i; i<v.arrayLength;i++){
+			UA_String *nsArray = (UA_String*)v.data;
+			if(UA_String_equal(&nsArray[i],&openAASURI)){
+				*index = (UA_UInt16)i;
+				return UA_STATUSCODE_GOOD;
+			}
+		}
+	}
+	return UA_STATUSCODE_BADNOTFOUND;
+}
+
 UA_StatusCode copyOPCUAStringToChar(UA_String src, char **dst) {
     if (src.data == NULL)
         return UA_STATUSCODE_GOOD;
@@ -201,6 +218,9 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
+    UA_UInt16 openAASnsIndex;
+    getopenAASNamespaceIndex(client,&openAASnsIndex);
+    printf("openAAS opc ua model has %i ns-index \n",openAASnsIndex);
     size_t argInSize = 3;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -208,6 +228,13 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    printf("call_CreateAAS \n");
+    printf("ipAddress: %s\n", AASIdSpec);
+    printf("AASIdType: %i \n", AASIdType);
+    printf("name: %s \n", name);
+    printf("AssetIdSpec: %s \n", AssetIdSpec);
+    printf("AssetIdType: %i \n", AssetIdType);
+
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -224,9 +251,9 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
     UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createAAS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -1929,3 +1956,5 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 //    UA_Client_delete(client);
 //    return retval;
 //}
+
+

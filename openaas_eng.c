@@ -217,7 +217,7 @@ int main(int argc, char *argv[]) {
     if (argc < 2) {
         printf("using standard serverIP opc.tcp://134.130.125.80:16664 \n");
         //serverIP = malloc(26);
-        serverIP = "opc.tcp://127.0.0.1:16664";
+        serverIP = "opc.tcp://134.130.125.80:16664";
     } else
         serverIP = argv[1];
 
