@@ -191,10 +191,12 @@ static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index
 			UA_String *nsArray = (UA_String*)v.data;
 			if(UA_String_equal(&nsArray[i],&openAASURI)){
 				*index = (UA_UInt16)i;
+				UA_String_deleteMembers(&openAASURI);
 				return UA_STATUSCODE_GOOD;
 			}
 		}
 	}
+	UA_String_deleteMembers(&openAASURI);
 	return UA_STATUSCODE_BADNOTFOUND;
 }
 
@@ -218,7 +220,7 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
-    UA_UInt16 openAASnsIndex;
+    UA_UInt16 openAASnsIndex=0;
     getopenAASNamespaceIndex(client,&openAASnsIndex);
     printf("openAAS opc ua model has %i ns-index \n",openAASnsIndex);
     size_t argInSize = 3;
@@ -293,6 +295,9 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -302,9 +307,9 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
     UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteAAS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -342,6 +347,9 @@ UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec, int AASIdTyp
     }
     size_t argInSize = 6;
     size_t argOutSize = 0;
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
             &UA_TYPES[UA_TYPES_VARIANT]);
     for (size_t i = 0; i < argInSize; i++) {
@@ -373,9 +381,9 @@ UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec, int AASIdTyp
 		   &UA_TYPES[UA_TYPES_UINT32]);
 
     UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createSubModel");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -409,6 +417,9 @@ UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec, int AASIdTyp
         UA_Client_delete(client);
         return (int) retval;
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     size_t argInSize = 2;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -431,9 +442,9 @@ UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec, int AASIdTyp
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
     UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteSubModel");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
@@ -470,6 +481,9 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     size_t argInSize = 10;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -516,9 +530,9 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
 			&UA_OPENAAS[UA_OPENAAS_VISIBILITYENUM]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVSL");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -563,6 +577,9 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -577,9 +594,9 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &PVSLId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVSL");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
@@ -616,6 +633,9 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     size_t argInSize = 11;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -674,9 +694,9 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[10], &visibility,
 			&UA_OPENAAS[UA_OPENAAS_VISIBILITYENUM]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
@@ -722,7 +742,9 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
-
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -737,9 +759,9 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
@@ -781,7 +803,9 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
-
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -834,9 +858,9 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[10], &dataValue,
             &UA_TYPES[UA_TYPES_DATAVALUE]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||setPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
@@ -1051,13 +1075,15 @@ UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
-
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||getAASNodeId");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
@@ -1096,7 +1122,9 @@ int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
-
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     UA_Identification AASIdentification;
     AASIdentification.idSpec = UA_String_fromChars(AASIdSpec);
     AASIdentification.idType = AASIdType;
@@ -1106,7 +1134,7 @@ int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
     findAASNodeId(client, AASIdentification, &AASNodeId);
     UA_Identification_deleteMembers(&AASIdentification);
     */
-    UA_NodeId idPVSL = UA_NODEID_STRING_ALLOC(10, ListIdSpec);
+    UA_NodeId idPVSL = UA_NODEID_STRING_ALLOC(openAASnsIndex, ListIdSpec);
 	UA_ReferenceDescription *foundStatementIds = NULL;
 	size_t foundStatementIdsSize = 0;
 
@@ -1165,7 +1193,9 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
-
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1181,9 +1211,9 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||getPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
     UA_Variant *output = NULL;
 
@@ -1262,6 +1292,7 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
         UA_Client_delete(client);
         return (int) retval;
     }
+
     size_t argInSize = 2;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -1269,6 +1300,10 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
+
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1299,9 +1334,9 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[1], &lce,
             &UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||createLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1342,6 +1377,9 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1353,9 +1391,9 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1394,6 +1432,9 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 	for (size_t i = 0; i < argInSize; i++) {
 		UA_Variant_init(&inputArgs[i]);
 	}
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
 	/* convert input to UA types */
 	UA_Identification AASId;
 	AASId.idType = AASIdType;
@@ -1424,9 +1465,9 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 	UA_Variant_setScalarCopy(&inputArgs[2], &tmplceData,
 			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY]);
 
-	UA_NodeId methNodeId = UA_NODEID_STRING(10,
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
 			"/TechUnits/openAAS/ModelmanagerOpenAAS||setLCE");
-	UA_NodeId objectId = UA_NODEID_STRING(10,
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
 			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
 	UA_Variant *output = NULL;
@@ -1469,6 +1510,9 @@ UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1507,9 +1551,9 @@ UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Variant_setScalarCopy(&inputArgs[6], &dataValue,
             &UA_TYPES[UA_TYPES_DATAVALUE]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||setLCESimple");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1559,6 +1603,9 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1568,9 +1615,9 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCESimple");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1642,6 +1689,9 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1651,9 +1701,9 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1718,6 +1768,9 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
     for (size_t i = 0; i < argInSize; i++) {
         UA_Variant_init(&inputArgs[i]);
     }
+    UA_UInt16 openAASnsIndex=0;
+    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+    	return UA_STATUSCODE_BADNOTFOUND;
     /* convert input to UA types */
     UA_Identification AASId;
     AASId.idType = AASIdType;
@@ -1727,9 +1780,9 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
     UA_Variant_setScalarCopy(&inputArgs[1], &count, &UA_TYPES[UA_TYPES_UINT32]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS||getLastLCEs");
-    UA_NodeId objectId = UA_NODEID_STRING(10,
+    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
             "/TechUnits/openAAS/ModelmanagerOpenAAS");
 
     UA_Variant *output = NULL;
@@ -1823,9 +1876,9 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 //            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 //    UA_Variant_setScalarCopy(&inputArgs[1], &dstAASId,
 //            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-//    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+//    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS||triggerGetCoreData");
-//    UA_NodeId objectId = UA_NODEID_STRING(10,
+//    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 //
 //    UA_Variant *output = NULL;
@@ -1881,9 +1934,9 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 //            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 //
 //    UA_Variant *output = NULL;
-//    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+//    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS||startGetAssetLCEData");
-//    UA_NodeId objectId = UA_NODEID_STRING(10,
+//    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 //    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
 //            &argOutSize, &output);
@@ -1931,9 +1984,9 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 //            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 //
 //    UA_Variant *output = NULL;
-//    UA_NodeId methNodeId = UA_NODEID_STRING(10,
+//    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS||stopGetAssetLCEData");
-//    UA_NodeId objectId = UA_NODEID_STRING(10,
+//    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
 //            "/TechUnits/openAAS/ModelmanagerOpenAAS");
 //    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
 //            &argOutSize, &output);
