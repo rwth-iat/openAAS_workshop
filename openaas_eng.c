@@ -212,6 +212,7 @@ unsigned int LCE_GET_LAST_lastLCEsCount = 0;
 
 int main(int argc, char *argv[]) {
 
+
 	char* serverIP;
 	if (argc < 2) {
 		printf("using standard serverIP opc.tcp://127.0.0.1:16664 \n");

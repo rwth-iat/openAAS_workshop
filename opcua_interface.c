@@ -187,9 +187,10 @@ static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index
 	UA_String openAASURI = UA_String_fromChars("http://acplt.org/openaas/Ov");
 	UA_Client_readValueAttribute(client,UA_NODEID_NUMERIC(0,2255),&v);
 	if(UA_Variant_hasArrayType(&v,&UA_TYPES[UA_TYPES_STRING])){
-		for(size_t i; i<v.arrayLength;i++){
+		for(size_t i=0; i<v.arrayLength;i++){
 			UA_String *nsArray = (UA_String*)v.data;
-			if(UA_String_equal(&nsArray[i],&openAASURI)){
+			UA_String tmpString = nsArray[i];
+			if(UA_String_equal(&tmpString,&openAASURI)){
 				*index = (UA_UInt16)i;
 				UA_String_deleteMembers(&openAASURI);
 				return UA_STATUSCODE_GOOD;
@@ -221,8 +222,11 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
         return (int) retval;
     }
     UA_UInt16 openAASnsIndex=0;
-    getopenAASNamespaceIndex(client,&openAASnsIndex);
-    printf("openAAS opc ua model has %i ns-index \n",openAASnsIndex);
+    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
+    	printf("openAAS opc ua model not found \n");
+    	return UA_STATUSCODE_BADNOTFOUND;
+    }
+    printf("openAAS opc ua model has %u ns-index \n",openAASnsIndex);
     size_t argInSize = 3;
     size_t argOutSize = 0;
     UA_Variant *inputArgs = UA_Array_new(argInSize,
@@ -1219,6 +1223,9 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 
     retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
             &argOutSize, &output);
+
+    UA_Identification_deleteMembers(&AASId);
+    UA_Identification_deleteMembers(&PVSId);
 
     if (retval == UA_STATUSCODE_GOOD) {
         printf(
