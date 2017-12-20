@@ -21,12 +21,8 @@ def call_createAAS(self):
 
     AssetIdSpec = oSheet.getCellRangeByName("B7").String
     AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
-    StatusCall = call_createAAS_c(pathToLibrary,ip,AASIdSpec,AASIdType,AASName,AssetIdSpec,AssetIdType)
-    if(StatusCall!=0):
-      status_str = "failed"
-    else:
-      status_str = "good"
-    oSheet.getCellRangeByName("B9").String = status_str;
+    StatusCall = createAAS(pathToLibrary,ip,AASIdSpec,AASIdType,AASName,AssetIdSpec,AssetIdType)
+    oSheet.getCellRangeByName("B9").String = createAAS(pathToLibrary,ip,AASIdSpec,AASIdType,AASName,AssetIdSpec,AssetIdType)
     del lib
     return None
 
@@ -42,12 +38,8 @@ def call_deleteAAS(self):
     AASIdSpec = oSheet.getCellRangeByName("B17").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
 
-    StatusCall = call_deleteAAS_c(pathToLibrary, ip, AASIdSpec, AASIdType)
-    if(StatusCall!=0):
-      status_str = "failed"
-    else:
-      status_str = "good"
-    oSheet.getCellRangeByName("B19").String = status_str;
+
+    oSheet.getCellRangeByName("B19").String = deleteAAS(pathToLibrary, ip, AASIdSpec, AASIdType)
     
     return None
 
@@ -59,9 +51,8 @@ def call_createSubModel(self):
 
     #Parameter parsing
     pathToLibrary = oSheet.getCellRangeByName("B2").String
-    lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
+    endpointStr = oSheet.getCellRangeByName("B3").String
     AASIdSpec = oSheet.getCellRangeByName("B4").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
 
@@ -75,28 +66,7 @@ def call_createSubModel(self):
     Revision = int(oSheet.getCellRangeByName("B11").String)
     Version = int(oSheet.getCellRangeByName("B12").String)
 
-
-    ip_c = ip.encode('utf-8')
-    AASIdSpec_c = AASIdSpec.encode('utf-8')
-    AASIdType_c = c_int(AASIdType)
-
-    ParentIdSpec_c = ParentIdSpec.encode('utf-8')
-    ParentIdType_c = c_int(ParentIdType)
-
-    ModelIdSpec_c = ModelIdSpec.encode('utf-8')
-    ModelIdType_c = c_int(ModelIdType)
-
-    ModelName_c = ModelName.encode('utf-8')
-    Revision_c = c_int(Revision)
-    Version_c = c_int(Version)
-
-    StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
-    if(StatusCall!=0):
-      status_str = "failed"
-    else:
-      status_str = "good"
-    oSheet.getCellRangeByName("B13").String = status_str;
-    del lib
+    oSheet.getCellRangeByName("B13").String = createSubModel(pathToLibrary, endpointStr, AASIdSpec, AASIdType,  ParentIdSpec, ParentIdType, ModelIdSpec, ModelIdType, ModelName, Revision, Version)
     return None
 
 def call_deleteSubModel(self):
