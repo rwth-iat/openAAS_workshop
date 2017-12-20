@@ -176,7 +176,7 @@ def TypeToInt_VIS(typ):
     }.get(typ, "not defined")
 
 
-def call_createAAS_c(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetIdSpec , assetIdType):
+def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetIdSpec , assetIdType):
   """
   Creates an Asset Administraiton Shell
 
@@ -196,11 +196,11 @@ def call_createAAS_c(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, 
     a name for the aas object
   assetIdSpec : string 
     asset id specification
-  assetIdType : int64_t
+  assetIdType : int
     asset id type (URI=0, ISO=1)
       
   Returns:
-  int: Status Code
+  string: Status Code
   """
   lib = CDLL(pathToLibrary)
   ip_c = endpointStr.encode('utf-8')
@@ -211,7 +211,7 @@ def call_createAAS_c(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, 
   AssetIdType_c = c_int(assetIdType)
   return lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
 
-def call_deleteAAS_c(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
+def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
   """
   Deletes an Asset Administraiton Shell
 
@@ -225,16 +225,80 @@ def call_deleteAAS_c(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : asset administration shell id type (URI=0, ISO=1)
+  aasIDType : int 
+    asset administration shell id type (URI=0, ISO=1)
   
   Returns:
   -------
-  int
+  string
     Status Code
   """
   lib = CDLL(pathToLibrary)
   ip_c = endpointStr.encode('utf-8')
   AASIdSpec_c = aasIDSpec.encode('utf-8')
   AASIdType_c = c_int(aasIDType)
-  return lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
+  StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
+  if(StatusCall!=0):
+    status_str = "failed"
+  else:
+    status_str = "good"
+  del lib
+  return status_str  
   
+def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parentIdSpec, parentIdType, modelIdSpec, modelIdType, modelName, revision, version):
+  """
+  Creates a Sub Model within an Asset Administraiton Shell
+
+  This function creates an asset administration shell within a given Asset administration Shell.
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  endpointStr : string
+    opc ua endpoint to the aas repository server
+  aasIDSpec : string
+    asset administration shell id specification
+  aasIDType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  parentIdSpec : string
+    parent object id
+  parentIdType : int
+    parent object id type (URI=0, ISO=1)
+  modelIdSpec : string
+    reference to the definition of the sub modelIdSpec
+  modelIdType : int
+    model id type (URI=0, ISO=1)
+  modelName : string
+    local name of the sub model 
+  revision : int
+    revision of the sub model
+  version : int 
+    version of the sub model    
+  Returns:
+  -------
+  string
+    Status Code
+  """
+  lib = CDLL(pathToLibrary)
+  ip_c = endpointStr.encode('utf-8')
+  AASIdSpec_c = aasIDSpec.encode('utf-8')
+  AASIdType_c = c_int(aasIDType)
+
+  ParentIdSpec_c = parentIdSpec.encode('utf-8')
+  ParentIdType_c = c_int(parentIdType)
+
+  ModelIdSpec_c = modelIdSpec.encode('utf-8')
+  ModelIdType_c = c_int(modelIdType)
+
+  ModelName_c = modelName.encode('utf-8')
+  Revision_c = c_int(revision)
+  Version_c = c_int(version)
+
+  StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
+  if(StatusCall!=0):
+    status_str = "failed"
+  else:
+    status_str = "good"
+  del lib
+  return status_str  
