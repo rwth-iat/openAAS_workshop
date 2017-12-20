@@ -1,8 +1,0 @@
-ExpressionSemanticEnum
-ExpressionLogicEnum
-IdEnum
-ViewEnum
-Identification
-PropertyValueStatement
-LifeCycleEntry
-VisibilityEnum
