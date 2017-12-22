@@ -1,8 +1,7 @@
-<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:s1="http://yourorganisation.org/openaas/Types.xsd" xmlns:s2="http://yourorganisation.org/identification/Types.xsd" xmlns:s3="http://yourorganisation.org/lce/Types.xsd" xmlns:ua="http://unifiedautomation.com/Configuration/NodeSet.xsd" xmlns:s4="http://yourorganisation.org/pvs/Types.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<UANodeSet xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:s1="http://yourorganisation.org/openaas/Types.xsd" xmlns:s2="http://yourorganisation.org/identification/Types.xsd" xmlns:s3="http://yourorganisation.org/pvs/Types.xsd" xmlns:ua="http://unifiedautomation.com/Configuration/NodeSet.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
     <NamespaceUris>
         <Uri>http://yourorganisation.org/openaas/</Uri>
         <Uri>http://yourorganisation.org/identification/</Uri>
-        <Uri>http://yourorganisation.org/lce/</Uri>
         <Uri>http://yourorganisation.org/pvs/</Uri>
     </NamespaceUris>
     <Aliases>
@@ -16,11 +15,10 @@
         <Alias Alias="HasComponent">i=47</Alias>
         <Alias Alias="Argument">i=296</Alias>
         <Alias Alias="Identification">ns=2;i=3002</Alias>
-        <Alias Alias="LifeCycleEntry">ns=3;i=3002</Alias>
     </Aliases>
     <Extensions>
         <Extension>
-            <ua:ModelInfo Tool="UaModeler" Hash="E1XJx0ffRA3Hsbdoq+r7ag==" Version="1.5.0"/>
+            <ua:ModelInfo Tool="UaModeler" Hash="HOmHzZvWotl+f3oVc5gOnQ==" Version="1.5.0"/>
         </Extension>
     </Extensions>
     <UADataType NodeId="ns=1;i=3004" BrowseName="1:AASStatusCode">
@@ -90,22 +88,15 @@
         <References>
             <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7001</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7002</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7013</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7011</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7009</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7003</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7004</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7014</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7012</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7010</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7005</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7006</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7007</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7018</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7016</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7008</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=7017</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=7015</Reference>
         </References>
     </UAObjectType>
@@ -184,87 +175,6 @@
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
             <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7001</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7002" BrowseName="1:createLCE">
-        <DisplayName>createLCE</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6019</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6020</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7002" ValueRank="1" NodeId="ns=1;i=6019" ArrayDimensions="2" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7002</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCE</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7002" ValueRank="1" NodeId="ns=1;i=6020" ArrayDimensions="1" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7002</Reference>
         </References>
         <Value>
             <uax:ListOfExtensionObject>
@@ -413,7 +323,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionLogic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3002</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -429,7 +339,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionSemantic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3003</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3003</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -461,7 +371,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>View</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3004</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3004</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -477,7 +387,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>Visibility</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3005</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3005</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -624,7 +534,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionLogic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3002</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -640,7 +550,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionSemantic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3003</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3003</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -672,7 +582,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>View</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3004</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3004</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -688,7 +598,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>Visibility</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3005</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3005</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -915,87 +825,6 @@ The mask has the following bits:
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
             <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7003</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7004" BrowseName="1:deleteLCE">
-        <DisplayName>deleteLCE</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6023</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6024</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7004" ValueRank="1" NodeId="ns=1;i=6023" ArrayDimensions="2" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7004</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=9</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7004" ValueRank="1" NodeId="ns=1;i=6024" ArrayDimensions="1" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7004</Reference>
         </References>
         <Value>
             <uax:ListOfExtensionObject>
@@ -1326,379 +1155,6 @@ The mask has the following bits:
             </uax:ListOfExtensionObject>
         </Value>
     </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7006" BrowseName="1:getLastLCEs">
-        <DisplayName>getLastLCEs</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6027</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6028</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7006" ValueRank="1" NodeId="ns=1;i=6027" ArrayDimensions="2" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7006</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASId</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Count</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=7</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7006" ValueRank="1" NodeId="ns=1;i=6028" ArrayDimensions="3" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7006</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LastLCEs</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>1</uax:ValueRank>
-                            <uax:ArrayDimensions>
-                                <uax:UInt32>1</uax:UInt32>
-                            </uax:ArrayDimensions>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LastLCEsCount</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=7</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7007" BrowseName="1:getLCE">
-        <DisplayName>getLCE</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6029</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6030</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7007" ValueRank="1" NodeId="ns=1;i=6029" ArrayDimensions="2" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7007</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=9</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7007" ValueRank="1" NodeId="ns=1;i=6030" ArrayDimensions="2" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7007</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEData</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7018" BrowseName="1:getLCESimple">
-        <DisplayName>getLCESimple</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6051</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6052</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7018" ValueRank="1" NodeId="ns=1;i=6051" ArrayDimensions="2" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7018</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=9</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7018" ValueRank="1" NodeId="ns=1;i=6052" ArrayDimensions="6" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7018</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>CreatingInstance</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>WritingInstance</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>EventClass</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=12</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Subject</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=12</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Value</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=23</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
     <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7016" BrowseName="1:getPVS">
         <DisplayName>getPVS</DisplayName>
         <References>
@@ -1817,7 +1273,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionLogic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3002</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -1833,7 +1289,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionSemantic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3003</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3003</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -1865,7 +1321,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>View</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3004</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3004</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -1881,7 +1337,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>Visibility</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3005</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3005</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -1898,264 +1354,6 @@ The mask has the following bits:
                             <uax:Name>Value</uax:Name>
                             <uax:DataType>
                                 <uax:Identifier>i=23</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7008" BrowseName="1:setLCE">
-        <DisplayName>setLCE</DisplayName>
-        <References>
-            <Reference ReferenceType="HasProperty">ns=1;i=6031</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6032</Reference>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7008" ValueRank="1" NodeId="ns=1;i=6031" ArrayDimensions="3" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7008</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=9</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEData</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7008" ValueRank="1" NodeId="ns=1;i=6032" ArrayDimensions="1" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7008</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAMethod ParentNodeId="ns=1;i=1005" NodeId="ns=1;i=7017" BrowseName="1:setLCESimple">
-        <DisplayName>setLCESimple</DisplayName>
-        <References>
-            <Reference ReferenceType="HasProperty">ns=1;i=6049</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasProperty">ns=1;i=6050</Reference>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1005</Reference>
-        </References>
-    </UAMethod>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7017" ValueRank="1" NodeId="ns=1;i=6049" ArrayDimensions="7" BrowseName="InputArguments">
-        <DisplayName>InputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7017</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>AASID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>LCEID</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=9</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>CreatingInstance</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>WritingInstance</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=2;i=3002</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>EventClass</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=12</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Subject</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=12</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Value</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>i=23</uax:Identifier>
-                            </uax:DataType>
-                            <uax:ValueRank>-1</uax:ValueRank>
-                            <uax:ArrayDimensions/>
-                            <uax:Description/>
-                        </uax:Argument>
-                    </uax:Body>
-                </uax:ExtensionObject>
-            </uax:ListOfExtensionObject>
-        </Value>
-    </UAVariable>
-    <UAVariable DataType="Argument" ParentNodeId="ns=1;i=7017" ValueRank="1" NodeId="ns=1;i=6050" ArrayDimensions="1" BrowseName="OutputArguments">
-        <DisplayName>OutputArguments</DisplayName>
-        <References>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
-            <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=7017</Reference>
-        </References>
-        <Value>
-            <uax:ListOfExtensionObject>
-                <uax:ExtensionObject>
-                    <uax:TypeId>
-                        <uax:Identifier>i=297</uax:Identifier>
-                    </uax:TypeId>
-                    <uax:Body>
-                        <uax:Argument>
-                            <uax:Name>Status</uax:Name>
-                            <uax:DataType>
-                                <uax:Identifier>ns=1;i=3004</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -2276,7 +1474,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionLogic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3002</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3002</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -2292,7 +1490,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>ExpressionSemantic</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3003</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3003</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -2324,7 +1522,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>View</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3004</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3004</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -2340,7 +1538,7 @@ The mask has the following bits:
                         <uax:Argument>
                             <uax:Name>Visibility</uax:Name>
                             <uax:DataType>
-                                <uax:Identifier>ns=4;i=3005</uax:Identifier>
+                                <uax:Identifier>ns=3;i=3005</uax:Identifier>
                             </uax:DataType>
                             <uax:ValueRank>-1</uax:ValueRank>
                             <uax:ArrayDimensions/>
@@ -2401,7 +1599,6 @@ The mask has the following bits:
             <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=5001</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=5002</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=5003</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=5004</Reference>
         </References>
     </UAObjectType>
@@ -2418,65 +1615,26 @@ The mask has the following bits:
         <References>
             <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1002</Reference>
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
-            <Reference ReferenceType="HasTypeDefinition">ns=4;i=1002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=3;i=1002</Reference>
             <Reference ReferenceType="HasComponent">ns=1;i=6001</Reference>
         </References>
     </UAObject>
-    <UAVariable ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6001" BrowseName="4:PropertyValueStatements" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable ParentNodeId="ns=1;i=5002" NodeId="ns=1;i=6001" BrowseName="3:PropertyValueStatements" UserAccessLevel="3" AccessLevel="3">
         <DisplayName>PropertyValueStatements</DisplayName>
         <References>
             <Reference ReferenceType="HasModellingRule">i=11510</Reference>
             <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=5002</Reference>
-            <Reference ReferenceType="HasTypeDefinition">ns=4;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">ns=3;i=2002</Reference>
             <Reference ReferenceType="HasProperty">ns=1;i=6006</Reference>
         </References>
     </UAVariable>
-    <UAVariable ParentNodeId="ns=1;i=6001" NodeId="ns=1;i=6006" BrowseName="4:Value" UserAccessLevel="3" AccessLevel="3">
+    <UAVariable ParentNodeId="ns=1;i=6001" NodeId="ns=1;i=6006" BrowseName="3:Value" UserAccessLevel="3" AccessLevel="3">
         <DisplayName>Value</DisplayName>
         <References>
             <Reference ReferenceType="HasModellingRule">i=78</Reference>
             <Reference ReferenceType="HasTypeDefinition">i=68</Reference>
             <Reference ReferenceType="HasProperty" IsForward="false">ns=1;i=6001</Reference>
         </References>
-    </UAVariable>
-    <UAObject ParentNodeId="ns=1;i=1002" NodeId="ns=1;i=5003" BrowseName="1:LifeCycleArchive">
-        <DisplayName>LifeCycleArchive</DisplayName>
-        <References>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=1002</Reference>
-            <Reference ReferenceType="HasTypeDefinition">ns=3;i=1002</Reference>
-            <Reference ReferenceType="HasComponent">ns=1;i=6007</Reference>
-            <Reference ReferenceType="HasModellingRule">i=78</Reference>
-        </References>
-    </UAObject>
-    <UAVariable DataType="LifeCycleEntry" ParentNodeId="ns=1;i=5003" NodeId="ns=1;i=6007" BrowseName="3:LifeCycleEntries" UserAccessLevel="3" AccessLevel="3">
-        <DisplayName>LifeCycleEntries</DisplayName>
-        <References>
-            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=5003</Reference>
-            <Reference ReferenceType="HasModellingRule">i=11510</Reference>
-        </References>
-        <Value>
-            <uax:ExtensionObject>
-                <uax:TypeId>
-                    <uax:Identifier>ns=3;i=5002</uax:Identifier>
-                </uax:TypeId>
-                <uax:Body>
-                    <LifeCycleEntry xmlns="http://yourorganisation.org/lce/Types.xsd">
-                        <CreatingInstance>
-                            <IdSpec xmlns="http://yourorganisation.org/identification/Types.xsd"></IdSpec>
-                            <IdType xmlns="http://yourorganisation.org/identification/Types.xsd">URI_0</IdType>
-                        </CreatingInstance>
-                        <WritingInstance>
-                            <IdSpec xmlns="http://yourorganisation.org/identification/Types.xsd"></IdSpec>
-                            <IdType xmlns="http://yourorganisation.org/identification/Types.xsd">URI_0</IdType>
-                        </WritingInstance>
-                        <Subject></Subject>
-                        <EventClass></EventClass>
-                        <Id>0</Id>
-                    </LifeCycleEntry>
-                </uax:Body>
-            </uax:ExtensionObject>
-        </Value>
     </UAVariable>
     <UAObject ParentNodeId="ns=1;i=1002" NodeId="ns=1;i=5004" BrowseName="1:Views">
         <DisplayName>Views</DisplayName>
