@@ -73,6 +73,13 @@ Build it:
 make
 ```
 Afterwards you will get the library *libopcua_interface.so* that provides several OPC UA functions. A basic example application *openaas_eng.c* shows how to use these.
+**Installing the Python OPC UA - openAAS - Interface **
+Install the python library for openAAS with pip3.4
+
+```
+cd python && sudo pip3.4 install -e
+```
+Afterwards, you are able to use this library within other python scripts.
 
 **Using the LibreOffice Engineering Interface (Ubuntu)**
 
