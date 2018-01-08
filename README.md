@@ -1,5 +1,5 @@
 # openAAS_workshop
-Development Repository for Workshop (2/21/2017) Demonstrator
+Development Repository for Workshop (2/21/2017 + 1/29/2018) Demonstrator
 
 # Introduction
 This demo requires the [ACPLT/RTE](https://github.com/acplt/rte) to be running. The [ACPLT/RTE](https://github.com/acplt/rte) works as a host for the Asset Administration Shells. Besides hosting AAS, the [ACPLT/RTE](https://github.com/acplt/rte) provides functionality to access and manipulate data of the AAS. The structure is discoverable with standard OPC UA services. However, the message-based It also serves as a local evironment for message-based communication with the industrie 4.0 component.
