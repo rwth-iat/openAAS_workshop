@@ -77,7 +77,7 @@ Afterwards you will get the library *libopcua_interface.so* that provides severa
 Install the python library for openAAS with pip3.4
 
 ```
-cd python && sudo pip3.4 install -e
+cd python && sudo pip3.4 install -e .
 ```
 Afterwards, you are able to use this library within other python scripts.
 
