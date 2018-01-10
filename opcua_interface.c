@@ -180,27 +180,48 @@ static UA_StatusCode parseFromVariant(UA_Variant variant, char **value,
     }
     return 0;
 }
-
-static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+static UA_StatusCode getNamespaceIndex(UA_Client *client,UA_String namespaceUri, UA_UInt16 *index){
 	UA_Variant v;
 	UA_Variant_init(&v);
-	UA_String openAASURI = UA_String_fromChars("http://acplt.org/openaas/Ov");
 	UA_Client_readValueAttribute(client,UA_NODEID_NUMERIC(0,2255),&v);
 	if(UA_Variant_hasArrayType(&v,&UA_TYPES[UA_TYPES_STRING])){
 		for(size_t i=0; i<v.arrayLength;i++){
 			UA_String *nsArray = (UA_String*)v.data;
 			UA_String tmpString = nsArray[i];
-			if(UA_String_equal(&tmpString,&openAASURI)){
+			if(UA_String_equal(&tmpString,&namespaceUri)){
 				*index = (UA_UInt16)i;
-				UA_String_deleteMembers(&openAASURI);
 				return UA_STATUSCODE_GOOD;
 			}
 		}
 	}
-	UA_String_deleteMembers(&openAASURI);
 	return UA_STATUSCODE_BADNOTFOUND;
 }
+static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+	UA_Variant v;
+	UA_Variant_init(&v);
+	UA_String openAASURI = UA_String_fromChars("http://acplt.org/openaas/Ov");
+	UA_StatusCode retval = getNamespaceIndex(client,openAASURI,index);
+	UA_String_deleteMembers(&openAASURI);
+	return retval;
+}
 
+static UA_StatusCode getIdentificationDataTypeNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+	UA_Variant v;
+	UA_Variant_init(&v);
+	UA_String uri = UA_String_fromChars("http://acplt.org/identification/");
+	UA_StatusCode retval = getNamespaceIndex(client,uri,index);
+	UA_String_deleteMembers(&uri);
+	return retval;
+}
+
+static UA_StatusCode getlifeCycleDataTypeNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+	UA_Variant v;
+	UA_Variant_init(&v);
+	UA_String uri = UA_String_fromChars("http://acplt.org/lifeCycleEntry/");
+	UA_StatusCode retval = getNamespaceIndex(client,uri,index);
+	UA_String_deleteMembers(&uri);
+	return retval;
+}
 UA_StatusCode copyOPCUAStringToChar(UA_String src, char **dst) {
     if (src.data == NULL)
         return UA_STATUSCODE_GOOD;
@@ -248,6 +269,9 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
     UA_Identification assetId;
     assetId.idType = AssetIdType;
     assetId.idSpec = UA_String_fromChars(AssetIdSpec);
+    getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex);
+    getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex);
+
     UA_String AASName = UA_String_fromChars(name);
     UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
@@ -255,6 +279,8 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
             &UA_TYPES[UA_TYPES_STRING]);
     UA_Variant_setScalarCopy(&inputArgs[2], &assetId,
             &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+   //inputArgs[2].type->typeId.namespaceIndex = 3;
+
 
     UA_Variant *output = NULL;
     UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
@@ -1009,63 +1035,63 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
 }
 
 
-static int getAllPVSFromList(UA_Client *client, UA_NodeId entryPoint,
-        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
-	/*all property value statements are attached via HasComponent Reference */
-    UA_String tmpStr = UA_String_fromChars("PropertyValueStatementType");
-    UA_ReferenceDescription *subNodes = NULL;
-
-    // get all Children that have HasProperty Reference
-    size_t subNodesSize = 0;
-    FindChildrenWithSpecialType(client, entryPoint, tmpStr, &subNodes,
-            &subNodesSize);
-
-    //filter out only nodes that have the datatype "PropertyValueStatement"
-    size_t n = 0;
-    for (size_t i = 0; i < subNodesSize; i++) {
-        UA_NodeId dataTypeNodeId;
-        if (UA_STATUSCODE_GOOD
-                == UA_Client_readDataTypeAttribute(client,
-                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
-            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
-                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
-                n++;
-            }
-        }
-    }
-
-    *foundListIds = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    if (!foundListIds) {
-        *foundListIdsSize = 0;
-        return -1;
-    }
-
-    *foundListIdsSize = n;
-    n = 0;
-    for (size_t i = 0; i < subNodesSize; i++) {
-        UA_NodeId dataTypeNodeId;
-        if (UA_STATUSCODE_GOOD
-                == UA_Client_readDataTypeAttribute(client,
-                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
-            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
-                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
-                if (n < *foundListIdsSize) {
-                    //UA_ReferenceDescription *pref;
-                    //UA_ReferenceDescription_new(pref);
-
-                    UA_ReferenceDescription_copy(&subNodes[i],
-                            &(*foundListIds)[n]);
-                    n++;
-                } else
-                    return subNodesSize;
-            }
-        }
-    }
-    UA_Array_delete(subNodes, subNodesSize,
-            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    UA_String_deleteMembers(&tmpStr);
-    return 0;
-}
+//static int getAllPVSFromList(UA_Client *client, UA_NodeId entryPoint,
+//        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
+//	/*all property value statements are attached via HasComponent Reference */
+//    UA_String tmpStr = UA_String_fromChars("PropertyValueStatementType");
+//    UA_ReferenceDescription *subNodes = NULL;
+//
+//    // get all Children that have HasProperty Reference
+//    size_t subNodesSize = 0;
+//    FindChildrenWithSpecialType(client, entryPoint, tmpStr, &subNodes,
+//            &subNodesSize);
+//
+//    //filter out only nodes that have the datatype "PropertyValueStatement"
+//    size_t n = 0;
+//    for (size_t i = 0; i < subNodesSize; i++) {
+//        UA_NodeId dataTypeNodeId;
+//        if (UA_STATUSCODE_GOOD
+//                == UA_Client_readDataTypeAttribute(client,
+//                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
+//            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
+//                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
+//                n++;
+//            }
+//        }
+//    }
+//
+//    *foundListIds = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+//    if (!foundListIds) {
+//        *foundListIdsSize = 0;
+//        return -1;
+//    }
+//
+//    *foundListIdsSize = n;
+//    n = 0;
+//    for (size_t i = 0; i < subNodesSize; i++) {
+//        UA_NodeId dataTypeNodeId;
+//        if (UA_STATUSCODE_GOOD
+//                == UA_Client_readDataTypeAttribute(client,
+//                        subNodes[i].nodeId.nodeId, &dataTypeNodeId)) {
+//            if (UA_OPENAAS[UA_OPENAAS_PROPERTYVALUESTATEMENT].typeId.identifier.numeric
+//                    == dataTypeNodeId.identifier.numeric) { //ignore namespace index
+//                if (n < *foundListIdsSize) {
+//                    //UA_ReferenceDescription *pref;
+//                    //UA_ReferenceDescription_new(pref);
+//
+//                    UA_ReferenceDescription_copy(&subNodes[i],
+//                            &(*foundListIds)[n]);
+//                    n++;
+//                } else
+//                    return subNodesSize;
+//            }
+//        }
+//    }
+//    UA_Array_delete(subNodes, subNodesSize,
+//            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+//    UA_String_deleteMembers(&tmpStr);
+//    return 0;
+//}
 
 UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
         UA_NodeId* nodeId) {
@@ -1116,69 +1142,70 @@ UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
     UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
     return found;
 }
+//not supported anymore
+//int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
+//		char*ListIdSpec, int ListIdType, pvsType **pvs_c) {
+//
+//    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+//    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+//    if (retval != UA_STATUSCODE_GOOD) {
+//        UA_Client_delete(client);
+//        return (int) retval;
+//    }
+//    UA_UInt16 openAASnsIndex=0;
+//    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
+//    	return UA_STATUSCODE_BADNOTFOUND;
+//    UA_Identification AASIdentification;
+//    AASIdentification.idSpec = UA_String_fromChars(AASIdSpec);
+//    AASIdentification.idType = AASIdType;
+//
+//    /* for message transmission - NOT IMPLEMENTED
+//    UA_NodeId AASNodeId;
+//    findAASNodeId(client, AASIdentification, &AASNodeId);
+//    UA_Identification_deleteMembers(&AASIdentification);
+//    */
+//    UA_NodeId idPVSL = UA_NODEID_STRING_ALLOC(openAASnsIndex, ListIdSpec);
+//	UA_ReferenceDescription *foundStatementIds = NULL;
+//	size_t foundStatementIdsSize = 0;
+//
+//	getAllPVSFromList(client, idPVSL, &foundStatementIds,
+//			&foundStatementIdsSize);
+//
+//	for (size_t i = 0; i < foundStatementIdsSize; i++) {
+//		switch (foundStatementIds[i].nodeId.nodeId.identifierType) {
+//		case UA_NODEIDTYPE_NUMERIC:
+//			printf("Found statement with Id: %i \n",
+//					foundStatementIds[i].nodeId.nodeId.identifier.numeric);
+//			break;
+//		case UA_NODEIDTYPE_STRING:
+//			printf("Found statement with Id: %.*s \n",
+//					foundStatementIds[i].nodeId.nodeId.identifier.string.length,
+//					foundStatementIds[i].nodeId.nodeId.identifier.string.data);
+//			break;
+//		}
+//	}
+//
+//    *pvs_c = calloc(foundStatementIdsSize, sizeof(pvsType));
+//
+//    for (size_t i = 0; i < foundStatementIdsSize; i++) {
+//    	char* PVSIdSpec = NULL;
+//    	copyOPCUAStringToChar(foundStatementIds[i].nodeId.nodeId.identifier.string, &PVSIdSpec);
+//    	(*pvs_c)[i].carrierIdIdSpec = NULL;
+//    	(*pvs_c)[i].name = NULL;
+//    	(*pvs_c)[i].propertyIdIdSpec = NULL;
+//    	(*pvs_c)[i].value = NULL;
+//    	call_GetPVS(ipAddress, AASIdSpec, AASIdType, PVSIdSpec, 0, &((*pvs_c)[i].name), &((*pvs_c)[i].carrierIdIdSpec), &((*pvs_c)[i].carrierIdIdType), &((*pvs_c)[i].expressionLogic), &((*pvs_c)[i].expressionSemantic), &((*pvs_c)[i].propertyIdIdSpec), &((*pvs_c)[i].propertyIdIdType), &((*pvs_c)[i].view), &((*pvs_c)[i].visibility), &((*pvs_c)[i].value), &((*pvs_c)[i].valueType));
+//    	UA_free(PVSIdSpec);
+//    }
+//
+//    UA_Array_delete(foundStatementIds, foundStatementIdsSize,
+//            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+//    UA_NodeId_deleteMembers(&idPVSL);
+//    UA_Client_delete(client);
+//    return foundStatementIdsSize;
+//
+//}
 
-int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
-		char*ListIdSpec, int ListIdType, pvsType **pvs_c) {
-
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client,&openAASnsIndex)!=UA_STATUSCODE_GOOD)
-    	return UA_STATUSCODE_BADNOTFOUND;
-    UA_Identification AASIdentification;
-    AASIdentification.idSpec = UA_String_fromChars(AASIdSpec);
-    AASIdentification.idType = AASIdType;
-
-    /* for message transmission - NOT IMPLEMENTED
-    UA_NodeId AASNodeId;
-    findAASNodeId(client, AASIdentification, &AASNodeId);
-    UA_Identification_deleteMembers(&AASIdentification);
-    */
-    UA_NodeId idPVSL = UA_NODEID_STRING_ALLOC(openAASnsIndex, ListIdSpec);
-	UA_ReferenceDescription *foundStatementIds = NULL;
-	size_t foundStatementIdsSize = 0;
-
-	getAllPVSFromList(client, idPVSL, &foundStatementIds,
-			&foundStatementIdsSize);
-
-	for (size_t i = 0; i < foundStatementIdsSize; i++) {
-		switch (foundStatementIds[i].nodeId.nodeId.identifierType) {
-		case UA_NODEIDTYPE_NUMERIC:
-			printf("Found statement with Id: %i \n",
-					foundStatementIds[i].nodeId.nodeId.identifier.numeric);
-			break;
-		case UA_NODEIDTYPE_STRING:
-			printf("Found statement with Id: %.*s \n",
-					foundStatementIds[i].nodeId.nodeId.identifier.string.length,
-					foundStatementIds[i].nodeId.nodeId.identifier.string.data);
-			break;
-		}
-	}
-
-    *pvs_c = calloc(foundStatementIdsSize, sizeof(pvsType));
-
-    for (size_t i = 0; i < foundStatementIdsSize; i++) {
-    	char* PVSIdSpec = NULL;
-    	copyOPCUAStringToChar(foundStatementIds[i].nodeId.nodeId.identifier.string, &PVSIdSpec);
-    	(*pvs_c)[i].carrierIdIdSpec = NULL;
-    	(*pvs_c)[i].name = NULL;
-    	(*pvs_c)[i].propertyIdIdSpec = NULL;
-    	(*pvs_c)[i].value = NULL;
-    	call_GetPVS(ipAddress, AASIdSpec, AASIdType, PVSIdSpec, 0, &((*pvs_c)[i].name), &((*pvs_c)[i].carrierIdIdSpec), &((*pvs_c)[i].carrierIdIdType), &((*pvs_c)[i].expressionLogic), &((*pvs_c)[i].expressionSemantic), &((*pvs_c)[i].propertyIdIdSpec), &((*pvs_c)[i].propertyIdIdType), &((*pvs_c)[i].view), &((*pvs_c)[i].visibility), &((*pvs_c)[i].value), &((*pvs_c)[i].valueType));
-    	UA_free(PVSIdSpec);
-    }
-
-    UA_Array_delete(foundStatementIds, foundStatementIdsSize,
-            &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    UA_NodeId_deleteMembers(&idPVSL);
-    UA_Client_delete(client);
-    return foundStatementIdsSize;
-
-}
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* PVSIdSpec, int PVSIdType, char** PVSName,
 		char** CarrierIdSpec, int* CarrierIdType, int* ExpressionLogic,

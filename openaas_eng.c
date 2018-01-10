@@ -485,28 +485,28 @@ int main(int argc, char *argv[]) {
 	printf("lce data: %s, %i \n", LCE_GET_lceData.data,
 			LCE_GET_lceData.dataType);
 
-	pvsType *pvs_c = NULL;
+	//pvsType *pvs_c = NULL;
 	//testing with wrong list name
-	int pvscount = getPVSFromListByName(serverIP, PVS_GETFROMLIST_AAS_ID_STRING,
-			PVS_GETFROMLIST_AAS_ID_TYPE, PVS_GETFROMLIST_ID_STRING,
-			PVS_GETFROMLIST_ID_TYPE, &pvs_c);
+	//int pvscount = getPVSFromListByName(serverIP, PVS_GETFROMLIST_AAS_ID_STRING,
+	//		PVS_GETFROMLIST_AAS_ID_TYPE, PVS_GETFROMLIST_ID_STRING,
+	//		PVS_GETFROMLIST_ID_TYPE, &pvs_c);
 
-	printf("------------------------------\n");
-	printf("property value statements\n");
-	for (int i = 0; i < pvscount; i++) {
-		printf("#%i ----\n", i);
-		printf("pvs name: %s \n", pvs_c[i].name);
-		printf("pvs carrierId: %s, %i \n", pvs_c[i].carrierIdIdSpec,
-				pvs_c[i].carrierIdIdType);
-		printf("pvs Expression logic: %i \n", pvs_c[i].expressionLogic);
-		printf("pvs Expression semantic: %i \n", pvs_c[i].expressionSemantic);
-		printf("pvs propertyId: %s, %i \n", pvs_c[i].propertyIdIdSpec,
-				pvs_c[i].propertyIdIdType);
-		printf("pvs view: %i \n", pvs_c[i].view);
-		printf("pvs visibility: %i \n", pvs_c[i].visibility);
-		printf("pvs value: %s, %i \n", pvs_c[i].value, pvs_c[i].valueType);
-	}
-	free(pvs_c);
+//	printf("------------------------------\n");
+//	printf("property value statements\n");
+//	for (int i = 0; i < pvscount; i++) {
+//		printf("#%i ----\n", i);
+//		printf("pvs name: %s \n", pvs_c[i].name);
+//		printf("pvs carrierId: %s, %i \n", pvs_c[i].carrierIdIdSpec,
+//				pvs_c[i].carrierIdIdType);
+//		printf("pvs Expression logic: %i \n", pvs_c[i].expressionLogic);
+//		printf("pvs Expression semantic: %i \n", pvs_c[i].expressionSemantic);
+//		printf("pvs propertyId: %s, %i \n", pvs_c[i].propertyIdIdSpec,
+//				pvs_c[i].propertyIdIdType);
+//		printf("pvs view: %i \n", pvs_c[i].view);
+//		printf("pvs visibility: %i \n", pvs_c[i].visibility);
+//		printf("pvs value: %s, %i \n", pvs_c[i].value, pvs_c[i].valueType);
+//	}
+//	free(pvs_c);
 
 	int lcecount = call_GetLastLCEs(serverIP, LCE_GET_LAST_AAS_ID_STRING,
 			LCE_GET_LAST_AAS_ID_TYPE, LCE_GET_LAST_COUNT,

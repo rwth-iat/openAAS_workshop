@@ -31,7 +31,8 @@ include_directories(${CMAKE_SOURCE_DIR}/external_generated)
 link_directories(${PROJECT_SOURCE_DIR}/external_generated)
 include_directories(${PROJECT_BINARY_DIR}) #for nodeset.h
 
-set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas.xml)
+#set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas/openaas.xml ${PROJECT_SOURCE_DIR}/models/identification/identification.xml ${PROJECT_SOURCE_DIR}/models/lifecycle/lce.xml ${PROJECT_SOURCE_DIR}/models/propertyValueStatement/pvs.xml )
+#set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas.xml)
 
 
 
@@ -53,23 +54,56 @@ set(MODELS  ${PROJECT_SOURCE_DIR}/models/aas.xml)
 #                          ${MODELS}
 #                  )
 # openaas data types
-add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c
-                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.h
-                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_handling.h
-                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_encoding_binary.h
-                   PRE_BUILD
-                   COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
-                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/aas.csv
-                           --namespace=3 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
-                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
-                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
-                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas
-                   DEPENDS ${OPEN62541_DIR}/tools/generate_datatypes.py
-                           ${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
-                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
-                           ${PROJECT_SOURCE_DIR}/models/aas.csv
-                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd)
+#add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_handling.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_encoding_binary.h
+#                   PRE_BUILD
+#                   COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/aas.csv
+#                           --namespace=3 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas
+#                   DEPENDS ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           ${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/aas.csv
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd)
 
+#add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_handling.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated_encoding_binary.h
+#                   PRE_BUILD
+#                   COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/identification/identification.csv 
+#                           --namespace=3 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas
+#                   DEPENDS ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           ${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/identification/identification.csv
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd)
+                           
+#add_custom_command(OUTPUT ${CMAKE_SOURCE_DIR}/external_generated/ua_lce_generated.c
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_lce_generated.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_lce_generated_handling.h
+#                          ${CMAKE_SOURCE_DIR}/external_generated/ua_lce_generated_encoding_binary.h
+#                   PRE_BUILD
+#                   COMMAND ${PYTHON_EXECUTABLE} ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           --typedescriptions ${PROJECT_SOURCE_DIR}/models/lifecycle/lce.csv 
+#                           --namespace=4 --selected_types=${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${CMAKE_SOURCE_DIR}/external_generated/ua_lce
+#                   DEPENDS ${OPEN62541_DIR}/tools/generate_datatypes.py
+#                           ${PROJECT_SOURCE_DIR}/models/aas_selected_types.txt
+#                           ${PROJECT_SOURCE_DIR}/models/Custom.Opc.Ua.AssetAdministrationShell.bsd
+#                           ${PROJECT_SOURCE_DIR}/models/lifecycle/lce.csv
+#                           ${OPEN62541_DIR}/tools/schema/Opc.Ua.Types.bsd)
 add_definitions(-DUA_NO_AMALGAMATION)
 #shared object 
 add_library(opcua_interface SHARED opcua_interface.c ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c)
