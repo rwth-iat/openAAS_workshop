@@ -5,6 +5,26 @@ from datetime import *
 import time
 from aas import *
 
+def call_getAASIDByAssetID(self):
+    print("call_getAASIDByAssetID was called")
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    result = getAASIDByAssetID(oSheet.getCellRangeByName("B2").String, oSheet.getCellRangeByName("B3").String, int(oSheet.getCellRangeByName("B4").String))
+    print(result[0])
+    oSheet.getCellRangeByName("B6").String = result[0]
+    if result[0] != "AssetID not found":
+      oSheet.getCellRangeByName("B8").String = result[1]
+      oSheet.getCellRangeByName("B7").String = result[2]
+
+def call_getAASEntryPointByAASID(self):
+    print("call_getAASEntryPointByAASID was called")
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+    result = getAASEntryPointByAASID(oSheet.getCellRangeByName("B2").String, oSheet.getCellRangeByName("B11").String, int(oSheet.getCellRangeByName("B12").String))
+    print(result[0])
+    oSheet.getCellRangeByName("B14").String = result[0]
+    if result[0] != "AssetID not found":
+      oSheet.getCellRangeByName("B15").String = result[1]
 
 
 def call_createAAS(self):
@@ -91,7 +111,7 @@ def call_deleteSubModel(self):
     SubModelIdSpec_c = SubModelIdSpec.encode('utf-8')
     SubModelIdType_c = c_int(SubModelIdType)
 
-
+    print(ip)
     StatusCall = lib.call_DeleteSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(SubModelIdSpec_c), SubModelIdType_c)
 
     if(StatusCall!=0):
