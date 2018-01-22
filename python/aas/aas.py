@@ -178,40 +178,40 @@ def TypeToInt_VIS(typ):
     }.get(typ, "not defined")
 
 
-#def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetIdSpec , assetIdType):
-#  """
-#  Creates an Asset Administraiton Shell
+def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetIdSpec , assetIdType):
+  """
+  Creates an Asset Administraiton Shell
 
-#  This function creates an asset administration shell on the given endpoint.
+  This function creates an asset administration shell on the given endpoint.
 
-#  Args:
-#  ----------
-#  pathToLibrary : string
-#    path to the shared object that provides the opc ua functionality
-#  endpointStr : string
-#    opc ua endpoint to the aas repository server
-#  aasIDSpec : string
-#    asset administration shell id specification
-#  aasIDType : string
-#    asset administration shell id type
-#  aasName : string 
-#    a name for the aas object
-#  assetIdSpec : string 
-#    asset id specification
-#  assetIdType : int
-#    asset id type (URI=0, ISO=1)
-#      
-#  Returns:
-#  string: Status Code
-#  """
-#  lib = CDLL(pathToLibrary)
-#  ip_c = endpointStr.encode('utf-8')
-#  AASIdSpec_c = aasIDSpec.encode('utf-8')
-#  AASIdType_c = c_int(aasIDType)
-#  AASName_c = aasName.encode('utf-8')
-#  AssetIdSpec_c = assetIdSpec.encode('utf-8')
-#  AssetIdType_c = c_int(assetIdType)
-#  return lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  endpointStr : string
+    opc ua endpoint to the aas repository server
+  aasIDSpec : string
+    asset administration shell id specification
+  aasIDType : string
+    asset administration shell id type
+  aasName : string 
+    a name for the aas object
+  assetIdSpec : string 
+    asset id specification
+  assetIdType : int
+    asset id type (URI=0, ISO=1)
+      
+  Returns:
+  string: Status Code
+  """
+  lib = CDLL(pathToLibrary)
+  ip_c = endpointStr.encode('utf-8')
+  AASIdSpec_c = aasIDSpec.encode('utf-8')
+  AASIdType_c = c_int(aasIDType)
+  AASName_c = aasName.encode('utf-8')
+  AssetIdSpec_c = assetIdSpec.encode('utf-8')
+  AssetIdType_c = c_int(assetIdType)
+  return lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
 
 #def getAASEntryPoint_OPCUA(AASIDSpec, AASIDType):
 #  """
@@ -453,8 +453,8 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
   AASIdSpec_c = aasIDSpec.encode('utf-8')
   AASIdType_c = c_int(aasIDType)
 
-  ParentIdSpec_c = parentIdSpec.encode('utf-8')
-  ParentIdType_c = c_int(parentIdType)
+  ParentIdSpec_c = parent.encode('utf-8')
+  ParentIdType_c = c_int(0)
 
   ModelIdSpec_c = modelIdSpec.encode('utf-8')
   ModelIdType_c = c_int(modelIdType)
@@ -475,7 +475,7 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
   """
   Creates a Sub Model within an Asset Administraiton Shell
 
-  This function creates an asset administration shell within a given Asset administration Shell.
+  This function creates a sub model within a given Asset administration Shell.
 
   Args:
   ----------
@@ -528,3 +528,190 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
     status_str = "good"
   del lib
   return status_str  
+  
+  
+def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
+  """
+  Deletes a Sub Model within an Asset Administraiton Shell
+
+  This function deletes a sub model shell within a given Asset administration Shell.
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  endpointStr : string
+    opc ua endpoint to the aas repository server
+  aasIDSpec : string
+    asset administration shell id specification
+  aasIDType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  localID : string
+    localID of the sub model within the AAS
+  Returns:
+  -------
+  string
+    Status Code
+  """
+
+
+  #Parameter parsing
+  lib = CDLL(pathToLibrary)
+
+  ip = endpointStr
+  AASIdSpec = aasIDSpec
+  AASIdType = aasIDType
+
+  SubModelIdSpec = localID
+  SubModelIdType = 0
+
+  ip_c = ip.encode('utf-8')
+  AASIdSpec_c = AASIdSpec.encode('utf-8')
+  AASIdType_c = c_int(AASIdType)
+
+  SubModelIdSpec_c = SubModelIdSpec.encode('utf-8')
+  SubModelIdType_c = c_int(SubModelIdType)
+
+  print(ip)
+  StatusCall = lib.call_DeleteSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(SubModelIdSpec_c), SubModelIdType_c)
+  if(StatusCall!=0):
+    status_str = "failed"
+  else:
+    status_str = "good"
+  del lib
+  return status_str;
+  
+def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdSpec,carrierIdType,parentID):
+  """
+  Creates a Property Value Statement Container (list) within an Asset Administraiton Shell
+  This function creates a property value statement list within a given Asset administration Shell.
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  endpointStr : string
+    opc ua endpoint to the aas repository server
+  aasIDSpec : string
+    asset administration shell id specification
+  aasIDType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  carrierIdSpec : string
+    specification of the carrier that is related to the statement
+  carrierIdType : string
+    carrier id type (URI=0, ISO=1)
+  parentID : string
+    local id of the parent object
+  Returns:
+  -------
+  string
+    Status Code
+  """
+
+  #Parameter parsing
+  pathToLibrary = pathToLibrary
+  lib = CDLL(pathToLibrary)
+
+  ip = endpointStr
+
+  parentIdSpec = parentID
+  parentIdType = 0
+
+  ip_c = ip.encode('utf-8')
+  AASIdSpec_c = AASIdSpec.encode('utf-8')
+  AASIdType_c = c_int(AASIdType)
+
+  listName_c = listName.encode('utf-8')
+
+  parentIdType_c = c_int(parentIdType)
+  parentIdSpec_c = parentIdSpec.encode('utf-8')
+
+  carrierIdType_c = c_int(carrierIdType)
+  carrierIdSpec_c = carrierIdSpec.encode('utf-8')
+
+  propertyIdSpec = "dummy property id"
+  propertyIdType_c = c_int(0)
+  propertyIdSpec_c = propertyIdSpec.encode('utf-8')
+
+  mask = c_int(1);
+  expressionLogic_c = c_int(0);
+  expressionSemantic_c = c_int(0);
+  view_c = c_int(0);
+  visibility_c = c_int(0);
+
+  StatusCall = 0
+  print(carrierIdSpec)
+  StatusCall = lib.call_CreatePVSL(
+  c_char_p(ip_c),
+
+  c_char_p(AASIdSpec_c),
+  AASIdType_c,
+
+  c_char_p(parentIdSpec_c),
+  parentIdType_c,
+
+  c_char_p(listName_c),
+  mask,
+
+  c_char_p(carrierIdSpec_c),
+  carrierIdType_c,
+  expressionLogic_c,
+  expressionSemantic_c,
+  c_char_p(propertyIdSpec_c),
+  propertyIdType_c,
+  view_c,
+  visibility_c)
+
+
+  if(StatusCall!=0):
+    status_str = "failed"
+  else:
+    status_str = "good"
+
+  del lib
+  return status_str
+  
+  
+def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
+  """
+  Deletes a Property Value Statement Container (list) within an Asset Administraiton Shell
+  This function deletes a property value statement list within a given Asset administration Shell.
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  endpointStr : string
+    opc ua endpoint to the aas repository server
+  AASIdSpec : string
+    asset administration shell id specification
+  AASIdType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  listIdSpec : string
+    specification of the local list id 
+  -------
+  string
+    Status Code
+  """
+
+
+  #Parameter parsing
+  lib = CDLL(pathToLibrary)
+  ip = endpointStr
+  listIdType  = 0
+
+  ip_c = ip.encode('utf-8')
+  AASIdSpec_c = AASIdSpec.encode('utf-8')
+  AASIdType_c = c_int(AASIdType)
+
+  listIdSpec_c = listIdSpec.encode('utf-8')
+  listIdType_c = c_int(listIdType)
+
+  StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listIdSpec_c),listIdType_c)
+
+  if(StatusCall!=0):
+    status_str = "failed"
+  else:
+    status_str = "good"
+  del lib
+  return status_str;  
