@@ -30,1115 +30,1159 @@ static size_t namespaceArrayLength = 0;
 
 static UA_StatusCode parseIdentification(UA_Identification *ident, char* str) {
 
-    switch (ident->idType) {
-    case UA_IDENUM_ISO:
-        str[0] = 'I';
-        str[1] = 'S';
-        str[2] = 'O';
-        str[3] = ':';
-        break;
-    case UA_IDENUM_URI:
-        str[0] = 'U';
-        str[1] = 'R';
-        str[2] = 'I';
-        str[3] = ':';
-        break;
-    }
-    SET_CHAR_STR(ident->idSpec, &str)
-    return 0;
+	switch (ident->idType) {
+	case UA_IDENUM_ISO:
+		str[0] = 'I';
+		str[1] = 'S';
+		str[2] = 'O';
+		str[3] = ':';
+		break;
+	case UA_IDENUM_URI:
+		str[0] = 'U';
+		str[1] = 'R';
+		str[2] = 'I';
+		str[3] = ':';
+		break;
+	}
+	SET_CHAR_STR(ident->idSpec, &str)
+	return 0;
 }
 static UA_StatusCode parseToVariant(char* value, int valueType,
-        UA_Variant *variant) {
-    char* tail = NULL;
+		UA_Variant *variant) {
+	char* tail = NULL;
 
-    UA_Variant_init(variant);
-    switch (valueType) {
+	UA_Variant_init(variant);
+	switch (valueType) {
 
-    case 1: {
-        UA_Boolean val;
+	case 1: {
+		UA_Boolean val;
 
-        val = strtol(value, &tail, 10) != false ? true : false;
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_BOOLEAN]);
+		val = strtol(value, &tail, 10) != false ? true : false;
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_BOOLEAN]);
 
-        break;
-    }
-    case 2: {
-        UA_Float val;
-        val = (UA_Float) strtold(value, &tail);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_FLOAT]);
-        break;
-    }
-    case 3: {
-        UA_Int32 val;
-        val = strtol(value, &tail, 10);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_INT32]);
+		break;
+	}
+	case 2: {
+		UA_Float val;
+		val = (UA_Float) strtold(value, &tail);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_FLOAT]);
+		break;
+	}
+	case 3: {
+		UA_Int32 val;
+		val = strtol(value, &tail, 10);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_INT32]);
 
-        break;
-    }
-    case 4: {
-        UA_Int64 val;
-        val = strtod(value, &tail);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_INT64]);
-        break;
-    }
-    case 5: {
-        UA_UInt32 val;
-        val = strtol(value, &tail, 10); //TODO not safe
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_UINT32]);
-        break;
-    }
-    case 6: {
-        UA_UInt64 val;
-        val = strtoll(value, &tail, 10);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_UINT64]);
-        break;
-    }
-    case 7: {
-        UA_Double val;
-        val = strtold(value, &tail);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DOUBLE]);
-        break;
-    }
-    case 8: {
-        UA_String val = UA_String_fromChars(value);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_STRING]);
-        UA_String_deleteMembers(&val);
-        break;
-    }
-    case 9: {
-        UA_DateTime val;
-        val = strtod(value, &tail);
-        UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DATETIME]);
-        break;
-    }
-    case 10: {
-        UA_Identification val;
-        if (value[0] == 'U' && value[1] == 'R' && value[2] == 'I'
-                && value[3] == ':') {
-            val.idType = UA_IDENUM_URI;
-        } else if (value[0] == 'I' && value[1] == 'S' && value[2] == 'O'
-                && value[3] == ':') {
-            val.idType = UA_IDENUM_ISO;
-        }else
-            return UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED;
-        val.idSpec = UA_String_fromChars(&value[4]);
-        UA_Variant_setScalarCopy(variant, &val,
-                &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-        UA_Identification_deleteMembers(&val);
-        break;
-    }
-    default:
-        return UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED;
+		break;
+	}
+	case 4: {
+		UA_Int64 val;
+		val = strtod(value, &tail);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_INT64]);
+		break;
+	}
+	case 5: {
+		UA_UInt32 val;
+		val = strtol(value, &tail, 10); //TODO not safe
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_UINT32]);
+		break;
+	}
+	case 6: {
+		UA_UInt64 val;
+		val = strtoll(value, &tail, 10);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_UINT64]);
+		break;
+	}
+	case 7: {
+		UA_Double val;
+		val = strtold(value, &tail);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DOUBLE]);
+		break;
+	}
+	case 8: {
+		UA_String val = UA_String_fromChars(value);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_STRING]);
+		UA_String_deleteMembers(&val);
+		break;
+	}
+	case 9: {
+		UA_DateTime val;
+		val = strtod(value, &tail);
+		UA_Variant_setScalarCopy(variant, &val, &UA_TYPES[UA_TYPES_DATETIME]);
+		break;
+	}
+	case 10: {
+		UA_Identification val;
+		if (value[0] == 'U' && value[1] == 'R' && value[2] == 'I'
+				&& value[3] == ':') {
+			val.idType = UA_IDENUM_URI;
+		} else if (value[0] == 'I' && value[1] == 'S' && value[2] == 'O'
+				&& value[3] == ':') {
+			val.idType = UA_IDENUM_ISO;
+		} else
+			return UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED;
+		val.idSpec = UA_String_fromChars(&value[4]);
+		UA_Variant_setScalarCopy(variant, &val,
+				&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+		UA_Identification_deleteMembers(&val);
+		break;
+	}
+	default:
+		return UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED;
 
-    }
-    return UA_STATUSCODE_GOOD;
+	}
+	return UA_STATUSCODE_GOOD;
 }
 static UA_StatusCode parseFromVariant(UA_Variant variant, char **value,
-        int* valueType) {
+		int* valueType) {
 
-    if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_BOOLEAN])) {
-    	*value = malloc(sizeof(char)*12);
-        sprintf(*value, "%d", *(UA_Boolean*) variant.data);
-        *valueType = 1;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_FLOAT])) {
-    	*value = malloc(sizeof(char)*32);
-        sprintf(*value, "%f", *(UA_Float*) variant.data);
-        *valueType = 2;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT32])) {
-    	*value = malloc(sizeof(char)*12);
-        sprintf(*value, "%d", *(UA_Int32*) variant.data);
-        *valueType = 3;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT64])) {
-    	*value = malloc(sizeof(char)*21);
-        sprintf(*value, "%" PRId64 "", *(UA_Int64*) variant.data);
-        *valueType = 4;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT32])) {
-        sprintf(*value, "%d", *(UA_UInt32*) variant.data);
-        *valueType = 5;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT64])) {
-    	*value = malloc(sizeof(char)*32);
-        sprintf(*value, "%" PRId64 "", *(UA_Int64*) variant.data);
-        *valueType = 6;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_DOUBLE])) {
-    	*value = malloc(sizeof(char)*32);
-        sprintf(*value, "%f", *(UA_Double*) variant.data);
-        *valueType = 7;
-    } else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_STRING])) {
-        UA_String *tmpString = (UA_String*) variant.data;
-        SET_CHAR_STR((*tmpString), value)
-        *valueType = 8;
-    } else if (UA_Variant_hasScalarType(&variant,
-            &UA_TYPES[UA_TYPES_DATETIME])) {
-        UA_String tmpDateTimeStr = UA_DateTime_toString(
-                *((UA_DateTime*) variant.data));
-        SET_CHAR_STR(tmpDateTimeStr, value)
-        *valueType = 9;
-        UA_String_deleteMembers(&tmpDateTimeStr);
-    } else if (UA_Variant_hasScalarType(&variant,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION])) {
-        UA_Identification* ident = (UA_Identification*) variant.data;
-        parseIdentification(ident, *value);
-        *valueType = 10;
-    }
-    return 0;
+	if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_BOOLEAN])) {
+		*value = malloc(sizeof(char) * 12);
+		sprintf(*value, "%d", *(UA_Boolean*) variant.data);
+		*valueType = 1;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_FLOAT])) {
+		*value = malloc(sizeof(char) * 32);
+		sprintf(*value, "%f", *(UA_Float*) variant.data);
+		*valueType = 2;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT32])) {
+		*value = malloc(sizeof(char) * 12);
+		sprintf(*value, "%d", *(UA_Int32*) variant.data);
+		*valueType = 3;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_INT64])) {
+		*value = malloc(sizeof(char) * 21);
+		sprintf(*value, "%" PRId64 "", *(UA_Int64*) variant.data);
+		*valueType = 4;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT32])) {
+		sprintf(*value, "%d", *(UA_UInt32*) variant.data);
+		*valueType = 5;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_UINT64])) {
+		*value = malloc(sizeof(char) * 32);
+		sprintf(*value, "%" PRId64 "", *(UA_Int64*) variant.data);
+		*valueType = 6;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_DOUBLE])) {
+		*value = malloc(sizeof(char) * 32);
+		sprintf(*value, "%f", *(UA_Double*) variant.data);
+		*valueType = 7;
+	} else if (UA_Variant_hasScalarType(&variant, &UA_TYPES[UA_TYPES_STRING])) {
+		UA_String *tmpString = (UA_String*) variant.data;
+		SET_CHAR_STR((*tmpString), value)
+		*valueType = 8;
+	} else if (UA_Variant_hasScalarType(&variant,
+			&UA_TYPES[UA_TYPES_DATETIME])) {
+		UA_String tmpDateTimeStr = UA_DateTime_toString(
+				*((UA_DateTime*) variant.data));
+		SET_CHAR_STR(tmpDateTimeStr, value)
+		*valueType = 9;
+		UA_String_deleteMembers(&tmpDateTimeStr);
+	} else if (UA_Variant_hasScalarType(&variant,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION])) {
+		UA_Identification* ident = (UA_Identification*) variant.data;
+		parseIdentification(ident, *value);
+		*valueType = 10;
+	}
+	return 0;
 }
-static UA_StatusCode getNamespaceIndex(UA_Client *client,UA_String namespaceUri, UA_UInt16 *index){
+static UA_StatusCode getNamespaceIndex(UA_Client *client,
+		UA_String namespaceUri, UA_UInt16 *index) {
 	UA_Variant v;
 	UA_Variant_init(&v);
 	UA_StatusCode retval = UA_STATUSCODE_GOOD;
-	if(namespaceArrayLength == 0){
-		UA_Client_readValueAttribute(client,UA_NODEID_NUMERIC(0,2255),&v);
-		if(UA_Variant_hasArrayType(&v,&UA_TYPES[UA_TYPES_STRING])){
-			retval = UA_Array_copy((UA_String*)v.data,v.arrayLength,(void**)&namespaceArray,&UA_TYPES[UA_TYPES_STRING]);
-			if(retval!=UA_STATUSCODE_GOOD)
+	if (namespaceArrayLength == 0) {
+		UA_Client_readValueAttribute(client, UA_NODEID_NUMERIC(0, 2255), &v);
+		if (UA_Variant_hasArrayType(&v, &UA_TYPES[UA_TYPES_STRING])) {
+			retval = UA_Array_copy((UA_String*) v.data, v.arrayLength,
+					(void**) &namespaceArray, &UA_TYPES[UA_TYPES_STRING]);
+			if (retval != UA_STATUSCODE_GOOD)
 				return retval;
 			namespaceArrayLength = v.arrayLength;
 		}
 	}
-	for(size_t i=0; i < namespaceArrayLength;i++){
-		if(UA_String_equal(&namespaceArray[i],&namespaceUri)){
-			*index = (UA_UInt16)i;
+	for (size_t i = 0; i < namespaceArrayLength; i++) {
+		if (UA_String_equal(&namespaceArray[i], &namespaceUri)) {
+			*index = (UA_UInt16) i;
 			return UA_STATUSCODE_GOOD;
 		}
 	}
 	return UA_STATUSCODE_BADNOTFOUND;
 }
-static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+static UA_StatusCode getopenAASNamespaceIndex(UA_Client *client,
+		UA_UInt16 *index) {
 	UA_Variant v;
 	UA_Variant_init(&v);
 	UA_String openAASURI = UA_String_fromChars("http://acplt.org/openaas/Ov");
-	UA_StatusCode retval = getNamespaceIndex(client,openAASURI,index);
+	UA_StatusCode retval = getNamespaceIndex(client, openAASURI, index);
 	UA_String_deleteMembers(&openAASURI);
 	return retval;
 }
 
-static UA_StatusCode getIdentificationDataTypeNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+static UA_StatusCode getIdentificationDataTypeNamespaceIndex(UA_Client *client,
+		UA_UInt16 *index) {
 	UA_Variant v;
 	UA_Variant_init(&v);
 	UA_String uri = UA_String_fromChars("http://acplt.org/identification/");
-	UA_StatusCode retval = getNamespaceIndex(client,uri,index);
+	UA_StatusCode retval = getNamespaceIndex(client, uri, index);
 	UA_String_deleteMembers(&uri);
 	return retval;
 }
 
-static UA_StatusCode getlifeCycleDataTypeNamespaceIndex(UA_Client *client,UA_UInt16 *index){
+static UA_StatusCode getlifeCycleDataTypeNamespaceIndex(UA_Client *client,
+		UA_UInt16 *index) {
 	UA_Variant v;
 	UA_Variant_init(&v);
 	UA_String uri = UA_String_fromChars("http://acplt.org/lifeCycleEntry/");
-	UA_StatusCode retval = getNamespaceIndex(client,uri,index);
+	UA_StatusCode retval = getNamespaceIndex(client, uri, index);
 	UA_String_deleteMembers(&uri);
 	return retval;
 }
 UA_StatusCode copyOPCUAStringToChar(UA_String src, char **dst) {
-    if (src.data == NULL)
-        return UA_STATUSCODE_GOOD;
-    *dst = UA_malloc(sizeof(char) * (src.length + 1));
-    if (*dst == NULL)
-        return UA_STATUSCODE_BADOUTOFMEMORY;
-    memcpy(*dst, src.data, src.length);
-    *(*dst + src.length) = '\0';
-    return UA_STATUSCODE_GOOD;
+	if (src.data == NULL)
+		return UA_STATUSCODE_GOOD;
+	*dst = UA_malloc(sizeof(char) * (src.length + 1));
+	if (*dst == NULL)
+		return UA_STATUSCODE_BADOUTOFMEMORY;
+	memcpy(*dst, src.data, src.length);
+	*(*dst + src.length) = '\0';
+	return UA_STATUSCODE_GOOD;
 }
 
 /* Asset administration shell */
 UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* name, char* AssetIdSpec, int AssetIdType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		char* name, char* AssetIdSpec, int AssetIdType) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    printf("openAAS opc ua model has %u ns-index \n",openAASnsIndex);
-    size_t argInSize = 3;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    printf("call_CreateAAS \n");
-    printf("ipAddress: %s\n", AASIdSpec);
-    printf("AASIdType: %i \n", AASIdType);
-    printf("name: %s \n", name);
-    printf("AssetIdSpec: %s \n", AssetIdSpec);
-    printf("AssetIdType: %i \n", AssetIdType);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	printf("openAAS opc ua model has %u ns-index \n", openAASnsIndex);
+	size_t argInSize = 3;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	printf("call_CreateAAS \n");
+	printf("ipAddress: %s\n", AASIdSpec);
+	printf("AASIdType: %i \n", AASIdType);
+	printf("name: %s \n", name);
+	printf("AssetIdSpec: %s \n", AssetIdSpec);
+	printf("AssetIdType: %i \n", AssetIdType);
 
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
-    UA_Identification assetId;
-    assetId.idType = AssetIdType;
-    assetId.idSpec = UA_String_fromChars(AssetIdSpec);
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	UA_Identification assetId;
+	assetId.idType = AssetIdType;
+	assetId.idSpec = UA_String_fromChars(AssetIdSpec);
 
+	UA_String AASName = UA_String_fromChars(name);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &AASName,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &assetId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	//inputArgs[2].type->typeId.namespaceIndex = 3;
 
-    UA_String AASName = UA_String_fromChars(name);
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &AASName,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &assetId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-   //inputArgs[2].type->typeId.namespaceIndex = 3;
+	UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||createAAS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean: UA_Identification_deleteMembers(&AASId);
+	UA_String_deleteMembers(&AASName);
 
-    UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||createAAS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
-
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean: UA_Identification_deleteMembers(&AASId);
-    UA_String_deleteMembers(&AASName);
-
-    UA_Identification_deleteMembers(&assetId);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    /*TODO evaluate Output (Status) */
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	UA_Identification_deleteMembers(&assetId);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	/*TODO evaluate Output (Status) */
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 1;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 1;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteAAS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||deleteAAS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean:
-    /*TODO evaluate Output (Status) */
-    UA_Identification_deleteMembers(&AASId);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean:
+	/*TODO evaluate Output (Status) */
+	UA_Identification_deleteMembers(&AASId);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
-
 
 /* SubModel */
-UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec, int AASIdType,
-		char* ParentIdSpec, int ParentIdType, char* ModelIdSpec, int ModelIdType,
-        char* name, int revision, int version) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 6;
-    size_t argOutSize = 0;
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec,
+		int AASIdType, char* ParentIdSpec, int ParentIdType, char* ModelIdSpec,
+		int ModelIdType, char* name, int revision, int version) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 6;
+	size_t argOutSize = 0;
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
-    UA_Identification parentId;
-    parentId.idType = ParentIdType;
-    parentId.idSpec = UA_String_fromChars(ParentIdSpec);
-    UA_Identification modelId;
-    modelId.idType = ModelIdType;
-    modelId.idSpec = UA_String_fromChars(ModelIdSpec);
-    UA_String ModelName = UA_String_fromChars(name);
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	UA_Identification parentId;
+	parentId.idType = ParentIdType;
+	parentId.idSpec = UA_String_fromChars(ParentIdSpec);
+	UA_Identification modelId;
+	modelId.idType = ModelIdType;
+	modelId.idSpec = UA_String_fromChars(ModelIdSpec);
+	UA_String ModelName = UA_String_fromChars(name);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &parentId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &modelId,
+	UA_Variant_setScalarCopy(&inputArgs[1], &parentId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &ModelName,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &revision,
+	UA_Variant_setScalarCopy(&inputArgs[2], &modelId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[3], &ModelName,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[4], &revision,
 			&UA_TYPES[UA_TYPES_UINT32]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &version,
-		   &UA_TYPES[UA_TYPES_UINT32]);
+	UA_Variant_setScalarCopy(&inputArgs[5], &version,
+			&UA_TYPES[UA_TYPES_UINT32]);
 
-    UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||createSubModel");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||createSubModel");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean: UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&parentId);
-    UA_Identification_deleteMembers(&modelId);
-    UA_String_deleteMembers(&ModelName);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean: UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&parentId);
+	UA_Identification_deleteMembers(&modelId);
+	UA_String_deleteMembers(&ModelName);
 
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    /*TODO evaluate Output (Status) */
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	/*TODO evaluate Output (Status) */
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
-UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec, int AASIdType, char* SMIdSpec, int SMIdType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec,
+		int AASIdType, char* SMIdSpec, int SMIdType) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
-    UA_Identification SMId;
-    SMId.idType = SMIdType;
-    SMId.idSpec = UA_String_fromChars(SMIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	UA_Identification SMId;
+	SMId.idType = SMIdType;
+	SMId.idSpec = UA_String_fromChars(SMIdSpec);
 
-
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &SMId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &SMId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_Variant *output = NULL;
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteSubModel");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||deleteSubModel");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean:
-    /*TODO evaluate Output (Status) */
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&SMId);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean:
+	/*TODO evaluate Output (Status) */
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&SMId);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
 /* Property value statement list */
 UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* ParentIdSpec, int ParentIdType, char* PVSLName, int mask,
-		char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic, int ExpressionSemantic,
-		char* propertyIdSpec, int propertyIdType, int view, int visibility) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic,
+		int ExpressionSemantic, char* propertyIdSpec, int propertyIdType,
+		int view, int visibility) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    size_t argInSize = 10;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
-    UA_Identification ParentId;
-    ParentId.idType = ParentIdType;
-    ParentId.idSpec = UA_String_fromChars(ParentIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	size_t argInSize = 10;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	UA_Identification ParentId;
+	ParentId.idType = ParentIdType;
+	ParentId.idSpec = UA_String_fromChars(ParentIdSpec);
 
-    UA_String listName = UA_String_fromChars(PVSLName);
+	UA_String listName = UA_String_fromChars(PVSLName);
 
-    UA_Identification carrierId;
-    carrierId.idType = CarrierIdType;
-    carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
+	UA_Identification carrierId;
+	carrierId.idType = CarrierIdType;
+	carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
 
-    UA_Identification propertyId;
-    propertyId.idType = propertyIdType;
-    propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
+	UA_Identification propertyId;
+	propertyId.idType = propertyIdType;
+	propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &ParentId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &listName,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &mask,
-			&UA_TYPES[UA_TYPES_UINT32]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &carrierId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &ExpressionLogic,
+	UA_Variant_setScalarCopy(&inputArgs[1], &ParentId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &listName,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[3], &mask, &UA_TYPES[UA_TYPES_UINT32]);
+	UA_Variant_setScalarCopy(&inputArgs[4], &carrierId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[5], &ExpressionLogic,
 			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
 	UA_Variant_setScalarCopy(&inputArgs[6], &ExpressionSemantic,
 			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[7], &propertyId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[8], &view,
+	UA_Variant_setScalarCopy(&inputArgs[7], &propertyId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[8], &view,
 			&UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
+	UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
 			&UA_OPENAAS[UA_OPENAAS_VISIBILITYENUM]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVSL");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||createPVSL");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
 
-    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&ParentId);
-    UA_String_deleteMembers(&listName);
-    UA_Identification_deleteMembers(&carrierId);
-    UA_Identification_deleteMembers(&propertyId);
-    UA_Client_delete(client);
-    return retval;
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&ParentId);
+	UA_String_deleteMembers(&listName);
+	UA_Identification_deleteMembers(&carrierId);
+	UA_Identification_deleteMembers(&propertyId);
+	UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* PVSLIdSpec, int PVSLIdType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification PVSLId;
-    PVSLId.idType = PVSLIdType;
-    PVSLId.idSpec = UA_String_fromChars(PVSLIdSpec);
+	UA_Identification PVSLId;
+	PVSLId.idType = PVSLIdType;
+	PVSLId.idSpec = UA_String_fromChars(PVSLIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &PVSLId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &PVSLId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVSL");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVSL");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean: UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Identification_deleteMembers(&AASId);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean: UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Identification_deleteMembers(&AASId);
 	UA_Identification_deleteMembers(&PVSLId);
-    UA_Client_delete(client);
-    return retval;
+	UA_Client_delete(client);
+	return retval;
 }
 
 /* Property value statement */
 UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-		char* ListIdSpec, int ListIdType, char* PVSName, char* Value, int ValueType,
-		int mask, char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic,
-		int ExpressionSemantic,	char* propertyIdSpec, int propertyIdType,
-		int view, int visibility) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		char* ListIdSpec, int ListIdType, char* PVSName, char* Value,
+		int ValueType, int mask, char* CarrierIdSpec, int CarrierIdType,
+		int ExpressionLogic, int ExpressionSemantic, char* propertyIdSpec,
+		int propertyIdType, int view, int visibility) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    size_t argInSize = 11;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	size_t argInSize = 11;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
 
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification ListID;
-    ListID.idType = ListIdType;
-    ListID.idSpec = UA_String_fromChars(ListIdSpec);
+	UA_Identification ListID;
+	ListID.idType = ListIdType;
+	ListID.idSpec = UA_String_fromChars(ListIdSpec);
 
-    UA_String pvsname = UA_String_fromChars(PVSName);
+	UA_String pvsname = UA_String_fromChars(PVSName);
 
-    UA_DataValue dataValue;
-    UA_DataValue_init(&dataValue);
-    parseToVariant(Value, ValueType, &dataValue.value);
+	UA_DataValue dataValue;
+	UA_DataValue_init(&dataValue);
+	parseToVariant(Value, ValueType, &dataValue.value);
 
-    dataValue.hasSourceTimestamp = true;
-    dataValue.sourceTimestamp = UA_DateTime_now();
-    dataValue.hasValue = true;
+	dataValue.hasSourceTimestamp = true;
+	dataValue.sourceTimestamp = UA_DateTime_now();
+	dataValue.hasValue = true;
 
-    UA_Identification carrierId;
-    carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
-    carrierId.idType = CarrierIdType;
+	UA_Identification carrierId;
+	carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
+	carrierId.idType = CarrierIdType;
 
-    UA_Identification propertyId;
-    propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
-    propertyId.idType = propertyIdType;
+	UA_Identification propertyId;
+	propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
+	propertyId.idType = propertyIdType;
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &ListID,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &pvsname,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &dataValue,
+	UA_Variant_setScalarCopy(&inputArgs[1], &ListID,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &pvsname,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[3], &dataValue,
 			&UA_TYPES[UA_TYPES_DATAVALUE]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &mask,
-			&UA_TYPES[UA_TYPES_UINT32]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &carrierId,
+	UA_Variant_setScalarCopy(&inputArgs[4], &mask, &UA_TYPES[UA_TYPES_UINT32]);
+	UA_Variant_setScalarCopy(&inputArgs[5], &carrierId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[6], &ExpressionLogic,
-            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[7], &ExpressionSemantic,
-            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[8], &propertyId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[9], &view,
-            &UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[10], &visibility,
+	UA_Variant_setScalarCopy(&inputArgs[6], &ExpressionLogic,
+			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
+	UA_Variant_setScalarCopy(&inputArgs[7], &ExpressionSemantic,
+			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
+	UA_Variant_setScalarCopy(&inputArgs[8], &propertyId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[9], &view,
+			&UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
+	UA_Variant_setScalarCopy(&inputArgs[10], &visibility,
 			&UA_OPENAAS[UA_OPENAAS_VISIBILITYENUM]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||createPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||createPVS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
 
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    clean: UA_DataValue_deleteMembers(&dataValue);
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&ListID);
-    UA_Identification_deleteMembers(&carrierId);
-    UA_Identification_deleteMembers(&propertyId);
-    UA_String_deleteMembers(&pvsname);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	clean: UA_DataValue_deleteMembers(&dataValue);
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&ListID);
+	UA_Identification_deleteMembers(&carrierId);
+	UA_Identification_deleteMembers(&propertyId);
+	UA_String_deleteMembers(&pvsname);
 
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* PVSIdSpec, int PVSIdType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification PVSId;
-    PVSId.idType = PVSIdType;
-    PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
+	UA_Identification PVSId;
+	PVSId.idType = PVSIdType;
+	PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||deletePVS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
 
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&PVSId);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&PVSId);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		char* PVSIdSpec, int PVSIdType, int mask, char* PVSName,
 		char* CarrierIdSpec, int CarrierIdType, int ExpressionLogic,
-		int ExpressionSemantic,	char* propertyIdSpec, int propertyIdType,
+		int ExpressionSemantic, char* propertyIdSpec, int propertyIdType,
 		int view, int visibility, char* Value, int ValueType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 11;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 11;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification PVSId;
-    PVSId.idType = PVSIdType;
-    PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
+	UA_Identification PVSId;
+	PVSId.idType = PVSIdType;
+	PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
 
-    UA_String pvsName = UA_String_fromChars(PVSName);
+	UA_String pvsName = UA_String_fromChars(PVSName);
 
-    UA_Identification carrierId;
-    carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
-    carrierId.idType = CarrierIdType;
+	UA_Identification carrierId;
+	carrierId.idSpec = UA_String_fromChars(CarrierIdSpec);
+	carrierId.idType = CarrierIdType;
 
-    UA_DataValue dataValue;
-    UA_DataValue_init(&dataValue);
-    retval = parseToVariant(Value, ValueType, &dataValue.value);
-    if (retval != UA_STATUSCODE_GOOD) {
-        return retval;
-    }
-    dataValue.hasSourceTimestamp = true;
-    dataValue.sourceTimestamp = UA_DateTime_now();
-    dataValue.hasValue = true;
+	UA_DataValue dataValue;
+	UA_DataValue_init(&dataValue);
+	retval = parseToVariant(Value, ValueType, &dataValue.value);
+	if (retval != UA_STATUSCODE_GOOD) {
+		return retval;
+	}
+	dataValue.hasSourceTimestamp = true;
+	dataValue.sourceTimestamp = UA_DateTime_now();
+	dataValue.hasValue = true;
 
-    UA_Identification propertyId;
-    propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
-    propertyId.idType = propertyIdType;
+	UA_Identification propertyId;
+	propertyId.idSpec = UA_String_fromChars(propertyIdSpec);
+	propertyId.idType = propertyIdType;
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &mask,
-			&UA_TYPES[UA_TYPES_UINT32]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &pvsName,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &carrierId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &ExpressionLogic,
-            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[6], &ExpressionSemantic,
-            &UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[7], &propertyId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[8], &view,
+	UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &mask, &UA_TYPES[UA_TYPES_UINT32]);
+	UA_Variant_setScalarCopy(&inputArgs[3], &pvsName,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[4], &carrierId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[5], &ExpressionLogic,
+			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONLOGICENUM]);
+	UA_Variant_setScalarCopy(&inputArgs[6], &ExpressionSemantic,
+			&UA_OPENAAS[UA_OPENAAS_EXPRESSIONSEMANTICENUM]);
+	UA_Variant_setScalarCopy(&inputArgs[7], &propertyId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[8], &view,
 			&UA_OPENAAS[UA_OPENAAS_VIEWENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
+	UA_Variant_setScalarCopy(&inputArgs[9], &visibility,
 			&UA_OPENAAS[UA_OPENAAS_VISIBILITYENUM]);
-    UA_Variant_setScalarCopy(&inputArgs[10], &dataValue,
-            &UA_TYPES[UA_TYPES_DATAVALUE]);
+	UA_Variant_setScalarCopy(&inputArgs[10], &dataValue,
+			&UA_TYPES[UA_TYPES_DATAVALUE]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||setPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||setPVS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
 
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
-    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_DataValue_deleteMembers(&dataValue);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
+	clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_DataValue_deleteMembers(&dataValue);
 	UA_Identification_deleteMembers(&AASId);
 	UA_Identification_deleteMembers(&PVSId);
 	UA_Identification_deleteMembers(&carrierId);
 	UA_Identification_deleteMembers(&propertyId);
 	UA_String_deleteMembers(&pvsName);
-    UA_Client_delete(client);
-    return retval;
+	UA_Client_delete(client);
+	return retval;
 }
 // get the node id of a specific child node by its browse name
 static void getNodeIdOfChildByBrowseName(UA_Client *client, UA_NodeId startId,
-        UA_String browseNameToFind, UA_NodeId *foundId) {
+		UA_String browseNameToFind, UA_NodeId *foundId) {
 
-    UA_BrowseRequest bReq;
-    UA_BrowseRequest_init(&bReq);
-    bReq.requestedMaxReferencesPerNode = 0;
-    bReq.nodesToBrowse = UA_BrowseDescription_new();
-    bReq.nodesToBrowseSize = 1;
-    UA_NodeId_copy(&startId, &bReq.nodesToBrowse[0].nodeId);
+	UA_BrowseRequest bReq;
+	UA_BrowseRequest_init(&bReq);
+	bReq.requestedMaxReferencesPerNode = 0;
+	bReq.nodesToBrowse = UA_BrowseDescription_new();
+	bReq.nodesToBrowseSize = 1;
+	UA_NodeId_copy(&startId, &bReq.nodesToBrowse[0].nodeId);
 
-    bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
+	bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
 
-    UA_BrowseResponse bResp = UA_Client_Service_browse(client, bReq);
-    for (size_t i = 0; i < bResp.resultsSize; i++) {
-        for (size_t j = 0; j < bResp.results[i].referencesSize; j++) {
-            if (UA_String_equal(&browseNameToFind,
-                    &bResp.results[i].references[j].displayName.text)) {
-                UA_NodeId_copy(&bResp.results[i].references[j].nodeId.nodeId,
-                        foundId);
-                goto clean;
-            }
-        }
-    }
+	UA_BrowseResponse bResp = UA_Client_Service_browse(client, bReq);
+	for (size_t i = 0; i < bResp.resultsSize; i++) {
+		for (size_t j = 0; j < bResp.results[i].referencesSize; j++) {
+			if (UA_String_equal(&browseNameToFind,
+					&bResp.results[i].references[j].displayName.text)) {
+				UA_NodeId_copy(&bResp.results[i].references[j].nodeId.nodeId,
+						foundId);
+				goto clean;
+			}
+		}
+	}
 
-    UA_NodeId tmpNodeId = UA_NODEID_NUMERIC(0, 0);
-    UA_NodeId_copy(&tmpNodeId, foundId);
-    clean: UA_BrowseRequest_deleteMembers(&bReq);
-    UA_BrowseResponse_deleteMembers(&bResp);
-    return;
+	UA_NodeId tmpNodeId = UA_NODEID_NUMERIC(0, 0);
+	UA_NodeId_copy(&tmpNodeId, foundId);
+	clean: UA_BrowseRequest_deleteMembers(&bReq);
+	UA_BrowseResponse_deleteMembers(&bResp);
+	return;
 }
 
 static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
-        UA_String TypedefinitionBrowseName, UA_ReferenceDescription **ids,
-        size_t *idsSize) {
-    UA_BrowseRequest bReq;
-    UA_BrowseRequest_init(&bReq);
-    bReq.requestedMaxReferencesPerNode = 0;
-    bReq.nodesToBrowse = UA_BrowseDescription_new();
-    bReq.nodesToBrowseSize = 1;
+		UA_String TypedefinitionBrowseName, UA_ReferenceDescription **ids,
+		size_t *idsSize) {
+	UA_BrowseRequest bReq;
+	UA_BrowseRequest_init(&bReq);
+	bReq.requestedMaxReferencesPerNode = 0;
+	bReq.nodesToBrowse = UA_BrowseDescription_new();
+	bReq.nodesToBrowseSize = 1;
 
-    UA_NodeId_copy(&startId, &bReq.nodesToBrowse[0].nodeId);
-    bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
-    size_t n = 0;
-    UA_BrowseResponse bResp = UA_Client_Service_browse(client, bReq);
-    if (bResp.resultsSize == 0) {
-        *ids = NULL;
-        *idsSize = 0;
-        goto clean;
-    }
-    for (size_t i = 0; i < bResp.results[0].referencesSize; i++) {
-        UA_BrowseRequest bReq1;
-        UA_BrowseRequest_init(&bReq1);
-        bReq1.requestedMaxReferencesPerNode = 0;
-        bReq1.nodesToBrowse = UA_BrowseDescription_new();
-        bReq1.nodesToBrowseSize = 1;
-        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
-                &bReq1.nodesToBrowse[0].nodeId); //could be a string node id
+	UA_NodeId_copy(&startId, &bReq.nodesToBrowse[0].nodeId);
+	bReq.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
+	size_t n = 0;
+	UA_BrowseResponse bResp = UA_Client_Service_browse(client, bReq);
+	if (bResp.resultsSize == 0) {
+		*ids = NULL;
+		*idsSize = 0;
+		goto clean;
+	}
+	for (size_t i = 0; i < bResp.results[0].referencesSize; i++) {
+		UA_BrowseRequest bReq1;
+		UA_BrowseRequest_init(&bReq1);
+		bReq1.requestedMaxReferencesPerNode = 0;
+		bReq1.nodesToBrowse = UA_BrowseDescription_new();
+		bReq1.nodesToBrowseSize = 1;
+		UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
+				&bReq1.nodesToBrowse[0].nodeId); //could be a string node id
 
-        bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
-        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
-                UA_NS0ID_HASTYPEDEFINITION);
-        UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
-        for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
-        	if (UA_String_equal(
+		bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
+		bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
+				UA_NS0ID_HASTYPEDEFINITION);
+		UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
+		for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
+			if (UA_String_equal(
 					&bResp1.results[0].references[j].displayName.text,
 					&TypedefinitionBrowseName)) {
 				n++;
-        	}
-        }
-        UA_BrowseRequest_deleteMembers(&bReq1);
-        UA_BrowseResponse_deleteMembers(&bResp1);
-    }
-    *idsSize = n;
-    if (!n)
-        goto clean;
-    size_t m = 0;
-    *ids = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-    for (size_t i = 0; i < n; i++) {
-        UA_ReferenceDescription_init(&(*ids)[i]);
-    }
-    if (!*ids)
-        goto clean;
+			}
+		}
+		UA_BrowseRequest_deleteMembers(&bReq1);
+		UA_BrowseResponse_deleteMembers(&bResp1);
+	}
+	*idsSize = n;
+	if (!n)
+		goto clean;
+	size_t m = 0;
+	*ids = UA_Array_new(n, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+	for (size_t i = 0; i < n; i++) {
+		UA_ReferenceDescription_init(&(*ids)[i]);
+	}
+	if (!*ids)
+		goto clean;
 
-    for (size_t i = 0; i < bResp.results[0].referencesSize; i++) {
-        UA_BrowseRequest bReq1;
-        UA_BrowseRequest_init(&bReq1);
-        bReq1.requestedMaxReferencesPerNode = 0;
-        bReq1.nodesToBrowse = UA_BrowseDescription_new();
-        bReq1.nodesToBrowseSize = 1;
-        UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
-                &bReq1.nodesToBrowse[0].nodeId); //could be a string node id
+	for (size_t i = 0; i < bResp.results[0].referencesSize; i++) {
+		UA_BrowseRequest bReq1;
+		UA_BrowseRequest_init(&bReq1);
+		bReq1.requestedMaxReferencesPerNode = 0;
+		bReq1.nodesToBrowse = UA_BrowseDescription_new();
+		bReq1.nodesToBrowseSize = 1;
+		UA_NodeId_copy(&bResp.results[0].references[i].nodeId.nodeId,
+				&bReq1.nodesToBrowse[0].nodeId); //could be a string node id
 
-        bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
-        bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
-                UA_NS0ID_HASTYPEDEFINITION);
-        UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
-        for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
-        	if (UA_String_equal(
+		bReq1.nodesToBrowse[0].resultMask = UA_BROWSERESULTMASK_ALL;
+		bReq1.nodesToBrowse[0].referenceTypeId = UA_NODEID_NUMERIC(0,
+				UA_NS0ID_HASTYPEDEFINITION);
+		UA_BrowseResponse bResp1 = UA_Client_Service_browse(client, bReq1);
+		for (size_t j = 0; j < bResp1.results[0].referencesSize; j++) {
+			if (UA_String_equal(
 					&bResp1.results[0].references[j].displayName.text,
 					&TypedefinitionBrowseName)) {
 				UA_ReferenceDescription_copy(&bResp.results[0].references[i],
 						&((*ids)[m]));
 				m++;
-        	}
-        }
-        UA_BrowseRequest_deleteMembers(&bReq1);
-        UA_BrowseResponse_deleteMembers(&bResp1);
-        if (m >= n) {
-            goto clean;
-        }
-    }
-    clean: UA_BrowseRequest_deleteMembers(&bReq);
-    UA_BrowseResponse_deleteMembers(&bResp);
-    return;
+			}
+		}
+		UA_BrowseRequest_deleteMembers(&bReq1);
+		UA_BrowseResponse_deleteMembers(&bResp1);
+		if (m >= n) {
+			goto clean;
+		}
+	}
+	clean: UA_BrowseRequest_deleteMembers(&bReq);
+	UA_BrowseResponse_deleteMembers(&bResp);
+	return;
 }
-
 
 //static int getAllPVSFromList(UA_Client *client, UA_NodeId entryPoint,
 //        UA_ReferenceDescription** foundListIds, size_t *foundListIdsSize) {
@@ -1199,64 +1243,69 @@ static void FindChildrenWithSpecialType(UA_Client *client, UA_NodeId startId,
 //}
 
 UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
-        UA_NodeId* nodeId) {
+		UA_NodeId* nodeId) {
 //dummy
-    UA_Boolean found = false;
+	UA_Boolean found = false;
 
-    size_t argInSize = 1;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	size_t argInSize = 1;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||getAASNodeId");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getAASNodeId");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
 
-    UA_StatusCode retval = UA_Client_call(client, objectId, methNodeId,
-            argInSize, inputArgs, &argOutSize, &output);
+	UA_StatusCode retval = UA_Client_call(client, objectId, methNodeId,
+			argInSize, inputArgs, &argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-    } else {
-        found = false;
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
-    if (!UA_Variant_hasScalarType(output, &UA_TYPES[UA_TYPES_NODEID])) {
-        found = false;
-        goto clean;
-    }
-    UA_NodeId_copy((UA_NodeId *) output->data, nodeId);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+	} else {
+		found = false;
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+		goto clean;
+	}
+	if (!UA_Variant_hasScalarType(output, &UA_TYPES[UA_TYPES_NODEID])) {
+		found = false;
+		goto clean;
+	}
+	UA_NodeId_copy((UA_NodeId *) output->data, nodeId);
 
-    found = true;
-    clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return found;
+	found = true;
+	clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	return found;
 }
 //not supported anymore
 //int getPVSFromListByName(char* ipAddress, char*AASIdSpec, int AASIdType,
@@ -1323,70 +1372,74 @@ UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
 //}
 
 UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
-		char* PVSIdSpec, int PVSIdType, char** PVSName,
-		char** CarrierIdSpec, int* CarrierIdType, int* ExpressionLogic,
-		int* ExpressionSemantic, char** propertyIdSpec, int* propertyIdType,
-		int* view, int* visibility, char** Value, int* ValueType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		char* PVSIdSpec, int PVSIdType, char** PVSName, char** CarrierIdSpec,
+		int* CarrierIdType, int* ExpressionLogic, int* ExpressionSemantic,
+		char** propertyIdSpec, int* propertyIdType, int* view, int* visibility,
+		char** Value, int* ValueType) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification PVSId;
-    PVSId.idType = PVSIdType;
-    PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
+	UA_Identification PVSId;
+	PVSId.idType = PVSIdType;
+	PVSId.idSpec = UA_String_fromChars(PVSIdSpec);
 
-
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &PVSId,
 			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||getPVS");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
-    UA_Variant *output = NULL;
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getPVS");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_Variant *output = NULL;
 
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&PVSId);
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&PVSId);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-        UA_StatusCode *status = (UA_StatusCode*) output[0].data;
+		UA_StatusCode *status = (UA_StatusCode*) output[0].data;
 		retval = *status;
 
 		UA_String *pvsName = (UA_String*) output[1].data;
@@ -1402,15 +1455,15 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		*CarrierIdType = carrierId.idType;
 		UA_Identification_deleteMembers(&carrierId);
 
-        UA_ExpressionLogicEnum* UAExpressionLogic =
-                (UA_ExpressionLogicEnum*) output[3].data;
-        *ExpressionLogic = *UAExpressionLogic;
+		UA_ExpressionLogicEnum* UAExpressionLogic =
+				(UA_ExpressionLogicEnum*) output[3].data;
+		*ExpressionLogic = *UAExpressionLogic;
 
-        UA_ExpressionSemanticEnum* UAExpressionSemantic =
-                (UA_ExpressionSemanticEnum*) output[4].data;
-        *ExpressionSemantic = *UAExpressionSemantic;
+		UA_ExpressionSemanticEnum* UAExpressionSemantic =
+				(UA_ExpressionSemanticEnum*) output[4].data;
+		*ExpressionSemantic = *UAExpressionSemantic;
 
-        UA_Identification propertyId;
+		UA_Identification propertyId;
 		UA_Identification_init(&propertyId);
 		ext = (UA_ExtensionObject*) output[5].data;
 		offset = 0;
@@ -1426,183 +1479,281 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		UA_VisibilityEnum* UAVisibility = (UA_VisibilityEnum*) output[7].data;
 		*visibility = *UAVisibility;
 
-        UA_DataValue *dataValue = (UA_DataValue*) output[8].data;
-        parseFromVariant(dataValue->value, Value, ValueType);
+		UA_DataValue *dataValue = (UA_DataValue*) output[8].data;
+		parseFromVariant(dataValue->value, Value, ValueType);
 
-        //UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
+		//UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
 
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Client_delete(client);
-    return retval;
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Client_delete(client);
+	return retval;
 }
 
 /* LifeCycle Entry */
 UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
-        char* creatingInstanceIdSpec, int creatingInstanceIdType,
-        char* writingInstanceIdSpec, int writingInstanceIdType,
-        char* EventClass, char* Subject, UA_DateTime timeStamp, char* value,
-        int valueType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
+		char* creatingInstanceIdSpec, int creatingInstanceIdType,
+		char* writingInstanceIdSpec, int writingInstanceIdType,
+		char* EventClass, char* Subject, UA_DateTime timeStamp, char* value,
+		int valueType) {
 
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	UA_NodeId methNodeId_getAASNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getAASNodeId");
+	UA_NodeId objectId_getAASNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_LifeCycleEntry lce;
+	UA_Variant getAASNodeIdInput;
+	UA_Variant_init(&getAASNodeIdInput);
+	UA_Identification getAASNodeId_Id;
+	UA_Identification_init(&getAASNodeId_Id);
 
-    lce.creatingInstance.idSpec = UA_String_fromChars(creatingInstanceIdSpec);
-    lce.creatingInstance.idType = creatingInstanceIdType;
+	getAASNodeId_Id.idSpec = UA_String_fromChars(AASIdSpec);
+	getAASNodeId_Id.idType = 0;
 
-    lce.writingInstance.idSpec = UA_String_fromChars(writingInstanceIdSpec);
-    lce.writingInstance.idType = writingInstanceIdType;
+	UA_Variant_setScalarCopy(&getAASNodeIdInput, &getAASNodeId_Id,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    lce.eventClass = UA_String_fromChars(EventClass);
+	size_t getAASNodeIdOutputSize = 0;
+	UA_Variant *getAASNodeIdOutput = NULL;
+	retval = UA_Client_call(client, objectId_getAASNodeId,
+			methNodeId_getAASNodeId, 1, &getAASNodeIdInput,
+			&getAASNodeIdOutputSize, &getAASNodeIdOutput);
+	//UA_NodeId_deleteMembers(&methNodeId_getAASNodeId);
+	//UA_NodeId_deleteMembers(&objectId_getAASNodeId);
+	UA_Variant_deleteMembers(&getAASNodeIdInput);
+	UA_Identification_deleteMembers(&getAASNodeId_Id);
+	if (getAASNodeIdOutputSize > 0 && retval == UA_STATUSCODE_GOOD) {
+		UA_UInt16 lceModelNsIndex = 0;
+		UA_String tmpNSString = UA_String_fromChars(
+				"http://acplt.org/lifeCycleEntry/Ov");
+		retval = getNamespaceIndex(client, tmpNSString, &lceModelNsIndex);
 
-    lce.subject = UA_String_fromChars(Subject);
+		UA_DataValue dv;
+		UA_DataValue_init(&dv);
+		retval |= parseToVariant(value, valueType, &dv.value);
+		if (retval != UA_STATUSCODE_GOOD) {
+			goto clean;
+		}
+		dv.hasValue = true;
+		dv.hasSourceTimestamp = true;
+		dv.sourceTimestamp = timeStamp;
+		dv.hasValue = true;
 
-    retval = parseToVariant(value, valueType, &lce.data.value);
-    if(retval != UA_STATUSCODE_GOOD){
-        return retval;
-    }
-    lce.data.hasSourceTimestamp = true;
-    lce.data.sourceTimestamp = timeStamp;
-    lce.data.hasValue = true;
+		UA_NodeId* aasNodeId = (UA_NodeId*) getAASNodeIdOutput->data;
+		printf("AAS is %.*s \n",
+				UA_PRINTF_STRING_DATA(aasNodeId->identifier.string));
+		UA_String lceObjectPath = UA_String_fromChars(
+				".Body/lce.LifeCycleArchiv");
+		UA_String lceMethodPath = UA_String_fromChars(
+				".Body/lce.LifeCycleArchiv||createLCESimple");
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &lce,
-            &UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY]);
+		UA_NodeId createLCEObjectNodeId;
+		createLCEObjectNodeId.identifierType = UA_NODEIDTYPE_STRING;
+		createLCEObjectNodeId.identifier.string.data =
+				UA_malloc(aasNodeId->identifier.string.length + lceObjectPath.length);
+		memcpy(&createLCEObjectNodeId.identifier.string.data[0],
+				aasNodeId->identifier.string.data,
+				aasNodeId->identifier.string.length);
+		memcpy(
+				&createLCEObjectNodeId.identifier.string.data[aasNodeId->identifier.string.length],
+				lceObjectPath.data, lceObjectPath.length);
+		createLCEObjectNodeId.identifier.string.length =
+				aasNodeId->identifier.string.length + lceObjectPath.length;
+		createLCEObjectNodeId.namespaceIndex = lceModelNsIndex;
+		printf("createLCEObjectNodeId is %.*s \n",
+				UA_PRINTF_STRING_DATA(createLCEObjectNodeId.identifier.string));
+		printf("%" PRIu16 "\n", createLCEObjectNodeId.namespaceIndex);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||createLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+		UA_NodeId createLCEMethodNodeId;
+		createLCEMethodNodeId.identifierType = UA_NODEIDTYPE_STRING;
+		createLCEMethodNodeId.identifier.string.data =
+				UA_malloc(aasNodeId->identifier.string.length + lceMethodPath.length);
+		memcpy(&createLCEMethodNodeId.identifier.string.data[0],
+				aasNodeId->identifier.string.data,
+				aasNodeId->identifier.string.length);
+		memcpy(
+				&createLCEMethodNodeId.identifier.string.data[aasNodeId->identifier.string.length],
+				lceMethodPath.data, lceMethodPath.length);
+		createLCEMethodNodeId.identifier.string.length =
+				aasNodeId->identifier.string.length + lceMethodPath.length;
+		createLCEMethodNodeId.namespaceIndex = lceModelNsIndex;
+		printf("createLCEMethodNodeId is %.*s \n",
+				UA_PRINTF_STRING_DATA(createLCEMethodNodeId.identifier.string));
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+		size_t argInSize = 7;
+		size_t argOutSize = 0;
+		UA_Variant *inputArgs = UA_Array_new(argInSize,
+				&UA_TYPES[UA_TYPES_VARIANT]);
+		for (size_t i = 0; i < argInSize; i++) {
+			UA_Variant_init(&inputArgs[i]);
+		}
+		UA_UInt32 CreatingInstanceIdType = (UA_UInt32) creatingInstanceIdType;
+		UA_String CreatingInstanceIdSpec = UA_String_fromChars(
+				creatingInstanceIdSpec);
+		UA_String WritingInstanceIdSpec = UA_String_fromChars(
+				writingInstanceIdSpec);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-        goto clean;
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
-    clean:
-    UA_Client_delete(client);
-    UA_Identification_deleteMembers(&AASId);
-    UA_LifeCycleEntry_deleteMembers(&lce);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return retval;
+		UA_UInt32 WritingInstanceIdType = (UA_UInt32) writingInstanceIdType;
+		UA_String subject = UA_String_fromChars(Subject);
+		UA_String eventClass = UA_String_fromChars(EventClass);
+
+		UA_Variant_setScalarCopy(&inputArgs[0], &CreatingInstanceIdType,
+				&UA_TYPES[UA_TYPES_UINT32]);
+		UA_Variant_setScalarCopy(&inputArgs[1], &CreatingInstanceIdSpec,
+				&UA_TYPES[UA_TYPES_STRING]);
+		UA_Variant_setScalarCopy(&inputArgs[2], &WritingInstanceIdType,
+				&UA_TYPES[UA_TYPES_UINT32]);
+		UA_Variant_setScalarCopy(&inputArgs[3], &WritingInstanceIdSpec,
+				&UA_TYPES[UA_TYPES_STRING]);
+		UA_Variant_setScalarCopy(&inputArgs[5], &subject,
+				&UA_TYPES[UA_TYPES_STRING]);
+		UA_Variant_setScalarCopy(&inputArgs[6], &eventClass,
+				&UA_TYPES[UA_TYPES_STRING]);
+
+		UA_Variant_setScalarCopy(&inputArgs[4], &dv,
+				&UA_TYPES[UA_TYPES_DATAVALUE]);
+
+		UA_Variant *output = NULL;
+		retval = UA_Client_call(client, createLCEObjectNodeId,
+				createLCEMethodNodeId, argInSize, inputArgs, &argOutSize,
+				&output);
+
+		if (retval == UA_STATUSCODE_GOOD) {
+			printf(
+					"Method call was successful, and %lu returned values available.\n",
+					(unsigned long) argOutSize);
+			goto clean;
+		} else {
+			printf(
+					"Method call was unsuccessful, and %x returned values available.\n",
+					retval);
+		}
+		clean: UA_Client_delete(client);
+		//UA_Identification_deleteMembers(&AASId);
+		//UA_LifeCycleEntry_deleteMembers(&lce);
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		UA_String_deleteMembers(&CreatingInstanceIdSpec);
+		UA_String_deleteMembers(&WritingInstanceIdSpec);
+		UA_String_deleteMembers(&subject);
+		UA_String_deleteMembers(&eventClass);
+		UA_DataValue_deleteMembers(&dv);
+		UA_String_deleteMembers(&tmpNSString);
+		UA_NodeId_deleteMembers(&createLCEMethodNodeId);
+		UA_NodeId_deleteMembers(&createLCEObjectNodeId);
+
+	}
+
+	UA_Identification_deleteMembers(&getAASNodeId_Id);
+	UA_Variant_delete(getAASNodeIdOutput);
+
+	return retval;
 }
 
 UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
-        long long LCEId) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		long long LCEId) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_UInt64 lceId = LCEId;
+	UA_UInt64 lceId = LCEId;
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||deleteLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||deleteLCE");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-        goto clean;
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+		goto clean;
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
 
-    clean: UA_Identification_deleteMembers(&AASId);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return retval;
+	clean: UA_Identification_deleteMembers(&AASId);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	return retval;
 }
 
 UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
-        long long lceId, lifeCycleEntryType lceData){
+		long long lceId, lifeCycleEntryType lceData) {
 	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
 	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
 	if (retval != UA_STATUSCODE_GOOD) {
@@ -1616,20 +1767,25 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 	for (size_t i = 0; i < argInSize; i++) {
 		UA_Variant_init(&inputArgs[i]);
 	}
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 	/* convert input to UA types */
 	UA_Identification AASId;
 	AASId.idType = AASIdType;
@@ -1638,11 +1794,13 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 	UA_LifeCycleEntry tmplceData;
 	UA_LifeCycleEntry_init(&tmplceData);
 
-	tmplceData.creatingInstance.idSpec = UA_String_fromChars(lceData.creatingInstanceSpec);
+	tmplceData.creatingInstance.idSpec = UA_String_fromChars(
+			lceData.creatingInstanceSpec);
 	tmplceData.creatingInstance.idType = lceData.creatingInstanceType;
 
 	UA_Identification writingInstance;
-	tmplceData.writingInstance.idSpec = UA_String_fromChars(lceData.writingInstanceSpec);
+	tmplceData.writingInstance.idSpec = UA_String_fromChars(
+			lceData.writingInstanceSpec);
 	tmplceData.writingInstance.idType = lceData.writingInstanceType;
 
 	tmplceData.eventClass = UA_String_fromChars(lceData.eventClass);
@@ -1680,179 +1838,187 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 				retval);
 	}
 
-	clean:
-	UA_Identification_deleteMembers(&AASId);
+	clean: UA_Identification_deleteMembers(&AASId);
 	UA_LifeCycleEntry_deleteMembers(&tmplceData);
-		UA_Client_delete(client);
+	UA_Client_delete(client);
 	return retval;
 }
 
 UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
-        long long lceId, char* creatingInstanceIdSpec,
-        int creatingInstanceIdType, char* writingInstanceIdSpec,
-        int writingInstanceIdType, char* EventClass, char* Subject,
-        UA_DateTime timeStamp, char* value, int valueType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 7;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		long long lceId, char* creatingInstanceIdSpec,
+		int creatingInstanceIdType, char* writingInstanceIdSpec,
+		int writingInstanceIdType, char* EventClass, char* Subject,
+		UA_DateTime timeStamp, char* value, int valueType) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 7;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Identification creatingInstance;
-    creatingInstance.idSpec = UA_String_fromChars(creatingInstanceIdSpec);
-    creatingInstance.idType = creatingInstanceIdType;
+	UA_Identification creatingInstance;
+	creatingInstance.idSpec = UA_String_fromChars(creatingInstanceIdSpec);
+	creatingInstance.idType = creatingInstanceIdType;
 
-    UA_Identification writingInstance;
-    writingInstance.idSpec = UA_String_fromChars(writingInstanceIdSpec);
-    writingInstance.idType = writingInstanceIdType;
+	UA_Identification writingInstance;
+	writingInstance.idSpec = UA_String_fromChars(writingInstanceIdSpec);
+	writingInstance.idType = writingInstanceIdType;
 
-    UA_String eventClassStr = UA_String_fromChars(EventClass);
+	UA_String eventClassStr = UA_String_fromChars(EventClass);
 
-    UA_String subjectStr = UA_String_fromChars(Subject);
+	UA_String subjectStr = UA_String_fromChars(Subject);
 
-    UA_DataValue dataValue;
-    UA_DataValue_init(&dataValue);
-    parseToVariant(value, valueType, &dataValue.value);
-    dataValue.hasSourceTimestamp = true;
-    dataValue.sourceTimestamp = timeStamp;
-    dataValue.hasValue = true;
+	UA_DataValue dataValue;
+	UA_DataValue_init(&dataValue);
+	parseToVariant(value, valueType, &dataValue.value);
+	dataValue.hasSourceTimestamp = true;
+	dataValue.sourceTimestamp = timeStamp;
+	dataValue.hasValue = true;
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
-    UA_Variant_setScalarCopy(&inputArgs[2], &creatingInstance,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[3], &writingInstance,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[4], &eventClassStr,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[5], &subjectStr,
-            &UA_TYPES[UA_TYPES_STRING]);
-    UA_Variant_setScalarCopy(&inputArgs[6], &dataValue,
-            &UA_TYPES[UA_TYPES_DATAVALUE]);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+	UA_Variant_setScalarCopy(&inputArgs[2], &creatingInstance,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[3], &writingInstance,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[4], &eventClassStr,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[5], &subjectStr,
+			&UA_TYPES[UA_TYPES_STRING]);
+	UA_Variant_setScalarCopy(&inputArgs[6], &dataValue,
+			&UA_TYPES[UA_TYPES_DATAVALUE]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||setLCESimple");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||setLCESimple");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-        goto clean;
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
+		goto clean;
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
 
-    clean: UA_DataValue_deleteMembers(&dataValue);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	clean: UA_DataValue_deleteMembers(&dataValue);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
 
-    UA_Identification_deleteMembers(&AASId);
-    UA_Identification_deleteMembers(&creatingInstance);
-    UA_Identification_deleteMembers(&writingInstance);
+	UA_Identification_deleteMembers(&AASId);
+	UA_Identification_deleteMembers(&creatingInstance);
+	UA_Identification_deleteMembers(&writingInstance);
 
-    UA_String_deleteMembers(&eventClassStr);
-    UA_String_deleteMembers(&subjectStr);
-    UA_Client_delete(client);
-    return retval;
+	UA_String_deleteMembers(&eventClassStr);
+	UA_String_deleteMembers(&subjectStr);
+	UA_Client_delete(client);
+	return retval;
 }
 
 UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
-        long long lceId, char** creatingInstanceIdSpec,
-        int* creatingInstanceIdType, char** writingInstanceIdSpec,
-        int* writingInstanceIdType, char** EventClass, char** Subject,
-        UA_DateTime* timeStamp, char** value, int* valueType) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		long long lceId, char** creatingInstanceIdSpec,
+		int* creatingInstanceIdType, char** writingInstanceIdSpec,
+		int* writingInstanceIdType, char** EventClass, char** Subject,
+		UA_DateTime* timeStamp, char** value, int* valueType) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCESimple");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getLCESimple");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
-        UA_StatusCode *status = (UA_StatusCode*) output[0].data;
-        retval = *status;
+		UA_StatusCode *status = (UA_StatusCode*) output[0].data;
+		retval = *status;
 
-
-        UA_Identification creatingInstance;
+		UA_Identification creatingInstance;
 		UA_Identification_init(&creatingInstance);
-        UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
+		UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
 		size_t offset = 0;
 		UA_Identification_decodeBinary(&(ext->content.encoded.body), &offset,
 				&creatingInstance);
@@ -1870,94 +2036,100 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
 		*writingInstanceIdType = writingInstance.idType;
 		UA_Identification_deleteMembers(&writingInstance);
 
-        UA_String *eventClassStr = (UA_String*) output[3].data;
-        copyOPCUAStringToChar(*eventClassStr, EventClass);
+		UA_String *eventClassStr = (UA_String*) output[3].data;
+		copyOPCUAStringToChar(*eventClassStr, EventClass);
 
-        UA_String *subjectStr = (UA_String*) output[4].data;
-        copyOPCUAStringToChar(*subjectStr, Subject);
+		UA_String *subjectStr = (UA_String*) output[4].data;
+		copyOPCUAStringToChar(*subjectStr, Subject);
 
-        UA_DataValue *dataValue = (UA_DataValue*) output[5].data;
-        *timeStamp = dataValue->sourceTimestamp;
-        parseFromVariant(dataValue->value, value, valueType);
+		UA_DataValue *dataValue = (UA_DataValue*) output[5].data;
+		*timeStamp = dataValue->sourceTimestamp;
+		parseFromVariant(dataValue->value, value, valueType);
 
-        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
-    UA_Client_delete(client);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return retval;
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
+	UA_Client_delete(client);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	return retval;
 }
 
 UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
-        long long lceId, lifeCycleEntryType* lceData) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		long long lceId, lifeCycleEntryType* lceData) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 2;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	/* convert input to UA types */
+	UA_Identification AASId;
+	AASId.idType = AASIdType;
+	AASId.idSpec = UA_String_fromChars(AASIdSpec);
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
+	UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
+	UA_Variant_setScalarCopy(&inputArgs[1], &lceId, &UA_TYPES[UA_TYPES_UINT64]);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||getLCE");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+	UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getLCE");
+	UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant *output = NULL;
+	retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
+			&argOutSize, &output);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
+	if (retval == UA_STATUSCODE_GOOD) {
+		printf(
+				"Method call was successful, and %lu returned values available.\n",
+				(unsigned long) argOutSize);
 
+		UA_StatusCode *status = (UA_StatusCode*) output[0].data;
+		retval = *status;
 
-        UA_StatusCode *status = (UA_StatusCode*) output[0].data;
-        retval = *status;
-
-        UA_LifeCycleEntry tmplceData;
-        UA_LifeCycleEntry_init(&tmplceData);
-        UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
+		UA_LifeCycleEntry tmplceData;
+		UA_LifeCycleEntry_init(&tmplceData);
+		UA_ExtensionObject *ext = (UA_ExtensionObject*) output[1].data;
 		size_t offset = 0;
 		UA_LifeCycleEntry_decodeBinary(&(ext->content.encoded.body), &offset,
 				&tmplceData);
 
-		copyOPCUAStringToChar(tmplceData.creatingInstance.idSpec, &lceData->creatingInstanceSpec);
+		copyOPCUAStringToChar(tmplceData.creatingInstance.idSpec,
+				&lceData->creatingInstanceSpec);
 		lceData->creatingInstanceType = tmplceData.creatingInstance.idType;
 
-		copyOPCUAStringToChar(tmplceData.writingInstance.idSpec, &lceData->writingInstanceSpec);
+		copyOPCUAStringToChar(tmplceData.writingInstance.idSpec,
+				&lceData->writingInstanceSpec);
 		lceData->writingInstanceType = tmplceData.writingInstance.idType;
 
 		copyOPCUAStringToChar(tmplceData.eventClass, &lceData->eventClass);
@@ -1966,123 +2138,206 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 		lceData->timestamp = tmplceData.data.sourceTimestamp;
 
-		parseFromVariant(tmplceData.data.value, &lceData->data, &lceData->dataType);
+		parseFromVariant(tmplceData.data.value, &lceData->data,
+				&lceData->dataType);
 
 		UA_LifeCycleEntry_deleteMembers(&tmplceData);
 
-        UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-    }
-    UA_Client_delete(client);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return retval;
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	} else {
+		printf(
+				"Method call was unsuccessful, and %x returned values available.\n",
+				retval);
+	}
+	UA_Client_delete(client);
+	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	return retval;
 }
 
 UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
-        unsigned int count, unsigned int* lastLCEsCount, lifeCycleEntryType **lifeCycleEntries) {
-    UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
-    UA_StatusCode retval = UA_Client_connect(client, ipAddress);
-    if (retval != UA_STATUSCODE_GOOD) {
-        UA_Client_delete(client);
-        return (int) retval;
-    }
-    size_t argInSize = 2;
-    size_t argOutSize = 0;
-    UA_Variant *inputArgs = UA_Array_new(argInSize,
-            &UA_TYPES[UA_TYPES_VARIANT]);
-    for (size_t i = 0; i < argInSize; i++) {
-        UA_Variant_init(&inputArgs[i]);
-    }
-    UA_UInt16 openAASnsIndex=0;
-    if(getopenAASNamespaceIndex(client, &openAASnsIndex)!=UA_STATUSCODE_GOOD){
-    	printf("openAAS opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    if(getIdentificationDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("Identification opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
+		unsigned int count, unsigned int* lastLCEsCount,
+		lifeCycleEntryType **lifeCycleEntries) {
+	UA_Client *client = UA_Client_new(UA_ClientConfig_standard);
+	UA_StatusCode retval = UA_Client_connect(client, ipAddress);
+	if (retval != UA_STATUSCODE_GOOD) {
+		UA_Client_delete(client);
+		return (int) retval;
+	}
+	size_t argInSize = 1;
+	size_t argOutSize = 0;
+	UA_Variant *inputArgs = UA_Array_new(argInSize,
+			&UA_TYPES[UA_TYPES_VARIANT]);
+	for (size_t i = 0; i < argInSize; i++) {
+		UA_Variant_init(&inputArgs[i]);
+	}
+	UA_UInt16 openAASnsIndex = 0;
+	if (getopenAASNamespaceIndex(client, &openAASnsIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("openAAS opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	if (getIdentificationDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("Identification opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
 
-    if(getlifeCycleDataTypeNamespaceIndex(client,&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)!=UA_STATUSCODE_GOOD){
-    	printf("lifcycle opc ua model not found \n");
-    	return UA_STATUSCODE_BADNOTFOUND;
-    }
-    /* convert input to UA types */
-    UA_Identification AASId;
-    AASId.idType = AASIdType;
-    AASId.idSpec = UA_String_fromChars(AASIdSpec);
+	if (getlifeCycleDataTypeNamespaceIndex(client,
+			&UA_OPENAAS[UA_OPENAAS_LIFECYCLEENTRY].typeId.namespaceIndex)
+			!= UA_STATUSCODE_GOOD) {
+		printf("lifcycle opc ua model not found \n");
+		return UA_STATUSCODE_BADNOTFOUND;
+	}
+	UA_NodeId methNodeId_getAASNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS||getAASNodeId");
+	UA_NodeId objectId_getAASNodeId = UA_NODEID_STRING(openAASnsIndex,
+			"/TechUnits/openAAS/ModelmanagerOpenAAS");
 
-    UA_Variant_setScalarCopy(&inputArgs[0], &AASId,
-            &UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
-    UA_Variant_setScalarCopy(&inputArgs[1], &count, &UA_TYPES[UA_TYPES_UINT32]);
+	UA_Variant getAASNodeIdInput;
+	UA_Variant_init(&getAASNodeIdInput);
+	UA_Identification getAASNodeId_Id;
+	UA_Identification_init(&getAASNodeId_Id);
 
-    UA_NodeId methNodeId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS||getLastLCEs");
-    UA_NodeId objectId = UA_NODEID_STRING(openAASnsIndex,
-            "/TechUnits/openAAS/ModelmanagerOpenAAS");
+	getAASNodeId_Id.idSpec = UA_String_fromChars(AASIdSpec);
+	getAASNodeId_Id.idType = AASIdType;
 
-    UA_Variant *output = NULL;
-    retval = UA_Client_call(client, objectId, methNodeId, argInSize, inputArgs,
-            &argOutSize, &output);
+	UA_Variant_setScalarCopy(&getAASNodeIdInput, &getAASNodeId_Id,
+			&UA_OPENAAS[UA_OPENAAS_IDENTIFICATION]);
 
-    if (retval == UA_STATUSCODE_GOOD) {
-        printf(
-                "Method call was successful, and %lu returned values available.\n",
-                (unsigned long) argOutSize);
-    } else {
-        printf(
-                "Method call was unsuccessful, and %x returned values available.\n",
-                retval);
-        goto clean;
-    }
+	size_t getAASNodeIdOutputSize = 0;
+	UA_Variant *getAASNodeIdOutput = NULL;
+	retval = UA_Client_call(client, objectId_getAASNodeId,
+			methNodeId_getAASNodeId, 1, &getAASNodeIdInput,
+			&getAASNodeIdOutputSize, &getAASNodeIdOutput);
+	UA_Identification_deleteMembers(&getAASNodeId_Id);
+	UA_Variant_deleteMembers(&getAASNodeIdInput);
+	if (getAASNodeIdOutputSize > 0 && retval == UA_STATUSCODE_GOOD) {
+		UA_UInt16 lceModelNsIndex = 0;
+		UA_String tmpNSString = UA_String_fromChars(
+				"http://acplt.org/lifeCycleEntry/Ov");
+		retval = getNamespaceIndex(client, tmpNSString, &lceModelNsIndex);
 
-    *lastLCEsCount = output[1].arrayLength;
-    *lifeCycleEntries = calloc(*lastLCEsCount, sizeof(lifeCycleEntryType));
+		if (retval != UA_STATUSCODE_GOOD) {
+			goto clean;
+		}
 
-    if (!UA_Variant_hasArrayType(&output[1],
-            &UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
-        return -1;
+		UA_NodeId* aasNodeId = (UA_NodeId*) getAASNodeIdOutput->data;
+		printf("AAS is %.*s \n",
+				UA_PRINTF_STRING_DATA(aasNodeId->identifier.string));
+		UA_String lceObjectPath = UA_String_fromChars(
+				".Body/lce.LifeCycleArchiv");
+		UA_String lceMethodPath = UA_String_fromChars(
+				".Body/lce.LifeCycleArchiv||getLastLCEs");
 
-    for (size_t i = 0; i < *lastLCEsCount; i++) {
-        UA_LifeCycleEntry lce;
-        UA_LifeCycleEntry_init(&lce);
-        UA_ExtensionObject ext = ((UA_ExtensionObject*) output[1].data)[i];
-        size_t offset = 0;
-        UA_LifeCycleEntry_decodeBinary(&ext.content.encoded.body, &offset,
-                &lce);
+		UA_NodeId objectNodeId;
+		objectNodeId.identifierType = UA_NODEIDTYPE_STRING;
+		objectNodeId.identifier.string.data =
+				UA_malloc(aasNodeId->identifier.string.length + lceObjectPath.length);
+		memcpy(&objectNodeId.identifier.string.data[0],
+				aasNodeId->identifier.string.data,
+				aasNodeId->identifier.string.length);
+		memcpy(
+				&objectNodeId.identifier.string.data[aasNodeId->identifier.string.length],
+				lceObjectPath.data, lceObjectPath.length);
+		objectNodeId.identifier.string.length =
+				aasNodeId->identifier.string.length + lceObjectPath.length;
+		objectNodeId.namespaceIndex = lceModelNsIndex;
+		printf("getLastLCEsObjectNodeId is %.*s \n",
+				UA_PRINTF_STRING_DATA(objectNodeId.identifier.string));
+		printf("%" PRIu16 "\n", objectNodeId.namespaceIndex);
 
-        (*lifeCycleEntries)[i].creatingInstanceSpec = NULL;
-        copyOPCUAStringToChar(lce.creatingInstance.idSpec, &(*lifeCycleEntries)[i].creatingInstanceSpec);
-        (*lifeCycleEntries)[i].creatingInstanceType =
-                lce.creatingInstance.idType;
+		UA_NodeId methodNodeId;
+		methodNodeId.identifierType = UA_NODEIDTYPE_STRING;
+		methodNodeId.identifier.string.data =
+				UA_malloc(aasNodeId->identifier.string.length + lceMethodPath.length);
+		memcpy(&methodNodeId.identifier.string.data[0],
+				aasNodeId->identifier.string.data,
+				aasNodeId->identifier.string.length);
+		memcpy(
+				&methodNodeId.identifier.string.data[aasNodeId->identifier.string.length],
+				lceMethodPath.data, lceMethodPath.length);
+		methodNodeId.identifier.string.length =
+				aasNodeId->identifier.string.length + lceMethodPath.length;
+		methodNodeId.namespaceIndex = lceModelNsIndex;
+		printf("methodNodeId is %.*s \n",
+				UA_PRINTF_STRING_DATA(methodNodeId.identifier.string));
+		UA_String_deleteMembers(&lceObjectPath);
+		UA_String_deleteMembers(&lceMethodPath);
 
-        (*lifeCycleEntries)[i].eventClass = NULL;
-        copyOPCUAStringToChar(lce.eventClass, &(*lifeCycleEntries)[i].eventClass);
-        (*lifeCycleEntries)[i].subject = NULL;
-        copyOPCUAStringToChar(lce.subject, &(*lifeCycleEntries)[i].subject);
 
-        (*lifeCycleEntries)[i].writingInstanceSpec = NULL;
-        copyOPCUAStringToChar(lce.writingInstance.idSpec, &(*lifeCycleEntries)[i].writingInstanceSpec);
-        (*lifeCycleEntries)[i].writingInstanceType = lce.writingInstance.idType;
+		UA_Variant_setScalarCopy(&inputArgs[0], &count,
+				&UA_TYPES[UA_TYPES_UINT32]);
 
-        (*lifeCycleEntries)[i].data = NULL;
-        parseFromVariant(lce.data.value, &(*lifeCycleEntries)[i].data,
-                &(*lifeCycleEntries)[i].dataType);
-        (*lifeCycleEntries)[i].id = lce.id;
+		UA_Variant *output = NULL;
+		retval = UA_Client_call(client, objectNodeId, methodNodeId, argInSize,
+				inputArgs, &argOutSize, &output);
 
-        (*lifeCycleEntries)[i].timestamp = lce.data.sourceTimestamp;
+		if (retval == UA_STATUSCODE_GOOD) {
+			printf(
+					"Method call was successful, and %lu returned values available.\n",
+					(unsigned long) argOutSize);
+		} else {
+			printf(
+					"Method call was unsuccessful, and %x returned values available.\n",
+					retval);
+			goto clean;
+		}
 
-        UA_LifeCycleEntry_deleteMembers(&lce);
-    }
+        *lastLCEsCount = *(UA_UInt32*)output[2].data;
+		//*lastLCEsCount = output[0].arrayLength;
+		*lifeCycleEntries = calloc(*lastLCEsCount, sizeof(lifeCycleEntryType));
 
-    clean: UA_Identification_deleteMembers(&AASId);
-    UA_Client_delete(client);
-    UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
-    return retval;
+		if (!UA_Variant_hasArrayType(&output[1],
+				&UA_TYPES[UA_TYPES_EXTENSIONOBJECT]))
+			goto clean;
+
+		for (size_t i = 0; i < *lastLCEsCount; i++) {
+			UA_LifeCycleEntry lce;
+			UA_LifeCycleEntry_init(&lce);
+			UA_ExtensionObject ext = ((UA_ExtensionObject*) output[1].data)[i];
+			size_t offset = 0;
+			UA_LifeCycleEntry_decodeBinary(&ext.content.encoded.body, &offset,
+					&lce);
+
+			(*lifeCycleEntries)[i].creatingInstanceSpec = NULL;
+			copyOPCUAStringToChar(lce.creatingInstance.idSpec,
+					&(*lifeCycleEntries)[i].creatingInstanceSpec);
+			(*lifeCycleEntries)[i].creatingInstanceType =
+					lce.creatingInstance.idType;
+
+			(*lifeCycleEntries)[i].eventClass = NULL;
+			copyOPCUAStringToChar(lce.eventClass,
+					&(*lifeCycleEntries)[i].eventClass);
+			(*lifeCycleEntries)[i].subject = NULL;
+			copyOPCUAStringToChar(lce.subject, &(*lifeCycleEntries)[i].subject);
+
+			(*lifeCycleEntries)[i].writingInstanceSpec = NULL;
+			copyOPCUAStringToChar(lce.writingInstance.idSpec,
+					&(*lifeCycleEntries)[i].writingInstanceSpec);
+			(*lifeCycleEntries)[i].writingInstanceType =
+					lce.writingInstance.idType;
+
+			(*lifeCycleEntries)[i].data = NULL;
+			parseFromVariant(lce.data.value, &(*lifeCycleEntries)[i].data,
+					&(*lifeCycleEntries)[i].dataType);
+			(*lifeCycleEntries)[i].id = lce.id;
+
+			(*lifeCycleEntries)[i].timestamp = lce.data.sourceTimestamp;
+
+			UA_LifeCycleEntry_deleteMembers(&lce);
+		}
+		clean:
+		UA_Client_delete(client);
+		UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		UA_String_deleteMembers(&tmpNSString);
+		UA_NodeId_deleteMembers(&methodNodeId);
+		UA_NodeId_deleteMembers(&objectNodeId);
+
+	}
+
+	return retval;
 }
 
 //
@@ -2248,5 +2503,4 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 //    UA_Client_delete(client);
 //    return retval;
 //}
-
 

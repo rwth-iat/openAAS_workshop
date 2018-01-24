@@ -217,7 +217,7 @@ int main(int argc, char *argv[]) {
 	if (argc < 2) {
 		printf("using standard serverIP opc.tcp://127.0.0.1:16664 \n");
 		//serverIP = malloc(26);
-		serverIP = "opc.tcp://127.0.0.1:16664";
+		serverIP = "opc.tcp://134.130.125.38:16664";
 	} else
 		serverIP = argv[1];
 
@@ -228,9 +228,15 @@ int main(int argc, char *argv[]) {
 		deleteElements = UA_String_equal(&arg3, &argDelete);
 	}
 	UA_StatusCode retval = UA_STATUSCODE_GOOD;
+	unsigned int llce = 0;
+	lifeCycleEntryType *lce = NULL;
+	call_GetLastLCEs("opc.tcp://127.0.0.1:16664","http://meineVerwaltungsschale.de/openAAS123/as",0,10,&llce,&lce);
+
 
 	retval = call_CreateAAS(serverIP, AAS_ID_STRING, AAS_ID_TYPE, AAS_NAME,
 			ASSET_ID_STRING, AAS_ID_TYPE);
+
+
 	if (retval != UA_STATUSCODE_GOOD) {
 		printf("AAS creation failed with: %i \n", (int) retval);
 		goto clean;

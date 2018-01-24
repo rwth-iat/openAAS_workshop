@@ -6482,8 +6482,8 @@ ExtensionObject_decodeBinary(UA_ExtensionObject *dst, const UA_DataType *_) {
     UA_NodeId_init(&typeId);
     UA_StatusCode retval = NodeId_decodeBinary(&typeId, NULL);
     retval |= Byte_decodeBinary(&encoding, NULL);
-    if(typeId.namespaceIndex != 0 || typeId.identifierType != UA_NODEIDTYPE_NUMERIC)
-        retval = UA_STATUSCODE_BADDECODINGERROR;
+    //if(typeId.namespaceIndex != 0 || typeId.identifierType != UA_NODEIDTYPE_NUMERIC)
+    //    retval = UA_STATUSCODE_BADDECODINGERROR;
     if(retval != UA_STATUSCODE_GOOD) {
         UA_NodeId_deleteMembers(&typeId);
         return retval;

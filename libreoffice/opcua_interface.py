@@ -26,10 +26,37 @@ def call_getAASEntryPointByAASID(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     result = getAASEntryPointByAASID(oSheet.getCellRangeByName("B2").String, oSheet.getCellRangeByName("B11").String, idType)
     print(result[0])
+    
+    for x in range(0,4):
+      for y in range(15,18):
+        oSheet.getCellByPosition(y,x).String =""
+
     oSheet.getCellRangeByName("B14").String = result[0]
     if result[0] != "Entrypoint not found":
-      oSheet.getCellRangeByName("B15").String = result[1]
-
+      i = 0;
+      for element in result[1]:
+        oSheet.getCellByPosition(1,14 + i).String = element
+        if i==0: #KS
+          protocol,ipport,path  = element.split(";")
+          oSheet.getCellByPosition(0,14 + i+1).String = ("Endpoint %s" %i)
+          oSheet.getCellByPosition(1,14 + i).String = "Protocol"
+          oSheet.getCellByPosition(1,14 + i+1).String = protocol
+          oSheet.getCellByPosition(2,14 + i).String = "Endpoint"
+          oSheet.getCellByPosition(2,14 + i+1).String = ipport
+          oSheet.getCellByPosition(3,14 + i).String = "Path"
+          oSheet.getCellByPosition(3,14 + i+1).String = path         
+        if i==2: #OPCUA
+          oSheet.getCellByPosition(0,14 + i+1).String = ("Endpoint %s" %(i-1))
+          endpoint,ns,identifierType,identifer = element.split(";")
+          oSheet.getCellByPosition(1,14 + i).String = "Endpoint"
+          oSheet.getCellByPosition(1,14 + i+1).String = endpoint
+          oSheet.getCellByPosition(2,14 + i).String = "Namespace"
+          oSheet.getCellByPosition(2,14 + i+1).String = ns
+          oSheet.getCellByPosition(3,14 + i).String = "identifierType"
+          oSheet.getCellByPosition(3,14 + i+1).String = identifierType
+          oSheet.getCellByPosition(4,14 + i).String = "identifer"
+          oSheet.getCellByPosition(4,14 + i+1).String = identifer
+        i = i + 2
 
 def call_createAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
@@ -164,7 +191,7 @@ def call_createLCE(self):
     value_c = value.encode('utf-8')
     valueType_c = c_int(valueType)
     dtTicks = c_int64((time.time()*10000000+116444736000000000))
-    print(dtTicks)
+
     StatusCall = lib.call_CreateLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(creatingInstanceIdSpec_c), creatingInstanceIdType_c, c_char_p(writingInstanceIdSpec_c), writingInstanceIdType_c, c_char_p(eventClass_c), c_char_p(subject_c), dtTicks, c_char_p(value_c), valueType_c)
     #time string
     oSheet.getCellByPosition(6,7).String = str(datetime.utcnow())
@@ -290,9 +317,9 @@ def call_deletePVSL(self):
     oSheet = oDoc.CurrentController.ActiveSheet
     #Parameter parsing
     pathToLibrary = oSheet.getCellRangeByName("B2").String
-    ip = oSheet.getCellRangeByName("B16").String
-    AASIdSpec = oSheet.getCellRangeByName("B17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+    ip = oSheet.getCellRangeByName("B3").String
+    AASIdSpec = oSheet.getCellRangeByName("B16").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B17").String)
 
     listIdSpec =  oSheet.getCellRangeByName("B19").String
 
@@ -335,8 +362,8 @@ def call_createPVS(self):
     #SubModelIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
 
 
-    ListIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G2").String)
-    ListIdSpec   =  oSheet.getCellRangeByName("G3").String
+    ListIdType   = TypeToInt_Id("URI")
+    ListIdSpec   =  oSheet.getCellRangeByName("B6").String
     #PVSLName = oSheet.getCellRangeByName("B6").String
     #PVSLName_c = PVSLName.encode('utf-8')
 
@@ -354,49 +381,50 @@ def call_createPVS(self):
     CarrierIdSpec_c = ListIdSpec_c  # dummy
     CarrierIdType_c = ListIdType_c  # dummy
 
-    mask = 1 | 4 | 8 | 16 | 32
+    mask = 1 | 2 | 4 | 8 | 16 | 32
     offsetY = 8
 
     for i in range(5):
 
         #hierarchy
-        PVSName = oSheet.getCellByPosition(1,i+offsetY).String
+        PVSName = oSheet.getCellByPosition(0,i+offsetY).String
         if len(PVSName)==0:
             break
         PRIdType = oSheet.getCellByPosition(2,i+offsetY).String
         if len(PRIdType)==0:
             break
-        PRIdSpec = oSheet.getCellByPosition(3,i+offsetY).String
+        PRIdSpec = oSheet.getCellByPosition(1,i+offsetY).String
         if len(PRIdSpec)==0:
             break
         #definition: get from website?
-        unit = oSheet.getCellByPosition(5,i+offsetY).String
-        valueType = oSheet.getCellByPosition(6,i+offsetY).String
+        #unit = oSheet.getCellByPosition(5,i+offsetY).String
+        valueType = oSheet.getCellByPosition(3,i+offsetY).String
         if len(valueType)==0:
             break
         #valuelist
-        Value = oSheet.getCellByPosition(8,i+offsetY).String
+        Value = oSheet.getCellByPosition(4,i+offsetY).String
         if len(Value)==0:
             break
-        expressionSemantic = oSheet.getCellByPosition(9,i+offsetY).String
-        if len(expressionSemantic)==0:
-            break
-        expressionLogic = oSheet.getCellByPosition(10,i+offsetY).String
+        expressionLogic = oSheet.getCellByPosition(5,i+offsetY).String
         if len(expressionLogic)==0:
             break
-        view = oSheet.getCellByPosition(11,i+offsetY).String
+        expressionSemantic = oSheet.getCellByPosition(6,i+offsetY).String
+        if len(expressionSemantic)==0:
+            break
+        view = oSheet.getCellByPosition(7,i+offsetY).String
         if len(view)==0:
             break
-        visibility = oSheet.getCellByPosition(12,i+offsetY).String
+        visibility = oSheet.getCellByPosition(8,i+offsetY).String
         if len(visibility)==0:
             break
 
         PVSName_c = PVSName.encode('utf-8')
         expressionLogic_c = c_int(TypeToInt_EL(expressionLogic))
         expressionSemantic_c = c_int(TypeToInt_ES(expressionSemantic))
+        print("expression Semantic %s" % expressionSemantic_c)
         Value_c = Value.encode('utf-8')
         valueType_c = c_int(TypeToInt_valueType(valueType))
-        unit_c = unit.encode('utf-8')
+        #unit_c = unit.encode('utf-8')
         PRIdSpec_c = PRIdSpec.encode('utf-8')
         PRIdType_c = c_int(TypeToInt_Id(PRIdType))
         view_c = c_int(TypeToInt_view(view))
@@ -437,24 +465,21 @@ def call_deletePVS(self):
     pathToLibrary = oSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("R7").String
-    PVSLName = oSheet.getCellRangeByName("R10").String
-    PVSLName_c = PVSLName.encode('utf-8')
-    AASIdSpec = oSheet.getCellRangeByName("R8").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("R9").String)
-    PVSName = oSheet.getCellRangeByName("R11").String
+    ip = oSheet.getCellRangeByName("L6").String
+ 
+    AASIdSpec = oSheet.getCellRangeByName("L7").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("L8").String)
+    
+    PVSName = oSheet.getCellRangeByName("L9").String
     PVSName_c = PVSName.encode('utf-8')
 
-    subModelSpec =  oSheet.getCellRangeByName("R12").String
-    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("R13").String)
-    subModelType_c = subModelSpec.encode('utf-8')
 
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
 
-    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(subModelType_c),subModelType,c_char_p(PVSLName_c),c_char_p(PVSName_c))
+    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSLName_c),c_int(0))
     if(StatusCall!=0):
       status_str = "failed"
     else:
@@ -475,57 +500,148 @@ def getPVS(self):
     ip = oSheet.getCellRangeByName("B22").String
     AASIdSpec = oSheet.getCellRangeByName("B23").String
     AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B24").String)
-    PVSLName = oSheet.getCellRangeByName("B25").String
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    lib = CDLL(pathToLibrary)
+    listId = oSheet.getCellRangeByName("B25").String
+    print_start_x = 0
+    print_start_y = 28
+    pvsl = getPVSL(ip,listId)
+    if (pvsl==None):
+      return None
+      
+    i = 0
+    print(pvsl.Name)
+    #clear
+    for x in range(0,15):
+      for y in range(26,50):
+        oSheet.getCellByPosition(x,y).String = ""
+        oSheet.getCellByPosition(x,y).CharWeight = 100
+        
+    oSheet.getCellByPosition(0,25).String = "Local Name"
+    oSheet.getCellByPosition(0,25).CharWeight = 150
+    oSheet.getCellByPosition(1,25).String = pvsl.Name
+ 
+    
+    line = 26
+    if hasattr(pvsl, 'CarrierID'):
+      oSheet.getCellByPosition(0,line).String = "Carrier ID Spec"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.CarrierID.IDSpec  
+      line = line + 1
+      oSheet.getCellByPosition(0,line).String = "Carrier ID Type"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.CarrierID.IDType  
+      line = line + 1
+    if hasattr(pvsl, 'PropertyID'):
+      oSheet.getCellByPosition(0,line).String = "Property ID Spec"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.PropertyID.IDSpec 
+      line = line + 1
+      oSheet.getCellByPosition(0,line).String = "Property ID Type"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.PropertyID.IDType  
+      line = line + 1   
+    if hasattr(pvsl, 'ExpressionLogic'):
+      oSheet.getCellByPosition(0,line).String = "ExpressionLogic"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.ExpressionLogic
+      line = line + 1
+    if hasattr(pvsl, 'ExpressionSemantic'):
+      oSheet.getCellByPosition(0,line).String = "ExpressionSemantic"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.ExpressionSemantic
+      line = line + 1
+    
+    if hasattr(pvsl, 'View'):
+      oSheet.getCellByPosition(0,line).String = "View"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.View
+      line = line + 1       
+    if hasattr(pvsl, 'Visibility'):
+      oSheet.getCellByPosition(0,line).String = "Visibility"
+      oSheet.getCellByPosition(0,line).CharWeight = 150
+      oSheet.getCellByPosition(1,line).String = pvsl.Visibility
+    line = line + 2    
+    oSheet.getCellByPosition(0,line).String  = "Statements"
+    oSheet.getCellByPosition(0,line).CharWeight = 150
+    line = line + 1
+    firstPVS = True
+    i=0
+    firstLine = line
+    line = line + 1
+    for pvs in pvsl.statements:
+      print(i)
+      i=i+1
+      col = 0;
+      if firstPVS:
+        oSheet.getCellByPosition(col,firstLine).String = "(preferred)Name"
+        oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+      oSheet.getCellByPosition(col,line).String = pvs.Name
+      col = col + 1 
+      
+  
+      if hasattr(pvs, 'PropertyID'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Property ID Spec"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.PropertyID.IDSpec 
+        col = col + 1
+        
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Property ID Type"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.PropertyID.IDType
+        col = col + 1 
+         
+      if hasattr(pvs, 'Value'):       
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Value"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.Value
+        col = col + 1 
+        
+      if hasattr(pvs, 'CarrierID'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Carrier ID Spec"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.CarrierID.IDSpec 
+        col = col + 1
+        
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Property ID Type"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.CarrierID.IDType    
+        
+      if hasattr(pvs, 'ExpressionLogic'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "ExpressionLogic"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.ExpressionLogic 
+        col = col + 1
+        
+      if hasattr(pvs, 'ExpressionSemantic'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "ExpressionSemantic"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.ExpressionSemantic 
+        col = col + 1  
+        
+      if hasattr(pvs, 'View'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "View"      
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.View 
+        col = col + 1    
+        
+      if hasattr(pvs, 'Visibility'):
+        if firstPVS:
+          oSheet.getCellByPosition(col,firstLine).String = "Visibility"
+          oSheet.getCellByPosition(col,firstLine).CharWeight = 150
+        oSheet.getCellByPosition(col,line).String = pvs.Visibility 
+        print("found Visibility %s" %pvs.Visibility)
+        col = col + 1    
+        
+      line = line + 1;
+      firstPVS = False
 
-    ip_c = ip.encode('utf-8')
-    AASIdSpec_c = AASIdSpec.encode('utf-8')
-    AASIdTypeInt_c = c_int(AASIdType)
-    PVSLName_c = PVSLName.encode('utf8')
-    propertyValueStatements = c_void_p()
-
-    subModelSpec =  oSheet.getCellRangeByName("G22").String
-    subModelType  = TypeToInt_Id(oSheet.getCellRangeByName("G23").String)
-    subModelType_c = subModelSpec.encode('utf-8')
-
-
-    count = lib.getPVSFromListByName(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c,c_char_p(subModelType_c),subModelType, c_char_p(PVSLName_c), byref(propertyValueStatements))
-    #oSheet.getCellByPosition(0,42).String = count
-
-    print("count %s \n" %count)
-    if count > 0:
-        PVSArray = POINTER(PVS * count)
-        pvs_array = PVSArray.from_address(addressof(propertyValueStatements))
-        print_start_x = 0
-        print_start_y = 28
-        n = 0
-        while (len(oSheet.getCellByPosition(print_start_x+0,print_start_y+n).String) > 0):
-          n = n + 1
-        for i in range(n):
-          for j in range(15):
-            oSheet.getCellByPosition(print_start_x+j,print_start_y+i).String=""
-
-
-
-        for i in range(count):
-            oSheet.getCellByPosition(print_start_x+0,print_start_y+i).String = "-"
-            oSheet.getCellByPosition(print_start_x+1,print_start_y+i).String = pvs_array.contents[i].name
-            oSheet.getCellByPosition(print_start_x+2,print_start_y+i).String = IntToType_Id(pvs_array.contents[i].IDIdType)
-            oSheet.getCellByPosition(print_start_x+3,print_start_y+i).String = pvs_array.contents[i].IDIdSpec
-            oSheet.getCellByPosition(print_start_x+4,print_start_y+i).String = "-"
-
-            oSheet.getCellByPosition(print_start_x+5,print_start_y+i).String = pvs_array.contents[i].unit
-            oSheet.getCellByPosition(print_start_x+6,print_start_y+i).String = IntToType_valueType(pvs_array.contents[i].valueType)
-            oSheet.getCellByPosition(print_start_x+7,print_start_y+i).String = "-"
-            oSheet.getCellByPosition(print_start_x+8,print_start_y+i).String = pvs_array.contents[i].value
-            oSheet.getCellByPosition(print_start_x+9,print_start_y+i).String = IntToType_ES(pvs_array.contents[i].expressionSemantic)
-            oSheet.getCellByPosition(print_start_x+10,print_start_y+i).String = IntToType_EL(pvs_array.contents[i].expressionLogic)
-            oSheet.getCellByPosition(print_start_x+11,print_start_y+i).String = IntToType_view(pvs_array.contents[i].view)
-            oSheet.getCellByPosition(print_start_x+12,print_start_y+i).String = IntToType_VIS(pvs_array.contents[i].visibility)
-            oSheet.getCellByPosition(print_start_x+13,print_start_y+i).String = "-"
-            oSheet.getCellByPosition(print_start_x+14,print_start_y+i).String = "-"
-    del lib
     return None
 
 
@@ -665,3 +781,22 @@ def call_stopGetAssetLCEData(self):
       oSheet.getCellRangeByName("B9").String = "good"
     del lib
     return None
+    
+def call_serializeAAS(self): 
+    oDoc = XSCRIPTCONTEXT.getDocument()
+    oSheet = oDoc.CurrentController.ActiveSheet
+
+    #Parameter parsing
+    endpointStr = oSheet.getCellRangeByName("B27").String
+    identifierType = "String"
+    identifer = oSheet.getCellRangeByName("B28").String
+    namespaceIndex = oSheet.getCellRangeByName("B29").String
+    filename = oSheet.getCellRangeByName("B30").String
+    
+    StatusCall = serialize_AAS(endpointStr, identifierType,identifer,int(namespaceIndex),filename)
+    if(StatusCall!=0):
+      oSheet.getCellRangeByName("B9").String = "failed"
+    else:
+      oSheet.getCellRangeByName("B9").String = "good"
+
+    return None   

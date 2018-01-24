@@ -216,7 +216,7 @@ UA_DataType UA_OPENAAS[UA_OPENAAS_COUNT] = {
   .members = Identification_members },
 
 /* LifeCycleEntry */
-{ .typeId = {.namespaceIndex = 4, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 3002},
+{ .typeId = {.namespaceIndex = 5, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 3002},
   .typeIndex = UA_OPENAAS_LIFECYCLEENTRY,
 #ifdef UA_ENABLE_TYPENAMES
   .typeName = "LifeCycleEntry",
@@ -225,7 +225,7 @@ UA_DataType UA_OPENAAS[UA_OPENAAS_COUNT] = {
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 0,
+  .binaryEncodingId = 5001,
   .membersSize = 6,
   .members = LifeCycleEntry_members },
 };
