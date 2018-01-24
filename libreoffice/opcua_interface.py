@@ -38,7 +38,7 @@ def call_getAASEntryPointByAASID(self):
         col = 0
         if i==0: #KS
           protocol,ipport,path  = element.split(";")
-          oSheet.getCellByPosition(col,14 + i+1).String = ("Endpoint %s" %i)
+          oSheet.getCellByPosition(col,14 + i+1).String = ("Entrypoint  %s" %i)
           oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
           col+=1
           oSheet.getCellByPosition(col,14 + i).String = "Protocol"
@@ -53,7 +53,7 @@ def call_getAASEntryPointByAASID(self):
           oSheet.getCellByPosition(col,14 + i).CharWeight = 150
           oSheet.getCellByPosition(col,14 + i+1).String = path         
         if i==2: #OPCUA
-          oSheet.getCellByPosition(col,14 + i+1).String = ("Endpoint %s" %(i-1))
+          oSheet.getCellByPosition(col,14 + i+1).String = ("Entrypoint %s" %(i-1))
           oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
           line = i + 1;
           endpoint,ns,identifierType,identifer = element.split(";")
