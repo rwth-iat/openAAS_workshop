@@ -402,11 +402,11 @@ class AAS :
   def fromOPCUANodes(cls,node):
     aas=cls(Name=node.get_browse_name().Name)
     print("parsing Asset Administration Shell %s" % (aas.Name))
-    for c2 in node.get_children(refs=47):
+    for c2 in node.get_children(refs=35):
       if c2.get_browse_name().Name == "Header":
         HeaderFolderNode = c2#client.get_node(c2.nodeid)
         #print(HeaderFolderNode)
-        for c3 in HeaderFolderNode.get_children(refs=47):
+        for c3 in HeaderFolderNode.get_children(refs=35):
           #print(c3.get_browse_name().Name)
           if c3.get_browse_name().Name == "Config":
             #print(c3.get_browse_name().Name)

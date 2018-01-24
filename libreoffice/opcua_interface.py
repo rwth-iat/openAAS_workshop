@@ -29,33 +29,52 @@ def call_getAASEntryPointByAASID(self):
     
     for x in range(0,4):
       for y in range(15,18):
-        oSheet.getCellByPosition(y,x).String =""
-
+        oSheet.getCellByPosition(x,y).String =""
+        oSheet.getCellByPosition(x,y).CharWeight = 100
     oSheet.getCellRangeByName("B14").String = result[0]
     if result[0] != "Entrypoint not found":
       i = 0;
       for element in result[1]:
-        oSheet.getCellByPosition(1,14 + i).String = element
+        col = 0
         if i==0: #KS
           protocol,ipport,path  = element.split(";")
-          oSheet.getCellByPosition(0,14 + i+1).String = ("Endpoint %s" %i)
-          oSheet.getCellByPosition(1,14 + i).String = "Protocol"
-          oSheet.getCellByPosition(1,14 + i+1).String = protocol
-          oSheet.getCellByPosition(2,14 + i).String = "Endpoint"
-          oSheet.getCellByPosition(2,14 + i+1).String = ipport
-          oSheet.getCellByPosition(3,14 + i).String = "Path"
-          oSheet.getCellByPosition(3,14 + i+1).String = path         
+          oSheet.getCellByPosition(col,14 + i+1).String = ("Endpoint %s" %i)
+          oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
+          col+=1
+          oSheet.getCellByPosition(col,14 + i).String = "Protocol"
+          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + i+1).String = protocol
+          col+=1
+          oSheet.getCellByPosition(col,14 + i).String = "Endpoint"
+          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + i+1).String = ipport
+          col+=1
+          oSheet.getCellByPosition(col,14 + i).String = "Path"
+          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + i+1).String = path         
         if i==2: #OPCUA
-          oSheet.getCellByPosition(0,14 + i+1).String = ("Endpoint %s" %(i-1))
+          oSheet.getCellByPosition(col,14 + i+1).String = ("Endpoint %s" %(i-1))
+          oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
+          line = i + 1;
           endpoint,ns,identifierType,identifer = element.split(";")
-          oSheet.getCellByPosition(1,14 + i).String = "Endpoint"
-          oSheet.getCellByPosition(1,14 + i+1).String = endpoint
-          oSheet.getCellByPosition(2,14 + i).String = "Namespace"
-          oSheet.getCellByPosition(2,14 + i+1).String = ns
-          oSheet.getCellByPosition(3,14 + i).String = "identifierType"
-          oSheet.getCellByPosition(3,14 + i+1).String = identifierType
-          oSheet.getCellByPosition(4,14 + i).String = "identifer"
-          oSheet.getCellByPosition(4,14 + i+1).String = identifer
+          col+=1
+          oSheet.getCellByPosition(col,14 + line).String = "Protocol"  
+          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + line+1).String = "OPC UA"
+          col+=1
+          oSheet.getCellByPosition(col,14 + line).String = "Endpoint"
+          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + line+1).String = endpoint
+          col+=1
+          oSheet.getCellByPosition(col,14 + line).String = "Namespace"
+          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
+          oSheet.getCellByPosition(col,14 + line+1).String = ns
+          col+=1
+          #oSheet.getCellByPosition(col,14 + line).String = "identifierType"
+          #oSheet.getCellByPosition(col,14 + line+1).String = identifierType
+          #col+=1
+          oSheet.getCellByPosition(col,14 + line).String = "Identifer"
+          oSheet.getCellByPosition(col,14 + line+1).String = identifer
         i = i + 2
 
 def call_createAAS(self):
@@ -81,13 +100,14 @@ def call_deleteAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
- 
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B16").String
-    AASIdSpec = oSheet.getCellRangeByName("B17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B18").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
 
     oSheet.getCellRangeByName("B19").String = deleteAAS(pathToLibrary, ip, AASIdSpec, AASIdType)
@@ -100,12 +120,14 @@ def call_createSubModel(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
 
-    endpointStr = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     localID = oSheet.getCellRangeByName("B7").String
     
@@ -117,20 +139,21 @@ def call_createSubModel(self):
     Revision = int(oSheet.getCellRangeByName("B11").String)
     Version = int(oSheet.getCellRangeByName("B12").String)
 
-    oSheet.getCellRangeByName("B13").String = createSubModel(pathToLibrary, endpointStr, AASIdSpec, AASIdType,  localID, ModelIdSpec, ModelIdType, ModelName, Revision, Version)
+    oSheet.getCellRangeByName("B13").String = createSubModel(pathToLibrary, ip, AASIdSpec, AASIdType,  localID, ModelIdSpec, ModelIdType, ModelName, Revision, Version)
     return None
 
 def call_deleteSubModel(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B19").String
-    AASIdSpec = oSheet.getCellRangeByName("B20").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B21").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     localID = oSheet.getCellRangeByName("B24").String
 
@@ -154,13 +177,14 @@ def call_createLCE(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 
     creatingInstanceIdSpec = oSheet.getCellByPosition(1,8).String #i starts with 0, i+7 is the first entry
@@ -208,13 +232,14 @@ def call_deleteLCE(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("M16").String
-    AASIdSpec = oSheet.getCellRangeByName("M17").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("M18").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     LCEId = oSheet.getCellRangeByName("M19").String
     ip_c = ip.encode('utf-8')
@@ -235,13 +260,14 @@ def call_createLCE1(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     creatingInstanceIdSpec = oSheet.getCellRangeByName("A8").String
     creatingInstanceIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
@@ -289,14 +315,14 @@ def call_createPVSL(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
-
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     listName = oSheet.getCellRangeByName("B6").String
 
@@ -316,10 +342,14 @@ def call_deletePVSL(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B16").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B17").String)
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     listIdSpec =  oSheet.getCellRangeByName("B19").String
 
@@ -331,32 +361,16 @@ def call_deletePVSL(self):
 def call_createPVS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
 
-#ipAddress,
-#char* AASIdSpec,
-#int AASIdType,
-#char* ListIdSpec,
-#int ListIdType,
-#char* PVSName,
-#char* Value,
-#int ValueType,
-#int mask,
-#char* CarrierIdSpec,
-#int CarrierIdType,
-#int ExpressionLogic,
-#int ExpressionSemantic,
-#char* propertyIdSpec,
-#int propertyIdType,
-#int view,
-#int visibility
 
-    #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
 
     #SubModelIdSpec   =  oSheet.getCellRangeByName("G2").String
     #SubModelIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
@@ -383,7 +397,7 @@ def call_createPVS(self):
 
     mask = 1 | 2 | 4 | 8 | 16 | 32
     offsetY = 8
-
+    oSheet.getCellRangeByName("B14").Value = 0
     for i in range(5):
 
         #hierarchy
@@ -400,7 +414,7 @@ def call_createPVS(self):
         #unit = oSheet.getCellByPosition(5,i+offsetY).String
         valueType = oSheet.getCellByPosition(3,i+offsetY).String
         if len(valueType)==0:
-            break
+            break  
         #valuelist
         Value = oSheet.getCellByPosition(4,i+offsetY).String
         if len(Value)==0:
@@ -453,7 +467,7 @@ def call_createPVS(self):
         StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(ListIdSpec_c),ListIdType_c, c_char_p(PVSName_c), c_char_p(Value_c),valueType_c,mask_c,c_char_p(CarrierIdSpec_c),CarrierIdType_c,expressionLogic_c,expressionSemantic_c,c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
         if(StatusCall!=0):
           break
-        oSheet.getCellRangeByName("B16").Value = i+1
+        oSheet.getCellRangeByName("B14").Value = i+1
     del lib
     return None
 
@@ -462,29 +476,28 @@ def call_deletePVS(self):
     oSheet = oDoc.CurrentController.ActiveSheet
 
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
     lib = CDLL(pathToLibrary)
 
-    ip = oSheet.getCellRangeByName("L6").String
- 
-    AASIdSpec = oSheet.getCellRangeByName("L7").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("L8").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
     
-    PVSName = oSheet.getCellRangeByName("L9").String
+    PVSName = oSheet.getCellRangeByName("L6").String
     PVSName_c = PVSName.encode('utf-8')
-
-
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
     AASIdType_c = c_int(AASIdType)
 
-    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSLName_c),c_int(0))
+    StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c),c_int(0))
     if(StatusCall!=0):
       status_str = "failed"
     else:
       status_str = "good"
-    oSheet.getCellRangeByName("R12").String = status_str
+    oSheet.getCellRangeByName("L8").String = status_str
 
     del lib
     return None
@@ -495,11 +508,12 @@ def call_deletePVS(self):
 def getPVS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
-
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
     #Parameter parsing
-    ip = oSheet.getCellRangeByName("B22").String
-    AASIdSpec = oSheet.getCellRangeByName("B23").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B24").String)
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
     listId = oSheet.getCellRangeByName("B25").String
     print_start_x = 0
     print_start_y = 28
@@ -650,10 +664,14 @@ def call_getLastLCEs(self):
     oSheet = oDoc.CurrentController.ActiveSheet
 
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
-    ip = oSheet.getCellRangeByName("B12").String
-    AASIdSpec = oSheet.getCellRangeByName("B13").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B14").String)
+    AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
+    
+    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    lib = CDLL(pathToLibrary)
+
+    ip = AASSheet.getCellRangeByName("B3").String
+    AASIdSpec = AASSheet.getCellRangeByName("B4").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
     lceCountToReturn = int(oSheet.getCellRangeByName("B15").String)
     lib = CDLL(pathToLibrary)
 
