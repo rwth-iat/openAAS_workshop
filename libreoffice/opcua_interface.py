@@ -4,77 +4,102 @@ import datetime
 from datetime import *
 import time
 from aas import *
+import struct 
 
 def call_getAASIDByAssetID(self):
     print("call_getAASIDByAssetID was called")
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    idType = TypeToInt_Id(oSheet.getCellRangeByName("B4").String)
-    result = getAASIDByAssetID(oSheet.getCellRangeByName("B2").String, oSheet.getCellRangeByName("B3").String, idType)
+    idType = TypeToInt_Id(oSheet.getCellRangeByName("B6").String)
+    #def getAASEntryPointByAASID(ResolutionServerEndpoint,AASIDSpec,AASIDType):
+    result = getAASIDByAssetID(oSheet.getCellRangeByName("B4").String, oSheet.getCellRangeByName("B5").String, idType)
     print(result[0])
-    oSheet.getCellRangeByName("B6").String = result[0]
-    if result[0] != "AssetID not found":
-      oSheet.getCellRangeByName("B8").String = IntToType_Id(result[1])
-      oSheet.getCellRangeByName("B7").String = result[2]
 
+    Cell = oSheet.getCellRangeByName("B8")   
+    if result[0] != "AssetID not found":
+      oSheet.getCellRangeByName("B10").String = IntToType_Id(result[1])
+      oSheet.getCellRangeByName("B9").String = result[2]
+      Cell.String = "good"
+      Cell.CharColor = 65280     
+    else:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680   
+      oSheet.getCellRangeByName("B10").String = ""
+      oSheet.getCellRangeByName("B9").String =  ""
+
+
+  
 def call_getAASEntryPointByAASID(self):
     print("call_getAASEntryPointByAASID was called")
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
-    idType = TypeToInt_Id(oSheet.getCellRangeByName("B12").String)
+    idType = TypeToInt_Id(oSheet.getCellRangeByName("B16").String)
     oSheet = oDoc.CurrentController.ActiveSheet
-    result = getAASEntryPointByAASID(oSheet.getCellRangeByName("B2").String, oSheet.getCellRangeByName("B11").String, idType)
+    #def getAASIDByAssetID(ResolutionServerEndpoint,AssetIDSpec,AssetIDType):
+    result = getAASEntryPointByAASID(oSheet.getCellRangeByName("B4").String, oSheet.getCellRangeByName("B15").String, idType)
     print(result[0])
     
-    for x in range(0,4):
-      for y in range(15,18):
+    Cell = oSheet.getCellRangeByName("B17") 
+    Cell.String = result[0]
+    if result[0] != "AASID not found":
+
+      #Cell.String = "good"
+      Cell.CharColor = 65280     
+    else:
+      #Cell.String = "failed"
+      Cell.CharColor = 16711680  
+
+    for x in range(0,5):
+      for y in range(17,25):
         oSheet.getCellByPosition(x,y).String =""
         oSheet.getCellByPosition(x,y).CharWeight = 100
-    oSheet.getCellRangeByName("B14").String = result[0]
-    if result[0] != "Entrypoint not found":
+   
+    start_y = 19
+    if result[0] != "AASID not found":
       i = 0;
       for element in result[1]:
         col = 0
         if i==0: #KS
           protocol,ipport,path  = element.split(";")
-          oSheet.getCellByPosition(col,14 + i+1).String = ("Entrypoint  %s" %i)
-          oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + i+1).String = ("Entrypoint  %s" %i)
+          oSheet.getCellByPosition(col,start_y + i+1).CharWeight = 150
           col+=1
-          oSheet.getCellByPosition(col,14 + i).String = "Protocol"
-          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + i+1).String = protocol
+          oSheet.getCellByPosition(col,start_y + i).String = "Protocol"
+          oSheet.getCellByPosition(col,start_y + i).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + i+1).String = protocol
           col+=1
-          oSheet.getCellByPosition(col,14 + i).String = "Endpoint"
-          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + i+1).String = ipport
+          oSheet.getCellByPosition(col,start_y + i).String = "Endpoint"
+          oSheet.getCellByPosition(col,start_y + i).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + i+1).String = ipport
           col+=1
-          oSheet.getCellByPosition(col,14 + i).String = "Path"
-          oSheet.getCellByPosition(col,14 + i).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + i+1).String = path         
+          oSheet.getCellByPosition(col,start_y + i).String = "Path"
+          oSheet.getCellByPosition(col,start_y + i).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + i+1).String = path         
         if i==2: #OPCUA
-          oSheet.getCellByPosition(col,14 + i+1).String = ("Entrypoint %s" %(i-1))
-          oSheet.getCellByPosition(col,14 + i+1).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + i+1).String = ("Entrypoint %s" %(i-1))
+          oSheet.getCellByPosition(col,start_y + i+1).CharWeight = 150
           line = i + 1;
           endpoint,ns,identifierType,identifer = element.split(";")
           col+=1
-          oSheet.getCellByPosition(col,14 + line).String = "Protocol"  
-          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + line+1).String = "OPC UA"
+          oSheet.getCellByPosition(col,start_y + line).String = "Protocol"  
+          oSheet.getCellByPosition(col,start_y + line).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + line+1).String = "OPC UA"
           col+=1
-          oSheet.getCellByPosition(col,14 + line).String = "Endpoint"
-          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + line+1).String = endpoint
+          oSheet.getCellByPosition(col,start_y + line).String = "Endpoint"
+          oSheet.getCellByPosition(col,start_y + line).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + line+1).String = endpoint
           col+=1
-          oSheet.getCellByPosition(col,14 + line).String = "Namespace"
-          oSheet.getCellByPosition(col,14 + line).CharWeight = 150
-          oSheet.getCellByPosition(col,14 + line+1).String = ns
+          oSheet.getCellByPosition(col,start_y + line).String = "Namespace"
+          oSheet.getCellByPosition(col,start_y + line).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + line+1).String = ns
           col+=1
           #oSheet.getCellByPosition(col,14 + line).String = "identifierType"
           #oSheet.getCellByPosition(col,14 + line+1).String = identifierType
           #col+=1
-          oSheet.getCellByPosition(col,14 + line).String = "Identifer"
-          oSheet.getCellByPosition(col,14 + line+1).String = identifer
+          oSheet.getCellByPosition(col,start_y + line).String = "Identifer"
+          oSheet.getCellByPosition(col,start_y + line).CharWeight = 150
+          oSheet.getCellByPosition(col,start_y + line+1).String = identifer
         i = i + 2
 
 def call_createAAS(self):
@@ -82,17 +107,22 @@ def call_createAAS(self):
     oSheet = oDoc.CurrentController.ActiveSheet
 
     #Parameter parsing
-    pathToLibrary = oSheet.getCellRangeByName("B2").String
+    pathToLibrary = oSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
-    ip = oSheet.getCellRangeByName("B3").String
-    AASIdSpec = oSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B5").String)
-    AASName = oSheet.getCellRangeByName("B6").String
+    ip = oSheet.getCellRangeByName("B5").String
+    AASIdSpec = oSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+    AASName = oSheet.getCellRangeByName("B8").String
 
-    AssetIdSpec = oSheet.getCellRangeByName("B7").String
-    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
+    AssetIdSpec = oSheet.getCellRangeByName("B9").String
+    AssetIdType = TypeToInt_Id(oSheet.getCellRangeByName("B10").String)
     StatusCall = createAAS(pathToLibrary,ip,AASIdSpec,AASIdType,AASName,AssetIdSpec,AssetIdType)
-    oSheet.getCellRangeByName("B9").String = createAAS(pathToLibrary,ip,AASIdSpec,AASIdType,AASName,AssetIdSpec,AssetIdType)
+    if StatusCall>0:
+      oSheet.getCellRangeByName("B11").String = "failed"
+      oSheet.getCellRangeByName("B11").CharColor = 16711680
+    else:
+      oSheet.getCellRangeByName("B11").String = "good"
+      oSheet.getCellRangeByName("B11").CharColor = 65280
     del lib
     return None
 
@@ -102,15 +132,23 @@ def call_deleteAAS(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
 
-    oSheet.getCellRangeByName("B19").String = deleteAAS(pathToLibrary, ip, AASIdSpec, AASIdType)
+    StatusCall = deleteAAS(pathToLibrary, ip, AASIdSpec, AASIdType)    
+    Cell = oSheet.getCellRangeByName("B18")   
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
+    else:
+      Cell.String = "good"
+      Cell.CharColor = 65280
+
     
     return None
 
@@ -122,24 +160,33 @@ def call_createSubModel(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
-    localID = oSheet.getCellRangeByName("B7").String
+ 
+    localID = oSheet.getCellRangeByName("B5").String
+
+    ModelIdSpec = oSheet.getCellRangeByName("B6").String
+    ModelIdType = TypeToInt_Id(oSheet.getCellRangeByName("B7").String)
+
+    ModelName = oSheet.getCellRangeByName("B8").String
+    Revision = int(oSheet.getCellRangeByName("B9").String)
+    Version = int(oSheet.getCellRangeByName("B10").String)
+
+    StatusCall = createSubModel(pathToLibrary, ip, AASIdSpec, AASIdType,  localID, ModelIdSpec, ModelIdType, ModelName, Revision, Version)
+    Cell = oSheet.getCellRangeByName("B11")   
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
+    else:
+      Cell.String = "good"
+      Cell.CharColor = 65280
     
-
-    ModelIdSpec = oSheet.getCellRangeByName("B8").String
-    ModelIdType = TypeToInt_Id(oSheet.getCellRangeByName("B9").String)
-
-    ModelName = oSheet.getCellRangeByName("B10").String
-    Revision = int(oSheet.getCellRangeByName("B11").String)
-    Version = int(oSheet.getCellRangeByName("B12").String)
-
-    oSheet.getCellRangeByName("B13").String = createSubModel(pathToLibrary, ip, AASIdSpec, AASIdType,  localID, ModelIdSpec, ModelIdType, ModelName, Revision, Version)
+    
     return None
 
 def call_deleteSubModel(self):
@@ -148,14 +195,14 @@ def call_deleteSubModel(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
-    localID = oSheet.getCellRangeByName("B24").String
+    localID = oSheet.getCellRangeByName("B19").String
 
     ip_c = ip.encode('utf-8')
     AASIdSpec_c = AASIdSpec.encode('utf-8')
@@ -164,11 +211,13 @@ def call_deleteSubModel(self):
     print(ip)
     StatusCall = deleteSubModel(pathToLibrary,ip, AASIdSpec, AASIdType,localID)
     print(StatusCall)
-    if(StatusCall!=0):
-      status_str = "failed"
+    Cell = oSheet.getCellRangeByName("B21")   
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
     else:
-      status_str = "good"
-    oSheet.getCellRangeByName("B25").String = status_str;
+      Cell.String = "good"
+      Cell.CharColor = 65280
     del lib
     return None
 
@@ -179,12 +228,12 @@ def call_createLCE(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
     #oSheet.getCellRangeByName("B6").String = AASIdType
 
     creatingInstanceIdSpec = oSheet.getCellByPosition(1,8).String #i starts with 0, i+7 is the first entry
@@ -219,11 +268,12 @@ def call_createLCE(self):
     StatusCall = lib.call_CreateLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdTypeInt_c, c_char_p(creatingInstanceIdSpec_c), creatingInstanceIdType_c, c_char_p(writingInstanceIdSpec_c), writingInstanceIdType_c, c_char_p(eventClass_c), c_char_p(subject_c), dtTicks, c_char_p(value_c), valueType_c)
     #time string
     oSheet.getCellByPosition(6,7).String = str(datetime.utcnow())
-    if(StatusCall!=0):
-      status_str = "failed"
+    if StatusCall>0:
+      oSheet.getCellRangeByName("B11").String = "failed"
+      oSheet.getCellRangeByName("B11").CharColor = 16711680
     else:
-      status_str = "good"
-    oSheet.getCellRangeByName("K8").String = status_str;
+      oSheet.getCellRangeByName("B11").String = "good"
+      oSheet.getCellRangeByName("B11").CharColor = 65280
 
     del lib
     return None
@@ -234,12 +284,12 @@ def call_deleteLCE(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
     LCEId = oSheet.getCellRangeByName("M19").String
     ip_c = ip.encode('utf-8')
@@ -262,12 +312,12 @@ def call_createLCE1(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
     creatingInstanceIdSpec = oSheet.getCellRangeByName("A8").String
     creatingInstanceIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
@@ -301,12 +351,17 @@ def call_createLCE1(self):
     valueType_c = c_int(valueType)
     print(valueType_c)
     StatusCall = lib.call_CreateLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(creatingInstanceIdSpec_c), creatingInstanceIdType_c, c_char_p(writingInstanceIdSpec_c), writingInstanceIdType_c, c_char_p(eventClass_c), c_char_p(subject_c), timeStamp_c, c_char_p(value_c), valueType_c)
-    StatusCall = 1
-    if(StatusCall!=0):
-      status_str = "failed"
+
+    Cell =oSheet.getCellRangeByName("K8")
+    oSheet.getCellByPosition(6,7).String = str(datetime.utcnow())
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
     else:
-      status_str = "good"
-    oSheet.getCellRangeByName("K8").String = status_str;
+      Cell.String = "good"
+      Cell.CharColor = 65280
+    
+    
     del lib
     return None
 
@@ -317,24 +372,30 @@ def call_createPVSL(self):
 
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
     listName = oSheet.getCellRangeByName("B6").String
 
     carrierIdSpec = oSheet.getCellRangeByName("B7").String
     carrierIdType = TypeToInt_Id(oSheet.getCellRangeByName("B8").String)
 
-    parentIdSpec = oSheet.getCellRangeByName("B11").String
+    parentIdSpec = oSheet.getCellRangeByName("B10").String
 
 
    
-    oSheet.getCellRangeByName("B13").String = createPVSL(pathToLibrary,ip,AASIdSpec,AASIdType,listName,carrierIdSpec,carrierIdType,parentIdSpec)
-
+    StatusCall = createPVSL(pathToLibrary,ip,AASIdSpec,AASIdType,listName,carrierIdSpec,carrierIdType,parentIdSpec)
+    Cell = oSheet.getCellRangeByName("B12")   
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
+    else:
+      Cell.String = "good"
+      Cell.CharColor = 65280
 
 
 
@@ -344,16 +405,23 @@ def call_deletePVSL(self):
     #Parameter parsing
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
     listIdSpec =  oSheet.getCellRangeByName("B19").String
 
-    oSheet.getCellRangeByName("B21").String = deletePVSL(pathToLibrary,ip,AASIdSpec,AASIdType,listIdSpec)
+    StatusCall = deletePVSL(pathToLibrary,ip,AASIdSpec,AASIdType,listIdSpec)
+    Cell = oSheet.getCellRangeByName("B21")   
+    if StatusCall>0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
+    else:
+      Cell.String = "good"
+      Cell.CharColor = 65280  
     return None
 
 
@@ -365,19 +433,19 @@ def call_createPVS(self):
     
 
 
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
 
     #SubModelIdSpec   =  oSheet.getCellRangeByName("G2").String
     #SubModelIdType   = TypeToInt_Id(oSheet.getCellRangeByName("G3").String)
 
 
     ListIdType   = TypeToInt_Id("URI")
-    ListIdSpec   =  oSheet.getCellRangeByName("B6").String
+    ListIdSpec   =  oSheet.getCellRangeByName("B4").String
     #PVSLName = oSheet.getCellRangeByName("B6").String
     #PVSLName_c = PVSLName.encode('utf-8')
 
@@ -396,8 +464,8 @@ def call_createPVS(self):
     CarrierIdType_c = ListIdType_c  # dummy
 
     mask = 1 | 2 | 4 | 8 | 16 | 32
-    offsetY = 8
-    oSheet.getCellRangeByName("B14").Value = 0
+    offsetY = 6
+    oSheet.getCellRangeByName("B12").Value = 0
     for i in range(5):
 
         #hierarchy
@@ -465,9 +533,15 @@ def call_createPVS(self):
 
 
         StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c),AASIdType_c,c_char_p(ListIdSpec_c),ListIdType_c, c_char_p(PVSName_c), c_char_p(Value_c),valueType_c,mask_c,c_char_p(CarrierIdSpec_c),CarrierIdType_c,expressionLogic_c,expressionSemantic_c,c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
-        if(StatusCall!=0):
+        Cell = oSheet.getCellRangeByName("B13")   
+        if StatusCall>0:
+          Cell.String = "failed"
+          Cell.CharColor = 16711680
           break
-        oSheet.getCellRangeByName("B14").Value = i+1
+        else:
+          Cell.String = "good"
+          Cell.CharColor = 65280  
+    oSheet.getCellRangeByName("B12").Value = i
     del lib
     return None
 
@@ -478,12 +552,12 @@ def call_deletePVS(self):
     #Parameter parsing
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
     
     PVSName = oSheet.getCellRangeByName("L6").String
     PVSName_c = PVSName.encode('utf-8')
@@ -493,11 +567,13 @@ def call_deletePVS(self):
     AASIdType_c = c_int(AASIdType)
 
     StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c),c_int(0))
-    if(StatusCall!=0):
-      status_str = "failed"
+    Cell = oSheet.getCellRangeByName("L8")   
+    if StatusCall > 0:
+      Cell.String = "failed"
+      Cell.CharColor = 16711680
     else:
-      status_str = "good"
-    oSheet.getCellRangeByName("L8").String = status_str
+      Cell.String = "good"
+      Cell.CharColor = 65280  
 
     del lib
     return None
@@ -511,9 +587,9 @@ def getPVS(self):
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
     #Parameter parsing
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
     listId = oSheet.getCellRangeByName("B25").String
     print_start_x = 0
     print_start_y = 28
@@ -666,12 +742,12 @@ def call_getLastLCEs(self):
     #Parameter parsing
     AASSheet = oDoc.Sheets.getByName("Asset Administration Shell")
     
-    pathToLibrary = AASSheet.getCellRangeByName("B2").String
+    pathToLibrary = AASSheet.getCellRangeByName("B4").String
     lib = CDLL(pathToLibrary)
 
-    ip = AASSheet.getCellRangeByName("B3").String
-    AASIdSpec = AASSheet.getCellRangeByName("B4").String
-    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B5").String)
+    ip = AASSheet.getCellRangeByName("B5").String
+    AASIdSpec = AASSheet.getCellRangeByName("B6").String
+    AASIdType = TypeToInt_Id(AASSheet.getCellRangeByName("B7").String)
     lceCountToReturn = int(oSheet.getCellRangeByName("B15").String)
     lib = CDLL(pathToLibrary)
 
@@ -805,11 +881,11 @@ def call_serializeAAS(self):
     oSheet = oDoc.CurrentController.ActiveSheet
 
     #Parameter parsing
-    endpointStr = oSheet.getCellRangeByName("B27").String
+    endpointStr = oSheet.getCellRangeByName("B23").String
     identifierType = "String"
-    identifer = oSheet.getCellRangeByName("B28").String
-    namespaceIndex = oSheet.getCellRangeByName("B29").String
-    filename = oSheet.getCellRangeByName("B30").String
+    identifer = oSheet.getCellRangeByName("B24").String
+    namespaceIndex = oSheet.getCellRangeByName("B25").String
+    filename = oSheet.getCellRangeByName("B26").String
     
     StatusCall = serialize_AAS(endpointStr, identifierType,identifer,int(namespaceIndex),filename)
     if(StatusCall!=0):

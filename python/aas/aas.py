@@ -205,7 +205,7 @@ class Domain:
             for r in c.get_references(refs=40):
               if r.BrowseName.Name == "PropertyValueStatementListType":
                 domain.addPropertyValueStatementContainer(propertyValueStatementContainer.fromOPCUANodes(node = c))
-              if r.BrowseName.Name == "domain":
+              if r.BrowseName.Name == "domain" or "Folder":
                 domain.addSubDomain(cls.fromOPCUANodes(c))
             if c.get_node_class().name == "Method":
               service = Service(Name = p.get_browse_name().Name)
@@ -753,12 +753,8 @@ def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
   AASIdSpec_c = aasIDSpec.encode('utf-8')
   AASIdType_c = c_int(aasIDType)
   StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
-  del lib
-  return status_str  
+
+  return StatusCall  
   
 def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, modelIdSpec, modelIdType, modelName, revision, version):
   """
@@ -811,12 +807,7 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
   Version_c = c_int(version)
 
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
-  del lib
-  return status_str    
+  return StatusCall    
 
 def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parentIdSpec, parentIdType, modelIdSpec, modelIdType, modelName, revision, version):
   """
@@ -869,12 +860,8 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
   Version_c = c_int(version)
 
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
-  del lib
-  return status_str  
+
+  return StatusCall  
   
   
 def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
@@ -921,12 +908,7 @@ def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
 
   print(ip)
   StatusCall = lib.call_DeleteSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(SubModelIdSpec_c), SubModelIdType_c)
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
-  del lib
-  return status_str;
+  return StatusCall
   
 def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdSpec,carrierIdType,parentID):
   """
@@ -1010,13 +992,8 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
   visibility_c)
 
 
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
+  return StatusCall
 
-  del lib
-  return status_str
   
   
 def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
@@ -1056,12 +1033,8 @@ def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
 
   StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listIdSpec_c),listIdType_c)
 
-  if(StatusCall!=0):
-    status_str = "failed"
-  else:
-    status_str = "good"
-  del lib
-  return status_str;  
+
+  return StatusCall
   
 def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename):
   """
@@ -1103,7 +1076,8 @@ def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename)
       #filename = "JSON_%s" % (filename)
       #print("Writing AAS data of %s in %s" % (aas.Name, os.path.join(currentDir,filename)))
       file = open(filename,"w")
-      file.write(json.dumps(aas, default=jdefault))
+      
+      file.write(json.dumps(aas, default=jdefault,indent=4))
 
       file.close()
   finally:   

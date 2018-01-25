@@ -317,6 +317,7 @@ UA_StatusCode call_CreateAAS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -388,6 +389,7 @@ UA_StatusCode call_DeleteAAS(char* ipAddress, char* AASIdSpec, int AASIdType) {
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+		retval = *(UA_UInt32*)output[0].data;
 
 	} else {
 		printf(
@@ -478,6 +480,7 @@ UA_StatusCode call_CreateSubModel(char* ipAddress, char* AASIdSpec,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -555,6 +558,7 @@ UA_StatusCode call_DeleteSubModel(char* ipAddress, char* AASIdSpec,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 
 	} else {
 		printf(
@@ -660,6 +664,7 @@ UA_StatusCode call_CreatePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 
 	} else {
 		printf(
@@ -740,6 +745,7 @@ UA_StatusCode call_DeletePVSL(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 
 	} else {
 		printf(
@@ -856,6 +862,7 @@ UA_StatusCode call_CreatePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 
 	} else {
 		printf(
@@ -937,12 +944,13 @@ UA_StatusCode call_DeletePVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
-		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
 				retval);
 	}
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	UA_Identification_deleteMembers(&AASId);
 	UA_Identification_deleteMembers(&PVSId);
 	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
@@ -1051,13 +1059,14 @@ UA_StatusCode call_SetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
-		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
 				retval);
 	}
 	clean: UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+			UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	UA_DataValue_deleteMembers(&dataValue);
 	UA_Identification_deleteMembers(&AASId);
 	UA_Identification_deleteMembers(&PVSId);
@@ -1289,6 +1298,7 @@ UA_Boolean findAASNodeId(UA_Client *client, UA_Identification AASId,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
+				retval = *(UA_UInt32*)output[0].data;
 	} else {
 		found = false;
 		printf(
@@ -1481,7 +1491,7 @@ UA_StatusCode call_GetPVS(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 		UA_DataValue *dataValue = (UA_DataValue*) output[8].data;
 		parseFromVariant(dataValue->value, Value, ValueType);
-
+        retval = *(UA_UInt32*)output[0].data;
 		//UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	} else {
 		printf(
@@ -1649,10 +1659,10 @@ UA_StatusCode call_CreateLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 				&output);
 
 		if (retval == UA_STATUSCODE_GOOD) {
-			printf(
-					"Method call was successful, and %lu returned values available.\n",
-					(unsigned long) argOutSize);
-			goto clean;
+			printf("Method call was successful, and %lu returned values available.\n",(unsigned long) argOutSize);
+			printf("return value is");
+			retval = *(UA_UInt32*)output[0].data;
+			printf("return value is: %i \n",retval);
 		} else {
 			printf(
 					"Method call was unsuccessful, and %x returned values available.\n",
@@ -1739,7 +1749,7 @@ UA_StatusCode call_DeleteLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
-		goto clean;
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -1831,7 +1841,7 @@ UA_StatusCode call_SetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
-		goto clean;
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -1932,7 +1942,7 @@ UA_StatusCode call_SetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
 		printf(
 				"Method call was successful, and %lu returned values available.\n",
 				(unsigned long) argOutSize);
-		goto clean;
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -2045,8 +2055,7 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
 		UA_DataValue *dataValue = (UA_DataValue*) output[5].data;
 		*timeStamp = dataValue->sourceTimestamp;
 		parseFromVariant(dataValue->value, value, valueType);
-
-		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
@@ -2054,6 +2063,7 @@ UA_StatusCode call_GetLCESimple(char* ipAddress, char* AASIdSpec, int AASIdType,
 	}
 	UA_Client_delete(client);
 	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	return retval;
 }
 
@@ -2143,13 +2153,14 @@ UA_StatusCode call_GetLCE(char* ipAddress, char* AASIdSpec, int AASIdType,
 
 		UA_LifeCycleEntry_deleteMembers(&tmplceData);
 
-		UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
+		retval = *(UA_UInt32*)output[0].data;
 	} else {
 		printf(
 				"Method call was unsuccessful, and %x returned values available.\n",
 				retval);
 	}
 	UA_Client_delete(client);
+	UA_Array_delete(output, argOutSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	UA_Array_delete(inputArgs, argInSize, &UA_TYPES[UA_TYPES_VARIANT]);
 	return retval;
 }
@@ -2277,6 +2288,7 @@ UA_StatusCode call_GetLastLCEs(char* ipAddress, char* AASIdSpec, int AASIdType,
 			printf(
 					"Method call was successful, and %lu returned values available.\n",
 					(unsigned long) argOutSize);
+					retval = *(UA_UInt32*)output[0].data;
 		} else {
 			printf(
 					"Method call was unsuccessful, and %x returned values available.\n",
