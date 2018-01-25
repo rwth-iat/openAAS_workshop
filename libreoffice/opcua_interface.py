@@ -880,7 +880,7 @@ def call_serializeAAS(self):
     oDoc = XSCRIPTCONTEXT.getDocument()
     oSheet = oDoc.CurrentController.ActiveSheet
 
-    #Parameter parsing
+    #Parameter parsingc
     endpointStr = oSheet.getCellRangeByName("B23").String
     identifierType = "String"
     identifer = oSheet.getCellRangeByName("B24").String
@@ -892,5 +892,10 @@ def call_serializeAAS(self):
       oSheet.getCellRangeByName("B9").String = "failed"
     else:
       oSheet.getCellRangeByName("B9").String = "good"
+    cmdStr_gedit = "gedit %s &" % (filename)
+    cmdStr_pyViewer = "python3 /opt/json-viewer/json_viewer.py %s &" % (filename)
+
+    os.system(cmdStr_gedit)
+    os.system(cmdStr_pyViewer)
 
     return None   
