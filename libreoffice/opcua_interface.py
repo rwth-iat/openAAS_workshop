@@ -887,11 +887,8 @@ def call_serializeAAS(self):
     namespaceIndex = oSheet.getCellRangeByName("B25").String
     filename = oSheet.getCellRangeByName("B26").String
     
-    StatusCall = serialize_AAS(endpointStr, identifierType,identifer,int(namespaceIndex),filename)
-    if(StatusCall!=0):
-      oSheet.getCellRangeByName("B9").String = "failed"
-    else:
-      oSheet.getCellRangeByName("B9").String = "good"
+    serialize_AAS(endpointStr, identifierType,identifer,int(namespaceIndex),filename)
+
     cmdStr_gedit = "gedit %s &" % (filename)
     cmdStr_pyViewer = "python3 /opt/json-viewer/json_viewer.py %s &" % (filename)
 

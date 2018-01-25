@@ -24,7 +24,7 @@
 
 #include "open62541.h"
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/queue.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/queue.h" ***********************************/
 
 /*	$OpenBSD: queue.h,v 1.38 2013/07/03 15:05:21 fgsch Exp $	*/
 /*	$NetBSD: queue.h,v 1.11 1996/05/16 05:17:14 mycroft Exp $	*/
@@ -675,7 +675,7 @@ struct {								\
 
 #endif	/* !_SYS_QUEUE_H_ */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/pcg_basic.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/pcg_basic.h" ***********************************/
 
 /*
  * PCG Random Number Generation for C.
@@ -721,7 +721,7 @@ uint32_t pcg32_random_r(pcg32_random_t* rng);
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/libc_time.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/libc_time.h" ***********************************/
 
 
 #include <limits.h>
@@ -729,7 +729,7 @@ uint32_t pcg32_random_r(pcg32_random_t* rng);
 int __secs_to_tm(long long t, struct tm *tm);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_util.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_util.h" ***********************************/
 
 
 
@@ -821,7 +821,7 @@ UA_atomic_add(volatile uint32_t *addr, uint32_t increase) {
 }
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_types_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_types_encoding_binary.h" ***********************************/
 
 
 
@@ -839,10 +839,10 @@ UA_decodeBinary(const UA_ByteString *src, size_t *offset, void *dst,
 size_t UA_calcSizeBinary(void *p, const UA_DataType *type);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24 */
+/* Generated from Opc.Ua.Types.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 /* Boolean */
@@ -2475,10 +2475,10 @@ UA_QueryFirstRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_Q
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYFIRSTREQUEST]);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_transport_generated.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_transport_generated.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:25 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 #ifdef __cplusplus
@@ -2632,10 +2632,10 @@ typedef struct {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_transport_generated_handling.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_transport_generated_handling.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:25 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 #ifdef __cplusplus
@@ -2938,10 +2938,10 @@ UA_SecureConversationMessageHeader_delete(UA_SecureConversationMessageHeader *p)
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:25 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -3054,7 +3054,7 @@ UA_SecureConversationMessageHeader_decodeBinary(const UA_ByteString *src, size_t
     return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_connection_internal.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_connection_internal.h" ***********************************/
 
 
 
@@ -3098,7 +3098,7 @@ void UA_EXPORT UA_Connection_attachSecureChannel(UA_Connection *connection, UA_S
 UA_StatusCode UA_EXPORT UA_EndpointUrl_split_ptr(const char *endpointUrl, char *hostname, const char ** port, const char ** path);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_securechannel.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_securechannel.h" ***********************************/
 
 
 
@@ -3203,7 +3203,7 @@ UA_SecureChannel_processChunks(UA_SecureChannel *channel, const UA_ByteString *c
                  (CHANNEL)->securityToken.channelId, ##__VA_ARGS__);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_nodes.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_nodes.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -3588,7 +3588,7 @@ typedef struct {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_session.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_session.h" ***********************************/
 
 
 
@@ -3704,7 +3704,7 @@ UA_Session_getUniqueSubscriptionID(UA_Session *session);
                  ##__VA_ARGS__);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_subscription.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_subscription.h" ***********************************/
 
 
 
@@ -3831,7 +3831,7 @@ UA_Subscription_answerPublishRequestsNoSubscription(UA_Server *server,
                                                     UA_NodeId *sessionToken);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_nodestore.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_nodestore.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -3925,7 +3925,7 @@ void UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor);
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_session_manager.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_session_manager.h" ***********************************/
 
 
 
@@ -3958,7 +3958,7 @@ UA_Session *
 UA_SessionManager_getSession(UA_SessionManager *sm, const UA_NodeId *token);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_securechannel_manager.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_securechannel_manager.h" ***********************************/
 
 
 
@@ -3999,7 +3999,7 @@ UA_StatusCode
 UA_SecureChannelManager_close(UA_SecureChannelManager *cm, UA_UInt32 channelId);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_server_internal.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_server_internal.h" ***********************************/
 
 
 
@@ -4240,7 +4240,7 @@ void Service_Call_single(UA_Server *server, UA_Session *session,
                          UA_CallMethodResult *result);
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -4540,7 +4540,7 @@ void Service_DeleteSubscriptions(UA_Server *server, UA_Session *session,
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/client/ua_client_internal.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/client/ua_client_internal.h" ***********************************/
 
 
 
@@ -4626,7 +4626,7 @@ struct UA_Client {
 
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_types.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_types.c" ***********************************/
 
 
 
@@ -5657,7 +5657,7 @@ UA_Array_delete(void *p, size_t size, const UA_DataType *type) {
     UA_free((void*)((uintptr_t)p & ~(uintptr_t)UA_EMPTY_ARRAY_SENTINEL));
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_types_encoding_binary.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_types_encoding_binary.c" ***********************************/
 
 
 /* Type Encoding
@@ -6482,8 +6482,8 @@ ExtensionObject_decodeBinary(UA_ExtensionObject *dst, const UA_DataType *_) {
     UA_NodeId_init(&typeId);
     UA_StatusCode retval = NodeId_decodeBinary(&typeId, NULL);
     retval |= Byte_decodeBinary(&encoding, NULL);
-    //if(typeId.namespaceIndex != 0 || typeId.identifierType != UA_NODEIDTYPE_NUMERIC)
-    //    retval = UA_STATUSCODE_BADDECODINGERROR;
+    if(typeId.namespaceIndex != 0 || typeId.identifierType != UA_NODEIDTYPE_NUMERIC)
+        retval = UA_STATUSCODE_BADDECODINGERROR;
     if(retval != UA_STATUSCODE_GOOD) {
         UA_NodeId_deleteMembers(&typeId);
         return retval;
@@ -7227,10 +7227,10 @@ UA_calcSizeBinary(void *p, const UA_DataType *type) {
     return s;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_types_generated.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_types_generated.c" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24 */
+/* Generated from Opc.Ua.Types.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 /* Boolean */
@@ -14055,10 +14055,10 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
 };
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_transport_generated.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_transport_generated.c" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:25 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 /* SecureConversationMessageAbortBody */
@@ -14467,7 +14467,7 @@ const UA_DataType UA_TRANSPORT[UA_TRANSPORT_COUNT] = {
 };
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_connection.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_connection.c" ***********************************/
 
 
 void UA_Connection_deleteMembers(UA_Connection *connection) {
@@ -14728,7 +14728,7 @@ size_t UA_readNumber(UA_Byte *buf, size_t buflen, UA_UInt32 *number) {
     return progress;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_securechannel.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_securechannel.c" ***********************************/
 
 
 #define UA_SECURE_MESSAGE_HEADER_LENGTH 24
@@ -15153,7 +15153,7 @@ UA_SecureChannel_processChunks(UA_SecureChannel *channel, const UA_ByteString *c
     return retval;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/ua_session.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/ua_session.c" ***********************************/
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS
 #endif
@@ -15261,7 +15261,7 @@ UA_UInt32 UA_Session_getUniqueSubscriptionID(UA_Session *session) {
 
 #endif
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_server.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_server.c" ***********************************/
 
 
 #ifdef UA_ENABLE_GENERATE_NAMESPACE0
@@ -16593,7 +16593,7 @@ UA_Server * UA_Server_new(const UA_ServerConfig config) {
     return server;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_server_binary.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_server_binary.c" ***********************************/
 
 
 /********************/
@@ -17177,7 +17177,7 @@ UA_Server_processBinaryMessage(UA_Server *server, UA_Connection *connection,
     }
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_server_utils.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_server_utils.c" ***********************************/
 
 
 /**********************/
@@ -17456,7 +17456,7 @@ UA_Server_editNode(UA_Server *server, UA_Session *session,
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_server_worker.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_server_worker.c" ***********************************/
 
 
 /**
@@ -18159,7 +18159,7 @@ UA_StatusCode UA_Server_run(UA_Server *server, volatile UA_Boolean *running) {
     return UA_Server_run_shutdown(server);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_securechannel_manager.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_securechannel_manager.c" ***********************************/
 
 
 #define STARTCHANNELID 1
@@ -18329,7 +18329,7 @@ UA_SecureChannelManager_close(UA_SecureChannelManager *cm, UA_UInt32 channelId) 
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_session_manager.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_session_manager.c" ***********************************/
 
 
 UA_StatusCode
@@ -18434,7 +18434,7 @@ UA_SessionManager_removeSession(UA_SessionManager *sm, const UA_NodeId *token) {
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_nodes.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_nodes.c" ***********************************/
 
 
 void UA_Node_deleteMembersAnyNodeClass(UA_Node *node) {
@@ -18636,7 +18636,7 @@ UA_StatusCode UA_Node_copyAnyNodeClass(const UA_Node *src, UA_Node *dst) {
     return retval;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_nodestore.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_nodestore.c" ***********************************/
 
 
 #ifndef UA_ENABLE_MULTITHREADING /* conditional compilation */
@@ -18962,7 +18962,7 @@ UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor) {
 
 #endif /* UA_ENABLE_MULTITHREADING */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_nodestore_concurrent.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_nodestore_concurrent.c" ***********************************/
 
 
 #ifdef UA_ENABLE_MULTITHREADING /* conditional compilation */
@@ -19190,7 +19190,7 @@ void UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor) {
 
 #endif /* UA_ENABLE_MULTITHREADING */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_discovery.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_discovery.c" ***********************************/
 
 
 void Service_FindServers(UA_Server *server, UA_Session *session,
@@ -19310,7 +19310,7 @@ void Service_GetEndpoints(UA_Server *server, UA_Session *session, const UA_GetEn
     }
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_securechannel.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_securechannel.c" ***********************************/
 
 
 void Service_OpenSecureChannel(UA_Server *server, UA_Connection *connection,
@@ -19352,7 +19352,7 @@ void Service_CloseSecureChannel(UA_Server *server, UA_SecureChannel *channel) {
     UA_SecureChannelManager_close(&server->secureChannelManager, channel->securityToken.channelId);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_session.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_session.c" ***********************************/
 
 
 void Service_CreateSession(UA_Server *server, UA_SecureChannel *channel,
@@ -19502,7 +19502,7 @@ Service_CloseSession(UA_Server *server, UA_Session *session, const UA_CloseSessi
         UA_SessionManager_removeSession(&server->sessionManager, &session->authenticationToken);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_attribute.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_attribute.c" ***********************************/
 
 #ifdef UA_ENABLE_NONSTANDARD_STATELESS
 #endif
@@ -20676,7 +20676,7 @@ __UA_Server_write(UA_Server *server, const UA_NodeId *nodeId,
     return UA_Server_write(server, &wvalue);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_nodemanagement.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_nodemanagement.c" ***********************************/
 
 
 /**********************/
@@ -22115,7 +22115,7 @@ UA_Server_setMethodNode_callback(UA_Server *server, const UA_NodeId methodNodeId
 
 #endif
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_view.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_view.c" ***********************************/
 
 
 static UA_StatusCode
@@ -22725,7 +22725,7 @@ void Service_UnregisterNodes(UA_Server *server, UA_Session *session, const UA_Un
         response->responseHeader.serviceResult = UA_STATUSCODE_BADNOTHINGTODO;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_call.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_call.c" ***********************************/
 
 
 #ifdef UA_ENABLE_METHODCALLS /* conditional compilation */
@@ -22920,7 +22920,7 @@ void Service_Call(UA_Server *server, UA_Session *session,
 
 #endif /* UA_ENABLE_METHODCALLS */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_subscription.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_subscription.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -23512,7 +23512,7 @@ UA_Subscription_answerPublishRequestsNoSubscription(UA_Server *server, UA_NodeId
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/server/ua_services_subscription.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/server/ua_services_subscription.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -24085,7 +24085,7 @@ void Service_Republish(UA_Server *server, UA_Session *session, const UA_Republis
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/client/ua_client.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/client/ua_client.c" ***********************************/
 
 
 /* Listen with a timeout until at least one complete message is received */
@@ -24937,7 +24937,7 @@ __UA_Client_Service(UA_Client *client, const void *request, const UA_DataType *r
     UA_NodeId_deleteMembers(&rr->authenticationToken);
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/client/ua_client_highlevel.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/client/ua_client_highlevel.c" ***********************************/
 
 
 UA_StatusCode
@@ -25348,7 +25348,7 @@ UA_Client_readArrayDimensionsAttribute(UA_Client *client, const UA_NodeId nodeId
 
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/src/client/ua_client_highlevel_subscriptions.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/src/client/ua_client_highlevel_subscriptions.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -25671,7 +25671,7 @@ UA_Client_Subscriptions_manuallySendPublishRequest(UA_Client *client) {
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_network_tcp.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_network_tcp.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26390,7 +26390,7 @@ UA_ClientConnectionTCP(UA_ConnectionConfig conf, const char *endpointUrl,
     return connection;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_clock.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_clock.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26455,7 +26455,7 @@ UA_DateTime UA_DateTime_nowMonotonic(void) {
 #endif
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_log_stdout.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_log_stdout.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26486,7 +26486,7 @@ void UA_Log_Stdout(UA_LogLevel level, UA_LogCategory category, const char *msg, 
 # pragma GCC diagnostic pop
 #endif
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_config_standard.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_config_standard.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26616,7 +26616,7 @@ const UA_SubscriptionSettings UA_SubscriptionSettings_standard = {
 
 #endif
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/libc_time.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/libc_time.c" ***********************************/
 
 /*
  * Originally released by the musl project (http://www.musl-libc.org/) under the
@@ -26703,7 +26703,7 @@ int __secs_to_tm(long long t, struct tm *tm)
     return 0;
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/pcg_basic.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/pcg_basic.c" ***********************************/
 
 /*
  * PCG Random Number Generation for C.
@@ -26745,13 +26745,13 @@ uint32_t pcg32_random_r(pcg32_random_t* rng) {
     return (xorshifted >> rot) | (xorshifted << ((~rot + 1u) & 31)); /* was (xorshifted >> rot) | (xorshifted << ((-rot) & 31)) */
 }
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_statuscode_descriptions.c" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_statuscode_descriptions.c" ***********************************/
 
 /**********************************************************
- * /home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_statuscode_descriptions.hgen -- do not modify
+ * /home/openaas/openaas_workshop/external_generated/src_generated/ua_statuscode_descriptions.hgen -- do not modify
  **********************************************************
- * Generated from /home/opcua/Downloads/openAASworkshop/external/open62541/tools/schema/Opc.Ua.StatusCodes.csv with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_statuscode_descriptions.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24
+ * Generated from /home/openaas/openaas_workshop/external/open62541/tools/schema/Opc.Ua.StatusCodes.csv with script /home/openaas/openaas_workshop/external/open62541/tools/generate_statuscode_descriptions.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:57
  **********************************************************/
 
 

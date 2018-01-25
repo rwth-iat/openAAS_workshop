@@ -25,7 +25,7 @@
 extern "C" {
 #endif
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_config.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_config.h" ***********************************/
 
 /*
  * Copyright (C) 2013-2015 the contributors as stated in the AUTHORS file
@@ -270,7 +270,7 @@ typedef uint8_t bool;
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/deps/ms_stdint.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/deps/ms_stdint.h" ***********************************/
 
 // ISO C9x  compliant stdint.h for Microsoft Visual Studio
 // Based on ISO/IEC 9899:TC2 Committee draft (May 6, 2005) WG14/N1124 
@@ -525,7 +525,7 @@ typedef uint64_t  uintmax_t;
 
 #endif // !defined(_MSC_VER) || _MSC_VER >= 1600 ]
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_constants.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_constants.h" ***********************************/
 
 /* Copyright (C) 2013-2016 the contributors as stated in the AUTHORS file
  *
@@ -866,7 +866,7 @@ typedef enum {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_types.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_types.h" ***********************************/
 
 /* Copyright (C) 2013-2016 the contributors as stated in the AUTHORS file
  *
@@ -1602,7 +1602,7 @@ typedef struct UA_DiagnosticInfo {
  * handling of generic types. */
 typedef struct {
 #ifdef UA_ENABLE_TYPENAMES
-     char *memberName;
+    const char *memberName;
 #endif
     UA_UInt16 memberTypeIndex;    /* Index of the member in the array of data
                                      types */
@@ -1776,13 +1776,13 @@ UA_Guid UA_EXPORT UA_Guid_random(void);     /* no cryptographic entropy */
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_nodeids.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_nodeids.h" ***********************************/
 
 /**********************************************************
- * /home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_nodeids.hgen -- do not modify
+ * /home/openaas/openaas_workshop/external_generated/src_generated/ua_nodeids.hgen -- do not modify
  **********************************************************
- * Generated from /home/opcua/Downloads/openAASworkshop/external/open62541/tools/schema/NodeIds.csv with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_nodeids.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24
+ * Generated from /home/openaas/openaas_workshop/external/open62541/tools/schema/NodeIds.csv with script /home/openaas/openaas_workshop/external/open62541/tools/generate_nodeids.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:57
  **********************************************************/
  
 
@@ -3059,10 +3059,10 @@ UA_Guid UA_EXPORT UA_Guid_random(void);     /* no cryptographic entropy */
 #define UA_NS0ID_HASMODELPARENT 50 // ReferenceType
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_types_generated.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_types_generated.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24 */
+/* Generated from Opc.Ua.Types.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 #ifdef __cplusplus
@@ -5149,10 +5149,10 @@ typedef struct {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external_generated/src_generated/ua_types_generated_handling.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external_generated/src_generated/ua_types_generated_handling.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script /home/opcua/Downloads/openAASworkshop/external/open62541/tools/generate_datatypes.py
- * on host opcua-VirtualBox by user opcua at 2018-01-08 02:37:24 */
+/* Generated from Opc.Ua.Types.bsd with script /home/openaas/openaas_workshop/external/open62541/tools/generate_datatypes.py
+ * on host openaas-VirtualBox by user openaas at 2018-01-25 03:43:58 */
 
 
 #ifdef __cplusplus
@@ -9382,7 +9382,7 @@ UA_QueryFirstRequest_delete(UA_QueryFirstRequest *p) {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_connection.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_connection.h" ***********************************/
 
 /*
  * Copyright (C) 2014-2016 the contributors as stated in the AUTHORS file
@@ -9529,7 +9529,7 @@ UA_readNumber(UA_Byte *buf, size_t buflen, UA_UInt32 *number);
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_job.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_job.h" ***********************************/
 
  /*
  * Copyright (C) 2014 the contributors as stated in the AUTHORS file
@@ -9585,7 +9585,7 @@ typedef struct {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_log.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_log.h" ***********************************/
 
 /*
  * Copyright (C) 2014-2016 the contributors as stated in the AUTHORS file
@@ -9706,7 +9706,7 @@ typedef void (*UA_Logger)(UA_LogLevel level, UA_LogCategory category,
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_server.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_server.h" ***********************************/
 
 /*
  * Copyright (C) 2014 the contributors as stated in the AUTHORS file
@@ -10581,7 +10581,7 @@ UA_Server_deleteReference(UA_Server *server, const UA_NodeId sourceNodeId,
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_server_external_ns.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_server_external_ns.h" ***********************************/
 
  /*
  * Copyright (C) 2014 the contributors as stated in the AUTHORS file
@@ -10686,7 +10686,7 @@ UA_Server_addExternalNamespace(UA_Server *server, const UA_String *url,
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_client.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_client.h" ***********************************/
 
 /* Copyright (C) 2014-2016 the contributors as stated in the AUTHORS file
  *
@@ -11051,7 +11051,7 @@ UA_Client_Service_publish(UA_Client *client, const UA_PublishRequest request) {
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/include/ua_client_highlevel.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/include/ua_client_highlevel.h" ***********************************/
 
 /*
  * Copyright (C) 2014-2016 the contributors as stated in the AUTHORS file
@@ -11685,7 +11685,7 @@ UA_Client_forEachChildNodeCall(UA_Client *client, UA_NodeId parentNodeId,
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_network_tcp.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_network_tcp.h" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -11707,7 +11707,7 @@ UA_ClientConnectionTCP(UA_ConnectionConfig conf, const char *endpointUrl, UA_Log
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_log_stdout.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_log_stdout.h" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -11725,7 +11725,7 @@ UA_EXPORT void UA_Log_Stdout(UA_LogLevel level, UA_LogCategory category, const c
 #endif
 
 
-/*********************************** amalgamated original file "/home/opcua/Downloads/openAASworkshop/external/open62541/plugins/ua_config_standard.h" ***********************************/
+/*********************************** amalgamated original file "/home/openaas/openaas_workshop/external/open62541/plugins/ua_config_standard.h" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
