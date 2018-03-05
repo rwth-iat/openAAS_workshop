@@ -25,6 +25,8 @@ CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${CMAKE_SOURCE_DIR}/external
            -DUA_ENABLE_DISCOVERY=OFF
 SOURCE_DIR ${OPEN62541_DIR}
 BINARY_DIR ${CMAKE_SOURCE_DIR}/external_generated
+
+
 INSTALL_COMMAND ""
 )
 include_directories(${CMAKE_SOURCE_DIR}/external_generated)
@@ -107,9 +109,14 @@ include_directories(${PROJECT_BINARY_DIR}) #for nodeset.h
 add_definitions(-DUA_NO_AMALGAMATION)
 #shared object 
 add_library(opcua_interface SHARED opcua_interface.c ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c)
+add_library(opcua_interface_static STATIC opcua_interface.c ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c)
 
 target_include_directories(opcua_interface PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
+
+target_include_directories(opcua_interface_static PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
+
 add_dependencies(opcua_interface open62541)
+add_dependencies(opcua_interface_static open62541)
 
 #target_link_libraries(opcua_interface open62541)
 add_executable(openaas_eng openaas_eng.c 
@@ -119,28 +126,41 @@ add_executable(openaas_eng openaas_eng.c
 if(WIN32)
   set(prefix "Debug/")
   set(suffix ".lib")
+  set(suffix_shared ".dll")
   target_link_libraries(opcua_interface PRIVATE ws2_32)
-  target_link_libraries(openaas_eng PRIVATE ws2_32)
+  target_link_libraries(opcua_interface_static PRIVATE ws2_32)
   
+  target_link_libraries(openaas_eng PRIVATE ws2_32)
+
 else()
+
   set(prefix "lib")
   set(suffix ".a")  
   set(suffix_shared ".so")
 endif()
 
-target_link_libraries(opcua_interface PRIVATE "${CMAKE_SOURCE_DIR}/${prefix}open62541${suffix}") 
+MESSAGE( STATUS "open62541_path: " ${CMAKE_SOURCE_DIR}/external_generated/${prefix}open62541${suffix} )
+MESSAGE( STATUS "opcua_interface_static: " ${CMAKE_BINARY_DIR}/${prefix}opcua_interface_static${suffix})
+
+target_link_libraries(opcua_interface PRIVATE "${CMAKE_SOURCE_DIR}/external_generated/${prefix}open62541${suffix}") 
+target_link_libraries(opcua_interface_static PRIVATE "${CMAKE_SOURCE_DIR}/external_generated/${prefix}open62541${suffix}") 
 
 set(LIBRARIES_OPENAAS_ENG
   "${CMAKE_BINARY_DIR}/${prefix}opcua_interface${suffix}")
+  
 set(LIBRARIES_OPENAAS_ENG
   ${LIBRARIES_OPENAAS_ENG} "${CMAKE_SOURCE_DIR}/${prefix}open62541${suffix}")  
+  
 #test client for shared object
+
 
 target_include_directories(openaas_eng PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
 
-target_link_libraries(openaas_eng PUBLIC ${LIBRARIES_OPENAAS_ENG})          
+#target_link_libraries(openaas_eng PRIVATE ${LIBRARIES_OPENAAS_ENG})   
 
-add_dependencies(openaas_eng opcua_interface)
+target_link_libraries(openaas_eng PRIVATE ${CMAKE_BINARY_DIR}/${prefix}opcua_interface_static${suffix})             
+target_link_libraries(openaas_eng PRIVATE ${CMAKE_SOURCE_DIR}/external_generated/${prefix}open62541${suffix}) 
+add_dependencies(openaas_eng opcua_interface_static)
 
 
 #file(DIRECTORY DESTINATION ${LIBREOFFICE_PYTHON_DIR})
