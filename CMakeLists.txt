@@ -119,8 +119,8 @@ add_executable(openaas_eng openaas_eng.c
 if(WIN32)
   set(prefix "Debug/")
   set(suffix ".lib")
-  target_link_libraries(opcua_interface LINK_PRIVATE ws2_32)
-  target_link_libraries(openaas_eng LINK_PRIVATE ws2_32)
+  target_link_libraries(opcua_interface PRIVATE ws2_32)
+  target_link_libraries(openaas_eng PRIVATE ws2_32)
   
 else()
   set(prefix "lib")
@@ -128,7 +128,7 @@ else()
   set(suffix_shared ".so")
 endif()
 
-target_link_libraries(opcua_interface LINK_PUBLIC "${CMAKE_SOURCE_DIR}/${prefix}open62541${suffix}") 
+target_link_libraries(opcua_interface PRIVATE "${CMAKE_SOURCE_DIR}/${prefix}open62541${suffix}") 
 
 set(LIBRARIES_OPENAAS_ENG
   "${CMAKE_BINARY_DIR}/${prefix}opcua_interface${suffix}")
@@ -138,7 +138,7 @@ set(LIBRARIES_OPENAAS_ENG
 
 target_include_directories(openaas_eng PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
 
-target_link_libraries(openaas_eng LINK_PUBLIC ${LIBRARIES_OPENAAS_ENG})          
+target_link_libraries(openaas_eng PUBLIC ${LIBRARIES_OPENAAS_ENG})          
 
 add_dependencies(openaas_eng opcua_interface)
 
