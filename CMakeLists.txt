@@ -3,7 +3,7 @@ project(openaas_engineering C)
 include(ExternalProject)
 find_package(PythonInterp REQUIRED)
 
-set (CMAKE_C_FLAGS "--std=c99 -Werror ${CMAKE_C_FLAGS}")
+set (CMAKE_C_FLAGS "--std=c99 ${CMAKE_C_FLAGS}")
 #set (LIBREOFFICE_PYTHON_DIR "~/.config/libreoffice/4/user/Scripts/python")
 #set (LIBREOFFICE_MACRO "${PROJECT_SOURCE_DIR}/libreoffice/opcua_interface.py")
 
@@ -109,7 +109,11 @@ add_definitions(-DUA_NO_AMALGAMATION)
 add_library(opcua_interface SHARED opcua_interface.c ${CMAKE_SOURCE_DIR}/external_generated/ua_openaas_generated.c)
 target_include_directories(opcua_interface PRIVATE ${CMAKE_SOURCE_DIR}/external/open62541/plugins ${CMAKE_SOURCE_DIR}/external/open62541/include ${CMAKE_SOURCE_DIR}/external_generated/src_generated ${CMAKE_SOURCE_DIR}/external/open62541/src ${CMAKE_SOURCE_DIR}/external/open62541/src/server ${CMAKE_SOURCE_DIR}/external/open62541/deps) # needs an internal header
 add_dependencies(opcua_interface open62541)
-target_link_libraries(opcua_interface libopen62541.a)
+
+target_link_libraries(opcua_interface libopen62541)
+if(WIN32)
+target_link_libraries(opcua_interface ws2_32)
+endif()
 #test client for shared object
 
 add_executable(openaas_eng    openaas_eng.c 
