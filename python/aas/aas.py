@@ -403,6 +403,13 @@ class AAS :
     aas=cls(Name=node.get_browse_name().Name)
     print("parsing Asset Administration Shell %s" % (aas.Name))
     for c2 in node.get_children(refs=35):
+      if c2.get_browse_name().Name == "AASID":
+        print("#####################")
+        print("AAS ID = %s" % c2.get_value().Body)
+        print("#####################")
+        aas.AASID = Identification.fromBinary(body=c2.get_value().Body)
+      if c2.get_browse_name().Name == "AssetID":
+        aas.AssetID = Identification.fromBinary(body=c2.get_value().Body)
       if c2.get_browse_name().Name == "Header":
         HeaderFolderNode = c2#client.get_node(c2.nodeid)
         #print(HeaderFolderNode)
@@ -418,7 +425,7 @@ class AAS :
                 print("#####################")
                 aas.AASID = Identification.fromBinary(body=c4.get_value().Body)
               if c4.get_browse_name().Name == "Asset":
-                aas.AssetID = Identification.fromString(c4.get_value())
+                aas.AssetID = Identification.fromBinary(c4.get_value())
                         #print(AssetID.IDSpec)
           for r in c3.get_references(refs=40):
             if r.BrowseName.Name == "PropertyValueStatementListType":
@@ -516,13 +523,13 @@ def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetId
     asset administration shell id specification
   aasIDType : string
     asset administration shell id type
-  aasName : string 
+  aasName : string
     a name for the aas object
-  assetIdSpec : string 
+  assetIdSpec : string
     asset id specification
   assetIdType : int
     asset id type (URI=0, ISO=1)
-      
+
   Returns:
   string: Status Code
   """
@@ -548,10 +555,10 @@ def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetId
 
 #  Returns:
 #  -------
-#    NodeID : 
-#  """  
-#  return 
-  
+#    NodeID :
+#  """
+#  return
+
 #def getSubModels_Hdr(AASEntrypointOPCUA(AASNodeId):
 
 #  """
@@ -563,9 +570,9 @@ def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetId
 #  Returns:
 #  -------
 #    Names and NodeIds of the found SubModels
-#  """  
-#  return 
-  
+#  """
+#  return
+
 #def getSubModels_Bdy(AASEntrypointOPCUA(AASNodeId):
 
 #  """
@@ -577,24 +584,24 @@ def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetId
 #  Returns:
 #  -------
 #    Names and NodeIds of the found SubModels
-#  """  
-#  return 
-  
+#  """
+#  return
+
 #Body/Header
 def getBodyNodeId(AASNodeId):
-  return  
+  return
 def getHdrNodeId(AASNodeId):
   return
-    
+
 #PVSL
 def getPVSLinHdr(HdrNodeId):
   return
 def getPVSLinBdy(BdyNodeId):
-  return 
+  return
 def getPVSLName(PVSLNodeId):
   return
 def getPVSLData(PVSLNodeId):
-  return  
+  return
 
 def getPVSL(endpointStr,listId):
 
@@ -611,18 +618,18 @@ def getPVSL(endpointStr,listId):
         #print(entry)
         nsopenaas_propertyValueStatement = i
         break
-    if i!= -1:     
+    if i!= -1:
       entryPoint = listId
       print("Looking for AAS at entry point %s,%s" % (nsopenaas_propertyValueStatement,listId))
       path = client.get_node(ua.NodeId(entryPoint,nsopenaas_propertyValueStatement))
       pvsl = propertyValueStatementContainer.fromOPCUANodes(path)
       for statement in pvsl.statements:
         print(statement.Name)
-  finally:   
+  finally:
     client.disconnect()
-    return pvsl  
+    return pvsl
 
-    
+
 def getSubModel(endpointStr,subModel_NodeId):
 
   client = Client(endpointStr)
@@ -637,13 +644,13 @@ def getSubModel(endpointStr,subModel_NodeId):
 
 #      if entry == "http://acplt.org/openaas/":
 #        nsopenaas_subModelType = i
-#        
+#
 #        break
 #    if i!= -1:
 
 
 #      print("Looking for AAS at entry point %s,%s" % (subModel_NodeId))
- 
+
     path = client.get_node(subModel_NodeId)
     print("path is %s"  % path)
     print ("1")
@@ -651,21 +658,21 @@ def getSubModel(endpointStr,subModel_NodeId):
     print ("2")                                  #no print out of "2" during tests
     for statement in subModelInst.statements:
       print(statement.Name)
-  finally:   
+  finally:
     client.disconnect()
-    return subModel  
-      
-    
-#Objects  
-def getObjectsInSubModel(SubModelNodeId):  
+    return subModel
+
+
+#Objects
+def getObjectsInSubModel(SubModelNodeId):
   pass
-  
+
 def getObjectsInObjects(ObjectNodeId):
   pass
-#PVS  
+#PVS
 def getPVSDataInPVSL(PVSLNodeId):
   pass
-  
+
 def getPVSLinSubModel(SubModelNodeId):
   pass
 def getAASEntryPointByAASID(ResolutionServerEndpoint,AASIDSpec,AASIDType):
@@ -694,11 +701,11 @@ def getAASEntryPointByAASID(ResolutionServerEndpoint,AASIDSpec,AASIDType):
        print(discoveryMethodNode.get_browse_name().Name)
        res = discoveryNode.call_method(discoveryMethodNode, ua.Variant(AASIDType, ua.VariantType.UInt32), ua.Variant(AASIDSpec,ua.VariantType.String))
        print("result of method call is %s" % res)
-    finally:   
+    finally:
        client.disconnect()
        return res
-     
-  
+
+
 def getAASIDByAssetID(ResolutionServerEndpoint,AssetIDSpec,AssetIDType):
     client = Client(ResolutionServerEndpoint)
     # client = Client("opc.tcp://localhost:16664) #connect using a user
@@ -725,10 +732,10 @@ def getAASIDByAssetID(ResolutionServerEndpoint,AssetIDSpec,AssetIDType):
        print(discoveryMethodNode.get_browse_name().Name)
        res = discoveryNode.call_method(discoveryMethodNode, ua.Variant(AssetIDType, ua.VariantType.UInt32), ua.Variant(AssetIDSpec,ua.VariantType.String))
        print("result of method call is %s" % res)
-    finally:   
+    finally:
        client.disconnect()
        return res
-       
+
 #def getSubModelLocalID_OPCUA(AASEntrypointOPCUA(subModelName):
   #"""
   #Retrieves the nodeId of the AAS by the given name
@@ -740,10 +747,10 @@ def getAASIDByAssetID(ResolutionServerEndpoint,AssetIDSpec,AssetIDType):
 
   #Returns:
   #-------
-    #NodeID : 
-  #"""  
-  #pass   
-  
+    #NodeID :
+  #"""
+  #pass
+
 #def getAAS_EntryPoint_OPCUA(AASIDSpec, AASIDType):
   #"""
   #Retrieves the nodeId of the AAS by the given name
@@ -757,11 +764,11 @@ def getAASIDByAssetID(ResolutionServerEndpoint,AssetIDSpec,AssetIDType):
   #-------
   #string
     #Status Code
-  #"""  
-  #pass 
- 
-  
-  
+  #"""
+  #pass
+
+
+
 def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
   """
   Deletes an Asset Administraiton Shell
@@ -776,9 +783,9 @@ def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : int 
+  aasIDType : int
     asset administration shell id type (URI=0, ISO=1)
-  
+
   Returns:
   -------
   string
@@ -791,8 +798,8 @@ def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
   StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
 
   del lib
-  return StatusCall  
-  
+  return StatusCall
+
 def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, modelIdSpec, modelIdType, modelName, revision, version):
   """
   Creates a Sub Model within an Asset Administraiton Shell
@@ -807,7 +814,7 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : int 
+  aasIDType : int
     asset administration shell id type (URI=0, ISO=1)
   parentIdSpec : string
     parent object id
@@ -818,11 +825,11 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
   modelIdType : int
     model id type (URI=0, ISO=1)
   modelName : string
-    local name of the sub model 
+    local name of the sub model
   revision : int
     revision of the sub model
-  version : int 
-    version of the sub model    
+  version : int
+    version of the sub model
   Returns:
   -------
   string
@@ -846,7 +853,7 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
 
   del lib
-  return StatusCall    
+  return StatusCall
 
 
 def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parentIdSpec, parentIdType, modelIdSpec, modelIdType, modelName, revision, version):
@@ -863,7 +870,7 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : int 
+  aasIDType : int
     asset administration shell id type (URI=0, ISO=1)
   parentIdSpec : string
     parent object id
@@ -874,11 +881,11 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
   modelIdType : int
     model id type (URI=0, ISO=1)
   modelName : string
-    local name of the sub model 
+    local name of the sub model
   revision : int
     revision of the sub model
-  version : int 
-    version of the sub model    
+  version : int
+    version of the sub model
   Returns:
   -------
   string
@@ -902,9 +909,9 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
 
   del lib
-  return StatusCall  
-  
-  
+  return StatusCall
+
+
 def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
   """
   Deletes a Sub Model within an Asset Administraiton Shell
@@ -919,7 +926,7 @@ def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : int 
+  aasIDType : int
     asset administration shell id type (URI=0, ISO=1)
   localID : string
     localID of the sub model within the AAS
@@ -967,7 +974,7 @@ def createLCE (pathToLibrary, ip, AASIdSpec, AASIdType, creatingInstanceIdSpec, 
       opc ua endpoint to the aas repository server
     AASIDSpec : string
       asset administration shell id specification
-    AASIDType : int 
+    AASIDType : int
       asset administration shell id type (URI=0, ISO=1)
     creatingInstanceIdSpec : string
       adress of the instance which creates the LifeCycleEntry
@@ -1029,7 +1036,7 @@ def deleteLCE (pathToLibrary, ip, AASIdSpec, AASIdType, LCEId):
       opc ua endpoint to the aas repository server
     AASIDSpec : string
       asset administration shell id specification
-    AASIDType : int 
+    AASIDType : int
       asset administration shell id type (URI=0, ISO=1)
     LCEId : int
       number of the specific LifeCycleEntry
@@ -1063,7 +1070,7 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
     opc ua endpoint to the aas repository server
   aasIDSpec : string
     asset administration shell id specification
-  aasIDType : int 
+  aasIDType : int
     asset administration shell id type (URI=0, ISO=1)
   carrierIdSpec : string
     specification of the carrier that is related to the statement
@@ -1113,8 +1120,8 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
   del lib
   return StatusCall
 
-  
-  
+
+
 def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
   """
   Deletes a Property Value Statement Container (list) within an Asset Administraiton Shell
@@ -1128,10 +1135,10 @@ def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
     opc ua endpoint to the aas repository server
   AASIdSpec : string
     asset administration shell id specification
-  AASIdType : int 
+  AASIdType : int
     asset administration shell id type (URI=0, ISO=1)
   listIdSpec : string
-    specification of the local list id 
+    specification of the local list id
   -------
   string
     Status Code
@@ -1169,7 +1176,7 @@ def createPVS (pathToLibrary, ip, AASIdSpec, AASIdType, ListIdType, ListIdSpec, 
     opc ua endpoint to the aas repository server
   AASIdSpec : string
     asset administration shell id specification
-  AASIdType : int 
+  AASIdType : int
     asset administration shell id type (URI=0, ISO=1)
   ListIdSpec : string
     specification of the local list id (path on the server)
@@ -1197,7 +1204,7 @@ def createPVS (pathToLibrary, ip, AASIdSpec, AASIdType, ListIdType, ListIdSpec, 
   string
     Status Code
   """
-  
+
   pathToLibrary = pathToLibrary
   lib = CDLL(pathToLibrary)
   ip_c = ip.encode('utf-8')
@@ -1248,7 +1255,7 @@ def deletePVS (pathToLibrary, ip, AASIdSpec, AASIdType, PVSName):
     opc ua endpoint to the aas repository server
   AASIdSpec : string
     asset administration shell id specification
-  AASIdType : int 
+  AASIdType : int
     asset administration shell id type (URI=0, ISO=1)
   PVSName = string
     name of the property value statement (contains the path on the server)
@@ -1267,14 +1274,14 @@ def deletePVS (pathToLibrary, ip, AASIdSpec, AASIdType, PVSName):
   print (TypeToInt_Id(AASIdType))
   print (AASIdType_c)
   StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c),c_int(0))
-  
+
   del lib
   return StatusCall
 
-  
 
-  
-def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename):
+
+
+def serialize_AAS(endpointStr,identifer,filename):
   """
   Serializes an Asset Administraiton Shell to a given file
 
@@ -1287,13 +1294,13 @@ def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename)
   identifer:
     identifier for a node Id
   namespaceIndex
-    opc ua namespace index 
+    opc ua namespace index
   Returns:
   -------
   string
     Status Code
-  """  
-  
+  """
+
   client = Client(endpointStr)
   try:
     client.connect()
@@ -1306,7 +1313,7 @@ def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename)
         #print(entry)
         namespaceIndex = i
         break
-    if i!= -1:     
+    if i!= -1:
       print("Looking for AAS at entry point %s,%s" % (namespaceIndex,identifer))
       path = client.get_node(ua.NodeId(identifer,namespaceIndex))
       aas = AAS.fromOPCUANodes(node=path)
@@ -1314,9 +1321,9 @@ def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename)
       #filename = "JSON_%s" % (filename)
       #print("Writing AAS data of %s in %s" % (aas.Name, os.path.join(currentDir,filename)))
       file = open(filename,"w")
-      
+
       file.write(json.dumps(aas, default=jdefault,indent=4))
 
       file.close()
-  finally:   
-    client.disconnect() 
+  finally:
+    client.disconnect()
