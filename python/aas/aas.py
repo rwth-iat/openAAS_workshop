@@ -533,7 +533,9 @@ def createAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType, aasName, assetId
   AASName_c = aasName.encode('utf-8')
   AssetIdSpec_c = assetIdSpec.encode('utf-8')
   AssetIdType_c = c_int(assetIdType)
-  return lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
+  StatusCall = lib.call_CreateAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(AASName_c), c_char_p(AssetIdSpec_c), AssetIdType_c)
+  del lib
+  return StatusCall
 
 #def getAASEntryPoint_OPCUA(AASIDSpec, AASIDType):
 #  """
@@ -619,6 +621,40 @@ def getPVSL(endpointStr,listId):
   finally:   
     client.disconnect()
     return pvsl  
+
+    
+def getSubModel(endpointStr,subModel_NodeId):
+
+  client = Client(endpointStr)
+  subModel = None
+  try:
+    client.connect()
+#    nsarray = client.get_node(ua.NodeId(2255, 0))
+#    nsList = nsarray.get_value()
+#    i=-1
+#    for entry in nsList:
+#     i = i + 1
+
+#      if entry == "http://acplt.org/openaas/":
+#        nsopenaas_subModelType = i
+#        
+#        break
+#    if i!= -1:
+
+
+#      print("Looking for AAS at entry point %s,%s" % (subModel_NodeId))
+ 
+    path = client.get_node(subModel_NodeId)
+    print("path is %s"  % path)
+    print ("1")
+    subModelInst = subModel.fromOPCUANodes(path) #in line 259, classmethod of 'subModel' exists
+    print ("2")                                  #no print out of "2" during tests
+    for statement in subModelInst.statements:
+      print(statement.Name)
+  finally:   
+    client.disconnect()
+    return subModel  
+      
     
 #Objects  
 def getObjectsInSubModel(SubModelNodeId):  
@@ -754,6 +790,7 @@ def deleteAAS(pathToLibrary, endpointStr, aasIDSpec, aasIDType):
   AASIdType_c = c_int(aasIDType)
   StatusCall = lib.call_DeleteAAS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c)
 
+  del lib
   return StatusCall  
   
 def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, modelIdSpec, modelIdType, modelName, revision, version):
@@ -807,7 +844,10 @@ def createSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent, mo
   Version_c = c_int(version)
 
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
+
+  del lib
   return StatusCall    
+
 
 def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parentIdSpec, parentIdType, modelIdSpec, modelIdType, modelName, revision, version):
   """
@@ -861,6 +901,7 @@ def createSubModel_raw(pathToLibrary, endpointStr, aasIDSpec, aasIDType,  parent
 
   StatusCall = lib.call_CreateSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,  c_char_p(ParentIdSpec_c), ParentIdType_c,c_char_p(ModelIdSpec_c), ModelIdType_c, c_char_p(ModelName_c), Revision_c, Version_c)
 
+  del lib
   return StatusCall  
   
   
@@ -888,7 +929,6 @@ def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
     Status Code
   """
 
-
   #Parameter parsing
   lib = CDLL(pathToLibrary)
 
@@ -908,8 +948,108 @@ def deleteSubModel(pathToLibrary, endpointStr, aasIDSpec, aasIDType, localID):
 
   print(ip)
   StatusCall = lib.call_DeleteSubModel(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(SubModelIdSpec_c), SubModelIdType_c)
+
+  del lib
   return StatusCall
-  
+
+
+def createLCE (pathToLibrary, ip, AASIdSpec, AASIdType, creatingInstanceIdSpec, creatingInstanceIdType, writingInstanceIdSpec, writingInstanceIdType, eventClass, subject, value, valueType):
+    """
+    Creates a LifeCycleEntry which is stored like Sub Models in the .Body folder within an Asset Administraiton Shell
+
+    This function deletes a sub model shell within a given Asset administration Shell.
+
+    Args:
+    ----------
+    pathToLibrary : string
+      path to the shared object that provides the opc ua functionality
+    ip : string
+      opc ua endpoint to the aas repository server
+    AASIDSpec : string
+      asset administration shell id specification
+    AASIDType : int 
+      asset administration shell id type (URI=0, ISO=1)
+    creatingInstanceIdSpec : string
+      adress of the instance which creates the LifeCycleEntry
+    creatingInstanceIdType : int
+      type of creating instance (URI=0, ISO=1)
+    writingInstanceIdSpec : string
+      adress of the instance which fills the LifeCycleEntry with information
+    writingInstanceIdType : int
+      type of the writing instance (URI=0, ISO=1)
+    eventClass : string
+      description of the event which forms the basis of the LifeCycleEntry
+    subject : string
+      further description of the occured event
+    value : string
+      stored values in the LCE
+    valueType : int
+      definition of the Valuetype (1=BOOL; 2=FLOAT; 3=INT32; 4=INT64; 5=UINT32; 6=UINT64; 7=DOUBLE; 8=STRING; 9=DATETIME; 10=IDENTIFICATION
+    timeStamp : ???
+      source timestamp of the event
+    Returns:
+    -------
+    string
+      Status Code
+    """
+    lib = CDLL(pathToLibrary)
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+
+    creatingInstanceIdSpec_c = creatingInstanceIdSpec.encode('utf-8')
+    creatingInstanceIdType_c = c_int(creatingInstanceIdType)
+    writingInstanceIdSpec_c = writingInstanceIdSpec.encode('utf-8')
+    writingInstanceIdType_c = c_int(writingInstanceIdType)
+
+    eventClass_c = eventClass.encode('utf-8')
+    subject_c = subject.encode('utf-8')
+    timeStamp_c = c_int64(int((time.time())*10000000+116444736000000000))
+
+    value_c = value.encode('utf-8')
+    valueType_c = c_int(valueType)
+    print(valueType_c)
+    StatusCall = lib.call_CreateLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(creatingInstanceIdSpec_c), creatingInstanceIdType_c, c_char_p(writingInstanceIdSpec_c), writingInstanceIdType_c, c_char_p(eventClass_c), c_char_p(subject_c), timeStamp_c, c_char_p(value_c), valueType_c)
+
+    del lib
+    return StatusCall
+
+
+def deleteLCE (pathToLibrary, ip, AASIdSpec, AASIdType, LCEId):
+    """
+    Creates a LifeCycleEntry which is stored like Sub Models in the .Body folder within an Asset Administraiton Shell
+
+    This function deletes a sub model shell within a given Asset administration Shell.
+
+    Args:
+    ----------
+    pathToLibrary : string
+      path to the shared object that provides the opc ua functionality
+    ip : string
+      opc ua endpoint to the aas repository server
+    AASIDSpec : string
+      asset administration shell id specification
+    AASIDType : int 
+      asset administration shell id type (URI=0, ISO=1)
+    LCEId : int
+      number of the specific LifeCycleEntry
+    Returns:
+    -------
+    string
+      Status Code
+    """
+    lib = CDLL(pathToLibrary)
+    ip_c = ip.encode('utf-8')
+    AASIdSpec_c = AASIdSpec.encode('utf-8')
+    AASIdType_c = c_int(AASIdType)
+    LCEId_c = c_longlong(int(LCEId))
+
+    StatusCall = lib.call_DeleteLCE(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,LCEId_c)
+
+    del lib
+    return StatusCall
+
+
 def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdSpec,carrierIdType,parentID):
   """
   Creates a Property Value Statement Container (list) within an Asset Administraiton Shell
@@ -940,7 +1080,6 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
   #Parameter parsing
   pathToLibrary = pathToLibrary
   lib = CDLL(pathToLibrary)
-
   ip = endpointStr
 
   parentIdSpec = parentID
@@ -951,10 +1090,8 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
   AASIdType_c = c_int(AASIdType)
 
   listName_c = listName.encode('utf-8')
-
   parentIdType_c = c_int(parentIdType)
   parentIdSpec_c = parentIdSpec.encode('utf-8')
-
   carrierIdType_c = c_int(carrierIdType)
   carrierIdSpec_c = carrierIdSpec.encode('utf-8')
 
@@ -970,28 +1107,10 @@ def createPVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listName,carrierIdS
 
   StatusCall = 0
   print(carrierIdSpec)
-  StatusCall = lib.call_CreatePVSL(
-  c_char_p(ip_c),
 
-  c_char_p(AASIdSpec_c),
-  AASIdType_c,
+  StatusCall = lib.call_CreatePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(parentIdSpec_c), parentIdType_c, c_char_p(listName_c), mask, c_char_p(carrierIdSpec_c), carrierIdType_c, expressionLogic_c, expressionSemantic_c, c_char_p(propertyIdSpec_c), propertyIdType_c, view_c, visibility_c)
 
-  c_char_p(parentIdSpec_c),
-  parentIdType_c,
-
-  c_char_p(listName_c),
-  mask,
-
-  c_char_p(carrierIdSpec_c),
-  carrierIdType_c,
-  expressionLogic_c,
-  expressionSemantic_c,
-  c_char_p(propertyIdSpec_c),
-  propertyIdType_c,
-  view_c,
-  visibility_c)
-
-
+  del lib
   return StatusCall
 
   
@@ -1033,8 +1152,127 @@ def deletePVSL(pathToLibrary,endpointStr,AASIdSpec,AASIdType,listIdSpec):
 
   StatusCall = lib.call_DeletePVSL(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(listIdSpec_c),listIdType_c)
 
-
+  del lib
   return StatusCall
+
+
+
+def createPVS (pathToLibrary, ip, AASIdSpec, AASIdType, ListIdType, ListIdSpec, mask, PVSName, expressionLogic, expressionSemantic, Value, valueType, PRIdSpec, PRIdType, view, visibility):
+  """
+  This function creates a Property Value Statement in a specific PVSL within an Asset Administraiton Shell
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  ip : string
+    opc ua endpoint to the aas repository server
+  AASIdSpec : string
+    asset administration shell id specification
+  AASIdType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  ListIdSpec : string
+    specification of the local list id (path on the server)
+  ListIdType : int
+    type of PVSL (0=URI; 1=ISO)
+  expressionLogic : int
+    logical expression of PVS; different stadiums possible (compare with function 'TypeToInt_EL' line 76)
+  expressionSemantic : int
+    semantic expression of PVS; different stadiums possible (compare with function 'TypeToInt_ES' line 87)
+  Value : string
+    value of the property value statement
+  valueType : int
+    type of value
+  PRIdSpec : string (?)
+    link to definition of a property dictionary
+  PRIdType : int (?)
+    type of property ID (0=URI;
+  view : string
+    distinction of different groups of value statements (e.g. "BUSINESS", "HUMAN", "FUNCTIONAL" compare with function 'TypeToInt_view'
+  visibility : int
+    stage of visibility of the PVS ("PRIVATE", "CONTRACT", "PUBLIC")
+  mask : int
+    choose which attributes are set (1=carrierId ; 2=expressionLogic ; 4=expressionSemantic ; 8=propertyId ; 16=view ; 32=visibility)
+  -------
+  string
+    Status Code
+  """
+  
+  pathToLibrary = pathToLibrary
+  lib = CDLL(pathToLibrary)
+  ip_c = ip.encode('utf-8')
+
+  AASIdSpec_c = AASIdSpec.encode('utf-8')
+  AASIdType_c = c_int(AASIdType)
+  ListIdSpec_c = ListIdSpec.encode('utf-8')
+  ListIdType_c = c_int(ListIdType)
+  #PVSLName_c = PVSLName.encode('utf-8')
+
+  #SubModelIdSpec_c = SubModelIdSpec.encode('utf-8')
+  #SubModelIdType_c = c_int(SubModelType)
+
+  #dont use the carrier Id in this case
+  CarrierIdSpec_c = ListIdSpec_c  # dummy
+  CarrierIdType_c = ListIdType_c  # dummy
+
+  PVSName_c = PVSName.encode('utf-8')
+  expressionLogic_c = c_int(TypeToInt_EL(expressionLogic))
+  expressionSemantic_c = c_int(TypeToInt_ES(expressionSemantic))
+  print("expression Semantic %s" % expressionSemantic_c)
+  Value_c = Value.encode('utf-8')
+  valueType_c = c_int(TypeToInt_valueType(valueType))
+  PRIdSpec_c = PRIdSpec.encode('utf-8')
+  PRIdType_c = c_int(TypeToInt_Id(PRIdType))
+  view_c = c_int(TypeToInt_view(view))
+  visibility_c = c_int(TypeToInt_VIS(visibility))
+  mask_c = c_int(mask)
+  print(mask_c)
+
+  StatusCall = lib.call_CreatePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c, c_char_p(ListIdSpec_c),ListIdType_c, c_char_p(PVSName_c), c_char_p(Value_c),valueType_c,mask_c,c_char_p(CarrierIdSpec_c),CarrierIdType_c,expressionLogic_c,expressionSemantic_c,c_char_p(PRIdSpec_c),PRIdType_c,view_c,visibility_c)
+
+  del lib
+  return StatusCall
+
+
+
+
+def deletePVS (pathToLibrary, ip, AASIdSpec, AASIdType, PVSName):
+  """
+  With this function a specific Property Value Statement can be deleted
+
+  Args:
+  ----------
+  pathToLibrary : string
+    path to the shared object that provides the opc ua functionality
+  ip : string
+    opc ua endpoint to the aas repository server
+  AASIdSpec : string
+    asset administration shell id specification
+  AASIdType : int 
+    asset administration shell id type (URI=0, ISO=1)
+  PVSName = string
+    name of the property value statement (contains the path on the server)
+  -------
+  string
+    Status Code
+  """
+
+  lib = CDLL(pathToLibrary)
+  ip_c = ip.encode('utf-8')
+  AASIdSpec_c = AASIdSpec.encode('utf-8')
+  AASIdType_c = c_int(AASIdType)
+  PVSName_c = PVSName.encode('utf-8')
+
+  print(AASIdType)
+  print (TypeToInt_Id(AASIdType))
+  print (AASIdType_c)
+  StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c),c_int(0))
+  
+  del lib
+  return StatusCall
+
+  
+
   
 def serialize_AAS(endpointStr, identifierType,identifer,namespaceIndex,filename):
   """
