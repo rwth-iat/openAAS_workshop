@@ -24,7 +24,7 @@
 
 #include "open62541.h"
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/deps/queue.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/deps/queue.h" ***********************************/
 
 /*	$OpenBSD: queue.h,v 1.38 2013/07/03 15:05:21 fgsch Exp $	*/
 /*	$NetBSD: queue.h,v 1.11 1996/05/16 05:17:14 mycroft Exp $	*/
@@ -675,7 +675,7 @@ struct {								\
 
 #endif	/* !_SYS_QUEUE_H_ */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/deps/pcg_basic.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/deps/pcg_basic.h" ***********************************/
 
 /*
  * PCG Random Number Generation for C.
@@ -721,7 +721,7 @@ uint32_t pcg32_random_r(pcg32_random_t* rng);
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/deps/libc_time.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/deps/libc_time.h" ***********************************/
 
 
 #include <limits.h>
@@ -729,7 +729,7 @@ uint32_t pcg32_random_r(pcg32_random_t* rng);
 int __secs_to_tm(long long t, struct tm *tm);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_util.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_util.h" ***********************************/
 
 
 
@@ -821,7 +821,7 @@ UA_atomic_add(volatile uint32_t *addr, uint32_t increase) {
 }
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_types_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_types_encoding_binary.h" ***********************************/
 
 
 
@@ -839,10 +839,10 @@ UA_decodeBinary(const UA_ByteString *src, size_t *offset, void *dst,
 size_t UA_calcSizeBinary(void *p, const UA_DataType *type);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_types_generated_encoding_binary.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* Generated from Opc.Ua.Types.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
 /* Boolean */
@@ -1095,24 +1095,314 @@ UA_DiagnosticInfo_decodeBinary(const UA_ByteString *src, size_t *offset, UA_Diag
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DIAGNOSTICINFO]);
 }
 
-/* IdType */
+/* SignedSoftwareCertificate */
 static UA_INLINE UA_StatusCode
-UA_IdType_encodeBinary(const UA_IdType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_IDTYPE], NULL, NULL, dst, offset);
+UA_SignedSoftwareCertificate_encodeBinary(const UA_SignedSoftwareCertificate *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SIGNEDSOFTWARECERTIFICATE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_IdType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_IdType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_IDTYPE]);
+UA_SignedSoftwareCertificate_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SignedSoftwareCertificate *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SIGNEDSOFTWARECERTIFICATE]);
 }
 
-/* NodeClass */
+/* BrowsePathTarget */
 static UA_INLINE UA_StatusCode
-UA_NodeClass_encodeBinary(const UA_NodeClass *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODECLASS], NULL, NULL, dst, offset);
+UA_BrowsePathTarget_encodeBinary(const UA_BrowsePathTarget *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATHTARGET], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_NodeClass_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeClass *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODECLASS]);
+UA_BrowsePathTarget_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePathTarget *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATHTARGET]);
+}
+
+/* ViewAttributes */
+static UA_INLINE UA_StatusCode
+UA_ViewAttributes_encodeBinary(const UA_ViewAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VIEWATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ViewAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ViewAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VIEWATTRIBUTES]);
+}
+
+/* BrowseResultMask */
+static UA_INLINE UA_StatusCode
+UA_BrowseResultMask_encodeBinary(const UA_BrowseResultMask *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESULTMASK], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseResultMask_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResultMask *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESULTMASK]);
+}
+
+/* RequestHeader */
+static UA_INLINE UA_StatusCode
+UA_RequestHeader_encodeBinary(const UA_RequestHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REQUESTHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RequestHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RequestHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REQUESTHEADER]);
+}
+
+/* MonitoredItemModifyResult */
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemModifyResult_encodeBinary(const UA_MonitoredItemModifyResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemModifyResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemModifyResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYRESULT]);
+}
+
+/* CloseSecureChannelRequest */
+static UA_INLINE UA_StatusCode
+UA_CloseSecureChannelRequest_encodeBinary(const UA_CloseSecureChannelRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CloseSecureChannelRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSecureChannelRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELREQUEST]);
+}
+
+/* AddNodesResult */
+static UA_INLINE UA_StatusCode
+UA_AddNodesResult_encodeBinary(const UA_AddNodesResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddNodesResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESRESULT]);
+}
+
+/* VariableAttributes */
+static UA_INLINE UA_StatusCode
+UA_VariableAttributes_encodeBinary(const UA_VariableAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_VariableAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_VariableAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES]);
+}
+
+/* NotificationMessage */
+static UA_INLINE UA_StatusCode
+UA_NotificationMessage_encodeBinary(const UA_NotificationMessage *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NOTIFICATIONMESSAGE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_NotificationMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NotificationMessage *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NOTIFICATIONMESSAGE]);
+}
+
+/* NodeAttributesMask */
+static UA_INLINE UA_StatusCode
+UA_NodeAttributesMask_encodeBinary(const UA_NodeAttributesMask *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODEATTRIBUTESMASK], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_NodeAttributesMask_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeAttributesMask *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODEATTRIBUTESMASK]);
+}
+
+/* MonitoringMode */
+static UA_INLINE UA_StatusCode
+UA_MonitoringMode_encodeBinary(const UA_MonitoringMode *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITORINGMODE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoringMode_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoringMode *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITORINGMODE]);
+}
+
+/* CallMethodResult */
+static UA_INLINE UA_StatusCode
+UA_CallMethodResult_encodeBinary(const UA_CallMethodResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLMETHODRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CallMethodResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallMethodResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLMETHODRESULT]);
+}
+
+/* ParsingResult */
+static UA_INLINE UA_StatusCode
+UA_ParsingResult_encodeBinary(const UA_ParsingResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PARSINGRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ParsingResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ParsingResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PARSINGRESULT]);
+}
+
+/* RelativePathElement */
+static UA_INLINE UA_StatusCode
+UA_RelativePathElement_encodeBinary(const UA_RelativePathElement *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RELATIVEPATHELEMENT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RelativePathElement_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RelativePathElement *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RELATIVEPATHELEMENT]);
+}
+
+/* BrowseDirection */
+static UA_INLINE UA_StatusCode
+UA_BrowseDirection_encodeBinary(const UA_BrowseDirection *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEDIRECTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseDirection_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseDirection *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEDIRECTION]);
+}
+
+/* CallMethodRequest */
+static UA_INLINE UA_StatusCode
+UA_CallMethodRequest_encodeBinary(const UA_CallMethodRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLMETHODREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CallMethodRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallMethodRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLMETHODREQUEST]);
+}
+
+/* UnregisterNodesRequest */
+static UA_INLINE UA_StatusCode
+UA_UnregisterNodesRequest_encodeBinary(const UA_UnregisterNodesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_UNREGISTERNODESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_UnregisterNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UnregisterNodesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_UNREGISTERNODESREQUEST]);
+}
+
+/* ContentFilterElementResult */
+static UA_INLINE UA_StatusCode
+UA_ContentFilterElementResult_encodeBinary(const UA_ContentFilterElementResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENTRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ContentFilterElementResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterElementResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENTRESULT]);
+}
+
+/* QueryDataSet */
+static UA_INLINE UA_StatusCode
+UA_QueryDataSet_encodeBinary(const UA_QueryDataSet *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYDATASET], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_QueryDataSet_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryDataSet *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYDATASET]);
+}
+
+/* AnonymousIdentityToken */
+static UA_INLINE UA_StatusCode
+UA_AnonymousIdentityToken_encodeBinary(const UA_AnonymousIdentityToken *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ANONYMOUSIDENTITYTOKEN], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AnonymousIdentityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AnonymousIdentityToken *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ANONYMOUSIDENTITYTOKEN]);
+}
+
+/* SetPublishingModeRequest */
+static UA_INLINE UA_StatusCode
+UA_SetPublishingModeRequest_encodeBinary(const UA_SetPublishingModeRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODEREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SetPublishingModeRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetPublishingModeRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODEREQUEST]);
+}
+
+/* TimestampsToReturn */
+static UA_INLINE UA_StatusCode
+UA_TimestampsToReturn_encodeBinary(const UA_TimestampsToReturn *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TIMESTAMPSTORETURN], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_TimestampsToReturn_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TimestampsToReturn *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TIMESTAMPSTORETURN]);
+}
+
+/* CallRequest */
+static UA_INLINE UA_StatusCode
+UA_CallRequest_encodeBinary(const UA_CallRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CallRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLREQUEST]);
+}
+
+/* MethodAttributes */
+static UA_INLINE UA_StatusCode
+UA_MethodAttributes_encodeBinary(const UA_MethodAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_METHODATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MethodAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MethodAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_METHODATTRIBUTES]);
+}
+
+/* DeleteReferencesItem */
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesItem_encodeBinary(const UA_DeleteReferencesItem *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESITEM], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesItem *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESITEM]);
+}
+
+/* WriteValue */
+static UA_INLINE UA_StatusCode
+UA_WriteValue_encodeBinary(const UA_WriteValue *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITEVALUE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_WriteValue_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteValue *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITEVALUE]);
+}
+
+/* MonitoredItemCreateResult */
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemCreateResult_encodeBinary(const UA_MonitoredItemCreateResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATERESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemCreateResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemCreateResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATERESULT]);
+}
+
+/* MessageSecurityMode */
+static UA_INLINE UA_StatusCode
+UA_MessageSecurityMode_encodeBinary(const UA_MessageSecurityMode *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MESSAGESECURITYMODE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MessageSecurityMode_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MessageSecurityMode *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MESSAGESECURITYMODE]);
+}
+
+/* MonitoringParameters */
+static UA_INLINE UA_StatusCode
+UA_MonitoringParameters_encodeBinary(const UA_MonitoringParameters *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITORINGPARAMETERS], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoringParameters_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoringParameters *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITORINGPARAMETERS]);
+}
+
+/* SignatureData */
+static UA_INLINE UA_StatusCode
+UA_SignatureData_encodeBinary(const UA_SignatureData *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SIGNATUREDATA], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SignatureData_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SignatureData *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SIGNATUREDATA]);
 }
 
 /* ReferenceNode */
@@ -1135,236 +1425,6 @@ UA_Argument_decodeBinary(const UA_ByteString *src, size_t *offset, UA_Argument *
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ARGUMENT]);
 }
 
-/* ApplicationType */
-static UA_INLINE UA_StatusCode
-UA_ApplicationType_encodeBinary(const UA_ApplicationType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_APPLICATIONTYPE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ApplicationType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ApplicationType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_APPLICATIONTYPE]);
-}
-
-/* ApplicationDescription */
-static UA_INLINE UA_StatusCode
-UA_ApplicationDescription_encodeBinary(const UA_ApplicationDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_APPLICATIONDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ApplicationDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ApplicationDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_APPLICATIONDESCRIPTION]);
-}
-
-/* RequestHeader */
-static UA_INLINE UA_StatusCode
-UA_RequestHeader_encodeBinary(const UA_RequestHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REQUESTHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_RequestHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RequestHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REQUESTHEADER]);
-}
-
-/* ResponseHeader */
-static UA_INLINE UA_StatusCode
-UA_ResponseHeader_encodeBinary(const UA_ResponseHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RESPONSEHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ResponseHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ResponseHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RESPONSEHEADER]);
-}
-
-/* ServiceFault */
-static UA_INLINE UA_StatusCode
-UA_ServiceFault_encodeBinary(const UA_ServiceFault *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SERVICEFAULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ServiceFault_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ServiceFault *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SERVICEFAULT]);
-}
-
-/* FindServersRequest */
-static UA_INLINE UA_StatusCode
-UA_FindServersRequest_encodeBinary(const UA_FindServersRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FINDSERVERSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_FindServersRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FindServersRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FINDSERVERSREQUEST]);
-}
-
-/* FindServersResponse */
-static UA_INLINE UA_StatusCode
-UA_FindServersResponse_encodeBinary(const UA_FindServersResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FINDSERVERSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_FindServersResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FindServersResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FINDSERVERSRESPONSE]);
-}
-
-/* MessageSecurityMode */
-static UA_INLINE UA_StatusCode
-UA_MessageSecurityMode_encodeBinary(const UA_MessageSecurityMode *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MESSAGESECURITYMODE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MessageSecurityMode_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MessageSecurityMode *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MESSAGESECURITYMODE]);
-}
-
-/* UserTokenType */
-static UA_INLINE UA_StatusCode
-UA_UserTokenType_encodeBinary(const UA_UserTokenType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERTOKENTYPE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_UserTokenType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserTokenType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERTOKENTYPE]);
-}
-
-/* UserTokenPolicy */
-static UA_INLINE UA_StatusCode
-UA_UserTokenPolicy_encodeBinary(const UA_UserTokenPolicy *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERTOKENPOLICY], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_UserTokenPolicy_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserTokenPolicy *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERTOKENPOLICY]);
-}
-
-/* EndpointDescription */
-static UA_INLINE UA_StatusCode
-UA_EndpointDescription_encodeBinary(const UA_EndpointDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ENDPOINTDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_EndpointDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_EndpointDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ENDPOINTDESCRIPTION]);
-}
-
-/* GetEndpointsRequest */
-static UA_INLINE UA_StatusCode
-UA_GetEndpointsRequest_encodeBinary(const UA_GetEndpointsRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_GETENDPOINTSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_GetEndpointsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_GetEndpointsRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_GETENDPOINTSREQUEST]);
-}
-
-/* GetEndpointsResponse */
-static UA_INLINE UA_StatusCode
-UA_GetEndpointsResponse_encodeBinary(const UA_GetEndpointsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_GETENDPOINTSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_GetEndpointsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_GetEndpointsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_GETENDPOINTSRESPONSE]);
-}
-
-/* SecurityTokenRequestType */
-static UA_INLINE UA_StatusCode
-UA_SecurityTokenRequestType_encodeBinary(const UA_SecurityTokenRequestType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SECURITYTOKENREQUESTTYPE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SecurityTokenRequestType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecurityTokenRequestType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SECURITYTOKENREQUESTTYPE]);
-}
-
-/* ChannelSecurityToken */
-static UA_INLINE UA_StatusCode
-UA_ChannelSecurityToken_encodeBinary(const UA_ChannelSecurityToken *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CHANNELSECURITYTOKEN], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ChannelSecurityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ChannelSecurityToken *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CHANNELSECURITYTOKEN]);
-}
-
-/* OpenSecureChannelRequest */
-static UA_INLINE UA_StatusCode
-UA_OpenSecureChannelRequest_encodeBinary(const UA_OpenSecureChannelRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OPENSECURECHANNELREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_OpenSecureChannelRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_OpenSecureChannelRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OPENSECURECHANNELREQUEST]);
-}
-
-/* OpenSecureChannelResponse */
-static UA_INLINE UA_StatusCode
-UA_OpenSecureChannelResponse_encodeBinary(const UA_OpenSecureChannelResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OPENSECURECHANNELRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_OpenSecureChannelResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_OpenSecureChannelResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OPENSECURECHANNELRESPONSE]);
-}
-
-/* CloseSecureChannelRequest */
-static UA_INLINE UA_StatusCode
-UA_CloseSecureChannelRequest_encodeBinary(const UA_CloseSecureChannelRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CloseSecureChannelRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSecureChannelRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELREQUEST]);
-}
-
-/* CloseSecureChannelResponse */
-static UA_INLINE UA_StatusCode
-UA_CloseSecureChannelResponse_encodeBinary(const UA_CloseSecureChannelResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CloseSecureChannelResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSecureChannelResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELRESPONSE]);
-}
-
-/* SignedSoftwareCertificate */
-static UA_INLINE UA_StatusCode
-UA_SignedSoftwareCertificate_encodeBinary(const UA_SignedSoftwareCertificate *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SIGNEDSOFTWARECERTIFICATE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SignedSoftwareCertificate_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SignedSoftwareCertificate *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SIGNEDSOFTWARECERTIFICATE]);
-}
-
-/* SignatureData */
-static UA_INLINE UA_StatusCode
-UA_SignatureData_encodeBinary(const UA_SignatureData *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SIGNATUREDATA], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SignatureData_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SignatureData *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SIGNATUREDATA]);
-}
-
-/* CreateSessionRequest */
-static UA_INLINE UA_StatusCode
-UA_CreateSessionRequest_encodeBinary(const UA_CreateSessionRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESESSIONREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSessionRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESESSIONREQUEST]);
-}
-
-/* CreateSessionResponse */
-static UA_INLINE UA_StatusCode
-UA_CreateSessionResponse_encodeBinary(const UA_CreateSessionResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESESSIONRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSessionResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESESSIONRESPONSE]);
-}
-
 /* UserIdentityToken */
 static UA_INLINE UA_StatusCode
 UA_UserIdentityToken_encodeBinary(const UA_UserIdentityToken *src, UA_ByteString *dst, size_t *offset) {
@@ -1373,116 +1433,6 @@ UA_UserIdentityToken_encodeBinary(const UA_UserIdentityToken *src, UA_ByteString
 static UA_INLINE UA_StatusCode
 UA_UserIdentityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserIdentityToken *dst) {
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERIDENTITYTOKEN]);
-}
-
-/* AnonymousIdentityToken */
-static UA_INLINE UA_StatusCode
-UA_AnonymousIdentityToken_encodeBinary(const UA_AnonymousIdentityToken *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ANONYMOUSIDENTITYTOKEN], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AnonymousIdentityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AnonymousIdentityToken *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ANONYMOUSIDENTITYTOKEN]);
-}
-
-/* UserNameIdentityToken */
-static UA_INLINE UA_StatusCode
-UA_UserNameIdentityToken_encodeBinary(const UA_UserNameIdentityToken *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERNAMEIDENTITYTOKEN], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_UserNameIdentityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserNameIdentityToken *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERNAMEIDENTITYTOKEN]);
-}
-
-/* ActivateSessionRequest */
-static UA_INLINE UA_StatusCode
-UA_ActivateSessionRequest_encodeBinary(const UA_ActivateSessionRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ACTIVATESESSIONREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ActivateSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ActivateSessionRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ACTIVATESESSIONREQUEST]);
-}
-
-/* ActivateSessionResponse */
-static UA_INLINE UA_StatusCode
-UA_ActivateSessionResponse_encodeBinary(const UA_ActivateSessionResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ACTIVATESESSIONRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ActivateSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ActivateSessionResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ACTIVATESESSIONRESPONSE]);
-}
-
-/* CloseSessionRequest */
-static UA_INLINE UA_StatusCode
-UA_CloseSessionRequest_encodeBinary(const UA_CloseSessionRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESESSIONREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CloseSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSessionRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESESSIONREQUEST]);
-}
-
-/* CloseSessionResponse */
-static UA_INLINE UA_StatusCode
-UA_CloseSessionResponse_encodeBinary(const UA_CloseSessionResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESESSIONRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CloseSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSessionResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESESSIONRESPONSE]);
-}
-
-/* NodeAttributesMask */
-static UA_INLINE UA_StatusCode
-UA_NodeAttributesMask_encodeBinary(const UA_NodeAttributesMask *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODEATTRIBUTESMASK], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_NodeAttributesMask_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeAttributesMask *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODEATTRIBUTESMASK]);
-}
-
-/* NodeAttributes */
-static UA_INLINE UA_StatusCode
-UA_NodeAttributes_encodeBinary(const UA_NodeAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODEATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_NodeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODEATTRIBUTES]);
-}
-
-/* ObjectAttributes */
-static UA_INLINE UA_StatusCode
-UA_ObjectAttributes_encodeBinary(const UA_ObjectAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OBJECTATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ObjectAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ObjectAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OBJECTATTRIBUTES]);
-}
-
-/* VariableAttributes */
-static UA_INLINE UA_StatusCode
-UA_VariableAttributes_encodeBinary(const UA_VariableAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_VariableAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_VariableAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VARIABLEATTRIBUTES]);
-}
-
-/* MethodAttributes */
-static UA_INLINE UA_StatusCode
-UA_MethodAttributes_encodeBinary(const UA_MethodAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_METHODATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MethodAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MethodAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_METHODATTRIBUTES]);
 }
 
 /* ObjectTypeAttributes */
@@ -1495,634 +1445,24 @@ UA_ObjectTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, U
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OBJECTTYPEATTRIBUTES]);
 }
 
-/* VariableTypeAttributes */
+/* DeadbandType */
 static UA_INLINE UA_StatusCode
-UA_VariableTypeAttributes_encodeBinary(const UA_VariableTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VARIABLETYPEATTRIBUTES], NULL, NULL, dst, offset);
+UA_DeadbandType_encodeBinary(const UA_DeadbandType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DEADBANDTYPE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_VariableTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_VariableTypeAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VARIABLETYPEATTRIBUTES]);
-}
-
-/* ReferenceTypeAttributes */
-static UA_INLINE UA_StatusCode
-UA_ReferenceTypeAttributes_encodeBinary(const UA_ReferenceTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REFERENCETYPEATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ReferenceTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReferenceTypeAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REFERENCETYPEATTRIBUTES]);
+UA_DeadbandType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeadbandType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DEADBANDTYPE]);
 }
 
-/* DataTypeAttributes */
+/* SecurityTokenRequestType */
 static UA_INLINE UA_StatusCode
-UA_DataTypeAttributes_encodeBinary(const UA_DataTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DATATYPEATTRIBUTES], NULL, NULL, dst, offset);
+UA_SecurityTokenRequestType_encodeBinary(const UA_SecurityTokenRequestType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SECURITYTOKENREQUESTTYPE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_DataTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DataTypeAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATATYPEATTRIBUTES]);
-}
-
-/* ViewAttributes */
-static UA_INLINE UA_StatusCode
-UA_ViewAttributes_encodeBinary(const UA_ViewAttributes *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VIEWATTRIBUTES], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ViewAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ViewAttributes *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VIEWATTRIBUTES]);
-}
-
-/* AddNodesItem */
-static UA_INLINE UA_StatusCode
-UA_AddNodesItem_encodeBinary(const UA_AddNodesItem *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESITEM], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddNodesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesItem *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESITEM]);
-}
-
-/* AddNodesResult */
-static UA_INLINE UA_StatusCode
-UA_AddNodesResult_encodeBinary(const UA_AddNodesResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddNodesResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESRESULT]);
-}
-
-/* AddNodesRequest */
-static UA_INLINE UA_StatusCode
-UA_AddNodesRequest_encodeBinary(const UA_AddNodesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESREQUEST]);
-}
-
-/* AddNodesResponse */
-static UA_INLINE UA_StatusCode
-UA_AddNodesResponse_encodeBinary(const UA_AddNodesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESRESPONSE]);
-}
-
-/* AddReferencesItem */
-static UA_INLINE UA_StatusCode
-UA_AddReferencesItem_encodeBinary(const UA_AddReferencesItem *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESITEM], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddReferencesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesItem *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESITEM]);
-}
-
-/* AddReferencesRequest */
-static UA_INLINE UA_StatusCode
-UA_AddReferencesRequest_encodeBinary(const UA_AddReferencesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddReferencesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESREQUEST]);
-}
-
-/* AddReferencesResponse */
-static UA_INLINE UA_StatusCode
-UA_AddReferencesResponse_encodeBinary(const UA_AddReferencesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AddReferencesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESRESPONSE]);
-}
-
-/* DeleteNodesItem */
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesItem_encodeBinary(const UA_DeleteNodesItem *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESITEM], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesItem *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESITEM]);
-}
-
-/* DeleteNodesRequest */
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesRequest_encodeBinary(const UA_DeleteNodesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESREQUEST]);
-}
-
-/* DeleteNodesResponse */
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesResponse_encodeBinary(const UA_DeleteNodesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESRESPONSE]);
-}
-
-/* DeleteReferencesItem */
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesItem_encodeBinary(const UA_DeleteReferencesItem *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESITEM], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesItem *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESITEM]);
-}
-
-/* DeleteReferencesRequest */
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesRequest_encodeBinary(const UA_DeleteReferencesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESREQUEST]);
-}
-
-/* DeleteReferencesResponse */
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesResponse_encodeBinary(const UA_DeleteReferencesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteReferencesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESRESPONSE]);
-}
-
-/* BrowseDirection */
-static UA_INLINE UA_StatusCode
-UA_BrowseDirection_encodeBinary(const UA_BrowseDirection *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEDIRECTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseDirection_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseDirection *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEDIRECTION]);
-}
-
-/* ViewDescription */
-static UA_INLINE UA_StatusCode
-UA_ViewDescription_encodeBinary(const UA_ViewDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VIEWDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ViewDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ViewDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VIEWDESCRIPTION]);
-}
-
-/* BrowseDescription */
-static UA_INLINE UA_StatusCode
-UA_BrowseDescription_encodeBinary(const UA_BrowseDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEDESCRIPTION]);
-}
-
-/* BrowseResultMask */
-static UA_INLINE UA_StatusCode
-UA_BrowseResultMask_encodeBinary(const UA_BrowseResultMask *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESULTMASK], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseResultMask_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResultMask *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESULTMASK]);
-}
-
-/* ReferenceDescription */
-static UA_INLINE UA_StatusCode
-UA_ReferenceDescription_encodeBinary(const UA_ReferenceDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ReferenceDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReferenceDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
-}
-
-/* BrowseResult */
-static UA_INLINE UA_StatusCode
-UA_BrowseResult_encodeBinary(const UA_BrowseResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESULT]);
-}
-
-/* BrowseRequest */
-static UA_INLINE UA_StatusCode
-UA_BrowseRequest_encodeBinary(const UA_BrowseRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEREQUEST]);
-}
-
-/* BrowseResponse */
-static UA_INLINE UA_StatusCode
-UA_BrowseResponse_encodeBinary(const UA_BrowseResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESPONSE]);
-}
-
-/* BrowseNextRequest */
-static UA_INLINE UA_StatusCode
-UA_BrowseNextRequest_encodeBinary(const UA_BrowseNextRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSENEXTREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseNextRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseNextRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSENEXTREQUEST]);
-}
-
-/* BrowseNextResponse */
-static UA_INLINE UA_StatusCode
-UA_BrowseNextResponse_encodeBinary(const UA_BrowseNextResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSENEXTRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowseNextResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseNextResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSENEXTRESPONSE]);
-}
-
-/* RelativePathElement */
-static UA_INLINE UA_StatusCode
-UA_RelativePathElement_encodeBinary(const UA_RelativePathElement *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RELATIVEPATHELEMENT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_RelativePathElement_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RelativePathElement *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RELATIVEPATHELEMENT]);
-}
-
-/* RelativePath */
-static UA_INLINE UA_StatusCode
-UA_RelativePath_encodeBinary(const UA_RelativePath *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RELATIVEPATH], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_RelativePath_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RelativePath *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RELATIVEPATH]);
-}
-
-/* BrowsePath */
-static UA_INLINE UA_StatusCode
-UA_BrowsePath_encodeBinary(const UA_BrowsePath *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATH], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowsePath_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePath *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATH]);
-}
-
-/* BrowsePathTarget */
-static UA_INLINE UA_StatusCode
-UA_BrowsePathTarget_encodeBinary(const UA_BrowsePathTarget *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATHTARGET], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowsePathTarget_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePathTarget *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATHTARGET]);
-}
-
-/* BrowsePathResult */
-static UA_INLINE UA_StatusCode
-UA_BrowsePathResult_encodeBinary(const UA_BrowsePathResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATHRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_BrowsePathResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePathResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATHRESULT]);
-}
-
-/* TranslateBrowsePathsToNodeIdsRequest */
-static UA_INLINE UA_StatusCode
-UA_TranslateBrowsePathsToNodeIdsRequest_encodeBinary(const UA_TranslateBrowsePathsToNodeIdsRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TranslateBrowsePathsToNodeIdsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TranslateBrowsePathsToNodeIdsRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST]);
-}
-
-/* TranslateBrowsePathsToNodeIdsResponse */
-static UA_INLINE UA_StatusCode
-UA_TranslateBrowsePathsToNodeIdsResponse_encodeBinary(const UA_TranslateBrowsePathsToNodeIdsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TranslateBrowsePathsToNodeIdsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TranslateBrowsePathsToNodeIdsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE]);
-}
-
-/* RegisterNodesRequest */
-static UA_INLINE UA_StatusCode
-UA_RegisterNodesRequest_encodeBinary(const UA_RegisterNodesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REGISTERNODESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_RegisterNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RegisterNodesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REGISTERNODESREQUEST]);
-}
-
-/* RegisterNodesResponse */
-static UA_INLINE UA_StatusCode
-UA_RegisterNodesResponse_encodeBinary(const UA_RegisterNodesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REGISTERNODESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_RegisterNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RegisterNodesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REGISTERNODESRESPONSE]);
-}
-
-/* UnregisterNodesRequest */
-static UA_INLINE UA_StatusCode
-UA_UnregisterNodesRequest_encodeBinary(const UA_UnregisterNodesRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_UNREGISTERNODESREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_UnregisterNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UnregisterNodesRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_UNREGISTERNODESREQUEST]);
-}
-
-/* UnregisterNodesResponse */
-static UA_INLINE UA_StatusCode
-UA_UnregisterNodesResponse_encodeBinary(const UA_UnregisterNodesResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_UNREGISTERNODESRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_UnregisterNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UnregisterNodesResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_UNREGISTERNODESRESPONSE]);
-}
-
-/* QueryDataDescription */
-static UA_INLINE UA_StatusCode
-UA_QueryDataDescription_encodeBinary(const UA_QueryDataDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYDATADESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryDataDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryDataDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYDATADESCRIPTION]);
-}
-
-/* NodeTypeDescription */
-static UA_INLINE UA_StatusCode
-UA_NodeTypeDescription_encodeBinary(const UA_NodeTypeDescription *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODETYPEDESCRIPTION], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_NodeTypeDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeTypeDescription *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODETYPEDESCRIPTION]);
-}
-
-/* FilterOperator */
-static UA_INLINE UA_StatusCode
-UA_FilterOperator_encodeBinary(const UA_FilterOperator *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FILTEROPERATOR], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_FilterOperator_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FilterOperator *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FILTEROPERATOR]);
-}
-
-/* QueryDataSet */
-static UA_INLINE UA_StatusCode
-UA_QueryDataSet_encodeBinary(const UA_QueryDataSet *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYDATASET], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryDataSet_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryDataSet *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYDATASET]);
-}
-
-/* ContentFilterElement */
-static UA_INLINE UA_StatusCode
-UA_ContentFilterElement_encodeBinary(const UA_ContentFilterElement *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ContentFilterElement_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterElement *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENT]);
-}
-
-/* ContentFilter */
-static UA_INLINE UA_StatusCode
-UA_ContentFilter_encodeBinary(const UA_ContentFilter *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ContentFilter_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilter *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTER]);
-}
-
-/* ContentFilterElementResult */
-static UA_INLINE UA_StatusCode
-UA_ContentFilterElementResult_encodeBinary(const UA_ContentFilterElementResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENTRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ContentFilterElementResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterElementResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENTRESULT]);
-}
-
-/* ContentFilterResult */
-static UA_INLINE UA_StatusCode
-UA_ContentFilterResult_encodeBinary(const UA_ContentFilterResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ContentFilterResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERRESULT]);
-}
-
-/* ParsingResult */
-static UA_INLINE UA_StatusCode
-UA_ParsingResult_encodeBinary(const UA_ParsingResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PARSINGRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ParsingResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ParsingResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PARSINGRESULT]);
-}
-
-/* QueryFirstRequest */
-static UA_INLINE UA_StatusCode
-UA_QueryFirstRequest_encodeBinary(const UA_QueryFirstRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYFIRSTREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryFirstRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryFirstRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYFIRSTREQUEST]);
-}
-
-/* QueryFirstResponse */
-static UA_INLINE UA_StatusCode
-UA_QueryFirstResponse_encodeBinary(const UA_QueryFirstResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYFIRSTRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryFirstResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryFirstResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYFIRSTRESPONSE]);
-}
-
-/* QueryNextRequest */
-static UA_INLINE UA_StatusCode
-UA_QueryNextRequest_encodeBinary(const UA_QueryNextRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYNEXTREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryNextRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryNextRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYNEXTREQUEST]);
-}
-
-/* QueryNextResponse */
-static UA_INLINE UA_StatusCode
-UA_QueryNextResponse_encodeBinary(const UA_QueryNextResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYNEXTRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_QueryNextResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryNextResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYNEXTRESPONSE]);
-}
-
-/* TimestampsToReturn */
-static UA_INLINE UA_StatusCode
-UA_TimestampsToReturn_encodeBinary(const UA_TimestampsToReturn *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TIMESTAMPSTORETURN], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TimestampsToReturn_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TimestampsToReturn *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TIMESTAMPSTORETURN]);
-}
-
-/* ReadValueId */
-static UA_INLINE UA_StatusCode
-UA_ReadValueId_encodeBinary(const UA_ReadValueId *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READVALUEID], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ReadValueId_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadValueId *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READVALUEID]);
-}
-
-/* ReadRequest */
-static UA_INLINE UA_StatusCode
-UA_ReadRequest_encodeBinary(const UA_ReadRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ReadRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READREQUEST]);
-}
-
-/* ReadResponse */
-static UA_INLINE UA_StatusCode
-UA_ReadResponse_encodeBinary(const UA_ReadResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ReadResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READRESPONSE]);
-}
-
-/* WriteValue */
-static UA_INLINE UA_StatusCode
-UA_WriteValue_encodeBinary(const UA_WriteValue *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITEVALUE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_WriteValue_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteValue *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITEVALUE]);
-}
-
-/* WriteRequest */
-static UA_INLINE UA_StatusCode
-UA_WriteRequest_encodeBinary(const UA_WriteRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITEREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_WriteRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITEREQUEST]);
-}
-
-/* WriteResponse */
-static UA_INLINE UA_StatusCode
-UA_WriteResponse_encodeBinary(const UA_WriteResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITERESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_WriteResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITERESPONSE]);
-}
-
-/* CallMethodRequest */
-static UA_INLINE UA_StatusCode
-UA_CallMethodRequest_encodeBinary(const UA_CallMethodRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLMETHODREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CallMethodRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallMethodRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLMETHODREQUEST]);
-}
-
-/* CallMethodResult */
-static UA_INLINE UA_StatusCode
-UA_CallMethodResult_encodeBinary(const UA_CallMethodResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLMETHODRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CallMethodResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallMethodResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLMETHODRESULT]);
-}
-
-/* CallRequest */
-static UA_INLINE UA_StatusCode
-UA_CallRequest_encodeBinary(const UA_CallRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CallRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLREQUEST]);
-}
-
-/* CallResponse */
-static UA_INLINE UA_StatusCode
-UA_CallResponse_encodeBinary(const UA_CallResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CallResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLRESPONSE]);
-}
-
-/* MonitoringMode */
-static UA_INLINE UA_StatusCode
-UA_MonitoringMode_encodeBinary(const UA_MonitoringMode *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITORINGMODE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MonitoringMode_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoringMode *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITORINGMODE]);
+UA_SecurityTokenRequestType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecurityTokenRequestType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SECURITYTOKENREQUESTTYPE]);
 }
 
 /* DataChangeTrigger */
@@ -2135,224 +1475,34 @@ UA_DataChangeTrigger_decodeBinary(const UA_ByteString *src, size_t *offset, UA_D
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATACHANGETRIGGER]);
 }
 
-/* DeadbandType */
+/* BuildInfo */
 static UA_INLINE UA_StatusCode
-UA_DeadbandType_encodeBinary(const UA_DeadbandType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DEADBANDTYPE], NULL, NULL, dst, offset);
+UA_BuildInfo_encodeBinary(const UA_BuildInfo *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BUILDINFO], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_DeadbandType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeadbandType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DEADBANDTYPE]);
-}
-
-/* DataChangeFilter */
-static UA_INLINE UA_StatusCode
-UA_DataChangeFilter_encodeBinary(const UA_DataChangeFilter *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DATACHANGEFILTER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DataChangeFilter_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DataChangeFilter *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATACHANGEFILTER]);
+UA_BuildInfo_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BuildInfo *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BUILDINFO]);
 }
 
-/* MonitoringParameters */
+/* NodeClass */
 static UA_INLINE UA_StatusCode
-UA_MonitoringParameters_encodeBinary(const UA_MonitoringParameters *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITORINGPARAMETERS], NULL, NULL, dst, offset);
+UA_NodeClass_encodeBinary(const UA_NodeClass *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODECLASS], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_MonitoringParameters_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoringParameters *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITORINGPARAMETERS]);
-}
-
-/* MonitoredItemCreateRequest */
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemCreateRequest_encodeBinary(const UA_MonitoredItemCreateRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATEREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemCreateRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemCreateRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATEREQUEST]);
+UA_NodeClass_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeClass *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODECLASS]);
 }
 
-/* MonitoredItemCreateResult */
+/* ChannelSecurityToken */
 static UA_INLINE UA_StatusCode
-UA_MonitoredItemCreateResult_encodeBinary(const UA_MonitoredItemCreateResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATERESULT], NULL, NULL, dst, offset);
+UA_ChannelSecurityToken_encodeBinary(const UA_ChannelSecurityToken *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CHANNELSECURITYTOKEN], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_MonitoredItemCreateResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemCreateResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATERESULT]);
-}
-
-/* CreateMonitoredItemsRequest */
-static UA_INLINE UA_StatusCode
-UA_CreateMonitoredItemsRequest_encodeBinary(const UA_CreateMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateMonitoredItemsRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSREQUEST]);
-}
-
-/* CreateMonitoredItemsResponse */
-static UA_INLINE UA_StatusCode
-UA_CreateMonitoredItemsResponse_encodeBinary(const UA_CreateMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateMonitoredItemsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSRESPONSE]);
-}
-
-/* MonitoredItemModifyRequest */
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemModifyRequest_encodeBinary(const UA_MonitoredItemModifyRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemModifyRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemModifyRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYREQUEST]);
-}
-
-/* MonitoredItemModifyResult */
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemModifyResult_encodeBinary(const UA_MonitoredItemModifyResult *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYRESULT], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_MonitoredItemModifyResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemModifyResult *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYRESULT]);
-}
-
-/* ModifyMonitoredItemsRequest */
-static UA_INLINE UA_StatusCode
-UA_ModifyMonitoredItemsRequest_encodeBinary(const UA_ModifyMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ModifyMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifyMonitoredItemsRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSREQUEST]);
-}
-
-/* ModifyMonitoredItemsResponse */
-static UA_INLINE UA_StatusCode
-UA_ModifyMonitoredItemsResponse_encodeBinary(const UA_ModifyMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ModifyMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifyMonitoredItemsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSRESPONSE]);
-}
-
-/* SetMonitoringModeRequest */
-static UA_INLINE UA_StatusCode
-UA_SetMonitoringModeRequest_encodeBinary(const UA_SetMonitoringModeRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETMONITORINGMODEREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SetMonitoringModeRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetMonitoringModeRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETMONITORINGMODEREQUEST]);
-}
-
-/* SetMonitoringModeResponse */
-static UA_INLINE UA_StatusCode
-UA_SetMonitoringModeResponse_encodeBinary(const UA_SetMonitoringModeResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETMONITORINGMODERESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SetMonitoringModeResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetMonitoringModeResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETMONITORINGMODERESPONSE]);
-}
-
-/* DeleteMonitoredItemsRequest */
-static UA_INLINE UA_StatusCode
-UA_DeleteMonitoredItemsRequest_encodeBinary(const UA_DeleteMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteMonitoredItemsRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSREQUEST]);
-}
-
-/* DeleteMonitoredItemsResponse */
-static UA_INLINE UA_StatusCode
-UA_DeleteMonitoredItemsResponse_encodeBinary(const UA_DeleteMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_DeleteMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteMonitoredItemsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSRESPONSE]);
-}
-
-/* CreateSubscriptionRequest */
-static UA_INLINE UA_StatusCode
-UA_CreateSubscriptionRequest_encodeBinary(const UA_CreateSubscriptionRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateSubscriptionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSubscriptionRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONREQUEST]);
-}
-
-/* CreateSubscriptionResponse */
-static UA_INLINE UA_StatusCode
-UA_CreateSubscriptionResponse_encodeBinary(const UA_CreateSubscriptionResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_CreateSubscriptionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSubscriptionResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONRESPONSE]);
-}
-
-/* ModifySubscriptionRequest */
-static UA_INLINE UA_StatusCode
-UA_ModifySubscriptionRequest_encodeBinary(const UA_ModifySubscriptionRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ModifySubscriptionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifySubscriptionRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONREQUEST]);
-}
-
-/* ModifySubscriptionResponse */
-static UA_INLINE UA_StatusCode
-UA_ModifySubscriptionResponse_encodeBinary(const UA_ModifySubscriptionResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ModifySubscriptionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifySubscriptionResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE]);
-}
-
-/* SetPublishingModeRequest */
-static UA_INLINE UA_StatusCode
-UA_SetPublishingModeRequest_encodeBinary(const UA_SetPublishingModeRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODEREQUEST], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SetPublishingModeRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetPublishingModeRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODEREQUEST]);
-}
-
-/* SetPublishingModeResponse */
-static UA_INLINE UA_StatusCode
-UA_SetPublishingModeResponse_encodeBinary(const UA_SetPublishingModeResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODERESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SetPublishingModeResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetPublishingModeResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODERESPONSE]);
-}
-
-/* NotificationMessage */
-static UA_INLINE UA_StatusCode
-UA_NotificationMessage_encodeBinary(const UA_NotificationMessage *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NOTIFICATIONMESSAGE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_NotificationMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NotificationMessage *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NOTIFICATIONMESSAGE]);
+UA_ChannelSecurityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ChannelSecurityToken *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CHANNELSECURITYTOKEN]);
 }
 
 /* MonitoredItemNotification */
@@ -2365,6 +1515,16 @@ UA_MonitoredItemNotification_decodeBinary(const UA_ByteString *src, size_t *offs
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMNOTIFICATION]);
 }
 
+/* DeleteNodesItem */
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesItem_encodeBinary(const UA_DeleteNodesItem *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESITEM], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesItem *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESITEM]);
+}
+
 /* SubscriptionAcknowledgement */
 static UA_INLINE UA_StatusCode
 UA_SubscriptionAcknowledgement_encodeBinary(const UA_SubscriptionAcknowledgement *src, UA_ByteString *dst, size_t *offset) {
@@ -2375,44 +1535,34 @@ UA_SubscriptionAcknowledgement_decodeBinary(const UA_ByteString *src, size_t *of
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SUBSCRIPTIONACKNOWLEDGEMENT]);
 }
 
-/* PublishRequest */
+/* ReadValueId */
 static UA_INLINE UA_StatusCode
-UA_PublishRequest_encodeBinary(const UA_PublishRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PUBLISHREQUEST], NULL, NULL, dst, offset);
+UA_ReadValueId_encodeBinary(const UA_ReadValueId *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READVALUEID], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_PublishRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_PublishRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PUBLISHREQUEST]);
-}
-
-/* PublishResponse */
-static UA_INLINE UA_StatusCode
-UA_PublishResponse_encodeBinary(const UA_PublishResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PUBLISHRESPONSE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_PublishResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_PublishResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PUBLISHRESPONSE]);
+UA_ReadValueId_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadValueId *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READVALUEID]);
 }
 
-/* RepublishRequest */
+/* DataTypeAttributes */
 static UA_INLINE UA_StatusCode
-UA_RepublishRequest_encodeBinary(const UA_RepublishRequest *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REPUBLISHREQUEST], NULL, NULL, dst, offset);
+UA_DataTypeAttributes_encodeBinary(const UA_DataTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DATATYPEATTRIBUTES], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_RepublishRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RepublishRequest *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REPUBLISHREQUEST]);
+UA_DataTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DataTypeAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATATYPEATTRIBUTES]);
 }
 
-/* RepublishResponse */
+/* ResponseHeader */
 static UA_INLINE UA_StatusCode
-UA_RepublishResponse_encodeBinary(const UA_RepublishResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REPUBLISHRESPONSE], NULL, NULL, dst, offset);
+UA_ResponseHeader_encodeBinary(const UA_ResponseHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RESPONSEHEADER], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_RepublishResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RepublishResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REPUBLISHRESPONSE]);
+UA_ResponseHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ResponseHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RESPONSEHEADER]);
 }
 
 /* DeleteSubscriptionsRequest */
@@ -2425,24 +1575,134 @@ UA_DeleteSubscriptionsRequest_decodeBinary(const UA_ByteString *src, size_t *off
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETESUBSCRIPTIONSREQUEST]);
 }
 
-/* DeleteSubscriptionsResponse */
+/* ViewDescription */
 static UA_INLINE UA_StatusCode
-UA_DeleteSubscriptionsResponse_encodeBinary(const UA_DeleteSubscriptionsResponse *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETESUBSCRIPTIONSRESPONSE], NULL, NULL, dst, offset);
+UA_ViewDescription_encodeBinary(const UA_ViewDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VIEWDESCRIPTION], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_DeleteSubscriptionsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteSubscriptionsResponse *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETESUBSCRIPTIONSRESPONSE]);
+UA_ViewDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ViewDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VIEWDESCRIPTION]);
 }
 
-/* BuildInfo */
+/* DeleteMonitoredItemsResponse */
 static UA_INLINE UA_StatusCode
-UA_BuildInfo_encodeBinary(const UA_BuildInfo *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BUILDINFO], NULL, NULL, dst, offset);
+UA_DeleteMonitoredItemsResponse_encodeBinary(const UA_DeleteMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_BuildInfo_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BuildInfo *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BUILDINFO]);
+UA_DeleteMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteMonitoredItemsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSRESPONSE]);
+}
+
+/* NodeAttributes */
+static UA_INLINE UA_StatusCode
+UA_NodeAttributes_encodeBinary(const UA_NodeAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODEATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_NodeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODEATTRIBUTES]);
+}
+
+/* RegisterNodesRequest */
+static UA_INLINE UA_StatusCode
+UA_RegisterNodesRequest_encodeBinary(const UA_RegisterNodesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REGISTERNODESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RegisterNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RegisterNodesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REGISTERNODESREQUEST]);
+}
+
+/* DeleteNodesRequest */
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesRequest_encodeBinary(const UA_DeleteNodesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESREQUEST]);
+}
+
+/* PublishResponse */
+static UA_INLINE UA_StatusCode
+UA_PublishResponse_encodeBinary(const UA_PublishResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PUBLISHRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_PublishResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_PublishResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PUBLISHRESPONSE]);
+}
+
+/* MonitoredItemModifyRequest */
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemModifyRequest_encodeBinary(const UA_MonitoredItemModifyRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemModifyRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemModifyRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMMODIFYREQUEST]);
+}
+
+/* UserNameIdentityToken */
+static UA_INLINE UA_StatusCode
+UA_UserNameIdentityToken_encodeBinary(const UA_UserNameIdentityToken *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERNAMEIDENTITYTOKEN], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_UserNameIdentityToken_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserNameIdentityToken *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERNAMEIDENTITYTOKEN]);
+}
+
+/* IdType */
+static UA_INLINE UA_StatusCode
+UA_IdType_encodeBinary(const UA_IdType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_IDTYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_IdType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_IdType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_IDTYPE]);
+}
+
+/* UserTokenType */
+static UA_INLINE UA_StatusCode
+UA_UserTokenType_encodeBinary(const UA_UserTokenType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERTOKENTYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_UserTokenType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserTokenType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERTOKENTYPE]);
+}
+
+/* ActivateSessionRequest */
+static UA_INLINE UA_StatusCode
+UA_ActivateSessionRequest_encodeBinary(const UA_ActivateSessionRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ACTIVATESESSIONREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ActivateSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ActivateSessionRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ACTIVATESESSIONREQUEST]);
+}
+
+/* OpenSecureChannelResponse */
+static UA_INLINE UA_StatusCode
+UA_OpenSecureChannelResponse_encodeBinary(const UA_OpenSecureChannelResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OPENSECURECHANNELRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_OpenSecureChannelResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_OpenSecureChannelResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OPENSECURECHANNELRESPONSE]);
+}
+
+/* ApplicationType */
+static UA_INLINE UA_StatusCode
+UA_ApplicationType_encodeBinary(const UA_ApplicationType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_APPLICATIONTYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ApplicationType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ApplicationType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_APPLICATIONTYPE]);
 }
 
 /* ServerState */
@@ -2455,14 +1715,264 @@ UA_ServerState_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ServerS
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SERVERSTATE]);
 }
 
-/* ServerStatusDataType */
+/* QueryNextResponse */
 static UA_INLINE UA_StatusCode
-UA_ServerStatusDataType_encodeBinary(const UA_ServerStatusDataType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SERVERSTATUSDATATYPE], NULL, NULL, dst, offset);
+UA_QueryNextResponse_encodeBinary(const UA_QueryNextResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYNEXTRESPONSE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_ServerStatusDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ServerStatusDataType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SERVERSTATUSDATATYPE]);
+UA_QueryNextResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryNextResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYNEXTRESPONSE]);
+}
+
+/* ActivateSessionResponse */
+static UA_INLINE UA_StatusCode
+UA_ActivateSessionResponse_encodeBinary(const UA_ActivateSessionResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ACTIVATESESSIONRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ActivateSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ActivateSessionResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ACTIVATESESSIONRESPONSE]);
+}
+
+/* FilterOperator */
+static UA_INLINE UA_StatusCode
+UA_FilterOperator_encodeBinary(const UA_FilterOperator *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FILTEROPERATOR], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_FilterOperator_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FilterOperator *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FILTEROPERATOR]);
+}
+
+/* QueryNextRequest */
+static UA_INLINE UA_StatusCode
+UA_QueryNextRequest_encodeBinary(const UA_QueryNextRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYNEXTREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_QueryNextRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryNextRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYNEXTREQUEST]);
+}
+
+/* WriteResponse */
+static UA_INLINE UA_StatusCode
+UA_WriteResponse_encodeBinary(const UA_WriteResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITERESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_WriteResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITERESPONSE]);
+}
+
+/* BrowseNextRequest */
+static UA_INLINE UA_StatusCode
+UA_BrowseNextRequest_encodeBinary(const UA_BrowseNextRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSENEXTREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseNextRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseNextRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSENEXTREQUEST]);
+}
+
+/* CreateSubscriptionRequest */
+static UA_INLINE UA_StatusCode
+UA_CreateSubscriptionRequest_encodeBinary(const UA_CreateSubscriptionRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateSubscriptionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSubscriptionRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONREQUEST]);
+}
+
+/* VariableTypeAttributes */
+static UA_INLINE UA_StatusCode
+UA_VariableTypeAttributes_encodeBinary(const UA_VariableTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_VARIABLETYPEATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_VariableTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_VariableTypeAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_VARIABLETYPEATTRIBUTES]);
+}
+
+/* BrowsePathResult */
+static UA_INLINE UA_StatusCode
+UA_BrowsePathResult_encodeBinary(const UA_BrowsePathResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATHRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowsePathResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePathResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATHRESULT]);
+}
+
+/* ModifySubscriptionResponse */
+static UA_INLINE UA_StatusCode
+UA_ModifySubscriptionResponse_encodeBinary(const UA_ModifySubscriptionResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ModifySubscriptionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifySubscriptionResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE]);
+}
+
+/* OpenSecureChannelRequest */
+static UA_INLINE UA_StatusCode
+UA_OpenSecureChannelRequest_encodeBinary(const UA_OpenSecureChannelRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OPENSECURECHANNELREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_OpenSecureChannelRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_OpenSecureChannelRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OPENSECURECHANNELREQUEST]);
+}
+
+/* RegisterNodesResponse */
+static UA_INLINE UA_StatusCode
+UA_RegisterNodesResponse_encodeBinary(const UA_RegisterNodesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REGISTERNODESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RegisterNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RegisterNodesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REGISTERNODESRESPONSE]);
+}
+
+/* CloseSessionRequest */
+static UA_INLINE UA_StatusCode
+UA_CloseSessionRequest_encodeBinary(const UA_CloseSessionRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESESSIONREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CloseSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSessionRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESESSIONREQUEST]);
+}
+
+/* ModifySubscriptionRequest */
+static UA_INLINE UA_StatusCode
+UA_ModifySubscriptionRequest_encodeBinary(const UA_ModifySubscriptionRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ModifySubscriptionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifySubscriptionRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYSUBSCRIPTIONREQUEST]);
+}
+
+/* UserTokenPolicy */
+static UA_INLINE UA_StatusCode
+UA_UserTokenPolicy_encodeBinary(const UA_UserTokenPolicy *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_USERTOKENPOLICY], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_UserTokenPolicy_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UserTokenPolicy *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_USERTOKENPOLICY]);
+}
+
+/* DeleteMonitoredItemsRequest */
+static UA_INLINE UA_StatusCode
+UA_DeleteMonitoredItemsRequest_encodeBinary(const UA_DeleteMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteMonitoredItemsRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEMONITOREDITEMSREQUEST]);
+}
+
+/* ReferenceTypeAttributes */
+static UA_INLINE UA_StatusCode
+UA_ReferenceTypeAttributes_encodeBinary(const UA_ReferenceTypeAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REFERENCETYPEATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ReferenceTypeAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReferenceTypeAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REFERENCETYPEATTRIBUTES]);
+}
+
+/* SetMonitoringModeRequest */
+static UA_INLINE UA_StatusCode
+UA_SetMonitoringModeRequest_encodeBinary(const UA_SetMonitoringModeRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETMONITORINGMODEREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SetMonitoringModeRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetMonitoringModeRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETMONITORINGMODEREQUEST]);
+}
+
+/* UnregisterNodesResponse */
+static UA_INLINE UA_StatusCode
+UA_UnregisterNodesResponse_encodeBinary(const UA_UnregisterNodesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_UNREGISTERNODESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_UnregisterNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_UnregisterNodesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_UNREGISTERNODESRESPONSE]);
+}
+
+/* WriteRequest */
+static UA_INLINE UA_StatusCode
+UA_WriteRequest_encodeBinary(const UA_WriteRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_WRITEREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_WriteRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_WriteRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_WRITEREQUEST]);
+}
+
+/* ObjectAttributes */
+static UA_INLINE UA_StatusCode
+UA_ObjectAttributes_encodeBinary(const UA_ObjectAttributes *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_OBJECTATTRIBUTES], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ObjectAttributes_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ObjectAttributes *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_OBJECTATTRIBUTES]);
+}
+
+/* BrowseDescription */
+static UA_INLINE UA_StatusCode
+UA_BrowseDescription_encodeBinary(const UA_BrowseDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEDESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEDESCRIPTION]);
+}
+
+/* RepublishRequest */
+static UA_INLINE UA_StatusCode
+UA_RepublishRequest_encodeBinary(const UA_RepublishRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REPUBLISHREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RepublishRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RepublishRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REPUBLISHREQUEST]);
+}
+
+/* GetEndpointsRequest */
+static UA_INLINE UA_StatusCode
+UA_GetEndpointsRequest_encodeBinary(const UA_GetEndpointsRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_GETENDPOINTSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_GetEndpointsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_GetEndpointsRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_GETENDPOINTSREQUEST]);
+}
+
+/* PublishRequest */
+static UA_INLINE UA_StatusCode
+UA_PublishRequest_encodeBinary(const UA_PublishRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_PUBLISHREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_PublishRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_PublishRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_PUBLISHREQUEST]);
+}
+
+/* AddNodesResponse */
+static UA_INLINE UA_StatusCode
+UA_AddNodesResponse_encodeBinary(const UA_AddNodesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESRESPONSE]);
 }
 
 /* DataChangeNotification */
@@ -2475,10 +1985,500 @@ UA_DataChangeNotification_decodeBinary(const UA_ByteString *src, size_t *offset,
     return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATACHANGENOTIFICATION]);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_transport_generated.h" ***********************************/
+/* CloseSecureChannelResponse */
+static UA_INLINE UA_StatusCode
+UA_CloseSecureChannelResponse_encodeBinary(const UA_CloseSecureChannelResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CloseSecureChannelResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSecureChannelResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESECURECHANNELRESPONSE]);
+}
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* ModifyMonitoredItemsRequest */
+static UA_INLINE UA_StatusCode
+UA_ModifyMonitoredItemsRequest_encodeBinary(const UA_ModifyMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ModifyMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifyMonitoredItemsRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSREQUEST]);
+}
+
+/* SetMonitoringModeResponse */
+static UA_INLINE UA_StatusCode
+UA_SetMonitoringModeResponse_encodeBinary(const UA_SetMonitoringModeResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETMONITORINGMODERESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SetMonitoringModeResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetMonitoringModeResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETMONITORINGMODERESPONSE]);
+}
+
+/* FindServersRequest */
+static UA_INLINE UA_StatusCode
+UA_FindServersRequest_encodeBinary(const UA_FindServersRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FINDSERVERSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_FindServersRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FindServersRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FINDSERVERSREQUEST]);
+}
+
+/* ReferenceDescription */
+static UA_INLINE UA_StatusCode
+UA_ReferenceDescription_encodeBinary(const UA_ReferenceDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ReferenceDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReferenceDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REFERENCEDESCRIPTION]);
+}
+
+/* SetPublishingModeResponse */
+static UA_INLINE UA_StatusCode
+UA_SetPublishingModeResponse_encodeBinary(const UA_SetPublishingModeResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODERESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SetPublishingModeResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SetPublishingModeResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SETPUBLISHINGMODERESPONSE]);
+}
+
+/* ContentFilterResult */
+static UA_INLINE UA_StatusCode
+UA_ContentFilterResult_encodeBinary(const UA_ContentFilterResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERRESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ContentFilterResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERRESULT]);
+}
+
+/* AddReferencesItem */
+static UA_INLINE UA_StatusCode
+UA_AddReferencesItem_encodeBinary(const UA_AddReferencesItem *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESITEM], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddReferencesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesItem *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESITEM]);
+}
+
+/* CreateSubscriptionResponse */
+static UA_INLINE UA_StatusCode
+UA_CreateSubscriptionResponse_encodeBinary(const UA_CreateSubscriptionResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateSubscriptionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSubscriptionResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESUBSCRIPTIONRESPONSE]);
+}
+
+/* DeleteSubscriptionsResponse */
+static UA_INLINE UA_StatusCode
+UA_DeleteSubscriptionsResponse_encodeBinary(const UA_DeleteSubscriptionsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETESUBSCRIPTIONSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteSubscriptionsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteSubscriptionsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETESUBSCRIPTIONSRESPONSE]);
+}
+
+/* RelativePath */
+static UA_INLINE UA_StatusCode
+UA_RelativePath_encodeBinary(const UA_RelativePath *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_RELATIVEPATH], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RelativePath_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RelativePath *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_RELATIVEPATH]);
+}
+
+/* DeleteReferencesResponse */
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesResponse_encodeBinary(const UA_DeleteReferencesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESRESPONSE]);
+}
+
+/* CreateMonitoredItemsResponse */
+static UA_INLINE UA_StatusCode
+UA_CreateMonitoredItemsResponse_encodeBinary(const UA_CreateMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateMonitoredItemsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSRESPONSE]);
+}
+
+/* CallResponse */
+static UA_INLINE UA_StatusCode
+UA_CallResponse_encodeBinary(const UA_CallResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CALLRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CallResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CallResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CALLRESPONSE]);
+}
+
+/* DeleteNodesResponse */
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesResponse_encodeBinary(const UA_DeleteNodesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETENODESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteNodesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteNodesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETENODESRESPONSE]);
+}
+
+/* RepublishResponse */
+static UA_INLINE UA_StatusCode
+UA_RepublishResponse_encodeBinary(const UA_RepublishResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_REPUBLISHRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_RepublishResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_RepublishResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_REPUBLISHRESPONSE]);
+}
+
+/* MonitoredItemCreateRequest */
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemCreateRequest_encodeBinary(const UA_MonitoredItemCreateRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATEREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MonitoredItemCreateRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MonitoredItemCreateRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MONITOREDITEMCREATEREQUEST]);
+}
+
+/* DeleteReferencesRequest */
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesRequest_encodeBinary(const UA_DeleteReferencesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DELETEREFERENCESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DeleteReferencesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DeleteReferencesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DELETEREFERENCESREQUEST]);
+}
+
+/* ModifyMonitoredItemsResponse */
+static UA_INLINE UA_StatusCode
+UA_ModifyMonitoredItemsResponse_encodeBinary(const UA_ModifyMonitoredItemsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ModifyMonitoredItemsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ModifyMonitoredItemsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_MODIFYMONITOREDITEMSRESPONSE]);
+}
+
+/* ReadResponse */
+static UA_INLINE UA_StatusCode
+UA_ReadResponse_encodeBinary(const UA_ReadResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ReadResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READRESPONSE]);
+}
+
+/* AddReferencesRequest */
+static UA_INLINE UA_StatusCode
+UA_AddReferencesRequest_encodeBinary(const UA_AddReferencesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddReferencesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESREQUEST]);
+}
+
+/* ReadRequest */
+static UA_INLINE UA_StatusCode
+UA_ReadRequest_encodeBinary(const UA_ReadRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_READREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ReadRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ReadRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_READREQUEST]);
+}
+
+/* AddNodesItem */
+static UA_INLINE UA_StatusCode
+UA_AddNodesItem_encodeBinary(const UA_AddNodesItem *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESITEM], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddNodesItem_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesItem *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESITEM]);
+}
+
+/* ServerStatusDataType */
+static UA_INLINE UA_StatusCode
+UA_ServerStatusDataType_encodeBinary(const UA_ServerStatusDataType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SERVERSTATUSDATATYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ServerStatusDataType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ServerStatusDataType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SERVERSTATUSDATATYPE]);
+}
+
+/* AddReferencesResponse */
+static UA_INLINE UA_StatusCode
+UA_AddReferencesResponse_encodeBinary(const UA_AddReferencesResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDREFERENCESRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddReferencesResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddReferencesResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDREFERENCESRESPONSE]);
+}
+
+/* TranslateBrowsePathsToNodeIdsResponse */
+static UA_INLINE UA_StatusCode
+UA_TranslateBrowsePathsToNodeIdsResponse_encodeBinary(const UA_TranslateBrowsePathsToNodeIdsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_TranslateBrowsePathsToNodeIdsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TranslateBrowsePathsToNodeIdsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE]);
+}
+
+/* DataChangeFilter */
+static UA_INLINE UA_StatusCode
+UA_DataChangeFilter_encodeBinary(const UA_DataChangeFilter *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_DATACHANGEFILTER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_DataChangeFilter_decodeBinary(const UA_ByteString *src, size_t *offset, UA_DataChangeFilter *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_DATACHANGEFILTER]);
+}
+
+/* ContentFilterElement */
+static UA_INLINE UA_StatusCode
+UA_ContentFilterElement_encodeBinary(const UA_ContentFilterElement *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ContentFilterElement_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilterElement *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTERELEMENT]);
+}
+
+/* CloseSessionResponse */
+static UA_INLINE UA_StatusCode
+UA_CloseSessionResponse_encodeBinary(const UA_CloseSessionResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CLOSESESSIONRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CloseSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CloseSessionResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CLOSESESSIONRESPONSE]);
+}
+
+/* ApplicationDescription */
+static UA_INLINE UA_StatusCode
+UA_ApplicationDescription_encodeBinary(const UA_ApplicationDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_APPLICATIONDESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ApplicationDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ApplicationDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_APPLICATIONDESCRIPTION]);
+}
+
+/* ServiceFault */
+static UA_INLINE UA_StatusCode
+UA_ServiceFault_encodeBinary(const UA_ServiceFault *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_SERVICEFAULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ServiceFault_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ServiceFault *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_SERVICEFAULT]);
+}
+
+/* FindServersResponse */
+static UA_INLINE UA_StatusCode
+UA_FindServersResponse_encodeBinary(const UA_FindServersResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_FINDSERVERSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_FindServersResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_FindServersResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_FINDSERVERSRESPONSE]);
+}
+
+/* CreateMonitoredItemsRequest */
+static UA_INLINE UA_StatusCode
+UA_CreateMonitoredItemsRequest_encodeBinary(const UA_CreateMonitoredItemsRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateMonitoredItemsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateMonitoredItemsRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATEMONITOREDITEMSREQUEST]);
+}
+
+/* ContentFilter */
+static UA_INLINE UA_StatusCode
+UA_ContentFilter_encodeBinary(const UA_ContentFilter *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CONTENTFILTER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ContentFilter_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ContentFilter *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CONTENTFILTER]);
+}
+
+/* QueryFirstResponse */
+static UA_INLINE UA_StatusCode
+UA_QueryFirstResponse_encodeBinary(const UA_QueryFirstResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYFIRSTRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_QueryFirstResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryFirstResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYFIRSTRESPONSE]);
+}
+
+/* AddNodesRequest */
+static UA_INLINE UA_StatusCode
+UA_AddNodesRequest_encodeBinary(const UA_AddNodesRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ADDNODESREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AddNodesRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AddNodesRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ADDNODESREQUEST]);
+}
+
+/* BrowseRequest */
+static UA_INLINE UA_StatusCode
+UA_BrowseRequest_encodeBinary(const UA_BrowseRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEREQUEST]);
+}
+
+/* BrowsePath */
+static UA_INLINE UA_StatusCode
+UA_BrowsePath_encodeBinary(const UA_BrowsePath *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSEPATH], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowsePath_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowsePath *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSEPATH]);
+}
+
+/* BrowseResult */
+static UA_INLINE UA_StatusCode
+UA_BrowseResult_encodeBinary(const UA_BrowseResult *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESULT], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseResult_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResult *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESULT]);
+}
+
+/* CreateSessionRequest */
+static UA_INLINE UA_StatusCode
+UA_CreateSessionRequest_encodeBinary(const UA_CreateSessionRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESESSIONREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateSessionRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSessionRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESESSIONREQUEST]);
+}
+
+/* QueryDataDescription */
+static UA_INLINE UA_StatusCode
+UA_QueryDataDescription_encodeBinary(const UA_QueryDataDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYDATADESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_QueryDataDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryDataDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYDATADESCRIPTION]);
+}
+
+/* EndpointDescription */
+static UA_INLINE UA_StatusCode
+UA_EndpointDescription_encodeBinary(const UA_EndpointDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_ENDPOINTDESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_EndpointDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_EndpointDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_ENDPOINTDESCRIPTION]);
+}
+
+/* GetEndpointsResponse */
+static UA_INLINE UA_StatusCode
+UA_GetEndpointsResponse_encodeBinary(const UA_GetEndpointsResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_GETENDPOINTSRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_GetEndpointsResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_GetEndpointsResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_GETENDPOINTSRESPONSE]);
+}
+
+/* NodeTypeDescription */
+static UA_INLINE UA_StatusCode
+UA_NodeTypeDescription_encodeBinary(const UA_NodeTypeDescription *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_NODETYPEDESCRIPTION], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_NodeTypeDescription_decodeBinary(const UA_ByteString *src, size_t *offset, UA_NodeTypeDescription *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_NODETYPEDESCRIPTION]);
+}
+
+/* BrowseNextResponse */
+static UA_INLINE UA_StatusCode
+UA_BrowseNextResponse_encodeBinary(const UA_BrowseNextResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSENEXTRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseNextResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseNextResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSENEXTRESPONSE]);
+}
+
+/* TranslateBrowsePathsToNodeIdsRequest */
+static UA_INLINE UA_StatusCode
+UA_TranslateBrowsePathsToNodeIdsRequest_encodeBinary(const UA_TranslateBrowsePathsToNodeIdsRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_TranslateBrowsePathsToNodeIdsRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TranslateBrowsePathsToNodeIdsRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST]);
+}
+
+/* BrowseResponse */
+static UA_INLINE UA_StatusCode
+UA_BrowseResponse_encodeBinary(const UA_BrowseResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_BROWSERESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_BrowseResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_BrowseResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_BROWSERESPONSE]);
+}
+
+/* CreateSessionResponse */
+static UA_INLINE UA_StatusCode
+UA_CreateSessionResponse_encodeBinary(const UA_CreateSessionResponse *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_CREATESESSIONRESPONSE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_CreateSessionResponse_decodeBinary(const UA_ByteString *src, size_t *offset, UA_CreateSessionResponse *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_CREATESESSIONRESPONSE]);
+}
+
+/* QueryFirstRequest */
+static UA_INLINE UA_StatusCode
+UA_QueryFirstRequest_encodeBinary(const UA_QueryFirstRequest *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TYPES[UA_TYPES_QUERYFIRSTREQUEST], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_QueryFirstRequest_decodeBinary(const UA_ByteString *src, size_t *offset, UA_QueryFirstRequest *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TYPES[UA_TYPES_QUERYFIRSTREQUEST]);
+}
+
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_transport_generated.h" ***********************************/
+
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
 #ifdef __cplusplus
@@ -2495,41 +2495,27 @@ extern "C" {
 extern UA_EXPORT const UA_DataType UA_TRANSPORT[UA_TRANSPORT_COUNT];
 
 /**
- * MessageType
- * ^^^^^^^^^^^
- * Message Type and whether the message contains an intermediate chunk */
-typedef enum {
-    UA_MESSAGETYPE_ACK = 0x4B4341,
-    UA_MESSAGETYPE_HEL = 0x4C4548,
-    UA_MESSAGETYPE_MSG = 0x47534D,
-    UA_MESSAGETYPE_OPN = 0x4E504F,
-    UA_MESSAGETYPE_CLO = 0x4F4C43
-} UA_MessageType;
-
-#define UA_TRANSPORT_MESSAGETYPE 0
-
-/**
- * ChunkType
- * ^^^^^^^^^
- * Type of the chunk */
-typedef enum {
-    UA_CHUNKTYPE_FINAL = 0x46000000,
-    UA_CHUNKTYPE_INTERMEDIATE = 0x43000000,
-    UA_CHUNKTYPE_ABORT = 0x41000000
-} UA_ChunkType;
-
-#define UA_TRANSPORT_CHUNKTYPE 1
-
-/**
- * TcpMessageHeader
- * ^^^^^^^^^^^^^^^^
- * TCP Header */
+ * SecureConversationMessageAbortBody
+ * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * Secure Conversation Message Abort Body */
 typedef struct {
-    UA_UInt32 messageTypeAndChunkType;
-    UA_UInt32 messageSize;
-} UA_TcpMessageHeader;
+    UA_UInt32 error;
+    UA_String reason;
+} UA_SecureConversationMessageAbortBody;
 
-#define UA_TRANSPORT_TCPMESSAGEHEADER 2
+#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY 0
+
+/**
+ * SecureConversationMessageFooter
+ * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * Secure Conversation Message Footer */
+typedef struct {
+    size_t paddingSize;
+    UA_Byte *padding;
+    UA_Byte signature;
+} UA_SecureConversationMessageFooter;
+
+#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEFOOTER 1
 
 /**
  * TcpHelloMessage
@@ -2544,7 +2530,33 @@ typedef struct {
     UA_String endpointUrl;
 } UA_TcpHelloMessage;
 
-#define UA_TRANSPORT_TCPHELLOMESSAGE 3
+#define UA_TRANSPORT_TCPHELLOMESSAGE 2
+
+/**
+ * MessageType
+ * ^^^^^^^^^^^
+ * Message Type and whether the message contains an intermediate chunk */
+typedef enum {
+    UA_MESSAGETYPE_ACK = 0x4B4341,
+    UA_MESSAGETYPE_HEL = 0x4C4548,
+    UA_MESSAGETYPE_MSG = 0x47534D,
+    UA_MESSAGETYPE_OPN = 0x4E504F,
+    UA_MESSAGETYPE_CLO = 0x4F4C43
+} UA_MessageType;
+
+#define UA_TRANSPORT_MESSAGETYPE 3
+
+/**
+ * AsymmetricAlgorithmSecurityHeader
+ * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * Security Header */
+typedef struct {
+    UA_ByteString securityPolicyUri;
+    UA_ByteString senderCertificate;
+    UA_ByteString receiverCertificateThumbprint;
+} UA_AsymmetricAlgorithmSecurityHeader;
+
+#define UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER 4
 
 /**
  * TcpAcknowledgeMessage
@@ -2558,40 +2570,7 @@ typedef struct {
     UA_UInt32 maxChunkCount;
 } UA_TcpAcknowledgeMessage;
 
-#define UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE 4
-
-/**
- * SecureConversationMessageHeader
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * Secure Layer Sequence Header */
-typedef struct {
-    UA_TcpMessageHeader messageHeader;
-    UA_UInt32 secureChannelId;
-} UA_SecureConversationMessageHeader;
-
-#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER 5
-
-/**
- * AsymmetricAlgorithmSecurityHeader
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * Security Header */
-typedef struct {
-    UA_ByteString securityPolicyUri;
-    UA_ByteString senderCertificate;
-    UA_ByteString receiverCertificateThumbprint;
-} UA_AsymmetricAlgorithmSecurityHeader;
-
-#define UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER 6
-
-/**
- * SymmetricAlgorithmSecurityHeader
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * Secure Layer Symmetric Algorithm Header */
-typedef struct {
-    UA_UInt32 tokenId;
-} UA_SymmetricAlgorithmSecurityHeader;
-
-#define UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER 7
+#define UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE 5
 
 /**
  * SequenceHeader
@@ -2602,40 +2581,61 @@ typedef struct {
     UA_UInt32 requestId;
 } UA_SequenceHeader;
 
-#define UA_TRANSPORT_SEQUENCEHEADER 8
+#define UA_TRANSPORT_SEQUENCEHEADER 6
 
 /**
- * SecureConversationMessageFooter
+ * TcpMessageHeader
+ * ^^^^^^^^^^^^^^^^
+ * TCP Header */
+typedef struct {
+    UA_UInt32 messageTypeAndChunkType;
+    UA_UInt32 messageSize;
+} UA_TcpMessageHeader;
+
+#define UA_TRANSPORT_TCPMESSAGEHEADER 7
+
+/**
+ * ChunkType
+ * ^^^^^^^^^
+ * Type of the chunk */
+typedef enum {
+    UA_CHUNKTYPE_FINAL = 0x46000000,
+    UA_CHUNKTYPE_INTERMEDIATE = 0x43000000,
+    UA_CHUNKTYPE_ABORT = 0x41000000
+} UA_ChunkType;
+
+#define UA_TRANSPORT_CHUNKTYPE 8
+
+/**
+ * SymmetricAlgorithmSecurityHeader
+ * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ * Secure Layer Symmetric Algorithm Header */
+typedef struct {
+    UA_UInt32 tokenId;
+} UA_SymmetricAlgorithmSecurityHeader;
+
+#define UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER 9
+
+/**
+ * SecureConversationMessageHeader
  * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * Secure Conversation Message Footer */
+ * Secure Layer Sequence Header */
 typedef struct {
-    size_t paddingSize;
-    UA_Byte *padding;
-    UA_Byte signature;
-} UA_SecureConversationMessageFooter;
+    UA_TcpMessageHeader messageHeader;
+    UA_UInt32 secureChannelId;
+} UA_SecureConversationMessageHeader;
 
-#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEFOOTER 9
-
-/**
- * SecureConversationMessageAbortBody
- * ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
- * Secure Conversation Message Abort Body */
-typedef struct {
-    UA_UInt32 error;
-    UA_String reason;
-} UA_SecureConversationMessageAbortBody;
-
-#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY 10
+#define UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER 10
 
 #ifdef __cplusplus
 } // extern "C"
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_transport_generated_handling.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_transport_generated_handling.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
 #ifdef __cplusplus
@@ -2650,231 +2650,30 @@ extern "C" {
 #endif
 
 
-/* MessageType */
+/* SecureConversationMessageAbortBody */
 static UA_INLINE void
-UA_MessageType_init(UA_MessageType *p) {
-    memset(p, 0, sizeof(UA_MessageType));
+UA_SecureConversationMessageAbortBody_init(UA_SecureConversationMessageAbortBody *p) {
+    memset(p, 0, sizeof(UA_SecureConversationMessageAbortBody));
 }
 
-static UA_INLINE UA_MessageType *
-UA_MessageType_new(void) {
-    return (UA_MessageType*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
+static UA_INLINE UA_SecureConversationMessageAbortBody *
+UA_SecureConversationMessageAbortBody_new(void) {
+    return (UA_SecureConversationMessageAbortBody*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
 }
 
 static UA_INLINE UA_StatusCode
-UA_MessageType_copy(const UA_MessageType *src, UA_MessageType *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
+UA_SecureConversationMessageAbortBody_copy(const UA_SecureConversationMessageAbortBody *src, UA_SecureConversationMessageAbortBody *dst) {
+    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
 }
 
 static UA_INLINE void
-UA_MessageType_deleteMembers(UA_MessageType *p) { }
-
-static UA_INLINE void
-UA_MessageType_delete(UA_MessageType *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
-}
-
-/* ChunkType */
-static UA_INLINE void
-UA_ChunkType_init(UA_ChunkType *p) {
-    memset(p, 0, sizeof(UA_ChunkType));
-}
-
-static UA_INLINE UA_ChunkType *
-UA_ChunkType_new(void) {
-    return (UA_ChunkType*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_ChunkType_copy(const UA_ChunkType *src, UA_ChunkType *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
+UA_SecureConversationMessageAbortBody_deleteMembers(UA_SecureConversationMessageAbortBody *p) {
+    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
 }
 
 static UA_INLINE void
-UA_ChunkType_deleteMembers(UA_ChunkType *p) { }
-
-static UA_INLINE void
-UA_ChunkType_delete(UA_ChunkType *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
-}
-
-/* TcpMessageHeader */
-static UA_INLINE void
-UA_TcpMessageHeader_init(UA_TcpMessageHeader *p) {
-    memset(p, 0, sizeof(UA_TcpMessageHeader));
-}
-
-static UA_INLINE UA_TcpMessageHeader *
-UA_TcpMessageHeader_new(void) {
-    return (UA_TcpMessageHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_TcpMessageHeader_copy(const UA_TcpMessageHeader *src, UA_TcpMessageHeader *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
-}
-
-static UA_INLINE void
-UA_TcpMessageHeader_deleteMembers(UA_TcpMessageHeader *p) { }
-
-static UA_INLINE void
-UA_TcpMessageHeader_delete(UA_TcpMessageHeader *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
-}
-
-/* TcpHelloMessage */
-static UA_INLINE void
-UA_TcpHelloMessage_init(UA_TcpHelloMessage *p) {
-    memset(p, 0, sizeof(UA_TcpHelloMessage));
-}
-
-static UA_INLINE UA_TcpHelloMessage *
-UA_TcpHelloMessage_new(void) {
-    return (UA_TcpHelloMessage*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_TcpHelloMessage_copy(const UA_TcpHelloMessage *src, UA_TcpHelloMessage *dst) {
-    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
-}
-
-static UA_INLINE void
-UA_TcpHelloMessage_deleteMembers(UA_TcpHelloMessage *p) {
-    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
-}
-
-static UA_INLINE void
-UA_TcpHelloMessage_delete(UA_TcpHelloMessage *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
-}
-
-/* TcpAcknowledgeMessage */
-static UA_INLINE void
-UA_TcpAcknowledgeMessage_init(UA_TcpAcknowledgeMessage *p) {
-    memset(p, 0, sizeof(UA_TcpAcknowledgeMessage));
-}
-
-static UA_INLINE UA_TcpAcknowledgeMessage *
-UA_TcpAcknowledgeMessage_new(void) {
-    return (UA_TcpAcknowledgeMessage*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_TcpAcknowledgeMessage_copy(const UA_TcpAcknowledgeMessage *src, UA_TcpAcknowledgeMessage *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
-}
-
-static UA_INLINE void
-UA_TcpAcknowledgeMessage_deleteMembers(UA_TcpAcknowledgeMessage *p) { }
-
-static UA_INLINE void
-UA_TcpAcknowledgeMessage_delete(UA_TcpAcknowledgeMessage *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
-}
-
-/* SecureConversationMessageHeader */
-static UA_INLINE void
-UA_SecureConversationMessageHeader_init(UA_SecureConversationMessageHeader *p) {
-    memset(p, 0, sizeof(UA_SecureConversationMessageHeader));
-}
-
-static UA_INLINE UA_SecureConversationMessageHeader *
-UA_SecureConversationMessageHeader_new(void) {
-    return (UA_SecureConversationMessageHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageHeader_copy(const UA_SecureConversationMessageHeader *src, UA_SecureConversationMessageHeader *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
-}
-
-static UA_INLINE void
-UA_SecureConversationMessageHeader_deleteMembers(UA_SecureConversationMessageHeader *p) { }
-
-static UA_INLINE void
-UA_SecureConversationMessageHeader_delete(UA_SecureConversationMessageHeader *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
-}
-
-/* AsymmetricAlgorithmSecurityHeader */
-static UA_INLINE void
-UA_AsymmetricAlgorithmSecurityHeader_init(UA_AsymmetricAlgorithmSecurityHeader *p) {
-    memset(p, 0, sizeof(UA_AsymmetricAlgorithmSecurityHeader));
-}
-
-static UA_INLINE UA_AsymmetricAlgorithmSecurityHeader *
-UA_AsymmetricAlgorithmSecurityHeader_new(void) {
-    return (UA_AsymmetricAlgorithmSecurityHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_AsymmetricAlgorithmSecurityHeader_copy(const UA_AsymmetricAlgorithmSecurityHeader *src, UA_AsymmetricAlgorithmSecurityHeader *dst) {
-    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-static UA_INLINE void
-UA_AsymmetricAlgorithmSecurityHeader_deleteMembers(UA_AsymmetricAlgorithmSecurityHeader *p) {
-    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-static UA_INLINE void
-UA_AsymmetricAlgorithmSecurityHeader_delete(UA_AsymmetricAlgorithmSecurityHeader *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-/* SymmetricAlgorithmSecurityHeader */
-static UA_INLINE void
-UA_SymmetricAlgorithmSecurityHeader_init(UA_SymmetricAlgorithmSecurityHeader *p) {
-    memset(p, 0, sizeof(UA_SymmetricAlgorithmSecurityHeader));
-}
-
-static UA_INLINE UA_SymmetricAlgorithmSecurityHeader *
-UA_SymmetricAlgorithmSecurityHeader_new(void) {
-    return (UA_SymmetricAlgorithmSecurityHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_SymmetricAlgorithmSecurityHeader_copy(const UA_SymmetricAlgorithmSecurityHeader *src, UA_SymmetricAlgorithmSecurityHeader *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
-}
-
-static UA_INLINE void
-UA_SymmetricAlgorithmSecurityHeader_deleteMembers(UA_SymmetricAlgorithmSecurityHeader *p) { }
-
-static UA_INLINE void
-UA_SymmetricAlgorithmSecurityHeader_delete(UA_SymmetricAlgorithmSecurityHeader *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-/* SequenceHeader */
-static UA_INLINE void
-UA_SequenceHeader_init(UA_SequenceHeader *p) {
-    memset(p, 0, sizeof(UA_SequenceHeader));
-}
-
-static UA_INLINE UA_SequenceHeader *
-UA_SequenceHeader_new(void) {
-    return (UA_SequenceHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
-}
-
-static UA_INLINE UA_StatusCode
-UA_SequenceHeader_copy(const UA_SequenceHeader *src, UA_SequenceHeader *dst) {
-    *dst = *src;
-    return UA_STATUSCODE_GOOD;
-}
-
-static UA_INLINE void
-UA_SequenceHeader_deleteMembers(UA_SequenceHeader *p) { }
-
-static UA_INLINE void
-UA_SequenceHeader_delete(UA_SequenceHeader *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
+UA_SecureConversationMessageAbortBody_delete(UA_SecureConversationMessageAbortBody *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
 }
 
 /* SecureConversationMessageFooter */
@@ -2903,30 +2702,231 @@ UA_SecureConversationMessageFooter_delete(UA_SecureConversationMessageFooter *p)
     UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEFOOTER]);
 }
 
-/* SecureConversationMessageAbortBody */
+/* TcpHelloMessage */
 static UA_INLINE void
-UA_SecureConversationMessageAbortBody_init(UA_SecureConversationMessageAbortBody *p) {
-    memset(p, 0, sizeof(UA_SecureConversationMessageAbortBody));
+UA_TcpHelloMessage_init(UA_TcpHelloMessage *p) {
+    memset(p, 0, sizeof(UA_TcpHelloMessage));
 }
 
-static UA_INLINE UA_SecureConversationMessageAbortBody *
-UA_SecureConversationMessageAbortBody_new(void) {
-    return (UA_SecureConversationMessageAbortBody*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
+static UA_INLINE UA_TcpHelloMessage *
+UA_TcpHelloMessage_new(void) {
+    return (UA_TcpHelloMessage*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
 }
 
 static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageAbortBody_copy(const UA_SecureConversationMessageAbortBody *src, UA_SecureConversationMessageAbortBody *dst) {
-    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
+UA_TcpHelloMessage_copy(const UA_TcpHelloMessage *src, UA_TcpHelloMessage *dst) {
+    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
 }
 
 static UA_INLINE void
-UA_SecureConversationMessageAbortBody_deleteMembers(UA_SecureConversationMessageAbortBody *p) {
-    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
+UA_TcpHelloMessage_deleteMembers(UA_TcpHelloMessage *p) {
+    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
 }
 
 static UA_INLINE void
-UA_SecureConversationMessageAbortBody_delete(UA_SecureConversationMessageAbortBody *p) {
-    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
+UA_TcpHelloMessage_delete(UA_TcpHelloMessage *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
+}
+
+/* MessageType */
+static UA_INLINE void
+UA_MessageType_init(UA_MessageType *p) {
+    memset(p, 0, sizeof(UA_MessageType));
+}
+
+static UA_INLINE UA_MessageType *
+UA_MessageType_new(void) {
+    return (UA_MessageType*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_MessageType_copy(const UA_MessageType *src, UA_MessageType *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_MessageType_deleteMembers(UA_MessageType *p) { }
+
+static UA_INLINE void
+UA_MessageType_delete(UA_MessageType *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
+}
+
+/* AsymmetricAlgorithmSecurityHeader */
+static UA_INLINE void
+UA_AsymmetricAlgorithmSecurityHeader_init(UA_AsymmetricAlgorithmSecurityHeader *p) {
+    memset(p, 0, sizeof(UA_AsymmetricAlgorithmSecurityHeader));
+}
+
+static UA_INLINE UA_AsymmetricAlgorithmSecurityHeader *
+UA_AsymmetricAlgorithmSecurityHeader_new(void) {
+    return (UA_AsymmetricAlgorithmSecurityHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_AsymmetricAlgorithmSecurityHeader_copy(const UA_AsymmetricAlgorithmSecurityHeader *src, UA_AsymmetricAlgorithmSecurityHeader *dst) {
+    return UA_copy(src, dst, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+static UA_INLINE void
+UA_AsymmetricAlgorithmSecurityHeader_deleteMembers(UA_AsymmetricAlgorithmSecurityHeader *p) {
+    UA_deleteMembers(p, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+static UA_INLINE void
+UA_AsymmetricAlgorithmSecurityHeader_delete(UA_AsymmetricAlgorithmSecurityHeader *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+/* TcpAcknowledgeMessage */
+static UA_INLINE void
+UA_TcpAcknowledgeMessage_init(UA_TcpAcknowledgeMessage *p) {
+    memset(p, 0, sizeof(UA_TcpAcknowledgeMessage));
+}
+
+static UA_INLINE UA_TcpAcknowledgeMessage *
+UA_TcpAcknowledgeMessage_new(void) {
+    return (UA_TcpAcknowledgeMessage*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_TcpAcknowledgeMessage_copy(const UA_TcpAcknowledgeMessage *src, UA_TcpAcknowledgeMessage *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_TcpAcknowledgeMessage_deleteMembers(UA_TcpAcknowledgeMessage *p) { }
+
+static UA_INLINE void
+UA_TcpAcknowledgeMessage_delete(UA_TcpAcknowledgeMessage *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
+}
+
+/* SequenceHeader */
+static UA_INLINE void
+UA_SequenceHeader_init(UA_SequenceHeader *p) {
+    memset(p, 0, sizeof(UA_SequenceHeader));
+}
+
+static UA_INLINE UA_SequenceHeader *
+UA_SequenceHeader_new(void) {
+    return (UA_SequenceHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_SequenceHeader_copy(const UA_SequenceHeader *src, UA_SequenceHeader *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_SequenceHeader_deleteMembers(UA_SequenceHeader *p) { }
+
+static UA_INLINE void
+UA_SequenceHeader_delete(UA_SequenceHeader *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
+}
+
+/* TcpMessageHeader */
+static UA_INLINE void
+UA_TcpMessageHeader_init(UA_TcpMessageHeader *p) {
+    memset(p, 0, sizeof(UA_TcpMessageHeader));
+}
+
+static UA_INLINE UA_TcpMessageHeader *
+UA_TcpMessageHeader_new(void) {
+    return (UA_TcpMessageHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_TcpMessageHeader_copy(const UA_TcpMessageHeader *src, UA_TcpMessageHeader *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_TcpMessageHeader_deleteMembers(UA_TcpMessageHeader *p) { }
+
+static UA_INLINE void
+UA_TcpMessageHeader_delete(UA_TcpMessageHeader *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
+}
+
+/* ChunkType */
+static UA_INLINE void
+UA_ChunkType_init(UA_ChunkType *p) {
+    memset(p, 0, sizeof(UA_ChunkType));
+}
+
+static UA_INLINE UA_ChunkType *
+UA_ChunkType_new(void) {
+    return (UA_ChunkType*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_ChunkType_copy(const UA_ChunkType *src, UA_ChunkType *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_ChunkType_deleteMembers(UA_ChunkType *p) { }
+
+static UA_INLINE void
+UA_ChunkType_delete(UA_ChunkType *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
+}
+
+/* SymmetricAlgorithmSecurityHeader */
+static UA_INLINE void
+UA_SymmetricAlgorithmSecurityHeader_init(UA_SymmetricAlgorithmSecurityHeader *p) {
+    memset(p, 0, sizeof(UA_SymmetricAlgorithmSecurityHeader));
+}
+
+static UA_INLINE UA_SymmetricAlgorithmSecurityHeader *
+UA_SymmetricAlgorithmSecurityHeader_new(void) {
+    return (UA_SymmetricAlgorithmSecurityHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_SymmetricAlgorithmSecurityHeader_copy(const UA_SymmetricAlgorithmSecurityHeader *src, UA_SymmetricAlgorithmSecurityHeader *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_SymmetricAlgorithmSecurityHeader_deleteMembers(UA_SymmetricAlgorithmSecurityHeader *p) { }
+
+static UA_INLINE void
+UA_SymmetricAlgorithmSecurityHeader_delete(UA_SymmetricAlgorithmSecurityHeader *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+/* SecureConversationMessageHeader */
+static UA_INLINE void
+UA_SecureConversationMessageHeader_init(UA_SecureConversationMessageHeader *p) {
+    memset(p, 0, sizeof(UA_SecureConversationMessageHeader));
+}
+
+static UA_INLINE UA_SecureConversationMessageHeader *
+UA_SecureConversationMessageHeader_new(void) {
+    return (UA_SecureConversationMessageHeader*)UA_new(&UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
+}
+
+static UA_INLINE UA_StatusCode
+UA_SecureConversationMessageHeader_copy(const UA_SecureConversationMessageHeader *src, UA_SecureConversationMessageHeader *dst) {
+    *dst = *src;
+    return UA_STATUSCODE_GOOD;
+}
+
+static UA_INLINE void
+UA_SecureConversationMessageHeader_deleteMembers(UA_SecureConversationMessageHeader *p) { }
+
+static UA_INLINE void
+UA_SecureConversationMessageHeader_delete(UA_SecureConversationMessageHeader *p) {
+    UA_delete(p, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
 }
 
 #if defined(__GNUC__) && __GNUC__ >= 4 && __GNUC_MINOR__ >= 6
@@ -2938,100 +2938,20 @@ UA_SecureConversationMessageAbortBody_delete(UA_SecureConversationMessageAbortBo
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_transport_generated_encoding_binary.h" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
-/* MessageType */
+/* SecureConversationMessageAbortBody */
 static UA_INLINE UA_StatusCode
-UA_MessageType_encodeBinary(const UA_MessageType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE], NULL, NULL, dst, offset);
+UA_SecureConversationMessageAbortBody_encodeBinary(const UA_SecureConversationMessageAbortBody *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_MessageType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MessageType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
-}
-
-/* ChunkType */
-static UA_INLINE UA_StatusCode
-UA_ChunkType_encodeBinary(const UA_ChunkType *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_ChunkType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ChunkType *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
-}
-
-/* TcpMessageHeader */
-static UA_INLINE UA_StatusCode
-UA_TcpMessageHeader_encodeBinary(const UA_TcpMessageHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TcpMessageHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpMessageHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
-}
-
-/* TcpHelloMessage */
-static UA_INLINE UA_StatusCode
-UA_TcpHelloMessage_encodeBinary(const UA_TcpHelloMessage *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TcpHelloMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpHelloMessage *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
-}
-
-/* TcpAcknowledgeMessage */
-static UA_INLINE UA_StatusCode
-UA_TcpAcknowledgeMessage_encodeBinary(const UA_TcpAcknowledgeMessage *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_TcpAcknowledgeMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpAcknowledgeMessage *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
-}
-
-/* SecureConversationMessageHeader */
-static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageHeader_encodeBinary(const UA_SecureConversationMessageHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecureConversationMessageHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
-}
-
-/* AsymmetricAlgorithmSecurityHeader */
-static UA_INLINE UA_StatusCode
-UA_AsymmetricAlgorithmSecurityHeader_encodeBinary(const UA_AsymmetricAlgorithmSecurityHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_AsymmetricAlgorithmSecurityHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AsymmetricAlgorithmSecurityHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-/* SymmetricAlgorithmSecurityHeader */
-static UA_INLINE UA_StatusCode
-UA_SymmetricAlgorithmSecurityHeader_encodeBinary(const UA_SymmetricAlgorithmSecurityHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SymmetricAlgorithmSecurityHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SymmetricAlgorithmSecurityHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
-}
-
-/* SequenceHeader */
-static UA_INLINE UA_StatusCode
-UA_SequenceHeader_encodeBinary(const UA_SequenceHeader *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER], NULL, NULL, dst, offset);
-}
-static UA_INLINE UA_StatusCode
-UA_SequenceHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SequenceHeader *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
+UA_SecureConversationMessageAbortBody_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecureConversationMessageAbortBody *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
 }
 
 /* SecureConversationMessageFooter */
@@ -3044,17 +2964,97 @@ UA_SecureConversationMessageFooter_decodeBinary(const UA_ByteString *src, size_t
     return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEFOOTER]);
 }
 
-/* SecureConversationMessageAbortBody */
+/* TcpHelloMessage */
 static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageAbortBody_encodeBinary(const UA_SecureConversationMessageAbortBody *src, UA_ByteString *dst, size_t *offset) {
-    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY], NULL, NULL, dst, offset);
+UA_TcpHelloMessage_encodeBinary(const UA_TcpHelloMessage *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE], NULL, NULL, dst, offset);
 }
 static UA_INLINE UA_StatusCode
-UA_SecureConversationMessageAbortBody_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecureConversationMessageAbortBody *dst) {
-    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY]);
+UA_TcpHelloMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpHelloMessage *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPHELLOMESSAGE]);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_connection_internal.h" ***********************************/
+/* MessageType */
+static UA_INLINE UA_StatusCode
+UA_MessageType_encodeBinary(const UA_MessageType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_MessageType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_MessageType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_MESSAGETYPE]);
+}
+
+/* AsymmetricAlgorithmSecurityHeader */
+static UA_INLINE UA_StatusCode
+UA_AsymmetricAlgorithmSecurityHeader_encodeBinary(const UA_AsymmetricAlgorithmSecurityHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_AsymmetricAlgorithmSecurityHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_AsymmetricAlgorithmSecurityHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+/* TcpAcknowledgeMessage */
+static UA_INLINE UA_StatusCode
+UA_TcpAcknowledgeMessage_encodeBinary(const UA_TcpAcknowledgeMessage *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_TcpAcknowledgeMessage_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpAcknowledgeMessage *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE]);
+}
+
+/* SequenceHeader */
+static UA_INLINE UA_StatusCode
+UA_SequenceHeader_encodeBinary(const UA_SequenceHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SequenceHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SequenceHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SEQUENCEHEADER]);
+}
+
+/* TcpMessageHeader */
+static UA_INLINE UA_StatusCode
+UA_TcpMessageHeader_encodeBinary(const UA_TcpMessageHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_TcpMessageHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_TcpMessageHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_TCPMESSAGEHEADER]);
+}
+
+/* ChunkType */
+static UA_INLINE UA_StatusCode
+UA_ChunkType_encodeBinary(const UA_ChunkType *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_ChunkType_decodeBinary(const UA_ByteString *src, size_t *offset, UA_ChunkType *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_CHUNKTYPE]);
+}
+
+/* SymmetricAlgorithmSecurityHeader */
+static UA_INLINE UA_StatusCode
+UA_SymmetricAlgorithmSecurityHeader_encodeBinary(const UA_SymmetricAlgorithmSecurityHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SymmetricAlgorithmSecurityHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SymmetricAlgorithmSecurityHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER]);
+}
+
+/* SecureConversationMessageHeader */
+static UA_INLINE UA_StatusCode
+UA_SecureConversationMessageHeader_encodeBinary(const UA_SecureConversationMessageHeader *src, UA_ByteString *dst, size_t *offset) {
+    return UA_encodeBinary(src, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER], NULL, NULL, dst, offset);
+}
+static UA_INLINE UA_StatusCode
+UA_SecureConversationMessageHeader_decodeBinary(const UA_ByteString *src, size_t *offset, UA_SecureConversationMessageHeader *dst) {
+    return UA_decodeBinary(src, offset, dst, &UA_TRANSPORT[UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER]);
+}
+
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_connection_internal.h" ***********************************/
 
 
 
@@ -3098,7 +3098,7 @@ void UA_EXPORT UA_Connection_attachSecureChannel(UA_Connection *connection, UA_S
 UA_StatusCode UA_EXPORT UA_EndpointUrl_split_ptr(const char *endpointUrl, char *hostname, const char ** port, const char ** path);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_securechannel.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_securechannel.h" ***********************************/
 
 
 
@@ -3203,7 +3203,7 @@ UA_SecureChannel_processChunks(UA_SecureChannel *channel, const UA_ByteString *c
                  (CHANNEL)->securityToken.channelId, ##__VA_ARGS__);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_nodes.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_nodes.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -3588,7 +3588,7 @@ typedef struct {
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_session.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_session.h" ***********************************/
 
 
 
@@ -3704,7 +3704,7 @@ UA_Session_getUniqueSubscriptionID(UA_Session *session);
                  ##__VA_ARGS__);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_subscription.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_subscription.h" ***********************************/
 
 
 
@@ -3831,7 +3831,7 @@ UA_Subscription_answerPublishRequestsNoSubscription(UA_Server *server,
                                                     UA_NodeId *sessionToken);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_nodestore.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_nodestore.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -3925,7 +3925,7 @@ void UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor);
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_session_manager.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_session_manager.h" ***********************************/
 
 
 
@@ -3958,7 +3958,7 @@ UA_Session *
 UA_SessionManager_getSession(UA_SessionManager *sm, const UA_NodeId *token);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_securechannel_manager.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_securechannel_manager.h" ***********************************/
 
 
 
@@ -3999,7 +3999,7 @@ UA_StatusCode
 UA_SecureChannelManager_close(UA_SecureChannelManager *cm, UA_UInt32 channelId);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_server_internal.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_server_internal.h" ***********************************/
 
 
 
@@ -4240,7 +4240,7 @@ void Service_Call_single(UA_Server *server, UA_Session *session,
                          UA_CallMethodResult *result);
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services.h" ***********************************/
 
 
 #ifdef __cplusplus
@@ -4540,7 +4540,7 @@ void Service_DeleteSubscriptions(UA_Server *server, UA_Session *session,
 #endif
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/client/ua_client_internal.h" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/client/ua_client_internal.h" ***********************************/
 
 
 
@@ -4626,7 +4626,7 @@ struct UA_Client {
 
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_types.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_types.c" ***********************************/
 
 
 
@@ -5657,7 +5657,7 @@ UA_Array_delete(void *p, size_t size, const UA_DataType *type) {
     UA_free((void*)((uintptr_t)p & ~(uintptr_t)UA_EMPTY_ARRAY_SENTINEL));
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_types_encoding_binary.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_types_encoding_binary.c" ***********************************/
 
 
 /* Type Encoding
@@ -7227,10 +7227,10 @@ UA_calcSizeBinary(void *p, const UA_DataType *type) {
     return s;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_types_generated.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_types_generated.c" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* Generated from Opc.Ua.Types.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
 /* Boolean */
@@ -7516,100 +7516,105 @@ static UA_DataTypeMember DiagnosticInfo_members[1] = {
     .isArray = false
   },};
 
-/* IdType */
-static UA_DataTypeMember IdType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
+/* SignedSoftwareCertificate */
+static UA_DataTypeMember SignedSoftwareCertificate_members[2] = {
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* NodeClass */
-static UA_DataTypeMember NodeClass_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* ReferenceNode */
-static UA_DataTypeMember ReferenceNode_members[3] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referenceTypeId",
+    .memberName = "certificateData",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "isInverse",
+    .memberName = "signature",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ReferenceNode, isInverse) - offsetof(UA_ReferenceNode, referenceTypeId) - sizeof(UA_NodeId),
+    .padding = offsetof(UA_SignedSoftwareCertificate, signature) - offsetof(UA_SignedSoftwareCertificate, certificateData) - sizeof(UA_ByteString),
     .isArray = false
-  },
+  },};
+
+/* BrowsePathTarget */
+static UA_DataTypeMember BrowsePathTarget_members[2] = {
   { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "targetId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ReferenceNode, targetId) - offsetof(UA_ReferenceNode, isInverse) - sizeof(UA_Boolean),
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "remainingPathIndex",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowsePathTarget, remainingPathIndex) - offsetof(UA_BrowsePathTarget, targetId) - sizeof(UA_ExpandedNodeId),
     .isArray = false
   },};
 
-/* Argument */
-static UA_DataTypeMember Argument_members[5] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
+/* ViewAttributes */
+static UA_DataTypeMember ViewAttributes_members[7] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "name",
+    .memberName = "specifiedAttributes",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_NODEID,
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "dataType",
+    .memberName = "displayName",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_Argument, dataType) - offsetof(UA_Argument, name) - sizeof(UA_String),
+    .padding = offsetof(UA_ViewAttributes, displayName) - offsetof(UA_ViewAttributes, specifiedAttributes) - sizeof(UA_UInt32),
     .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "valueRank",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_Argument, valueRank) - offsetof(UA_Argument, dataType) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "arrayDimensions",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_Argument, arrayDimensionsSize) - offsetof(UA_Argument, valueRank) - sizeof(UA_Int32),
-    .isArray = true
   },
   { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "description",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_Argument, description) - offsetof(UA_Argument, arrayDimensions) - sizeof(void*),
+    .padding = offsetof(UA_ViewAttributes, description) - offsetof(UA_ViewAttributes, displayName) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "writeMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewAttributes, writeMask) - offsetof(UA_ViewAttributes, description) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userWriteMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewAttributes, userWriteMask) - offsetof(UA_ViewAttributes, writeMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "containsNoLoops",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewAttributes, containsNoLoops) - offsetof(UA_ViewAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "eventNotifier",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewAttributes, eventNotifier) - offsetof(UA_ViewAttributes, containsNoLoops) - sizeof(UA_Boolean),
     .isArray = false
   },};
 
-/* ApplicationType */
-static UA_DataTypeMember ApplicationType_members[1] = {
+/* BrowseResultMask */
+static UA_DataTypeMember BrowseResultMask_members[1] = {
   { .memberTypeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "",
@@ -7617,65 +7622,6 @@ static UA_DataTypeMember ApplicationType_members[1] = {
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
-  },};
-
-/* ApplicationDescription */
-static UA_DataTypeMember ApplicationDescription_members[7] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "applicationUri",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "productUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, productUri) - offsetof(UA_ApplicationDescription, applicationUri) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "applicationName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, applicationName) - offsetof(UA_ApplicationDescription, productUri) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_APPLICATIONTYPE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "applicationType",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, applicationType) - offsetof(UA_ApplicationDescription, applicationName) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "gatewayServerUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, gatewayServerUri) - offsetof(UA_ApplicationDescription, applicationType) - sizeof(UA_ApplicationType),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "discoveryProfileUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, discoveryProfileUri) - offsetof(UA_ApplicationDescription, gatewayServerUri) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "discoveryUrls",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ApplicationDescription, discoveryUrlsSize) - offsetof(UA_ApplicationDescription, discoveryProfileUri) - sizeof(UA_String),
-    .isArray = true
   },};
 
 /* RequestHeader */
@@ -7737,437 +7683,38 @@ static UA_DataTypeMember RequestHeader_members[7] = {
     .isArray = false
   },};
 
-/* ResponseHeader */
-static UA_DataTypeMember ResponseHeader_members[6] = {
-  { .memberTypeIndex = UA_TYPES_DATETIME,
+/* MonitoredItemModifyResult */
+static UA_DataTypeMember MonitoredItemModifyResult_members[4] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "timestamp",
+    .memberName = "statusCode",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedSamplingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemModifyResult, revisedSamplingInterval) - offsetof(UA_MonitoredItemModifyResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = false
+  },
   { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHandle",
+    .memberName = "revisedQueueSize",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ResponseHeader, requestHandle) - offsetof(UA_ResponseHeader, timestamp) - sizeof(UA_DateTime),
+    .padding = offsetof(UA_MonitoredItemModifyResult, revisedQueueSize) - offsetof(UA_MonitoredItemModifyResult, revisedSamplingInterval) - sizeof(UA_Double),
     .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serviceResult",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ResponseHeader, serviceResult) - offsetof(UA_ResponseHeader, requestHandle) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serviceDiagnostics",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ResponseHeader, serviceDiagnostics) - offsetof(UA_ResponseHeader, serviceResult) - sizeof(UA_StatusCode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "stringTable",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ResponseHeader, stringTableSize) - offsetof(UA_ResponseHeader, serviceDiagnostics) - sizeof(UA_DiagnosticInfo),
-    .isArray = true
   },
   { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "additionalHeader",
+    .memberName = "filterResult",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ResponseHeader, additionalHeader) - offsetof(UA_ResponseHeader, stringTable) - sizeof(void*),
-    .isArray = false
-  },};
-
-/* ServiceFault */
-static UA_DataTypeMember ServiceFault_members[1] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* FindServersRequest */
-static UA_DataTypeMember FindServersRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "endpointUrl",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_FindServersRequest, endpointUrl) - offsetof(UA_FindServersRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "localeIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_FindServersRequest, localeIdsSize) - offsetof(UA_FindServersRequest, endpointUrl) - sizeof(UA_String),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverUris",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_FindServersRequest, serverUrisSize) - offsetof(UA_FindServersRequest, localeIds) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* FindServersResponse */
-static UA_DataTypeMember FindServersResponse_members[2] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "servers",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_FindServersResponse, serversSize) - offsetof(UA_FindServersResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },};
-
-/* MessageSecurityMode */
-static UA_DataTypeMember MessageSecurityMode_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* UserTokenType */
-static UA_DataTypeMember UserTokenType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* UserTokenPolicy */
-static UA_DataTypeMember UserTokenPolicy_members[5] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "policyId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_USERTOKENTYPE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "tokenType",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserTokenPolicy, tokenType) - offsetof(UA_UserTokenPolicy, policyId) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "issuedTokenType",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserTokenPolicy, issuedTokenType) - offsetof(UA_UserTokenPolicy, tokenType) - sizeof(UA_UserTokenType),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "issuerEndpointUrl",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserTokenPolicy, issuerEndpointUrl) - offsetof(UA_UserTokenPolicy, issuedTokenType) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityPolicyUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserTokenPolicy, securityPolicyUri) - offsetof(UA_UserTokenPolicy, issuerEndpointUrl) - sizeof(UA_String),
-    .isArray = false
-  },};
-
-/* EndpointDescription */
-static UA_DataTypeMember EndpointDescription_members[8] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "endpointUrl",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "server",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, server) - offsetof(UA_EndpointDescription, endpointUrl) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverCertificate",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, serverCertificate) - offsetof(UA_EndpointDescription, server) - sizeof(UA_ApplicationDescription),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MESSAGESECURITYMODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityMode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, securityMode) - offsetof(UA_EndpointDescription, serverCertificate) - sizeof(UA_ByteString),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityPolicyUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, securityPolicyUri) - offsetof(UA_EndpointDescription, securityMode) - sizeof(UA_MessageSecurityMode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_USERTOKENPOLICY,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userIdentityTokens",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, userIdentityTokensSize) - offsetof(UA_EndpointDescription, securityPolicyUri) - sizeof(UA_String),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "transportProfileUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, transportProfileUri) - offsetof(UA_EndpointDescription, userIdentityTokens) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityLevel",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_EndpointDescription, securityLevel) - offsetof(UA_EndpointDescription, transportProfileUri) - sizeof(UA_String),
-    .isArray = false
-  },};
-
-/* GetEndpointsRequest */
-static UA_DataTypeMember GetEndpointsRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "endpointUrl",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_GetEndpointsRequest, endpointUrl) - offsetof(UA_GetEndpointsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "localeIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_GetEndpointsRequest, localeIdsSize) - offsetof(UA_GetEndpointsRequest, endpointUrl) - sizeof(UA_String),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "profileUris",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_GetEndpointsRequest, profileUrisSize) - offsetof(UA_GetEndpointsRequest, localeIds) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* GetEndpointsResponse */
-static UA_DataTypeMember GetEndpointsResponse_members[2] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "endpoints",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_GetEndpointsResponse, endpointsSize) - offsetof(UA_GetEndpointsResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },};
-
-/* SecurityTokenRequestType */
-static UA_DataTypeMember SecurityTokenRequestType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* ChannelSecurityToken */
-static UA_DataTypeMember ChannelSecurityToken_members[4] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "channelId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "tokenId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ChannelSecurityToken, tokenId) - offsetof(UA_ChannelSecurityToken, channelId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATETIME,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "createdAt",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ChannelSecurityToken, createdAt) - offsetof(UA_ChannelSecurityToken, tokenId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedLifetime",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ChannelSecurityToken, revisedLifetime) - offsetof(UA_ChannelSecurityToken, createdAt) - sizeof(UA_DateTime),
-    .isArray = false
-  },};
-
-/* OpenSecureChannelRequest */
-static UA_DataTypeMember OpenSecureChannelRequest_members[6] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientProtocolVersion",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelRequest, clientProtocolVersion) - offsetof(UA_OpenSecureChannelRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_SECURITYTOKENREQUESTTYPE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestType",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelRequest, requestType) - offsetof(UA_OpenSecureChannelRequest, clientProtocolVersion) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MESSAGESECURITYMODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityMode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelRequest, securityMode) - offsetof(UA_OpenSecureChannelRequest, requestType) - sizeof(UA_SecurityTokenRequestType),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientNonce",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelRequest, clientNonce) - offsetof(UA_OpenSecureChannelRequest, securityMode) - sizeof(UA_MessageSecurityMode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedLifetime",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelRequest, requestedLifetime) - offsetof(UA_OpenSecureChannelRequest, clientNonce) - sizeof(UA_ByteString),
-    .isArray = false
-  },};
-
-/* OpenSecureChannelResponse */
-static UA_DataTypeMember OpenSecureChannelResponse_members[4] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverProtocolVersion",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelResponse, serverProtocolVersion) - offsetof(UA_OpenSecureChannelResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_CHANNELSECURITYTOKEN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityToken",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelResponse, securityToken) - offsetof(UA_OpenSecureChannelResponse, serverProtocolVersion) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverNonce",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_OpenSecureChannelResponse, serverNonce) - offsetof(UA_OpenSecureChannelResponse, securityToken) - sizeof(UA_ChannelSecurityToken),
+    .padding = offsetof(UA_MonitoredItemModifyResult, filterResult) - offsetof(UA_MonitoredItemModifyResult, revisedQueueSize) - sizeof(UA_UInt32),
     .isArray = false
   },};
 
@@ -8182,488 +7729,22 @@ static UA_DataTypeMember CloseSecureChannelRequest_members[1] = {
     .isArray = false
   },};
 
-/* CloseSecureChannelResponse */
-static UA_DataTypeMember CloseSecureChannelResponse_members[1] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* SignedSoftwareCertificate */
-static UA_DataTypeMember SignedSoftwareCertificate_members[2] = {
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "certificateData",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "signature",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SignedSoftwareCertificate, signature) - offsetof(UA_SignedSoftwareCertificate, certificateData) - sizeof(UA_ByteString),
-    .isArray = false
-  },};
-
-/* SignatureData */
-static UA_DataTypeMember SignatureData_members[2] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "algorithm",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "signature",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SignatureData, signature) - offsetof(UA_SignatureData, algorithm) - sizeof(UA_String),
-    .isArray = false
-  },};
-
-/* CreateSessionRequest */
-static UA_DataTypeMember CreateSessionRequest_members[9] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientDescription",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, clientDescription) - offsetof(UA_CreateSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, serverUri) - offsetof(UA_CreateSessionRequest, clientDescription) - sizeof(UA_ApplicationDescription),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "endpointUrl",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, endpointUrl) - offsetof(UA_CreateSessionRequest, serverUri) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sessionName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, sessionName) - offsetof(UA_CreateSessionRequest, endpointUrl) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientNonce",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, clientNonce) - offsetof(UA_CreateSessionRequest, sessionName) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientCertificate",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, clientCertificate) - offsetof(UA_CreateSessionRequest, clientNonce) - sizeof(UA_ByteString),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedSessionTimeout",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, requestedSessionTimeout) - offsetof(UA_CreateSessionRequest, clientCertificate) - sizeof(UA_ByteString),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxResponseMessageSize",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionRequest, maxResponseMessageSize) - offsetof(UA_CreateSessionRequest, requestedSessionTimeout) - sizeof(UA_Double),
-    .isArray = false
-  },};
-
-/* CreateSessionResponse */
-static UA_DataTypeMember CreateSessionResponse_members[10] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sessionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, sessionId) - offsetof(UA_CreateSessionResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "authenticationToken",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, authenticationToken) - offsetof(UA_CreateSessionResponse, sessionId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedSessionTimeout",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, revisedSessionTimeout) - offsetof(UA_CreateSessionResponse, authenticationToken) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverNonce",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, serverNonce) - offsetof(UA_CreateSessionResponse, revisedSessionTimeout) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverCertificate",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, serverCertificate) - offsetof(UA_CreateSessionResponse, serverNonce) - sizeof(UA_ByteString),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverEndpoints",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, serverEndpointsSize) - offsetof(UA_CreateSessionResponse, serverCertificate) - sizeof(UA_ByteString),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverSoftwareCertificates",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, serverSoftwareCertificatesSize) - offsetof(UA_CreateSessionResponse, serverEndpoints) - sizeof(void*),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverSignature",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, serverSignature) - offsetof(UA_CreateSessionResponse, serverSoftwareCertificates) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxRequestMessageSize",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSessionResponse, maxRequestMessageSize) - offsetof(UA_CreateSessionResponse, serverSignature) - sizeof(UA_SignatureData),
-    .isArray = false
-  },};
-
-/* UserIdentityToken */
-static UA_DataTypeMember UserIdentityToken_members[1] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "policyId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* AnonymousIdentityToken */
-static UA_DataTypeMember AnonymousIdentityToken_members[1] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "policyId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* UserNameIdentityToken */
-static UA_DataTypeMember UserNameIdentityToken_members[4] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "policyId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserNameIdentityToken, userName) - offsetof(UA_UserNameIdentityToken, policyId) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "password",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserNameIdentityToken, password) - offsetof(UA_UserNameIdentityToken, userName) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "encryptionAlgorithm",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UserNameIdentityToken, encryptionAlgorithm) - offsetof(UA_UserNameIdentityToken, password) - sizeof(UA_ByteString),
-    .isArray = false
-  },};
-
-/* ActivateSessionRequest */
-static UA_DataTypeMember ActivateSessionRequest_members[6] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientSignature",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionRequest, clientSignature) - offsetof(UA_ActivateSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientSoftwareCertificates",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionRequest, clientSoftwareCertificatesSize) - offsetof(UA_ActivateSessionRequest, clientSignature) - sizeof(UA_SignatureData),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "localeIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionRequest, localeIdsSize) - offsetof(UA_ActivateSessionRequest, clientSoftwareCertificates) - sizeof(void*),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userIdentityToken",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionRequest, userIdentityToken) - offsetof(UA_ActivateSessionRequest, localeIds) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userTokenSignature",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionRequest, userTokenSignature) - offsetof(UA_ActivateSessionRequest, userIdentityToken) - sizeof(UA_ExtensionObject),
-    .isArray = false
-  },};
-
-/* ActivateSessionResponse */
-static UA_DataTypeMember ActivateSessionResponse_members[4] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "serverNonce",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionResponse, serverNonce) - offsetof(UA_ActivateSessionResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },
+/* AddNodesResult */
+static UA_DataTypeMember AddNodesResult_members[2] = {
   { .memberTypeIndex = UA_TYPES_STATUSCODE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionResponse, resultsSize) - offsetof(UA_ActivateSessionResponse, serverNonce) - sizeof(UA_ByteString),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ActivateSessionResponse, diagnosticInfosSize) - offsetof(UA_ActivateSessionResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* CloseSessionRequest */
-static UA_DataTypeMember CloseSessionRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
+    .memberName = "statusCode",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+  { .memberTypeIndex = UA_TYPES_NODEID,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "deleteSubscriptions",
+    .memberName = "addedNodeId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_CloseSessionRequest, deleteSubscriptions) - offsetof(UA_CloseSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },};
-
-/* CloseSessionResponse */
-static UA_DataTypeMember CloseSessionResponse_members[1] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* NodeAttributesMask */
-static UA_DataTypeMember NodeAttributesMask_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* NodeAttributes */
-static UA_DataTypeMember NodeAttributes_members[5] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "specifiedAttributes",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "displayName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeAttributes, displayName) - offsetof(UA_NodeAttributes, specifiedAttributes) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "description",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeAttributes, description) - offsetof(UA_NodeAttributes, displayName) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "writeMask",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeAttributes, writeMask) - offsetof(UA_NodeAttributes, description) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userWriteMask",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeAttributes, userWriteMask) - offsetof(UA_NodeAttributes, writeMask) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* ObjectAttributes */
-static UA_DataTypeMember ObjectAttributes_members[6] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "specifiedAttributes",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "displayName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ObjectAttributes, displayName) - offsetof(UA_ObjectAttributes, specifiedAttributes) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "description",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ObjectAttributes, description) - offsetof(UA_ObjectAttributes, displayName) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "writeMask",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ObjectAttributes, writeMask) - offsetof(UA_ObjectAttributes, description) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userWriteMask",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ObjectAttributes, userWriteMask) - offsetof(UA_ObjectAttributes, writeMask) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "eventNotifier",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ObjectAttributes, eventNotifier) - offsetof(UA_ObjectAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_AddNodesResult, addedNodeId) - offsetof(UA_AddNodesResult, statusCode) - sizeof(UA_StatusCode),
     .isArray = false
   },};
 
@@ -8774,6 +7855,331 @@ static UA_DataTypeMember VariableAttributes_members[13] = {
     .isArray = false
   },};
 
+/* NotificationMessage */
+static UA_DataTypeMember NotificationMessage_members[3] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "sequenceNumber",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATETIME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "publishTime",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NotificationMessage, publishTime) - offsetof(UA_NotificationMessage, sequenceNumber) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "notificationData",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NotificationMessage, notificationDataSize) - offsetof(UA_NotificationMessage, publishTime) - sizeof(UA_DateTime),
+    .isArray = true
+  },};
+
+/* NodeAttributesMask */
+static UA_DataTypeMember NodeAttributesMask_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* MonitoringMode */
+static UA_DataTypeMember MonitoringMode_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* CallMethodResult */
+static UA_DataTypeMember CallMethodResult_members[4] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "inputArgumentResults",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallMethodResult, inputArgumentResultsSize) - offsetof(UA_CallMethodResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "inputArgumentDiagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallMethodResult, inputArgumentDiagnosticInfosSize) - offsetof(UA_CallMethodResult, inputArgumentResults) - sizeof(void*),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_VARIANT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "outputArguments",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallMethodResult, outputArgumentsSize) - offsetof(UA_CallMethodResult, inputArgumentDiagnosticInfos) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* ParsingResult */
+static UA_DataTypeMember ParsingResult_members[3] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "dataStatusCodes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ParsingResult, dataStatusCodesSize) - offsetof(UA_ParsingResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "dataDiagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ParsingResult, dataDiagnosticInfosSize) - offsetof(UA_ParsingResult, dataStatusCodes) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* RelativePathElement */
+static UA_DataTypeMember RelativePathElement_members[4] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referenceTypeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "isInverse",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RelativePathElement, isInverse) - offsetof(UA_RelativePathElement, referenceTypeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "includeSubtypes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RelativePathElement, includeSubtypes) - offsetof(UA_RelativePathElement, isInverse) - sizeof(UA_Boolean),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "targetName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RelativePathElement, targetName) - offsetof(UA_RelativePathElement, includeSubtypes) - sizeof(UA_Boolean),
+    .isArray = false
+  },};
+
+/* BrowseDirection */
+static UA_DataTypeMember BrowseDirection_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* CallMethodRequest */
+static UA_DataTypeMember CallMethodRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "objectId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "methodId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallMethodRequest, methodId) - offsetof(UA_CallMethodRequest, objectId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_VARIANT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "inputArguments",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallMethodRequest, inputArgumentsSize) - offsetof(UA_CallMethodRequest, methodId) - sizeof(UA_NodeId),
+    .isArray = true
+  },};
+
+/* UnregisterNodesRequest */
+static UA_DataTypeMember UnregisterNodesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToUnregister",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UnregisterNodesRequest, nodesToUnregisterSize) - offsetof(UA_UnregisterNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* ContentFilterElementResult */
+static UA_DataTypeMember ContentFilterElementResult_members[3] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "operandStatusCodes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ContentFilterElementResult, operandStatusCodesSize) - offsetof(UA_ContentFilterElementResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "operandDiagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ContentFilterElementResult, operandDiagnosticInfosSize) - offsetof(UA_ContentFilterElementResult, operandStatusCodes) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* QueryDataSet */
+static UA_DataTypeMember QueryDataSet_members[3] = {
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "typeDefinitionNode",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryDataSet, typeDefinitionNode) - offsetof(UA_QueryDataSet, nodeId) - sizeof(UA_ExpandedNodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_VARIANT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "values",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryDataSet, valuesSize) - offsetof(UA_QueryDataSet, typeDefinitionNode) - sizeof(UA_ExpandedNodeId),
+    .isArray = true
+  },};
+
+/* AnonymousIdentityToken */
+static UA_DataTypeMember AnonymousIdentityToken_members[1] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "policyId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* SetPublishingModeRequest */
+static UA_DataTypeMember SetPublishingModeRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "publishingEnabled",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SetPublishingModeRequest, publishingEnabled) - offsetof(UA_SetPublishingModeRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SetPublishingModeRequest, subscriptionIdsSize) - offsetof(UA_SetPublishingModeRequest, publishingEnabled) - sizeof(UA_Boolean),
+    .isArray = true
+  },};
+
+/* TimestampsToReturn */
+static UA_DataTypeMember TimestampsToReturn_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* CallRequest */
+static UA_DataTypeMember CallRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_CALLMETHODREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "methodsToCall",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallRequest, methodsToCallSize) - offsetof(UA_CallRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
 /* MethodAttributes */
 static UA_DataTypeMember MethodAttributes_members[7] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -8833,6 +8239,281 @@ static UA_DataTypeMember MethodAttributes_members[7] = {
     .isArray = false
   },};
 
+/* DeleteReferencesItem */
+static UA_DataTypeMember DeleteReferencesItem_members[5] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "sourceNodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referenceTypeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesItem, referenceTypeId) - offsetof(UA_DeleteReferencesItem, sourceNodeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "isForward",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesItem, isForward) - offsetof(UA_DeleteReferencesItem, referenceTypeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "targetNodeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesItem, targetNodeId) - offsetof(UA_DeleteReferencesItem, isForward) - sizeof(UA_Boolean),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "deleteBidirectional",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesItem, deleteBidirectional) - offsetof(UA_DeleteReferencesItem, targetNodeId) - sizeof(UA_ExpandedNodeId),
+    .isArray = false
+  },};
+
+/* WriteValue */
+static UA_DataTypeMember WriteValue_members[4] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "attributeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteValue, attributeId) - offsetof(UA_WriteValue, nodeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "indexRange",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteValue, indexRange) - offsetof(UA_WriteValue, attributeId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATAVALUE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "value",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteValue, value) - offsetof(UA_WriteValue, indexRange) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* MonitoredItemCreateResult */
+static UA_DataTypeMember MonitoredItemCreateResult_members[5] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "monitoredItemId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateResult, monitoredItemId) - offsetof(UA_MonitoredItemCreateResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedSamplingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateResult, revisedSamplingInterval) - offsetof(UA_MonitoredItemCreateResult, monitoredItemId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedQueueSize",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateResult, revisedQueueSize) - offsetof(UA_MonitoredItemCreateResult, revisedSamplingInterval) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filterResult",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateResult, filterResult) - offsetof(UA_MonitoredItemCreateResult, revisedQueueSize) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* MessageSecurityMode */
+static UA_DataTypeMember MessageSecurityMode_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* MonitoringParameters */
+static UA_DataTypeMember MonitoringParameters_members[5] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientHandle",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "samplingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoringParameters, samplingInterval) - offsetof(UA_MonitoringParameters, clientHandle) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filter",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoringParameters, filter) - offsetof(UA_MonitoringParameters, samplingInterval) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "queueSize",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoringParameters, queueSize) - offsetof(UA_MonitoringParameters, filter) - sizeof(UA_ExtensionObject),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "discardOldest",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoringParameters, discardOldest) - offsetof(UA_MonitoringParameters, queueSize) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* SignatureData */
+static UA_DataTypeMember SignatureData_members[2] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "algorithm",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "signature",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SignatureData, signature) - offsetof(UA_SignatureData, algorithm) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* ReferenceNode */
+static UA_DataTypeMember ReferenceNode_members[3] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referenceTypeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "isInverse",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReferenceNode, isInverse) - offsetof(UA_ReferenceNode, referenceTypeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "targetId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReferenceNode, targetId) - offsetof(UA_ReferenceNode, isInverse) - sizeof(UA_Boolean),
+    .isArray = false
+  },};
+
+/* Argument */
+static UA_DataTypeMember Argument_members[5] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "name",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "dataType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_Argument, dataType) - offsetof(UA_Argument, name) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "valueRank",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_Argument, valueRank) - offsetof(UA_Argument, dataType) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "arrayDimensions",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_Argument, arrayDimensionsSize) - offsetof(UA_Argument, valueRank) - sizeof(UA_Int32),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "description",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_Argument, description) - offsetof(UA_Argument, arrayDimensions) - sizeof(void*),
+    .isArray = false
+  },};
+
+/* UserIdentityToken */
+static UA_DataTypeMember UserIdentityToken_members[1] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "policyId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
 /* ObjectTypeAttributes */
 static UA_DataTypeMember ObjectTypeAttributes_members[6] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -8881,6 +8562,940 @@ static UA_DataTypeMember ObjectTypeAttributes_members[6] = {
 #endif
     .namespaceZero = true,
     .padding = offsetof(UA_ObjectTypeAttributes, isAbstract) - offsetof(UA_ObjectTypeAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* DeadbandType */
+static UA_DataTypeMember DeadbandType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* SecurityTokenRequestType */
+static UA_DataTypeMember SecurityTokenRequestType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* DataChangeTrigger */
+static UA_DataTypeMember DataChangeTrigger_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* BuildInfo */
+static UA_DataTypeMember BuildInfo_members[6] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "productUri",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "manufacturerName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BuildInfo, manufacturerName) - offsetof(UA_BuildInfo, productUri) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "productName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BuildInfo, productName) - offsetof(UA_BuildInfo, manufacturerName) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "softwareVersion",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BuildInfo, softwareVersion) - offsetof(UA_BuildInfo, productName) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "buildNumber",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BuildInfo, buildNumber) - offsetof(UA_BuildInfo, softwareVersion) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATETIME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "buildDate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BuildInfo, buildDate) - offsetof(UA_BuildInfo, buildNumber) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* NodeClass */
+static UA_DataTypeMember NodeClass_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* ChannelSecurityToken */
+static UA_DataTypeMember ChannelSecurityToken_members[4] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "channelId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "tokenId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ChannelSecurityToken, tokenId) - offsetof(UA_ChannelSecurityToken, channelId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATETIME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "createdAt",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ChannelSecurityToken, createdAt) - offsetof(UA_ChannelSecurityToken, tokenId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedLifetime",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ChannelSecurityToken, revisedLifetime) - offsetof(UA_ChannelSecurityToken, createdAt) - sizeof(UA_DateTime),
+    .isArray = false
+  },};
+
+/* MonitoredItemNotification */
+static UA_DataTypeMember MonitoredItemNotification_members[2] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientHandle",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATAVALUE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "value",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemNotification, value) - offsetof(UA_MonitoredItemNotification, clientHandle) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* DeleteNodesItem */
+static UA_DataTypeMember DeleteNodesItem_members[2] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "deleteTargetReferences",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteNodesItem, deleteTargetReferences) - offsetof(UA_DeleteNodesItem, nodeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },};
+
+/* SubscriptionAcknowledgement */
+static UA_DataTypeMember SubscriptionAcknowledgement_members[2] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "sequenceNumber",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SubscriptionAcknowledgement, sequenceNumber) - offsetof(UA_SubscriptionAcknowledgement, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* ReadValueId */
+static UA_DataTypeMember ReadValueId_members[4] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "attributeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadValueId, attributeId) - offsetof(UA_ReadValueId, nodeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "indexRange",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadValueId, indexRange) - offsetof(UA_ReadValueId, attributeId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "dataEncoding",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadValueId, dataEncoding) - offsetof(UA_ReadValueId, indexRange) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* DataTypeAttributes */
+static UA_DataTypeMember DataTypeAttributes_members[6] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "specifiedAttributes",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "displayName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataTypeAttributes, displayName) - offsetof(UA_DataTypeAttributes, specifiedAttributes) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "description",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataTypeAttributes, description) - offsetof(UA_DataTypeAttributes, displayName) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "writeMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataTypeAttributes, writeMask) - offsetof(UA_DataTypeAttributes, description) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userWriteMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataTypeAttributes, userWriteMask) - offsetof(UA_DataTypeAttributes, writeMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "isAbstract",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataTypeAttributes, isAbstract) - offsetof(UA_DataTypeAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* ResponseHeader */
+static UA_DataTypeMember ResponseHeader_members[6] = {
+  { .memberTypeIndex = UA_TYPES_DATETIME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "timestamp",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHandle",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ResponseHeader, requestHandle) - offsetof(UA_ResponseHeader, timestamp) - sizeof(UA_DateTime),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serviceResult",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ResponseHeader, serviceResult) - offsetof(UA_ResponseHeader, requestHandle) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serviceDiagnostics",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ResponseHeader, serviceDiagnostics) - offsetof(UA_ResponseHeader, serviceResult) - sizeof(UA_StatusCode),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "stringTable",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ResponseHeader, stringTableSize) - offsetof(UA_ResponseHeader, serviceDiagnostics) - sizeof(UA_DiagnosticInfo),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "additionalHeader",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ResponseHeader, additionalHeader) - offsetof(UA_ResponseHeader, stringTable) - sizeof(void*),
+    .isArray = false
+  },};
+
+/* DeleteSubscriptionsRequest */
+static UA_DataTypeMember DeleteSubscriptionsRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteSubscriptionsRequest, subscriptionIdsSize) - offsetof(UA_DeleteSubscriptionsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* ViewDescription */
+static UA_DataTypeMember ViewDescription_members[3] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "viewId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATETIME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "timestamp",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewDescription, timestamp) - offsetof(UA_ViewDescription, viewId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "viewVersion",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ViewDescription, viewVersion) - offsetof(UA_ViewDescription, timestamp) - sizeof(UA_DateTime),
+    .isArray = false
+  },};
+
+/* DeleteMonitoredItemsResponse */
+static UA_DataTypeMember DeleteMonitoredItemsResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteMonitoredItemsResponse, resultsSize) - offsetof(UA_DeleteMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_DeleteMonitoredItemsResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* NodeAttributes */
+static UA_DataTypeMember NodeAttributes_members[5] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "specifiedAttributes",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "displayName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeAttributes, displayName) - offsetof(UA_NodeAttributes, specifiedAttributes) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "description",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeAttributes, description) - offsetof(UA_NodeAttributes, displayName) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "writeMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeAttributes, writeMask) - offsetof(UA_NodeAttributes, description) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userWriteMask",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeAttributes, userWriteMask) - offsetof(UA_NodeAttributes, writeMask) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* RegisterNodesRequest */
+static UA_DataTypeMember RegisterNodesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToRegister",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RegisterNodesRequest, nodesToRegisterSize) - offsetof(UA_RegisterNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* DeleteNodesRequest */
+static UA_DataTypeMember DeleteNodesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DELETENODESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToDelete",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteNodesRequest, nodesToDeleteSize) - offsetof(UA_DeleteNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* PublishResponse */
+static UA_DataTypeMember PublishResponse_members[7] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, subscriptionId) - offsetof(UA_PublishResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "availableSequenceNumbers",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, availableSequenceNumbersSize) - offsetof(UA_PublishResponse, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "moreNotifications",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, moreNotifications) - offsetof(UA_PublishResponse, availableSequenceNumbers) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "notificationMessage",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, notificationMessage) - offsetof(UA_PublishResponse, moreNotifications) - sizeof(UA_Boolean),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, resultsSize) - offsetof(UA_PublishResponse, notificationMessage) - sizeof(UA_NotificationMessage),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishResponse, diagnosticInfosSize) - offsetof(UA_PublishResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* MonitoredItemModifyRequest */
+static UA_DataTypeMember MonitoredItemModifyRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "monitoredItemId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITORINGPARAMETERS,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedParameters",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemModifyRequest, requestedParameters) - offsetof(UA_MonitoredItemModifyRequest, monitoredItemId) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* UserNameIdentityToken */
+static UA_DataTypeMember UserNameIdentityToken_members[4] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "policyId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserNameIdentityToken, userName) - offsetof(UA_UserNameIdentityToken, policyId) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "password",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserNameIdentityToken, password) - offsetof(UA_UserNameIdentityToken, userName) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "encryptionAlgorithm",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserNameIdentityToken, encryptionAlgorithm) - offsetof(UA_UserNameIdentityToken, password) - sizeof(UA_ByteString),
+    .isArray = false
+  },};
+
+/* IdType */
+static UA_DataTypeMember IdType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* UserTokenType */
+static UA_DataTypeMember UserTokenType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* ActivateSessionRequest */
+static UA_DataTypeMember ActivateSessionRequest_members[6] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientSignature",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionRequest, clientSignature) - offsetof(UA_ActivateSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientSoftwareCertificates",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionRequest, clientSoftwareCertificatesSize) - offsetof(UA_ActivateSessionRequest, clientSignature) - sizeof(UA_SignatureData),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "localeIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionRequest, localeIdsSize) - offsetof(UA_ActivateSessionRequest, clientSoftwareCertificates) - sizeof(void*),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userIdentityToken",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionRequest, userIdentityToken) - offsetof(UA_ActivateSessionRequest, localeIds) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userTokenSignature",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionRequest, userTokenSignature) - offsetof(UA_ActivateSessionRequest, userIdentityToken) - sizeof(UA_ExtensionObject),
+    .isArray = false
+  },};
+
+/* OpenSecureChannelResponse */
+static UA_DataTypeMember OpenSecureChannelResponse_members[4] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverProtocolVersion",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelResponse, serverProtocolVersion) - offsetof(UA_OpenSecureChannelResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_CHANNELSECURITYTOKEN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityToken",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelResponse, securityToken) - offsetof(UA_OpenSecureChannelResponse, serverProtocolVersion) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverNonce",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelResponse, serverNonce) - offsetof(UA_OpenSecureChannelResponse, securityToken) - sizeof(UA_ChannelSecurityToken),
+    .isArray = false
+  },};
+
+/* ApplicationType */
+static UA_DataTypeMember ApplicationType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* ServerState */
+static UA_DataTypeMember ServerState_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* QueryNextResponse */
+static UA_DataTypeMember QueryNextResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUERYDATASET,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "queryDataSets",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryNextResponse, queryDataSetsSize) - offsetof(UA_QueryNextResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedContinuationPoint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryNextResponse, revisedContinuationPoint) - offsetof(UA_QueryNextResponse, queryDataSets) - sizeof(void*),
+    .isArray = false
+  },};
+
+/* ActivateSessionResponse */
+static UA_DataTypeMember ActivateSessionResponse_members[4] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverNonce",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionResponse, serverNonce) - offsetof(UA_ActivateSessionResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionResponse, resultsSize) - offsetof(UA_ActivateSessionResponse, serverNonce) - sizeof(UA_ByteString),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ActivateSessionResponse, diagnosticInfosSize) - offsetof(UA_ActivateSessionResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* FilterOperator */
+static UA_DataTypeMember FilterOperator_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* QueryNextRequest */
+static UA_DataTypeMember QueryNextRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "releaseContinuationPoint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryNextRequest, releaseContinuationPoint) - offsetof(UA_QueryNextRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "continuationPoint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryNextRequest, continuationPoint) - offsetof(UA_QueryNextRequest, releaseContinuationPoint) - sizeof(UA_Boolean),
+    .isArray = false
+  },};
+
+/* WriteResponse */
+static UA_DataTypeMember WriteResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteResponse, resultsSize) - offsetof(UA_WriteResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteResponse, diagnosticInfosSize) - offsetof(UA_WriteResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* BrowseNextRequest */
+static UA_DataTypeMember BrowseNextRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "releaseContinuationPoints",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseNextRequest, releaseContinuationPoints) - offsetof(UA_BrowseNextRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "continuationPoints",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseNextRequest, continuationPointsSize) - offsetof(UA_BrowseNextRequest, releaseContinuationPoints) - sizeof(UA_Boolean),
+    .isArray = true
+  },};
+
+/* CreateSubscriptionRequest */
+static UA_DataTypeMember CreateSubscriptionRequest_members[7] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedPublishingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, requestedPublishingInterval) - offsetof(UA_CreateSubscriptionRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedLifetimeCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, requestedLifetimeCount) - offsetof(UA_CreateSubscriptionRequest, requestedPublishingInterval) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedMaxKeepAliveCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, requestedMaxKeepAliveCount) - offsetof(UA_CreateSubscriptionRequest, requestedLifetimeCount) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxNotificationsPerPublish",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, maxNotificationsPerPublish) - offsetof(UA_CreateSubscriptionRequest, requestedMaxKeepAliveCount) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "publishingEnabled",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, publishingEnabled) - offsetof(UA_CreateSubscriptionRequest, maxNotificationsPerPublish) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "priority",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSubscriptionRequest, priority) - offsetof(UA_CreateSubscriptionRequest, publishingEnabled) - sizeof(UA_Boolean),
     .isArray = false
   },};
 
@@ -8967,6 +9582,278 @@ static UA_DataTypeMember VariableTypeAttributes_members[10] = {
     .isArray = false
   },};
 
+/* BrowsePathResult */
+static UA_DataTypeMember BrowsePathResult_members[2] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSEPATHTARGET,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "targets",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowsePathResult, targetsSize) - offsetof(UA_BrowsePathResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = true
+  },};
+
+/* ModifySubscriptionResponse */
+static UA_DataTypeMember ModifySubscriptionResponse_members[4] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedPublishingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionResponse, revisedPublishingInterval) - offsetof(UA_ModifySubscriptionResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedLifetimeCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionResponse, revisedLifetimeCount) - offsetof(UA_ModifySubscriptionResponse, revisedPublishingInterval) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedMaxKeepAliveCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionResponse, revisedMaxKeepAliveCount) - offsetof(UA_ModifySubscriptionResponse, revisedLifetimeCount) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* OpenSecureChannelRequest */
+static UA_DataTypeMember OpenSecureChannelRequest_members[6] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientProtocolVersion",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelRequest, clientProtocolVersion) - offsetof(UA_OpenSecureChannelRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_SECURITYTOKENREQUESTTYPE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelRequest, requestType) - offsetof(UA_OpenSecureChannelRequest, clientProtocolVersion) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MESSAGESECURITYMODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityMode",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelRequest, securityMode) - offsetof(UA_OpenSecureChannelRequest, requestType) - sizeof(UA_SecurityTokenRequestType),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientNonce",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelRequest, clientNonce) - offsetof(UA_OpenSecureChannelRequest, securityMode) - sizeof(UA_MessageSecurityMode),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedLifetime",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_OpenSecureChannelRequest, requestedLifetime) - offsetof(UA_OpenSecureChannelRequest, clientNonce) - sizeof(UA_ByteString),
+    .isArray = false
+  },};
+
+/* RegisterNodesResponse */
+static UA_DataTypeMember RegisterNodesResponse_members[2] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "registeredNodeIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RegisterNodesResponse, registeredNodeIdsSize) - offsetof(UA_RegisterNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },};
+
+/* CloseSessionRequest */
+static UA_DataTypeMember CloseSessionRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "deleteSubscriptions",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CloseSessionRequest, deleteSubscriptions) - offsetof(UA_CloseSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },};
+
+/* ModifySubscriptionRequest */
+static UA_DataTypeMember ModifySubscriptionRequest_members[7] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, subscriptionId) - offsetof(UA_ModifySubscriptionRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedPublishingInterval",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, requestedPublishingInterval) - offsetof(UA_ModifySubscriptionRequest, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedLifetimeCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, requestedLifetimeCount) - offsetof(UA_ModifySubscriptionRequest, requestedPublishingInterval) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedMaxKeepAliveCount",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, requestedMaxKeepAliveCount) - offsetof(UA_ModifySubscriptionRequest, requestedLifetimeCount) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxNotificationsPerPublish",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, maxNotificationsPerPublish) - offsetof(UA_ModifySubscriptionRequest, requestedMaxKeepAliveCount) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "priority",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifySubscriptionRequest, priority) - offsetof(UA_ModifySubscriptionRequest, maxNotificationsPerPublish) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* UserTokenPolicy */
+static UA_DataTypeMember UserTokenPolicy_members[5] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "policyId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_USERTOKENTYPE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "tokenType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserTokenPolicy, tokenType) - offsetof(UA_UserTokenPolicy, policyId) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "issuedTokenType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserTokenPolicy, issuedTokenType) - offsetof(UA_UserTokenPolicy, tokenType) - sizeof(UA_UserTokenType),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "issuerEndpointUrl",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserTokenPolicy, issuerEndpointUrl) - offsetof(UA_UserTokenPolicy, issuedTokenType) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityPolicyUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_UserTokenPolicy, securityPolicyUri) - offsetof(UA_UserTokenPolicy, issuerEndpointUrl) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* DeleteMonitoredItemsRequest */
+static UA_DataTypeMember DeleteMonitoredItemsRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteMonitoredItemsRequest, subscriptionId) - offsetof(UA_DeleteMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "monitoredItemIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteMonitoredItemsRequest, monitoredItemIdsSize) - offsetof(UA_DeleteMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = true
+  },};
+
 /* ReferenceTypeAttributes */
 static UA_DataTypeMember ReferenceTypeAttributes_members[8] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -9034,59 +9921,73 @@ static UA_DataTypeMember ReferenceTypeAttributes_members[8] = {
     .isArray = false
   },};
 
-/* DataTypeAttributes */
-static UA_DataTypeMember DataTypeAttributes_members[6] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
+/* SetMonitoringModeRequest */
+static UA_DataTypeMember SetMonitoringModeRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "specifiedAttributes",
+    .memberName = "requestHeader",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+  { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "displayName",
+    .memberName = "subscriptionId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_DataTypeAttributes, displayName) - offsetof(UA_DataTypeAttributes, specifiedAttributes) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_SetMonitoringModeRequest, subscriptionId) - offsetof(UA_SetMonitoringModeRequest, requestHeader) - sizeof(UA_RequestHeader),
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+  { .memberTypeIndex = UA_TYPES_MONITORINGMODE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "description",
+    .memberName = "monitoringMode",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_DataTypeAttributes, description) - offsetof(UA_DataTypeAttributes, displayName) - sizeof(UA_LocalizedText),
+    .padding = offsetof(UA_SetMonitoringModeRequest, monitoringMode) - offsetof(UA_SetMonitoringModeRequest, subscriptionId) - sizeof(UA_UInt32),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "writeMask",
+    .memberName = "monitoredItemIds",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_DataTypeAttributes, writeMask) - offsetof(UA_DataTypeAttributes, description) - sizeof(UA_LocalizedText),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
+    .padding = offsetof(UA_SetMonitoringModeRequest, monitoredItemIdsSize) - offsetof(UA_SetMonitoringModeRequest, monitoringMode) - sizeof(UA_MonitoringMode),
+    .isArray = true
+  },};
+
+/* UnregisterNodesResponse */
+static UA_DataTypeMember UnregisterNodesResponse_members[1] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "userWriteMask",
+    .memberName = "responseHeader",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_DataTypeAttributes, userWriteMask) - offsetof(UA_DataTypeAttributes, writeMask) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "isAbstract",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DataTypeAttributes, isAbstract) - offsetof(UA_DataTypeAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .padding = 0,
     .isArray = false
   },};
 
-/* ViewAttributes */
-static UA_DataTypeMember ViewAttributes_members[7] = {
+/* WriteRequest */
+static UA_DataTypeMember WriteRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_WRITEVALUE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToWrite",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_WriteRequest, nodesToWriteSize) - offsetof(UA_WriteRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* ObjectAttributes */
+static UA_DataTypeMember ObjectAttributes_members[6] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "specifiedAttributes",
@@ -9100,7 +10001,7 @@ static UA_DataTypeMember ViewAttributes_members[7] = {
     .memberName = "displayName",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, displayName) - offsetof(UA_ViewAttributes, specifiedAttributes) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_ObjectAttributes, displayName) - offsetof(UA_ObjectAttributes, specifiedAttributes) - sizeof(UA_UInt32),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
@@ -9108,7 +10009,7 @@ static UA_DataTypeMember ViewAttributes_members[7] = {
     .memberName = "description",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, description) - offsetof(UA_ViewAttributes, displayName) - sizeof(UA_LocalizedText),
+    .padding = offsetof(UA_ObjectAttributes, description) - offsetof(UA_ObjectAttributes, displayName) - sizeof(UA_LocalizedText),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -9116,7 +10017,7 @@ static UA_DataTypeMember ViewAttributes_members[7] = {
     .memberName = "writeMask",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, writeMask) - offsetof(UA_ViewAttributes, description) - sizeof(UA_LocalizedText),
+    .padding = offsetof(UA_ObjectAttributes, writeMask) - offsetof(UA_ObjectAttributes, description) - sizeof(UA_LocalizedText),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -9124,15 +10025,7 @@ static UA_DataTypeMember ViewAttributes_members[7] = {
     .memberName = "userWriteMask",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, userWriteMask) - offsetof(UA_ViewAttributes, writeMask) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "containsNoLoops",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, containsNoLoops) - offsetof(UA_ViewAttributes, userWriteMask) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_ObjectAttributes, userWriteMask) - offsetof(UA_ObjectAttributes, writeMask) - sizeof(UA_UInt32),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_BYTE,
@@ -9140,420 +10033,7 @@ static UA_DataTypeMember ViewAttributes_members[7] = {
     .memberName = "eventNotifier",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ViewAttributes, eventNotifier) - offsetof(UA_ViewAttributes, containsNoLoops) - sizeof(UA_Boolean),
-    .isArray = false
-  },};
-
-/* AddNodesItem */
-static UA_DataTypeMember AddNodesItem_members[7] = {
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "parentNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referenceTypeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, referenceTypeId) - offsetof(UA_AddNodesItem, parentNodeId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedNewNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, requestedNewNodeId) - offsetof(UA_AddNodesItem, referenceTypeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "browseName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, browseName) - offsetof(UA_AddNodesItem, requestedNewNodeId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODECLASS,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeClass",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, nodeClass) - offsetof(UA_AddNodesItem, browseName) - sizeof(UA_QualifiedName),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeAttributes",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, nodeAttributes) - offsetof(UA_AddNodesItem, nodeClass) - sizeof(UA_NodeClass),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "typeDefinition",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesItem, typeDefinition) - offsetof(UA_AddNodesItem, nodeAttributes) - sizeof(UA_ExtensionObject),
-    .isArray = false
-  },};
-
-/* AddNodesResult */
-static UA_DataTypeMember AddNodesResult_members[2] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "addedNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesResult, addedNodeId) - offsetof(UA_AddNodesResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = false
-  },};
-
-/* AddNodesRequest */
-static UA_DataTypeMember AddNodesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_ADDNODESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToAdd",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesRequest, nodesToAddSize) - offsetof(UA_AddNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* AddNodesResponse */
-static UA_DataTypeMember AddNodesResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_ADDNODESRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesResponse, resultsSize) - offsetof(UA_AddNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddNodesResponse, diagnosticInfosSize) - offsetof(UA_AddNodesResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* AddReferencesItem */
-static UA_DataTypeMember AddReferencesItem_members[6] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sourceNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referenceTypeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesItem, referenceTypeId) - offsetof(UA_AddReferencesItem, sourceNodeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "isForward",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesItem, isForward) - offsetof(UA_AddReferencesItem, referenceTypeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetServerUri",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesItem, targetServerUri) - offsetof(UA_AddReferencesItem, isForward) - sizeof(UA_Boolean),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesItem, targetNodeId) - offsetof(UA_AddReferencesItem, targetServerUri) - sizeof(UA_String),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODECLASS,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetNodeClass",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesItem, targetNodeClass) - offsetof(UA_AddReferencesItem, targetNodeId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },};
-
-/* AddReferencesRequest */
-static UA_DataTypeMember AddReferencesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_ADDREFERENCESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referencesToAdd",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesRequest, referencesToAddSize) - offsetof(UA_AddReferencesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* AddReferencesResponse */
-static UA_DataTypeMember AddReferencesResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesResponse, resultsSize) - offsetof(UA_AddReferencesResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AddReferencesResponse, diagnosticInfosSize) - offsetof(UA_AddReferencesResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* DeleteNodesItem */
-static UA_DataTypeMember DeleteNodesItem_members[2] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "deleteTargetReferences",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteNodesItem, deleteTargetReferences) - offsetof(UA_DeleteNodesItem, nodeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },};
-
-/* DeleteNodesRequest */
-static UA_DataTypeMember DeleteNodesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DELETENODESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToDelete",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteNodesRequest, nodesToDeleteSize) - offsetof(UA_DeleteNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* DeleteNodesResponse */
-static UA_DataTypeMember DeleteNodesResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteNodesResponse, resultsSize) - offsetof(UA_DeleteNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteNodesResponse, diagnosticInfosSize) - offsetof(UA_DeleteNodesResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* DeleteReferencesItem */
-static UA_DataTypeMember DeleteReferencesItem_members[5] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sourceNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referenceTypeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesItem, referenceTypeId) - offsetof(UA_DeleteReferencesItem, sourceNodeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "isForward",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesItem, isForward) - offsetof(UA_DeleteReferencesItem, referenceTypeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetNodeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesItem, targetNodeId) - offsetof(UA_DeleteReferencesItem, isForward) - sizeof(UA_Boolean),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "deleteBidirectional",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesItem, deleteBidirectional) - offsetof(UA_DeleteReferencesItem, targetNodeId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },};
-
-/* DeleteReferencesRequest */
-static UA_DataTypeMember DeleteReferencesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DELETEREFERENCESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referencesToDelete",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesRequest, referencesToDeleteSize) - offsetof(UA_DeleteReferencesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* DeleteReferencesResponse */
-static UA_DataTypeMember DeleteReferencesResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesResponse, resultsSize) - offsetof(UA_DeleteReferencesResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteReferencesResponse, diagnosticInfosSize) - offsetof(UA_DeleteReferencesResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* BrowseDirection */
-static UA_DataTypeMember BrowseDirection_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* ViewDescription */
-static UA_DataTypeMember ViewDescription_members[3] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "viewId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATETIME,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "timestamp",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ViewDescription, timestamp) - offsetof(UA_ViewDescription, viewId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "viewVersion",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ViewDescription, viewVersion) - offsetof(UA_ViewDescription, timestamp) - sizeof(UA_DateTime),
+    .padding = offsetof(UA_ObjectAttributes, eventNotifier) - offsetof(UA_ObjectAttributes, userWriteMask) - sizeof(UA_UInt32),
     .isArray = false
   },};
 
@@ -9608,15 +10088,239 @@ static UA_DataTypeMember BrowseDescription_members[6] = {
     .isArray = false
   },};
 
-/* BrowseResultMask */
-static UA_DataTypeMember BrowseResultMask_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
+/* RepublishRequest */
+static UA_DataTypeMember RepublishRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
+    .memberName = "requestHeader",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RepublishRequest, subscriptionId) - offsetof(UA_RepublishRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "retransmitSequenceNumber",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_RepublishRequest, retransmitSequenceNumber) - offsetof(UA_RepublishRequest, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* GetEndpointsRequest */
+static UA_DataTypeMember GetEndpointsRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "endpointUrl",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_GetEndpointsRequest, endpointUrl) - offsetof(UA_GetEndpointsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "localeIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_GetEndpointsRequest, localeIdsSize) - offsetof(UA_GetEndpointsRequest, endpointUrl) - sizeof(UA_String),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "profileUris",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_GetEndpointsRequest, profileUrisSize) - offsetof(UA_GetEndpointsRequest, localeIds) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* PublishRequest */
+static UA_DataTypeMember PublishRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_SUBSCRIPTIONACKNOWLEDGEMENT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionAcknowledgements",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_PublishRequest, subscriptionAcknowledgementsSize) - offsetof(UA_PublishRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* AddNodesResponse */
+static UA_DataTypeMember AddNodesResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_ADDNODESRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesResponse, resultsSize) - offsetof(UA_AddNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesResponse, diagnosticInfosSize) - offsetof(UA_AddNodesResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* DataChangeNotification */
+static UA_DataTypeMember DataChangeNotification_members[2] = {
+  { .memberTypeIndex = UA_TYPES_MONITOREDITEMNOTIFICATION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "monitoredItems",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataChangeNotification, diagnosticInfosSize) - offsetof(UA_DataChangeNotification, monitoredItems) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* CloseSecureChannelResponse */
+static UA_DataTypeMember CloseSecureChannelResponse_members[1] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* ModifyMonitoredItemsRequest */
+static UA_DataTypeMember ModifyMonitoredItemsRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifyMonitoredItemsRequest, subscriptionId) - offsetof(UA_ModifyMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "timestampsToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifyMonitoredItemsRequest, timestampsToReturn) - offsetof(UA_ModifyMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITOREDITEMMODIFYREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "itemsToModify",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifyMonitoredItemsRequest, itemsToModifySize) - offsetof(UA_ModifyMonitoredItemsRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
+    .isArray = true
+  },};
+
+/* SetMonitoringModeResponse */
+static UA_DataTypeMember SetMonitoringModeResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SetMonitoringModeResponse, resultsSize) - offsetof(UA_SetMonitoringModeResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SetMonitoringModeResponse, diagnosticInfosSize) - offsetof(UA_SetMonitoringModeResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* FindServersRequest */
+static UA_DataTypeMember FindServersRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "endpointUrl",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_FindServersRequest, endpointUrl) - offsetof(UA_FindServersRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "localeIds",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_FindServersRequest, localeIdsSize) - offsetof(UA_FindServersRequest, endpointUrl) - sizeof(UA_String),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverUris",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_FindServersRequest, serverUrisSize) - offsetof(UA_FindServersRequest, localeIds) - sizeof(void*),
+    .isArray = true
   },};
 
 /* ReferenceDescription */
@@ -9678,70 +10382,8 @@ static UA_DataTypeMember ReferenceDescription_members[7] = {
     .isArray = false
   },};
 
-/* BrowseResult */
-static UA_DataTypeMember BrowseResult_members[3] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "continuationPoint",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseResult, continuationPoint) - offsetof(UA_BrowseResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_REFERENCEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "references",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseResult, referencesSize) - offsetof(UA_BrowseResult, continuationPoint) - sizeof(UA_ByteString),
-    .isArray = true
-  },};
-
-/* BrowseRequest */
-static UA_DataTypeMember BrowseRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_VIEWDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "view",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseRequest, view) - offsetof(UA_BrowseRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedMaxReferencesPerNode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseRequest, requestedMaxReferencesPerNode) - offsetof(UA_BrowseRequest, view) - sizeof(UA_ViewDescription),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BROWSEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToBrowse",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseRequest, nodesToBrowseSize) - offsetof(UA_BrowseRequest, requestedMaxReferencesPerNode) - sizeof(UA_UInt32),
-    .isArray = true
-  },};
-
-/* BrowseResponse */
-static UA_DataTypeMember BrowseResponse_members[3] = {
+/* SetPublishingModeResponse */
+static UA_DataTypeMember SetPublishingModeResponse_members[3] = {
   { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "responseHeader",
@@ -9750,12 +10392,12 @@ static UA_DataTypeMember BrowseResponse_members[3] = {
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_BROWSERESULT,
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
 #ifdef UA_ENABLE_TYPENAMES
     .memberName = "results",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BrowseResponse, resultsSize) - offsetof(UA_BrowseResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .padding = offsetof(UA_SetPublishingModeResponse, resultsSize) - offsetof(UA_SetPublishingModeResponse, responseHeader) - sizeof(UA_ResponseHeader),
     .isArray = true
   },
   { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
@@ -9763,427 +10405,7 @@ static UA_DataTypeMember BrowseResponse_members[3] = {
     .memberName = "diagnosticInfos",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BrowseResponse, diagnosticInfosSize) - offsetof(UA_BrowseResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* BrowseNextRequest */
-static UA_DataTypeMember BrowseNextRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "releaseContinuationPoints",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseNextRequest, releaseContinuationPoints) - offsetof(UA_BrowseNextRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "continuationPoints",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseNextRequest, continuationPointsSize) - offsetof(UA_BrowseNextRequest, releaseContinuationPoints) - sizeof(UA_Boolean),
-    .isArray = true
-  },};
-
-/* BrowseNextResponse */
-static UA_DataTypeMember BrowseNextResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BROWSERESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseNextResponse, resultsSize) - offsetof(UA_BrowseNextResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowseNextResponse, diagnosticInfosSize) - offsetof(UA_BrowseNextResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* RelativePathElement */
-static UA_DataTypeMember RelativePathElement_members[4] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "referenceTypeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "isInverse",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RelativePathElement, isInverse) - offsetof(UA_RelativePathElement, referenceTypeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "includeSubtypes",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RelativePathElement, includeSubtypes) - offsetof(UA_RelativePathElement, isInverse) - sizeof(UA_Boolean),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetName",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RelativePathElement, targetName) - offsetof(UA_RelativePathElement, includeSubtypes) - sizeof(UA_Boolean),
-    .isArray = false
-  },};
-
-/* RelativePath */
-static UA_DataTypeMember RelativePath_members[1] = {
-  { .memberTypeIndex = UA_TYPES_RELATIVEPATHELEMENT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "elements",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = true
-  },};
-
-/* BrowsePath */
-static UA_DataTypeMember BrowsePath_members[2] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "startingNode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_RELATIVEPATH,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "relativePath",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowsePath, relativePath) - offsetof(UA_BrowsePath, startingNode) - sizeof(UA_NodeId),
-    .isArray = false
-  },};
-
-/* BrowsePathTarget */
-static UA_DataTypeMember BrowsePathTarget_members[2] = {
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targetId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "remainingPathIndex",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowsePathTarget, remainingPathIndex) - offsetof(UA_BrowsePathTarget, targetId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },};
-
-/* BrowsePathResult */
-static UA_DataTypeMember BrowsePathResult_members[2] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BROWSEPATHTARGET,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "targets",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_BrowsePathResult, targetsSize) - offsetof(UA_BrowsePathResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = true
-  },};
-
-/* TranslateBrowsePathsToNodeIdsRequest */
-static UA_DataTypeMember TranslateBrowsePathsToNodeIdsRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BROWSEPATH,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "browsePaths",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsRequest, browsePathsSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* TranslateBrowsePathsToNodeIdsResponse */
-static UA_DataTypeMember TranslateBrowsePathsToNodeIdsResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BROWSEPATHRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, resultsSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, diagnosticInfosSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* RegisterNodesRequest */
-static UA_DataTypeMember RegisterNodesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToRegister",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RegisterNodesRequest, nodesToRegisterSize) - offsetof(UA_RegisterNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* RegisterNodesResponse */
-static UA_DataTypeMember RegisterNodesResponse_members[2] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "registeredNodeIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RegisterNodesResponse, registeredNodeIdsSize) - offsetof(UA_RegisterNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },};
-
-/* UnregisterNodesRequest */
-static UA_DataTypeMember UnregisterNodesRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToUnregister",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_UnregisterNodesRequest, nodesToUnregisterSize) - offsetof(UA_UnregisterNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* UnregisterNodesResponse */
-static UA_DataTypeMember UnregisterNodesResponse_members[1] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* QueryDataDescription */
-static UA_DataTypeMember QueryDataDescription_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RELATIVEPATH,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "relativePath",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "attributeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryDataDescription, attributeId) - offsetof(UA_QueryDataDescription, relativePath) - sizeof(UA_RelativePath),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "indexRange",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryDataDescription, indexRange) - offsetof(UA_QueryDataDescription, attributeId) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* NodeTypeDescription */
-static UA_DataTypeMember NodeTypeDescription_members[3] = {
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "typeDefinitionNode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "includeSubTypes",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeTypeDescription, includeSubTypes) - offsetof(UA_NodeTypeDescription, typeDefinitionNode) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_QUERYDATADESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "dataToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NodeTypeDescription, dataToReturnSize) - offsetof(UA_NodeTypeDescription, includeSubTypes) - sizeof(UA_Boolean),
-    .isArray = true
-  },};
-
-/* FilterOperator */
-static UA_DataTypeMember FilterOperator_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* QueryDataSet */
-static UA_DataTypeMember QueryDataSet_members[3] = {
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "typeDefinitionNode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryDataSet, typeDefinitionNode) - offsetof(UA_QueryDataSet, nodeId) - sizeof(UA_ExpandedNodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_VARIANT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "values",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryDataSet, valuesSize) - offsetof(UA_QueryDataSet, typeDefinitionNode) - sizeof(UA_ExpandedNodeId),
-    .isArray = true
-  },};
-
-/* ContentFilterElement */
-static UA_DataTypeMember ContentFilterElement_members[2] = {
-  { .memberTypeIndex = UA_TYPES_FILTEROPERATOR,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filterOperator",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filterOperands",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ContentFilterElement, filterOperandsSize) - offsetof(UA_ContentFilterElement, filterOperator) - sizeof(UA_FilterOperator),
-    .isArray = true
-  },};
-
-/* ContentFilter */
-static UA_DataTypeMember ContentFilter_members[1] = {
-  { .memberTypeIndex = UA_TYPES_CONTENTFILTERELEMENT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "elements",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = true
-  },};
-
-/* ContentFilterElementResult */
-static UA_DataTypeMember ContentFilterElementResult_members[3] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "operandStatusCodes",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ContentFilterElementResult, operandStatusCodesSize) - offsetof(UA_ContentFilterElementResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "operandDiagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ContentFilterElementResult, operandDiagnosticInfosSize) - offsetof(UA_ContentFilterElementResult, operandStatusCodes) - sizeof(void*),
+    .padding = offsetof(UA_SetPublishingModeResponse, diagnosticInfosSize) - offsetof(UA_SetPublishingModeResponse, results) - sizeof(void*),
     .isArray = true
   },};
 
@@ -10206,1009 +10428,54 @@ static UA_DataTypeMember ContentFilterResult_members[2] = {
     .isArray = true
   },};
 
-/* ParsingResult */
-static UA_DataTypeMember ParsingResult_members[3] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+/* AddReferencesItem */
+static UA_DataTypeMember AddReferencesItem_members[6] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
+    .memberName = "sourceNodeId",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+  { .memberTypeIndex = UA_TYPES_NODEID,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "dataStatusCodes",
+    .memberName = "referenceTypeId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ParsingResult, dataStatusCodesSize) - offsetof(UA_ParsingResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "dataDiagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ParsingResult, dataDiagnosticInfosSize) - offsetof(UA_ParsingResult, dataStatusCodes) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* QueryFirstRequest */
-static UA_DataTypeMember QueryFirstRequest_members[6] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_VIEWDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "view",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstRequest, view) - offsetof(UA_QueryFirstRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODETYPEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeTypes",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstRequest, nodeTypesSize) - offsetof(UA_QueryFirstRequest, view) - sizeof(UA_ViewDescription),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_CONTENTFILTER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filter",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstRequest, filter) - offsetof(UA_QueryFirstRequest, nodeTypes) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxDataSetsToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstRequest, maxDataSetsToReturn) - offsetof(UA_QueryFirstRequest, filter) - sizeof(UA_ContentFilter),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxReferencesToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstRequest, maxReferencesToReturn) - offsetof(UA_QueryFirstRequest, maxDataSetsToReturn) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* QueryFirstResponse */
-static UA_DataTypeMember QueryFirstResponse_members[6] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_QUERYDATASET,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "queryDataSets",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstResponse, queryDataSetsSize) - offsetof(UA_QueryFirstResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "continuationPoint",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstResponse, continuationPoint) - offsetof(UA_QueryFirstResponse, queryDataSets) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_PARSINGRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "parsingResults",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstResponse, parsingResultsSize) - offsetof(UA_QueryFirstResponse, continuationPoint) - sizeof(UA_ByteString),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstResponse, diagnosticInfosSize) - offsetof(UA_QueryFirstResponse, parsingResults) - sizeof(void*),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_CONTENTFILTERRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filterResult",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryFirstResponse, filterResult) - offsetof(UA_QueryFirstResponse, diagnosticInfos) - sizeof(void*),
-    .isArray = false
-  },};
-
-/* QueryNextRequest */
-static UA_DataTypeMember QueryNextRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
+    .padding = offsetof(UA_AddReferencesItem, referenceTypeId) - offsetof(UA_AddReferencesItem, sourceNodeId) - sizeof(UA_NodeId),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_BOOLEAN,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "releaseContinuationPoint",
+    .memberName = "isForward",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_QueryNextRequest, releaseContinuationPoint) - offsetof(UA_QueryNextRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "continuationPoint",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryNextRequest, continuationPoint) - offsetof(UA_QueryNextRequest, releaseContinuationPoint) - sizeof(UA_Boolean),
-    .isArray = false
-  },};
-
-/* QueryNextResponse */
-static UA_DataTypeMember QueryNextResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_QUERYDATASET,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "queryDataSets",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryNextResponse, queryDataSetsSize) - offsetof(UA_QueryNextResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedContinuationPoint",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_QueryNextResponse, revisedContinuationPoint) - offsetof(UA_QueryNextResponse, queryDataSets) - sizeof(void*),
-    .isArray = false
-  },};
-
-/* TimestampsToReturn */
-static UA_DataTypeMember TimestampsToReturn_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* ReadValueId */
-static UA_DataTypeMember ReadValueId_members[4] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "attributeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ReadValueId, attributeId) - offsetof(UA_ReadValueId, nodeId) - sizeof(UA_NodeId),
+    .padding = offsetof(UA_AddReferencesItem, isForward) - offsetof(UA_AddReferencesItem, referenceTypeId) - sizeof(UA_NodeId),
     .isArray = false
   },
   { .memberTypeIndex = UA_TYPES_STRING,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "indexRange",
+    .memberName = "targetServerUri",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ReadValueId, indexRange) - offsetof(UA_ReadValueId, attributeId) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_AddReferencesItem, targetServerUri) - offsetof(UA_AddReferencesItem, isForward) - sizeof(UA_Boolean),
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "dataEncoding",
+    .memberName = "targetNodeId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ReadValueId, dataEncoding) - offsetof(UA_ReadValueId, indexRange) - sizeof(UA_String),
-    .isArray = false
-  },};
-
-/* ReadRequest */
-static UA_DataTypeMember ReadRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
+    .padding = offsetof(UA_AddReferencesItem, targetNodeId) - offsetof(UA_AddReferencesItem, targetServerUri) - sizeof(UA_String),
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
+  { .memberTypeIndex = UA_TYPES_NODECLASS,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxAge",
+    .memberName = "targetNodeClass",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_ReadRequest, maxAge) - offsetof(UA_ReadRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "timestampsToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ReadRequest, timestampsToReturn) - offsetof(UA_ReadRequest, maxAge) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_READVALUEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToRead",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ReadRequest, nodesToReadSize) - offsetof(UA_ReadRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
-    .isArray = true
-  },};
-
-/* ReadResponse */
-static UA_DataTypeMember ReadResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATAVALUE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ReadResponse, resultsSize) - offsetof(UA_ReadResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ReadResponse, diagnosticInfosSize) - offsetof(UA_ReadResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* WriteValue */
-static UA_DataTypeMember WriteValue_members[4] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodeId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "attributeId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteValue, attributeId) - offsetof(UA_WriteValue, nodeId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "indexRange",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteValue, indexRange) - offsetof(UA_WriteValue, attributeId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATAVALUE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "value",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteValue, value) - offsetof(UA_WriteValue, indexRange) - sizeof(UA_String),
-    .isArray = false
-  },};
-
-/* WriteRequest */
-static UA_DataTypeMember WriteRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_WRITEVALUE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "nodesToWrite",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteRequest, nodesToWriteSize) - offsetof(UA_WriteRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* WriteResponse */
-static UA_DataTypeMember WriteResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteResponse, resultsSize) - offsetof(UA_WriteResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_WriteResponse, diagnosticInfosSize) - offsetof(UA_WriteResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* CallMethodRequest */
-static UA_DataTypeMember CallMethodRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "objectId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NODEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "methodId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallMethodRequest, methodId) - offsetof(UA_CallMethodRequest, objectId) - sizeof(UA_NodeId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_VARIANT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "inputArguments",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallMethodRequest, inputArgumentsSize) - offsetof(UA_CallMethodRequest, methodId) - sizeof(UA_NodeId),
-    .isArray = true
-  },};
-
-/* CallMethodResult */
-static UA_DataTypeMember CallMethodResult_members[4] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "inputArgumentResults",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallMethodResult, inputArgumentResultsSize) - offsetof(UA_CallMethodResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "inputArgumentDiagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallMethodResult, inputArgumentDiagnosticInfosSize) - offsetof(UA_CallMethodResult, inputArgumentResults) - sizeof(void*),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_VARIANT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "outputArguments",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallMethodResult, outputArgumentsSize) - offsetof(UA_CallMethodResult, inputArgumentDiagnosticInfos) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* CallRequest */
-static UA_DataTypeMember CallRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_CALLMETHODREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "methodsToCall",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallRequest, methodsToCallSize) - offsetof(UA_CallRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* CallResponse */
-static UA_DataTypeMember CallResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_CALLMETHODRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallResponse, resultsSize) - offsetof(UA_CallResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CallResponse, diagnosticInfosSize) - offsetof(UA_CallResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* MonitoringMode */
-static UA_DataTypeMember MonitoringMode_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* DataChangeTrigger */
-static UA_DataTypeMember DataChangeTrigger_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* DeadbandType */
-static UA_DataTypeMember DeadbandType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* DataChangeFilter */
-static UA_DataTypeMember DataChangeFilter_members[3] = {
-  { .memberTypeIndex = UA_TYPES_DATACHANGETRIGGER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "trigger",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "deadbandType",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DataChangeFilter, deadbandType) - offsetof(UA_DataChangeFilter, trigger) - sizeof(UA_DataChangeTrigger),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "deadbandValue",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DataChangeFilter, deadbandValue) - offsetof(UA_DataChangeFilter, deadbandType) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* MonitoringParameters */
-static UA_DataTypeMember MonitoringParameters_members[5] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientHandle",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "samplingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoringParameters, samplingInterval) - offsetof(UA_MonitoringParameters, clientHandle) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filter",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoringParameters, filter) - offsetof(UA_MonitoringParameters, samplingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "queueSize",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoringParameters, queueSize) - offsetof(UA_MonitoringParameters, filter) - sizeof(UA_ExtensionObject),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "discardOldest",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoringParameters, discardOldest) - offsetof(UA_MonitoringParameters, queueSize) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* MonitoredItemCreateRequest */
-static UA_DataTypeMember MonitoredItemCreateRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_READVALUEID,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "itemToMonitor",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITORINGMODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoringMode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateRequest, monitoringMode) - offsetof(UA_MonitoredItemCreateRequest, itemToMonitor) - sizeof(UA_ReadValueId),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITORINGPARAMETERS,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedParameters",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateRequest, requestedParameters) - offsetof(UA_MonitoredItemCreateRequest, monitoringMode) - sizeof(UA_MonitoringMode),
-    .isArray = false
-  },};
-
-/* MonitoredItemCreateResult */
-static UA_DataTypeMember MonitoredItemCreateResult_members[5] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoredItemId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateResult, monitoredItemId) - offsetof(UA_MonitoredItemCreateResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedSamplingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateResult, revisedSamplingInterval) - offsetof(UA_MonitoredItemCreateResult, monitoredItemId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedQueueSize",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateResult, revisedQueueSize) - offsetof(UA_MonitoredItemCreateResult, revisedSamplingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filterResult",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemCreateResult, filterResult) - offsetof(UA_MonitoredItemCreateResult, revisedQueueSize) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* CreateMonitoredItemsRequest */
-static UA_DataTypeMember CreateMonitoredItemsRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateMonitoredItemsRequest, subscriptionId) - offsetof(UA_CreateMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "timestampsToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateMonitoredItemsRequest, timestampsToReturn) - offsetof(UA_CreateMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITOREDITEMCREATEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "itemsToCreate",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateMonitoredItemsRequest, itemsToCreateSize) - offsetof(UA_CreateMonitoredItemsRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
-    .isArray = true
-  },};
-
-/* CreateMonitoredItemsResponse */
-static UA_DataTypeMember CreateMonitoredItemsResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITOREDITEMCREATERESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateMonitoredItemsResponse, resultsSize) - offsetof(UA_CreateMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_CreateMonitoredItemsResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* MonitoredItemModifyRequest */
-static UA_DataTypeMember MonitoredItemModifyRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoredItemId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITORINGPARAMETERS,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedParameters",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemModifyRequest, requestedParameters) - offsetof(UA_MonitoredItemModifyRequest, monitoredItemId) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* MonitoredItemModifyResult */
-static UA_DataTypeMember MonitoredItemModifyResult_members[4] = {
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "statusCode",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedSamplingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemModifyResult, revisedSamplingInterval) - offsetof(UA_MonitoredItemModifyResult, statusCode) - sizeof(UA_StatusCode),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedQueueSize",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemModifyResult, revisedQueueSize) - offsetof(UA_MonitoredItemModifyResult, revisedSamplingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "filterResult",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemModifyResult, filterResult) - offsetof(UA_MonitoredItemModifyResult, revisedQueueSize) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* ModifyMonitoredItemsRequest */
-static UA_DataTypeMember ModifyMonitoredItemsRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifyMonitoredItemsRequest, subscriptionId) - offsetof(UA_ModifyMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "timestampsToReturn",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifyMonitoredItemsRequest, timestampsToReturn) - offsetof(UA_ModifyMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITOREDITEMMODIFYREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "itemsToModify",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifyMonitoredItemsRequest, itemsToModifySize) - offsetof(UA_ModifyMonitoredItemsRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
-    .isArray = true
-  },};
-
-/* ModifyMonitoredItemsResponse */
-static UA_DataTypeMember ModifyMonitoredItemsResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITOREDITEMMODIFYRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifyMonitoredItemsResponse, resultsSize) - offsetof(UA_ModifyMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifyMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_ModifyMonitoredItemsResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* SetMonitoringModeRequest */
-static UA_DataTypeMember SetMonitoringModeRequest_members[4] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetMonitoringModeRequest, subscriptionId) - offsetof(UA_SetMonitoringModeRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_MONITORINGMODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoringMode",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetMonitoringModeRequest, monitoringMode) - offsetof(UA_SetMonitoringModeRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoredItemIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetMonitoringModeRequest, monitoredItemIdsSize) - offsetof(UA_SetMonitoringModeRequest, monitoringMode) - sizeof(UA_MonitoringMode),
-    .isArray = true
-  },};
-
-/* SetMonitoringModeResponse */
-static UA_DataTypeMember SetMonitoringModeResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetMonitoringModeResponse, resultsSize) - offsetof(UA_SetMonitoringModeResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetMonitoringModeResponse, diagnosticInfosSize) - offsetof(UA_SetMonitoringModeResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* DeleteMonitoredItemsRequest */
-static UA_DataTypeMember DeleteMonitoredItemsRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteMonitoredItemsRequest, subscriptionId) - offsetof(UA_DeleteMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoredItemIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteMonitoredItemsRequest, monitoredItemIdsSize) - offsetof(UA_DeleteMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = true
-  },};
-
-/* DeleteMonitoredItemsResponse */
-static UA_DataTypeMember DeleteMonitoredItemsResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteMonitoredItemsResponse, resultsSize) - offsetof(UA_DeleteMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_DeleteMonitoredItemsResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* CreateSubscriptionRequest */
-static UA_DataTypeMember CreateSubscriptionRequest_members[7] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedPublishingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, requestedPublishingInterval) - offsetof(UA_CreateSubscriptionRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedLifetimeCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, requestedLifetimeCount) - offsetof(UA_CreateSubscriptionRequest, requestedPublishingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedMaxKeepAliveCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, requestedMaxKeepAliveCount) - offsetof(UA_CreateSubscriptionRequest, requestedLifetimeCount) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxNotificationsPerPublish",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, maxNotificationsPerPublish) - offsetof(UA_CreateSubscriptionRequest, requestedMaxKeepAliveCount) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "publishingEnabled",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, publishingEnabled) - offsetof(UA_CreateSubscriptionRequest, maxNotificationsPerPublish) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "priority",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_CreateSubscriptionRequest, priority) - offsetof(UA_CreateSubscriptionRequest, publishingEnabled) - sizeof(UA_Boolean),
+    .padding = offsetof(UA_AddReferencesItem, targetNodeClass) - offsetof(UA_AddReferencesItem, targetNodeId) - sizeof(UA_ExpandedNodeId),
     .isArray = false
   },};
 
@@ -11255,362 +10522,6 @@ static UA_DataTypeMember CreateSubscriptionResponse_members[5] = {
     .isArray = false
   },};
 
-/* ModifySubscriptionRequest */
-static UA_DataTypeMember ModifySubscriptionRequest_members[7] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, subscriptionId) - offsetof(UA_ModifySubscriptionRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedPublishingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, requestedPublishingInterval) - offsetof(UA_ModifySubscriptionRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedLifetimeCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, requestedLifetimeCount) - offsetof(UA_ModifySubscriptionRequest, requestedPublishingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestedMaxKeepAliveCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, requestedMaxKeepAliveCount) - offsetof(UA_ModifySubscriptionRequest, requestedLifetimeCount) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "maxNotificationsPerPublish",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, maxNotificationsPerPublish) - offsetof(UA_ModifySubscriptionRequest, requestedMaxKeepAliveCount) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "priority",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionRequest, priority) - offsetof(UA_ModifySubscriptionRequest, maxNotificationsPerPublish) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* ModifySubscriptionResponse */
-static UA_DataTypeMember ModifySubscriptionResponse_members[4] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DOUBLE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedPublishingInterval",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionResponse, revisedPublishingInterval) - offsetof(UA_ModifySubscriptionResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedLifetimeCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionResponse, revisedLifetimeCount) - offsetof(UA_ModifySubscriptionResponse, revisedPublishingInterval) - sizeof(UA_Double),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "revisedMaxKeepAliveCount",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_ModifySubscriptionResponse, revisedMaxKeepAliveCount) - offsetof(UA_ModifySubscriptionResponse, revisedLifetimeCount) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* SetPublishingModeRequest */
-static UA_DataTypeMember SetPublishingModeRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "publishingEnabled",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetPublishingModeRequest, publishingEnabled) - offsetof(UA_SetPublishingModeRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetPublishingModeRequest, subscriptionIdsSize) - offsetof(UA_SetPublishingModeRequest, publishingEnabled) - sizeof(UA_Boolean),
-    .isArray = true
-  },};
-
-/* SetPublishingModeResponse */
-static UA_DataTypeMember SetPublishingModeResponse_members[3] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetPublishingModeResponse, resultsSize) - offsetof(UA_SetPublishingModeResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SetPublishingModeResponse, diagnosticInfosSize) - offsetof(UA_SetPublishingModeResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* NotificationMessage */
-static UA_DataTypeMember NotificationMessage_members[3] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sequenceNumber",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATETIME,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "publishTime",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NotificationMessage, publishTime) - offsetof(UA_NotificationMessage, sequenceNumber) - sizeof(UA_UInt32),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "notificationData",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_NotificationMessage, notificationDataSize) - offsetof(UA_NotificationMessage, publishTime) - sizeof(UA_DateTime),
-    .isArray = true
-  },};
-
-/* MonitoredItemNotification */
-static UA_DataTypeMember MonitoredItemNotification_members[2] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "clientHandle",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_DATAVALUE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "value",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_MonitoredItemNotification, value) - offsetof(UA_MonitoredItemNotification, clientHandle) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* SubscriptionAcknowledgement */
-static UA_DataTypeMember SubscriptionAcknowledgement_members[2] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "sequenceNumber",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SubscriptionAcknowledgement, sequenceNumber) - offsetof(UA_SubscriptionAcknowledgement, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* PublishRequest */
-static UA_DataTypeMember PublishRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_SUBSCRIPTIONACKNOWLEDGEMENT,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionAcknowledgements",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishRequest, subscriptionAcknowledgementsSize) - offsetof(UA_PublishRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
-/* PublishResponse */
-static UA_DataTypeMember PublishResponse_members[7] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, subscriptionId) - offsetof(UA_PublishResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "availableSequenceNumbers",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, availableSequenceNumbersSize) - offsetof(UA_PublishResponse, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_BOOLEAN,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "moreNotifications",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, moreNotifications) - offsetof(UA_PublishResponse, availableSequenceNumbers) - sizeof(void*),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "notificationMessage",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, notificationMessage) - offsetof(UA_PublishResponse, moreNotifications) - sizeof(UA_Boolean),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STATUSCODE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "results",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, resultsSize) - offsetof(UA_PublishResponse, notificationMessage) - sizeof(UA_NotificationMessage),
-    .isArray = true
-  },
-  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "diagnosticInfos",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_PublishResponse, diagnosticInfosSize) - offsetof(UA_PublishResponse, results) - sizeof(void*),
-    .isArray = true
-  },};
-
-/* RepublishRequest */
-static UA_DataTypeMember RepublishRequest_members[3] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RepublishRequest, subscriptionId) - offsetof(UA_RepublishRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "retransmitSequenceNumber",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RepublishRequest, retransmitSequenceNumber) - offsetof(UA_RepublishRequest, subscriptionId) - sizeof(UA_UInt32),
-    .isArray = false
-  },};
-
-/* RepublishResponse */
-static UA_DataTypeMember RepublishResponse_members[2] = {
-  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "responseHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "notificationMessage",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_RepublishResponse, notificationMessage) - offsetof(UA_RepublishResponse, responseHeader) - sizeof(UA_ResponseHeader),
-    .isArray = false
-  },};
-
-/* DeleteSubscriptionsRequest */
-static UA_DataTypeMember DeleteSubscriptionsRequest_members[2] = {
-  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "requestHeader",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "subscriptionIds",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_DeleteSubscriptionsRequest, subscriptionIdsSize) - offsetof(UA_DeleteSubscriptionsRequest, requestHeader) - sizeof(UA_RequestHeader),
-    .isArray = true
-  },};
-
 /* DeleteSubscriptionsResponse */
 static UA_DataTypeMember DeleteSubscriptionsResponse_members[3] = {
   { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
@@ -11638,65 +10549,354 @@ static UA_DataTypeMember DeleteSubscriptionsResponse_members[3] = {
     .isArray = true
   },};
 
-/* BuildInfo */
-static UA_DataTypeMember BuildInfo_members[6] = {
-  { .memberTypeIndex = UA_TYPES_STRING,
+/* RelativePath */
+static UA_DataTypeMember RelativePath_members[1] = {
+  { .memberTypeIndex = UA_TYPES_RELATIVEPATHELEMENT,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "productUri",
+    .memberName = "elements",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = true
+  },};
+
+/* DeleteReferencesResponse */
+static UA_DataTypeMember DeleteReferencesResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_STRING,
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "manufacturerName",
+    .memberName = "results",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BuildInfo, manufacturerName) - offsetof(UA_BuildInfo, productUri) - sizeof(UA_String),
+    .padding = offsetof(UA_DeleteReferencesResponse, resultsSize) - offsetof(UA_DeleteReferencesResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesResponse, diagnosticInfosSize) - offsetof(UA_DeleteReferencesResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* CreateMonitoredItemsResponse */
+static UA_DataTypeMember CreateMonitoredItemsResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_STRING,
+  { .memberTypeIndex = UA_TYPES_MONITOREDITEMCREATERESULT,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "productName",
+    .memberName = "results",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BuildInfo, productName) - offsetof(UA_BuildInfo, manufacturerName) - sizeof(UA_String),
+    .padding = offsetof(UA_CreateMonitoredItemsResponse, resultsSize) - offsetof(UA_CreateMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_CreateMonitoredItemsResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* CallResponse */
+static UA_DataTypeMember CallResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_STRING,
+  { .memberTypeIndex = UA_TYPES_CALLMETHODRESULT,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "softwareVersion",
+    .memberName = "results",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BuildInfo, softwareVersion) - offsetof(UA_BuildInfo, productName) - sizeof(UA_String),
+    .padding = offsetof(UA_CallResponse, resultsSize) - offsetof(UA_CallResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CallResponse, diagnosticInfosSize) - offsetof(UA_CallResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* DeleteNodesResponse */
+static UA_DataTypeMember DeleteNodesResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_STRING,
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "buildNumber",
+    .memberName = "results",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BuildInfo, buildNumber) - offsetof(UA_BuildInfo, softwareVersion) - sizeof(UA_String),
+    .padding = offsetof(UA_DeleteNodesResponse, resultsSize) - offsetof(UA_DeleteNodesResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteNodesResponse, diagnosticInfosSize) - offsetof(UA_DeleteNodesResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* RepublishResponse */
+static UA_DataTypeMember RepublishResponse_members[2] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_DATETIME,
+  { .memberTypeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "buildDate",
+    .memberName = "notificationMessage",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_BuildInfo, buildDate) - offsetof(UA_BuildInfo, buildNumber) - sizeof(UA_String),
+    .padding = offsetof(UA_RepublishResponse, notificationMessage) - offsetof(UA_RepublishResponse, responseHeader) - sizeof(UA_ResponseHeader),
     .isArray = false
   },};
 
-/* ServerState */
-static UA_DataTypeMember ServerState_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
+/* MonitoredItemCreateRequest */
+static UA_DataTypeMember MonitoredItemCreateRequest_members[3] = {
+  { .memberTypeIndex = UA_TYPES_READVALUEID,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
+    .memberName = "itemToMonitor",
 #endif
     .namespaceZero = true,
     .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITORINGMODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "monitoringMode",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateRequest, monitoringMode) - offsetof(UA_MonitoredItemCreateRequest, itemToMonitor) - sizeof(UA_ReadValueId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITORINGPARAMETERS,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedParameters",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_MonitoredItemCreateRequest, requestedParameters) - offsetof(UA_MonitoredItemCreateRequest, monitoringMode) - sizeof(UA_MonitoringMode),
+    .isArray = false
+  },};
+
+/* DeleteReferencesRequest */
+static UA_DataTypeMember DeleteReferencesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DELETEREFERENCESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referencesToDelete",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DeleteReferencesRequest, referencesToDeleteSize) - offsetof(UA_DeleteReferencesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* ModifyMonitoredItemsResponse */
+static UA_DataTypeMember ModifyMonitoredItemsResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITOREDITEMMODIFYRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifyMonitoredItemsResponse, resultsSize) - offsetof(UA_ModifyMonitoredItemsResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ModifyMonitoredItemsResponse, diagnosticInfosSize) - offsetof(UA_ModifyMonitoredItemsResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* ReadResponse */
+static UA_DataTypeMember ReadResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DATAVALUE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadResponse, resultsSize) - offsetof(UA_ReadResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadResponse, diagnosticInfosSize) - offsetof(UA_ReadResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* AddReferencesRequest */
+static UA_DataTypeMember AddReferencesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_ADDREFERENCESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referencesToAdd",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddReferencesRequest, referencesToAddSize) - offsetof(UA_AddReferencesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* ReadRequest */
+static UA_DataTypeMember ReadRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxAge",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadRequest, maxAge) - offsetof(UA_ReadRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "timestampsToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadRequest, timestampsToReturn) - offsetof(UA_ReadRequest, maxAge) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_READVALUEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToRead",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ReadRequest, nodesToReadSize) - offsetof(UA_ReadRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
+    .isArray = true
+  },};
+
+/* AddNodesItem */
+static UA_DataTypeMember AddNodesItem_members[7] = {
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "parentNodeId",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "referenceTypeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, referenceTypeId) - offsetof(UA_AddNodesItem, parentNodeId) - sizeof(UA_ExpandedNodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedNewNodeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, requestedNewNodeId) - offsetof(UA_AddNodesItem, referenceTypeId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUALIFIEDNAME,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "browseName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, browseName) - offsetof(UA_AddNodesItem, requestedNewNodeId) - sizeof(UA_ExpandedNodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODECLASS,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeClass",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, nodeClass) - offsetof(UA_AddNodesItem, browseName) - sizeof(UA_QualifiedName),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeAttributes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, nodeAttributes) - offsetof(UA_AddNodesItem, nodeClass) - sizeof(UA_NodeClass),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "typeDefinition",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesItem, typeDefinition) - offsetof(UA_AddNodesItem, nodeAttributes) - sizeof(UA_ExtensionObject),
     .isArray = false
   },};
 
@@ -11751,14 +10951,22 @@ static UA_DataTypeMember ServerStatusDataType_members[6] = {
     .isArray = false
   },};
 
-/* DataChangeNotification */
-static UA_DataTypeMember DataChangeNotification_members[2] = {
-  { .memberTypeIndex = UA_TYPES_MONITOREDITEMNOTIFICATION,
+/* AddReferencesResponse */
+static UA_DataTypeMember AddReferencesResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "monitoredItems",
+    .memberName = "responseHeader",
 #endif
     .namespaceZero = true,
     .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddReferencesResponse, resultsSize) - offsetof(UA_AddReferencesResponse, responseHeader) - sizeof(UA_ResponseHeader),
     .isArray = true
   },
   { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
@@ -11766,8 +10974,800 @@ static UA_DataTypeMember DataChangeNotification_members[2] = {
     .memberName = "diagnosticInfos",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_DataChangeNotification, diagnosticInfosSize) - offsetof(UA_DataChangeNotification, monitoredItems) - sizeof(void*),
+    .padding = offsetof(UA_AddReferencesResponse, diagnosticInfosSize) - offsetof(UA_AddReferencesResponse, results) - sizeof(void*),
     .isArray = true
+  },};
+
+/* TranslateBrowsePathsToNodeIdsResponse */
+static UA_DataTypeMember TranslateBrowsePathsToNodeIdsResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSEPATHRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, resultsSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, diagnosticInfosSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* DataChangeFilter */
+static UA_DataTypeMember DataChangeFilter_members[3] = {
+  { .memberTypeIndex = UA_TYPES_DATACHANGETRIGGER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "trigger",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "deadbandType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataChangeFilter, deadbandType) - offsetof(UA_DataChangeFilter, trigger) - sizeof(UA_DataChangeTrigger),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "deadbandValue",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_DataChangeFilter, deadbandValue) - offsetof(UA_DataChangeFilter, deadbandType) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* ContentFilterElement */
+static UA_DataTypeMember ContentFilterElement_members[2] = {
+  { .memberTypeIndex = UA_TYPES_FILTEROPERATOR,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filterOperator",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_EXTENSIONOBJECT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filterOperands",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ContentFilterElement, filterOperandsSize) - offsetof(UA_ContentFilterElement, filterOperator) - sizeof(UA_FilterOperator),
+    .isArray = true
+  },};
+
+/* CloseSessionResponse */
+static UA_DataTypeMember CloseSessionResponse_members[1] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* ApplicationDescription */
+static UA_DataTypeMember ApplicationDescription_members[7] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "applicationUri",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "productUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, productUri) - offsetof(UA_ApplicationDescription, applicationUri) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_LOCALIZEDTEXT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "applicationName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, applicationName) - offsetof(UA_ApplicationDescription, productUri) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_APPLICATIONTYPE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "applicationType",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, applicationType) - offsetof(UA_ApplicationDescription, applicationName) - sizeof(UA_LocalizedText),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "gatewayServerUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, gatewayServerUri) - offsetof(UA_ApplicationDescription, applicationType) - sizeof(UA_ApplicationType),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "discoveryProfileUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, discoveryProfileUri) - offsetof(UA_ApplicationDescription, gatewayServerUri) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "discoveryUrls",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_ApplicationDescription, discoveryUrlsSize) - offsetof(UA_ApplicationDescription, discoveryProfileUri) - sizeof(UA_String),
+    .isArray = true
+  },};
+
+/* ServiceFault */
+static UA_DataTypeMember ServiceFault_members[1] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* FindServersResponse */
+static UA_DataTypeMember FindServersResponse_members[2] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "servers",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_FindServersResponse, serversSize) - offsetof(UA_FindServersResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },};
+
+/* CreateMonitoredItemsRequest */
+static UA_DataTypeMember CreateMonitoredItemsRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "subscriptionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateMonitoredItemsRequest, subscriptionId) - offsetof(UA_CreateMonitoredItemsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_TIMESTAMPSTORETURN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "timestampsToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateMonitoredItemsRequest, timestampsToReturn) - offsetof(UA_CreateMonitoredItemsRequest, subscriptionId) - sizeof(UA_UInt32),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MONITOREDITEMCREATEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "itemsToCreate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateMonitoredItemsRequest, itemsToCreateSize) - offsetof(UA_CreateMonitoredItemsRequest, timestampsToReturn) - sizeof(UA_TimestampsToReturn),
+    .isArray = true
+  },};
+
+/* ContentFilter */
+static UA_DataTypeMember ContentFilter_members[1] = {
+  { .memberTypeIndex = UA_TYPES_CONTENTFILTERELEMENT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "elements",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = true
+  },};
+
+/* QueryFirstResponse */
+static UA_DataTypeMember QueryFirstResponse_members[6] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUERYDATASET,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "queryDataSets",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstResponse, queryDataSetsSize) - offsetof(UA_QueryFirstResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "continuationPoint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstResponse, continuationPoint) - offsetof(UA_QueryFirstResponse, queryDataSets) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_PARSINGRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "parsingResults",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstResponse, parsingResultsSize) - offsetof(UA_QueryFirstResponse, continuationPoint) - sizeof(UA_ByteString),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstResponse, diagnosticInfosSize) - offsetof(UA_QueryFirstResponse, parsingResults) - sizeof(void*),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_CONTENTFILTERRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filterResult",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstResponse, filterResult) - offsetof(UA_QueryFirstResponse, diagnosticInfos) - sizeof(void*),
+    .isArray = false
+  },};
+
+/* AddNodesRequest */
+static UA_DataTypeMember AddNodesRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_ADDNODESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToAdd",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AddNodesRequest, nodesToAddSize) - offsetof(UA_AddNodesRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* BrowseRequest */
+static UA_DataTypeMember BrowseRequest_members[4] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_VIEWDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "view",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseRequest, view) - offsetof(UA_BrowseRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedMaxReferencesPerNode",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseRequest, requestedMaxReferencesPerNode) - offsetof(UA_BrowseRequest, view) - sizeof(UA_ViewDescription),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodesToBrowse",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseRequest, nodesToBrowseSize) - offsetof(UA_BrowseRequest, requestedMaxReferencesPerNode) - sizeof(UA_UInt32),
+    .isArray = true
+  },};
+
+/* BrowsePath */
+static UA_DataTypeMember BrowsePath_members[2] = {
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "startingNode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_RELATIVEPATH,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "relativePath",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowsePath, relativePath) - offsetof(UA_BrowsePath, startingNode) - sizeof(UA_NodeId),
+    .isArray = false
+  },};
+
+/* BrowseResult */
+static UA_DataTypeMember BrowseResult_members[3] = {
+  { .memberTypeIndex = UA_TYPES_STATUSCODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "statusCode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "continuationPoint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseResult, continuationPoint) - offsetof(UA_BrowseResult, statusCode) - sizeof(UA_StatusCode),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_REFERENCEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "references",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseResult, referencesSize) - offsetof(UA_BrowseResult, continuationPoint) - sizeof(UA_ByteString),
+    .isArray = true
+  },};
+
+/* CreateSessionRequest */
+static UA_DataTypeMember CreateSessionRequest_members[9] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientDescription",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, clientDescription) - offsetof(UA_CreateSessionRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, serverUri) - offsetof(UA_CreateSessionRequest, clientDescription) - sizeof(UA_ApplicationDescription),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "endpointUrl",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, endpointUrl) - offsetof(UA_CreateSessionRequest, serverUri) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "sessionName",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, sessionName) - offsetof(UA_CreateSessionRequest, endpointUrl) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientNonce",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, clientNonce) - offsetof(UA_CreateSessionRequest, sessionName) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "clientCertificate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, clientCertificate) - offsetof(UA_CreateSessionRequest, clientNonce) - sizeof(UA_ByteString),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestedSessionTimeout",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, requestedSessionTimeout) - offsetof(UA_CreateSessionRequest, clientCertificate) - sizeof(UA_ByteString),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxResponseMessageSize",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionRequest, maxResponseMessageSize) - offsetof(UA_CreateSessionRequest, requestedSessionTimeout) - sizeof(UA_Double),
+    .isArray = false
+  },};
+
+/* QueryDataDescription */
+static UA_DataTypeMember QueryDataDescription_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RELATIVEPATH,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "relativePath",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "attributeId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryDataDescription, attributeId) - offsetof(UA_QueryDataDescription, relativePath) - sizeof(UA_RelativePath),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "indexRange",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryDataDescription, indexRange) - offsetof(UA_QueryDataDescription, attributeId) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* EndpointDescription */
+static UA_DataTypeMember EndpointDescription_members[8] = {
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "endpointUrl",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "server",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, server) - offsetof(UA_EndpointDescription, endpointUrl) - sizeof(UA_String),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverCertificate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, serverCertificate) - offsetof(UA_EndpointDescription, server) - sizeof(UA_ApplicationDescription),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_MESSAGESECURITYMODE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityMode",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, securityMode) - offsetof(UA_EndpointDescription, serverCertificate) - sizeof(UA_ByteString),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityPolicyUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, securityPolicyUri) - offsetof(UA_EndpointDescription, securityMode) - sizeof(UA_MessageSecurityMode),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_USERTOKENPOLICY,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "userIdentityTokens",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, userIdentityTokensSize) - offsetof(UA_EndpointDescription, securityPolicyUri) - sizeof(UA_String),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_STRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "transportProfileUri",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, transportProfileUri) - offsetof(UA_EndpointDescription, userIdentityTokens) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityLevel",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_EndpointDescription, securityLevel) - offsetof(UA_EndpointDescription, transportProfileUri) - sizeof(UA_String),
+    .isArray = false
+  },};
+
+/* GetEndpointsResponse */
+static UA_DataTypeMember GetEndpointsResponse_members[2] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "endpoints",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_GetEndpointsResponse, endpointsSize) - offsetof(UA_GetEndpointsResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },};
+
+/* NodeTypeDescription */
+static UA_DataTypeMember NodeTypeDescription_members[3] = {
+  { .memberTypeIndex = UA_TYPES_EXPANDEDNODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "typeDefinitionNode",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BOOLEAN,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "includeSubTypes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeTypeDescription, includeSubTypes) - offsetof(UA_NodeTypeDescription, typeDefinitionNode) - sizeof(UA_ExpandedNodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_QUERYDATADESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "dataToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_NodeTypeDescription, dataToReturnSize) - offsetof(UA_NodeTypeDescription, includeSubTypes) - sizeof(UA_Boolean),
+    .isArray = true
+  },};
+
+/* BrowseNextResponse */
+static UA_DataTypeMember BrowseNextResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSERESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseNextResponse, resultsSize) - offsetof(UA_BrowseNextResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseNextResponse, diagnosticInfosSize) - offsetof(UA_BrowseNextResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* TranslateBrowsePathsToNodeIdsRequest */
+static UA_DataTypeMember TranslateBrowsePathsToNodeIdsRequest_members[2] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSEPATH,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "browsePaths",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_TranslateBrowsePathsToNodeIdsRequest, browsePathsSize) - offsetof(UA_TranslateBrowsePathsToNodeIdsRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = true
+  },};
+
+/* BrowseResponse */
+static UA_DataTypeMember BrowseResponse_members[3] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BROWSERESULT,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "results",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseResponse, resultsSize) - offsetof(UA_BrowseResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_DIAGNOSTICINFO,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "diagnosticInfos",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_BrowseResponse, diagnosticInfosSize) - offsetof(UA_BrowseResponse, results) - sizeof(void*),
+    .isArray = true
+  },};
+
+/* CreateSessionResponse */
+static UA_DataTypeMember CreateSessionResponse_members[10] = {
+  { .memberTypeIndex = UA_TYPES_RESPONSEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "responseHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "sessionId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, sessionId) - offsetof(UA_CreateSessionResponse, responseHeader) - sizeof(UA_ResponseHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODEID,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "authenticationToken",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, authenticationToken) - offsetof(UA_CreateSessionResponse, sessionId) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_DOUBLE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "revisedSessionTimeout",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, revisedSessionTimeout) - offsetof(UA_CreateSessionResponse, authenticationToken) - sizeof(UA_NodeId),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverNonce",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, serverNonce) - offsetof(UA_CreateSessionResponse, revisedSessionTimeout) - sizeof(UA_Double),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverCertificate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, serverCertificate) - offsetof(UA_CreateSessionResponse, serverNonce) - sizeof(UA_ByteString),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverEndpoints",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, serverEndpointsSize) - offsetof(UA_CreateSessionResponse, serverCertificate) - sizeof(UA_ByteString),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverSoftwareCertificates",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, serverSoftwareCertificatesSize) - offsetof(UA_CreateSessionResponse, serverEndpoints) - sizeof(void*),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_SIGNATUREDATA,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "serverSignature",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, serverSignature) - offsetof(UA_CreateSessionResponse, serverSoftwareCertificates) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxRequestMessageSize",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_CreateSessionResponse, maxRequestMessageSize) - offsetof(UA_CreateSessionResponse, serverSignature) - sizeof(UA_SignatureData),
+    .isArray = false
+  },};
+
+/* QueryFirstRequest */
+static UA_DataTypeMember QueryFirstRequest_members[6] = {
+  { .memberTypeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "requestHeader",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_VIEWDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "view",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstRequest, view) - offsetof(UA_QueryFirstRequest, requestHeader) - sizeof(UA_RequestHeader),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_NODETYPEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "nodeTypes",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstRequest, nodeTypesSize) - offsetof(UA_QueryFirstRequest, view) - sizeof(UA_ViewDescription),
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_CONTENTFILTER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "filter",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstRequest, filter) - offsetof(UA_QueryFirstRequest, nodeTypes) - sizeof(void*),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxDataSetsToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstRequest, maxDataSetsToReturn) - offsetof(UA_QueryFirstRequest, filter) - sizeof(UA_ContentFilter),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "maxReferencesToReturn",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_QueryFirstRequest, maxReferencesToReturn) - offsetof(UA_QueryFirstRequest, maxDataSetsToReturn) - sizeof(UA_UInt32),
+    .isArray = false
   },};
 const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
 
@@ -12121,33 +12121,439 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 1,
   .members = DiagnosticInfo_members },
 
-/* IdType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
+/* SignedSoftwareCertificate */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 344},
+  .typeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "IdType",
+  .typeName = "SignedSoftwareCertificate",
 #endif
-  .memSize = sizeof(UA_IdType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = IdType_members },
+  .memSize = sizeof(UA_SignedSoftwareCertificate),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 346,
+  .membersSize = 2,
+  .members = SignedSoftwareCertificate_members },
 
-/* NodeClass */
+/* BrowsePathTarget */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 546},
+  .typeIndex = UA_TYPES_BROWSEPATHTARGET,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowsePathTarget",
+#endif
+  .memSize = sizeof(UA_BrowsePathTarget),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 548,
+  .membersSize = 2,
+  .members = BrowsePathTarget_members },
+
+/* ViewAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 373},
+  .typeIndex = UA_TYPES_VIEWATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ViewAttributes",
+#endif
+  .memSize = sizeof(UA_ViewAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 375,
+  .membersSize = 7,
+  .members = ViewAttributes_members },
+
+/* BrowseResultMask */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
   .typeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "NodeClass",
+  .typeName = "BrowseResultMask",
 #endif
-  .memSize = sizeof(UA_NodeClass),
+  .memSize = sizeof(UA_BrowseResultMask),
   .builtin = true,
   .fixedSize = true,
   .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
   .binaryEncodingId = 0,
   .membersSize = 1,
-  .members = NodeClass_members },
+  .members = BrowseResultMask_members },
+
+/* RequestHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 389},
+  .typeIndex = UA_TYPES_REQUESTHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RequestHeader",
+#endif
+  .memSize = sizeof(UA_RequestHeader),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 391,
+  .membersSize = 7,
+  .members = RequestHeader_members },
+
+/* MonitoredItemModifyResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 758},
+  .typeIndex = UA_TYPES_MONITOREDITEMMODIFYRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoredItemModifyResult",
+#endif
+  .memSize = sizeof(UA_MonitoredItemModifyResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 760,
+  .membersSize = 4,
+  .members = MonitoredItemModifyResult_members },
+
+/* CloseSecureChannelRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 450},
+  .typeIndex = UA_TYPES_CLOSESECURECHANNELREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CloseSecureChannelRequest",
+#endif
+  .memSize = sizeof(UA_CloseSecureChannelRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 452,
+  .membersSize = 1,
+  .members = CloseSecureChannelRequest_members },
+
+/* AddNodesResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 483},
+  .typeIndex = UA_TYPES_ADDNODESRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddNodesResult",
+#endif
+  .memSize = sizeof(UA_AddNodesResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 485,
+  .membersSize = 2,
+  .members = AddNodesResult_members },
+
+/* VariableAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 355},
+  .typeIndex = UA_TYPES_VARIABLEATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "VariableAttributes",
+#endif
+  .memSize = sizeof(UA_VariableAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 357,
+  .membersSize = 13,
+  .members = VariableAttributes_members },
+
+/* NotificationMessage */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 803},
+  .typeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "NotificationMessage",
+#endif
+  .memSize = sizeof(UA_NotificationMessage),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 805,
+  .membersSize = 3,
+  .members = NotificationMessage_members },
+
+/* NodeAttributesMask */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "NodeAttributesMask",
+#endif
+  .memSize = sizeof(UA_NodeAttributesMask),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = NodeAttributesMask_members },
+
+/* MonitoringMode */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoringMode",
+#endif
+  .memSize = sizeof(UA_MonitoringMode),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = MonitoringMode_members },
+
+/* CallMethodResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 707},
+  .typeIndex = UA_TYPES_CALLMETHODRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CallMethodResult",
+#endif
+  .memSize = sizeof(UA_CallMethodResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 709,
+  .membersSize = 4,
+  .members = CallMethodResult_members },
+
+/* ParsingResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 610},
+  .typeIndex = UA_TYPES_PARSINGRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ParsingResult",
+#endif
+  .memSize = sizeof(UA_ParsingResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 612,
+  .membersSize = 3,
+  .members = ParsingResult_members },
+
+/* RelativePathElement */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 537},
+  .typeIndex = UA_TYPES_RELATIVEPATHELEMENT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RelativePathElement",
+#endif
+  .memSize = sizeof(UA_RelativePathElement),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 539,
+  .membersSize = 4,
+  .members = RelativePathElement_members },
+
+/* BrowseDirection */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseDirection",
+#endif
+  .memSize = sizeof(UA_BrowseDirection),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = BrowseDirection_members },
+
+/* CallMethodRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 704},
+  .typeIndex = UA_TYPES_CALLMETHODREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CallMethodRequest",
+#endif
+  .memSize = sizeof(UA_CallMethodRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 706,
+  .membersSize = 3,
+  .members = CallMethodRequest_members },
+
+/* UnregisterNodesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 564},
+  .typeIndex = UA_TYPES_UNREGISTERNODESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "UnregisterNodesRequest",
+#endif
+  .memSize = sizeof(UA_UnregisterNodesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 566,
+  .membersSize = 2,
+  .members = UnregisterNodesRequest_members },
+
+/* ContentFilterElementResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 604},
+  .typeIndex = UA_TYPES_CONTENTFILTERELEMENTRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ContentFilterElementResult",
+#endif
+  .memSize = sizeof(UA_ContentFilterElementResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 606,
+  .membersSize = 3,
+  .members = ContentFilterElementResult_members },
+
+/* QueryDataSet */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 577},
+  .typeIndex = UA_TYPES_QUERYDATASET,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "QueryDataSet",
+#endif
+  .memSize = sizeof(UA_QueryDataSet),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 579,
+  .membersSize = 3,
+  .members = QueryDataSet_members },
+
+/* AnonymousIdentityToken */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 319},
+  .typeIndex = UA_TYPES_ANONYMOUSIDENTITYTOKEN,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AnonymousIdentityToken",
+#endif
+  .memSize = sizeof(UA_AnonymousIdentityToken),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 321,
+  .membersSize = 1,
+  .members = AnonymousIdentityToken_members },
+
+/* SetPublishingModeRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 797},
+  .typeIndex = UA_TYPES_SETPUBLISHINGMODEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SetPublishingModeRequest",
+#endif
+  .memSize = sizeof(UA_SetPublishingModeRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 799,
+  .membersSize = 3,
+  .members = SetPublishingModeRequest_members },
+
+/* TimestampsToReturn */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "TimestampsToReturn",
+#endif
+  .memSize = sizeof(UA_TimestampsToReturn),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = TimestampsToReturn_members },
+
+/* CallRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 710},
+  .typeIndex = UA_TYPES_CALLREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CallRequest",
+#endif
+  .memSize = sizeof(UA_CallRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 712,
+  .membersSize = 2,
+  .members = CallRequest_members },
+
+/* MethodAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 358},
+  .typeIndex = UA_TYPES_METHODATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MethodAttributes",
+#endif
+  .memSize = sizeof(UA_MethodAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 360,
+  .membersSize = 7,
+  .members = MethodAttributes_members },
+
+/* DeleteReferencesItem */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 385},
+  .typeIndex = UA_TYPES_DELETEREFERENCESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteReferencesItem",
+#endif
+  .memSize = sizeof(UA_DeleteReferencesItem),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 387,
+  .membersSize = 5,
+  .members = DeleteReferencesItem_members },
+
+/* WriteValue */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 668},
+  .typeIndex = UA_TYPES_WRITEVALUE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "WriteValue",
+#endif
+  .memSize = sizeof(UA_WriteValue),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 670,
+  .membersSize = 4,
+  .members = WriteValue_members },
+
+/* MonitoredItemCreateResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 746},
+  .typeIndex = UA_TYPES_MONITOREDITEMCREATERESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoredItemCreateResult",
+#endif
+  .memSize = sizeof(UA_MonitoredItemCreateResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 748,
+  .membersSize = 5,
+  .members = MonitoredItemCreateResult_members },
+
+/* MessageSecurityMode */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MessageSecurityMode",
+#endif
+  .memSize = sizeof(UA_MessageSecurityMode),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = MessageSecurityMode_members },
+
+/* MonitoringParameters */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 740},
+  .typeIndex = UA_TYPES_MONITORINGPARAMETERS,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoringParameters",
+#endif
+  .memSize = sizeof(UA_MonitoringParameters),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 742,
+  .membersSize = 5,
+  .members = MonitoringParameters_members },
+
+/* SignatureData */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 456},
+  .typeIndex = UA_TYPES_SIGNATUREDATA,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SignatureData",
+#endif
+  .memSize = sizeof(UA_SignatureData),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 458,
+  .membersSize = 2,
+  .members = SignatureData_members },
 
 /* ReferenceNode */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 285},
@@ -12177,328 +12583,6 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 5,
   .members = Argument_members },
 
-/* ApplicationType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ApplicationType",
-#endif
-  .memSize = sizeof(UA_ApplicationType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = ApplicationType_members },
-
-/* ApplicationDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 308},
-  .typeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ApplicationDescription",
-#endif
-  .memSize = sizeof(UA_ApplicationDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 310,
-  .membersSize = 7,
-  .members = ApplicationDescription_members },
-
-/* RequestHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 389},
-  .typeIndex = UA_TYPES_REQUESTHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RequestHeader",
-#endif
-  .memSize = sizeof(UA_RequestHeader),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 391,
-  .membersSize = 7,
-  .members = RequestHeader_members },
-
-/* ResponseHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 392},
-  .typeIndex = UA_TYPES_RESPONSEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ResponseHeader",
-#endif
-  .memSize = sizeof(UA_ResponseHeader),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 394,
-  .membersSize = 6,
-  .members = ResponseHeader_members },
-
-/* ServiceFault */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 395},
-  .typeIndex = UA_TYPES_SERVICEFAULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ServiceFault",
-#endif
-  .memSize = sizeof(UA_ServiceFault),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 397,
-  .membersSize = 1,
-  .members = ServiceFault_members },
-
-/* FindServersRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 420},
-  .typeIndex = UA_TYPES_FINDSERVERSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "FindServersRequest",
-#endif
-  .memSize = sizeof(UA_FindServersRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 422,
-  .membersSize = 4,
-  .members = FindServersRequest_members },
-
-/* FindServersResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 423},
-  .typeIndex = UA_TYPES_FINDSERVERSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "FindServersResponse",
-#endif
-  .memSize = sizeof(UA_FindServersResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 425,
-  .membersSize = 2,
-  .members = FindServersResponse_members },
-
-/* MessageSecurityMode */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MessageSecurityMode",
-#endif
-  .memSize = sizeof(UA_MessageSecurityMode),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = MessageSecurityMode_members },
-
-/* UserTokenType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "UserTokenType",
-#endif
-  .memSize = sizeof(UA_UserTokenType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = UserTokenType_members },
-
-/* UserTokenPolicy */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 304},
-  .typeIndex = UA_TYPES_USERTOKENPOLICY,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "UserTokenPolicy",
-#endif
-  .memSize = sizeof(UA_UserTokenPolicy),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 306,
-  .membersSize = 5,
-  .members = UserTokenPolicy_members },
-
-/* EndpointDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 312},
-  .typeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "EndpointDescription",
-#endif
-  .memSize = sizeof(UA_EndpointDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 314,
-  .membersSize = 8,
-  .members = EndpointDescription_members },
-
-/* GetEndpointsRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 426},
-  .typeIndex = UA_TYPES_GETENDPOINTSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "GetEndpointsRequest",
-#endif
-  .memSize = sizeof(UA_GetEndpointsRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 428,
-  .membersSize = 4,
-  .members = GetEndpointsRequest_members },
-
-/* GetEndpointsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 429},
-  .typeIndex = UA_TYPES_GETENDPOINTSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "GetEndpointsResponse",
-#endif
-  .memSize = sizeof(UA_GetEndpointsResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 431,
-  .membersSize = 2,
-  .members = GetEndpointsResponse_members },
-
-/* SecurityTokenRequestType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SecurityTokenRequestType",
-#endif
-  .memSize = sizeof(UA_SecurityTokenRequestType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = SecurityTokenRequestType_members },
-
-/* ChannelSecurityToken */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 441},
-  .typeIndex = UA_TYPES_CHANNELSECURITYTOKEN,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ChannelSecurityToken",
-#endif
-  .memSize = sizeof(UA_ChannelSecurityToken),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, tokenId) == (offsetof(UA_ChannelSecurityToken, channelId) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, createdAt) == (offsetof(UA_ChannelSecurityToken, tokenId) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, revisedLifetime) == (offsetof(UA_ChannelSecurityToken, createdAt) + sizeof(UA_DateTime)),
-  .binaryEncodingId = 443,
-  .membersSize = 4,
-  .members = ChannelSecurityToken_members },
-
-/* OpenSecureChannelRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 444},
-  .typeIndex = UA_TYPES_OPENSECURECHANNELREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "OpenSecureChannelRequest",
-#endif
-  .memSize = sizeof(UA_OpenSecureChannelRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 446,
-  .membersSize = 6,
-  .members = OpenSecureChannelRequest_members },
-
-/* OpenSecureChannelResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 447},
-  .typeIndex = UA_TYPES_OPENSECURECHANNELRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "OpenSecureChannelResponse",
-#endif
-  .memSize = sizeof(UA_OpenSecureChannelResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 449,
-  .membersSize = 4,
-  .members = OpenSecureChannelResponse_members },
-
-/* CloseSecureChannelRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 450},
-  .typeIndex = UA_TYPES_CLOSESECURECHANNELREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CloseSecureChannelRequest",
-#endif
-  .memSize = sizeof(UA_CloseSecureChannelRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 452,
-  .membersSize = 1,
-  .members = CloseSecureChannelRequest_members },
-
-/* CloseSecureChannelResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 453},
-  .typeIndex = UA_TYPES_CLOSESECURECHANNELRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CloseSecureChannelResponse",
-#endif
-  .memSize = sizeof(UA_CloseSecureChannelResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 455,
-  .membersSize = 1,
-  .members = CloseSecureChannelResponse_members },
-
-/* SignedSoftwareCertificate */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 344},
-  .typeIndex = UA_TYPES_SIGNEDSOFTWARECERTIFICATE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SignedSoftwareCertificate",
-#endif
-  .memSize = sizeof(UA_SignedSoftwareCertificate),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 346,
-  .membersSize = 2,
-  .members = SignedSoftwareCertificate_members },
-
-/* SignatureData */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 456},
-  .typeIndex = UA_TYPES_SIGNATUREDATA,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SignatureData",
-#endif
-  .memSize = sizeof(UA_SignatureData),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 458,
-  .membersSize = 2,
-  .members = SignatureData_members },
-
-/* CreateSessionRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 459},
-  .typeIndex = UA_TYPES_CREATESESSIONREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateSessionRequest",
-#endif
-  .memSize = sizeof(UA_CreateSessionRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 461,
-  .membersSize = 9,
-  .members = CreateSessionRequest_members },
-
-/* CreateSessionResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 462},
-  .typeIndex = UA_TYPES_CREATESESSIONRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateSessionResponse",
-#endif
-  .memSize = sizeof(UA_CreateSessionResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 464,
-  .membersSize = 10,
-  .members = CreateSessionResponse_members },
-
 /* UserIdentityToken */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 316},
   .typeIndex = UA_TYPES_USERIDENTITYTOKEN,
@@ -12512,160 +12596,6 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .binaryEncodingId = 318,
   .membersSize = 1,
   .members = UserIdentityToken_members },
-
-/* AnonymousIdentityToken */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 319},
-  .typeIndex = UA_TYPES_ANONYMOUSIDENTITYTOKEN,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AnonymousIdentityToken",
-#endif
-  .memSize = sizeof(UA_AnonymousIdentityToken),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 321,
-  .membersSize = 1,
-  .members = AnonymousIdentityToken_members },
-
-/* UserNameIdentityToken */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 322},
-  .typeIndex = UA_TYPES_USERNAMEIDENTITYTOKEN,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "UserNameIdentityToken",
-#endif
-  .memSize = sizeof(UA_UserNameIdentityToken),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 324,
-  .membersSize = 4,
-  .members = UserNameIdentityToken_members },
-
-/* ActivateSessionRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 465},
-  .typeIndex = UA_TYPES_ACTIVATESESSIONREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ActivateSessionRequest",
-#endif
-  .memSize = sizeof(UA_ActivateSessionRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 467,
-  .membersSize = 6,
-  .members = ActivateSessionRequest_members },
-
-/* ActivateSessionResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 468},
-  .typeIndex = UA_TYPES_ACTIVATESESSIONRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ActivateSessionResponse",
-#endif
-  .memSize = sizeof(UA_ActivateSessionResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 470,
-  .membersSize = 4,
-  .members = ActivateSessionResponse_members },
-
-/* CloseSessionRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 471},
-  .typeIndex = UA_TYPES_CLOSESESSIONREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CloseSessionRequest",
-#endif
-  .memSize = sizeof(UA_CloseSessionRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 473,
-  .membersSize = 2,
-  .members = CloseSessionRequest_members },
-
-/* CloseSessionResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 474},
-  .typeIndex = UA_TYPES_CLOSESESSIONRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CloseSessionResponse",
-#endif
-  .memSize = sizeof(UA_CloseSessionResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 476,
-  .membersSize = 1,
-  .members = CloseSessionResponse_members },
-
-/* NodeAttributesMask */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "NodeAttributesMask",
-#endif
-  .memSize = sizeof(UA_NodeAttributesMask),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = NodeAttributesMask_members },
-
-/* NodeAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 349},
-  .typeIndex = UA_TYPES_NODEATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "NodeAttributes",
-#endif
-  .memSize = sizeof(UA_NodeAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 351,
-  .membersSize = 5,
-  .members = NodeAttributes_members },
-
-/* ObjectAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 352},
-  .typeIndex = UA_TYPES_OBJECTATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ObjectAttributes",
-#endif
-  .memSize = sizeof(UA_ObjectAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 354,
-  .membersSize = 6,
-  .members = ObjectAttributes_members },
-
-/* VariableAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 355},
-  .typeIndex = UA_TYPES_VARIABLEATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "VariableAttributes",
-#endif
-  .memSize = sizeof(UA_VariableAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 357,
-  .membersSize = 13,
-  .members = VariableAttributes_members },
-
-/* MethodAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 358},
-  .typeIndex = UA_TYPES_METHODATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MethodAttributes",
-#endif
-  .memSize = sizeof(UA_MethodAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 360,
-  .membersSize = 7,
-  .members = MethodAttributes_members },
 
 /* ObjectTypeAttributes */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 361},
@@ -12681,887 +12611,33 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 6,
   .members = ObjectTypeAttributes_members },
 
-/* VariableTypeAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 364},
-  .typeIndex = UA_TYPES_VARIABLETYPEATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "VariableTypeAttributes",
-#endif
-  .memSize = sizeof(UA_VariableTypeAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 366,
-  .membersSize = 10,
-  .members = VariableTypeAttributes_members },
-
-/* ReferenceTypeAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 367},
-  .typeIndex = UA_TYPES_REFERENCETYPEATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ReferenceTypeAttributes",
-#endif
-  .memSize = sizeof(UA_ReferenceTypeAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 369,
-  .membersSize = 8,
-  .members = ReferenceTypeAttributes_members },
-
-/* DataTypeAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 370},
-  .typeIndex = UA_TYPES_DATATYPEATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DataTypeAttributes",
-#endif
-  .memSize = sizeof(UA_DataTypeAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 372,
-  .membersSize = 6,
-  .members = DataTypeAttributes_members },
-
-/* ViewAttributes */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 373},
-  .typeIndex = UA_TYPES_VIEWATTRIBUTES,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ViewAttributes",
-#endif
-  .memSize = sizeof(UA_ViewAttributes),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 375,
-  .membersSize = 7,
-  .members = ViewAttributes_members },
-
-/* AddNodesItem */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 376},
-  .typeIndex = UA_TYPES_ADDNODESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddNodesItem",
-#endif
-  .memSize = sizeof(UA_AddNodesItem),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 378,
-  .membersSize = 7,
-  .members = AddNodesItem_members },
-
-/* AddNodesResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 483},
-  .typeIndex = UA_TYPES_ADDNODESRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddNodesResult",
-#endif
-  .memSize = sizeof(UA_AddNodesResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 485,
-  .membersSize = 2,
-  .members = AddNodesResult_members },
-
-/* AddNodesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 486},
-  .typeIndex = UA_TYPES_ADDNODESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddNodesRequest",
-#endif
-  .memSize = sizeof(UA_AddNodesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 488,
-  .membersSize = 2,
-  .members = AddNodesRequest_members },
-
-/* AddNodesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 489},
-  .typeIndex = UA_TYPES_ADDNODESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddNodesResponse",
-#endif
-  .memSize = sizeof(UA_AddNodesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 491,
-  .membersSize = 3,
-  .members = AddNodesResponse_members },
-
-/* AddReferencesItem */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 379},
-  .typeIndex = UA_TYPES_ADDREFERENCESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddReferencesItem",
-#endif
-  .memSize = sizeof(UA_AddReferencesItem),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 381,
-  .membersSize = 6,
-  .members = AddReferencesItem_members },
-
-/* AddReferencesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 492},
-  .typeIndex = UA_TYPES_ADDREFERENCESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddReferencesRequest",
-#endif
-  .memSize = sizeof(UA_AddReferencesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 494,
-  .membersSize = 2,
-  .members = AddReferencesRequest_members },
-
-/* AddReferencesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 495},
-  .typeIndex = UA_TYPES_ADDREFERENCESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AddReferencesResponse",
-#endif
-  .memSize = sizeof(UA_AddReferencesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 497,
-  .membersSize = 3,
-  .members = AddReferencesResponse_members },
-
-/* DeleteNodesItem */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 382},
-  .typeIndex = UA_TYPES_DELETENODESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteNodesItem",
-#endif
-  .memSize = sizeof(UA_DeleteNodesItem),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 384,
-  .membersSize = 2,
-  .members = DeleteNodesItem_members },
-
-/* DeleteNodesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 498},
-  .typeIndex = UA_TYPES_DELETENODESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteNodesRequest",
-#endif
-  .memSize = sizeof(UA_DeleteNodesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 500,
-  .membersSize = 2,
-  .members = DeleteNodesRequest_members },
-
-/* DeleteNodesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 501},
-  .typeIndex = UA_TYPES_DELETENODESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteNodesResponse",
-#endif
-  .memSize = sizeof(UA_DeleteNodesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 503,
-  .membersSize = 3,
-  .members = DeleteNodesResponse_members },
-
-/* DeleteReferencesItem */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 385},
-  .typeIndex = UA_TYPES_DELETEREFERENCESITEM,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteReferencesItem",
-#endif
-  .memSize = sizeof(UA_DeleteReferencesItem),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 387,
-  .membersSize = 5,
-  .members = DeleteReferencesItem_members },
-
-/* DeleteReferencesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 504},
-  .typeIndex = UA_TYPES_DELETEREFERENCESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteReferencesRequest",
-#endif
-  .memSize = sizeof(UA_DeleteReferencesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 506,
-  .membersSize = 2,
-  .members = DeleteReferencesRequest_members },
-
-/* DeleteReferencesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 507},
-  .typeIndex = UA_TYPES_DELETEREFERENCESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteReferencesResponse",
-#endif
-  .memSize = sizeof(UA_DeleteReferencesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 509,
-  .membersSize = 3,
-  .members = DeleteReferencesResponse_members },
-
-/* BrowseDirection */
+/* DeadbandType */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
   .typeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseDirection",
+  .typeName = "DeadbandType",
 #endif
-  .memSize = sizeof(UA_BrowseDirection),
+  .memSize = sizeof(UA_DeadbandType),
   .builtin = true,
   .fixedSize = true,
   .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
   .binaryEncodingId = 0,
   .membersSize = 1,
-  .members = BrowseDirection_members },
+  .members = DeadbandType_members },
 
-/* ViewDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 511},
-  .typeIndex = UA_TYPES_VIEWDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ViewDescription",
-#endif
-  .memSize = sizeof(UA_ViewDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 513,
-  .membersSize = 3,
-  .members = ViewDescription_members },
-
-/* BrowseDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 514},
-  .typeIndex = UA_TYPES_BROWSEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseDescription",
-#endif
-  .memSize = sizeof(UA_BrowseDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 516,
-  .membersSize = 6,
-  .members = BrowseDescription_members },
-
-/* BrowseResultMask */
+/* SecurityTokenRequestType */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
   .typeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseResultMask",
+  .typeName = "SecurityTokenRequestType",
 #endif
-  .memSize = sizeof(UA_BrowseResultMask),
+  .memSize = sizeof(UA_SecurityTokenRequestType),
   .builtin = true,
   .fixedSize = true,
   .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
   .binaryEncodingId = 0,
   .membersSize = 1,
-  .members = BrowseResultMask_members },
-
-/* ReferenceDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 518},
-  .typeIndex = UA_TYPES_REFERENCEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ReferenceDescription",
-#endif
-  .memSize = sizeof(UA_ReferenceDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 520,
-  .membersSize = 7,
-  .members = ReferenceDescription_members },
-
-/* BrowseResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 522},
-  .typeIndex = UA_TYPES_BROWSERESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseResult",
-#endif
-  .memSize = sizeof(UA_BrowseResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 524,
-  .membersSize = 3,
-  .members = BrowseResult_members },
-
-/* BrowseRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 525},
-  .typeIndex = UA_TYPES_BROWSEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseRequest",
-#endif
-  .memSize = sizeof(UA_BrowseRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 527,
-  .membersSize = 4,
-  .members = BrowseRequest_members },
-
-/* BrowseResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 528},
-  .typeIndex = UA_TYPES_BROWSERESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseResponse",
-#endif
-  .memSize = sizeof(UA_BrowseResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 530,
-  .membersSize = 3,
-  .members = BrowseResponse_members },
-
-/* BrowseNextRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 531},
-  .typeIndex = UA_TYPES_BROWSENEXTREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseNextRequest",
-#endif
-  .memSize = sizeof(UA_BrowseNextRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 533,
-  .membersSize = 3,
-  .members = BrowseNextRequest_members },
-
-/* BrowseNextResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 534},
-  .typeIndex = UA_TYPES_BROWSENEXTRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowseNextResponse",
-#endif
-  .memSize = sizeof(UA_BrowseNextResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 536,
-  .membersSize = 3,
-  .members = BrowseNextResponse_members },
-
-/* RelativePathElement */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 537},
-  .typeIndex = UA_TYPES_RELATIVEPATHELEMENT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RelativePathElement",
-#endif
-  .memSize = sizeof(UA_RelativePathElement),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 539,
-  .membersSize = 4,
-  .members = RelativePathElement_members },
-
-/* RelativePath */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 540},
-  .typeIndex = UA_TYPES_RELATIVEPATH,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RelativePath",
-#endif
-  .memSize = sizeof(UA_RelativePath),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 542,
-  .membersSize = 1,
-  .members = RelativePath_members },
-
-/* BrowsePath */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 543},
-  .typeIndex = UA_TYPES_BROWSEPATH,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowsePath",
-#endif
-  .memSize = sizeof(UA_BrowsePath),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 545,
-  .membersSize = 2,
-  .members = BrowsePath_members },
-
-/* BrowsePathTarget */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 546},
-  .typeIndex = UA_TYPES_BROWSEPATHTARGET,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowsePathTarget",
-#endif
-  .memSize = sizeof(UA_BrowsePathTarget),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 548,
-  .membersSize = 2,
-  .members = BrowsePathTarget_members },
-
-/* BrowsePathResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 549},
-  .typeIndex = UA_TYPES_BROWSEPATHRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BrowsePathResult",
-#endif
-  .memSize = sizeof(UA_BrowsePathResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 551,
-  .membersSize = 2,
-  .members = BrowsePathResult_members },
-
-/* TranslateBrowsePathsToNodeIdsRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 552},
-  .typeIndex = UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TranslateBrowsePathsToNodeIdsRequest",
-#endif
-  .memSize = sizeof(UA_TranslateBrowsePathsToNodeIdsRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 554,
-  .membersSize = 2,
-  .members = TranslateBrowsePathsToNodeIdsRequest_members },
-
-/* TranslateBrowsePathsToNodeIdsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 555},
-  .typeIndex = UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TranslateBrowsePathsToNodeIdsResponse",
-#endif
-  .memSize = sizeof(UA_TranslateBrowsePathsToNodeIdsResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 557,
-  .membersSize = 3,
-  .members = TranslateBrowsePathsToNodeIdsResponse_members },
-
-/* RegisterNodesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 558},
-  .typeIndex = UA_TYPES_REGISTERNODESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RegisterNodesRequest",
-#endif
-  .memSize = sizeof(UA_RegisterNodesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 560,
-  .membersSize = 2,
-  .members = RegisterNodesRequest_members },
-
-/* RegisterNodesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 561},
-  .typeIndex = UA_TYPES_REGISTERNODESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RegisterNodesResponse",
-#endif
-  .memSize = sizeof(UA_RegisterNodesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 563,
-  .membersSize = 2,
-  .members = RegisterNodesResponse_members },
-
-/* UnregisterNodesRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 564},
-  .typeIndex = UA_TYPES_UNREGISTERNODESREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "UnregisterNodesRequest",
-#endif
-  .memSize = sizeof(UA_UnregisterNodesRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 566,
-  .membersSize = 2,
-  .members = UnregisterNodesRequest_members },
-
-/* UnregisterNodesResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 567},
-  .typeIndex = UA_TYPES_UNREGISTERNODESRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "UnregisterNodesResponse",
-#endif
-  .memSize = sizeof(UA_UnregisterNodesResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 569,
-  .membersSize = 1,
-  .members = UnregisterNodesResponse_members },
-
-/* QueryDataDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 570},
-  .typeIndex = UA_TYPES_QUERYDATADESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryDataDescription",
-#endif
-  .memSize = sizeof(UA_QueryDataDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 572,
-  .membersSize = 3,
-  .members = QueryDataDescription_members },
-
-/* NodeTypeDescription */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 573},
-  .typeIndex = UA_TYPES_NODETYPEDESCRIPTION,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "NodeTypeDescription",
-#endif
-  .memSize = sizeof(UA_NodeTypeDescription),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 575,
-  .membersSize = 3,
-  .members = NodeTypeDescription_members },
-
-/* FilterOperator */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "FilterOperator",
-#endif
-  .memSize = sizeof(UA_FilterOperator),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = FilterOperator_members },
-
-/* QueryDataSet */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 577},
-  .typeIndex = UA_TYPES_QUERYDATASET,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryDataSet",
-#endif
-  .memSize = sizeof(UA_QueryDataSet),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 579,
-  .membersSize = 3,
-  .members = QueryDataSet_members },
-
-/* ContentFilterElement */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 583},
-  .typeIndex = UA_TYPES_CONTENTFILTERELEMENT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ContentFilterElement",
-#endif
-  .memSize = sizeof(UA_ContentFilterElement),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 585,
-  .membersSize = 2,
-  .members = ContentFilterElement_members },
-
-/* ContentFilter */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 586},
-  .typeIndex = UA_TYPES_CONTENTFILTER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ContentFilter",
-#endif
-  .memSize = sizeof(UA_ContentFilter),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 588,
-  .membersSize = 1,
-  .members = ContentFilter_members },
-
-/* ContentFilterElementResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 604},
-  .typeIndex = UA_TYPES_CONTENTFILTERELEMENTRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ContentFilterElementResult",
-#endif
-  .memSize = sizeof(UA_ContentFilterElementResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 606,
-  .membersSize = 3,
-  .members = ContentFilterElementResult_members },
-
-/* ContentFilterResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 607},
-  .typeIndex = UA_TYPES_CONTENTFILTERRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ContentFilterResult",
-#endif
-  .memSize = sizeof(UA_ContentFilterResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 609,
-  .membersSize = 2,
-  .members = ContentFilterResult_members },
-
-/* ParsingResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 610},
-  .typeIndex = UA_TYPES_PARSINGRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ParsingResult",
-#endif
-  .memSize = sizeof(UA_ParsingResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 612,
-  .membersSize = 3,
-  .members = ParsingResult_members },
-
-/* QueryFirstRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 613},
-  .typeIndex = UA_TYPES_QUERYFIRSTREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryFirstRequest",
-#endif
-  .memSize = sizeof(UA_QueryFirstRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 615,
-  .membersSize = 6,
-  .members = QueryFirstRequest_members },
-
-/* QueryFirstResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 616},
-  .typeIndex = UA_TYPES_QUERYFIRSTRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryFirstResponse",
-#endif
-  .memSize = sizeof(UA_QueryFirstResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 618,
-  .membersSize = 6,
-  .members = QueryFirstResponse_members },
-
-/* QueryNextRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 619},
-  .typeIndex = UA_TYPES_QUERYNEXTREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryNextRequest",
-#endif
-  .memSize = sizeof(UA_QueryNextRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 621,
-  .membersSize = 3,
-  .members = QueryNextRequest_members },
-
-/* QueryNextResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 622},
-  .typeIndex = UA_TYPES_QUERYNEXTRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "QueryNextResponse",
-#endif
-  .memSize = sizeof(UA_QueryNextResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 624,
-  .membersSize = 3,
-  .members = QueryNextResponse_members },
-
-/* TimestampsToReturn */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TimestampsToReturn",
-#endif
-  .memSize = sizeof(UA_TimestampsToReturn),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = TimestampsToReturn_members },
-
-/* ReadValueId */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 626},
-  .typeIndex = UA_TYPES_READVALUEID,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ReadValueId",
-#endif
-  .memSize = sizeof(UA_ReadValueId),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 628,
-  .membersSize = 4,
-  .members = ReadValueId_members },
-
-/* ReadRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 629},
-  .typeIndex = UA_TYPES_READREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ReadRequest",
-#endif
-  .memSize = sizeof(UA_ReadRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 631,
-  .membersSize = 4,
-  .members = ReadRequest_members },
-
-/* ReadResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 632},
-  .typeIndex = UA_TYPES_READRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ReadResponse",
-#endif
-  .memSize = sizeof(UA_ReadResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 634,
-  .membersSize = 3,
-  .members = ReadResponse_members },
-
-/* WriteValue */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 668},
-  .typeIndex = UA_TYPES_WRITEVALUE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "WriteValue",
-#endif
-  .memSize = sizeof(UA_WriteValue),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 670,
-  .membersSize = 4,
-  .members = WriteValue_members },
-
-/* WriteRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 671},
-  .typeIndex = UA_TYPES_WRITEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "WriteRequest",
-#endif
-  .memSize = sizeof(UA_WriteRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 673,
-  .membersSize = 2,
-  .members = WriteRequest_members },
-
-/* WriteResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 674},
-  .typeIndex = UA_TYPES_WRITERESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "WriteResponse",
-#endif
-  .memSize = sizeof(UA_WriteResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 676,
-  .membersSize = 3,
-  .members = WriteResponse_members },
-
-/* CallMethodRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 704},
-  .typeIndex = UA_TYPES_CALLMETHODREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CallMethodRequest",
-#endif
-  .memSize = sizeof(UA_CallMethodRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 706,
-  .membersSize = 3,
-  .members = CallMethodRequest_members },
-
-/* CallMethodResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 707},
-  .typeIndex = UA_TYPES_CALLMETHODRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CallMethodResult",
-#endif
-  .memSize = sizeof(UA_CallMethodResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 709,
-  .membersSize = 4,
-  .members = CallMethodResult_members },
-
-/* CallRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 710},
-  .typeIndex = UA_TYPES_CALLREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CallRequest",
-#endif
-  .memSize = sizeof(UA_CallRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 712,
-  .membersSize = 2,
-  .members = CallRequest_members },
-
-/* CallResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 713},
-  .typeIndex = UA_TYPES_CALLRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CallResponse",
-#endif
-  .memSize = sizeof(UA_CallResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 715,
-  .membersSize = 3,
-  .members = CallResponse_members },
-
-/* MonitoringMode */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoringMode",
-#endif
-  .memSize = sizeof(UA_MonitoringMode),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = MonitoringMode_members },
+  .members = SecurityTokenRequestType_members },
 
 /* DataChangeTrigger */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
@@ -13577,313 +12653,47 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 1,
   .members = DataChangeTrigger_members },
 
-/* DeadbandType */
+/* BuildInfo */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 338},
+  .typeIndex = UA_TYPES_BUILDINFO,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BuildInfo",
+#endif
+  .memSize = sizeof(UA_BuildInfo),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 340,
+  .membersSize = 6,
+  .members = BuildInfo_members },
+
+/* NodeClass */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
   .typeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeadbandType",
+  .typeName = "NodeClass",
 #endif
-  .memSize = sizeof(UA_DeadbandType),
+  .memSize = sizeof(UA_NodeClass),
   .builtin = true,
   .fixedSize = true,
   .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
   .binaryEncodingId = 0,
   .membersSize = 1,
-  .members = DeadbandType_members },
+  .members = NodeClass_members },
 
-/* DataChangeFilter */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 722},
-  .typeIndex = UA_TYPES_DATACHANGEFILTER,
+/* ChannelSecurityToken */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 441},
+  .typeIndex = UA_TYPES_CHANNELSECURITYTOKEN,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DataChangeFilter",
+  .typeName = "ChannelSecurityToken",
 #endif
-  .memSize = sizeof(UA_DataChangeFilter),
+  .memSize = sizeof(UA_ChannelSecurityToken),
   .builtin = false,
   .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_DataChangeFilter, deadbandType) == (offsetof(UA_DataChangeFilter, trigger) + sizeof(UA_DataChangeTrigger)) && UA_BINARY_OVERLAYABLE_FLOAT && offsetof(UA_DataChangeFilter, deadbandValue) == (offsetof(UA_DataChangeFilter, deadbandType) + sizeof(UA_UInt32)),
-  .binaryEncodingId = 724,
-  .membersSize = 3,
-  .members = DataChangeFilter_members },
-
-/* MonitoringParameters */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 740},
-  .typeIndex = UA_TYPES_MONITORINGPARAMETERS,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoringParameters",
-#endif
-  .memSize = sizeof(UA_MonitoringParameters),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 742,
-  .membersSize = 5,
-  .members = MonitoringParameters_members },
-
-/* MonitoredItemCreateRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 743},
-  .typeIndex = UA_TYPES_MONITOREDITEMCREATEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoredItemCreateRequest",
-#endif
-  .memSize = sizeof(UA_MonitoredItemCreateRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 745,
-  .membersSize = 3,
-  .members = MonitoredItemCreateRequest_members },
-
-/* MonitoredItemCreateResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 746},
-  .typeIndex = UA_TYPES_MONITOREDITEMCREATERESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoredItemCreateResult",
-#endif
-  .memSize = sizeof(UA_MonitoredItemCreateResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 748,
-  .membersSize = 5,
-  .members = MonitoredItemCreateResult_members },
-
-/* CreateMonitoredItemsRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 749},
-  .typeIndex = UA_TYPES_CREATEMONITOREDITEMSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateMonitoredItemsRequest",
-#endif
-  .memSize = sizeof(UA_CreateMonitoredItemsRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 751,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, tokenId) == (offsetof(UA_ChannelSecurityToken, channelId) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, createdAt) == (offsetof(UA_ChannelSecurityToken, tokenId) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_ChannelSecurityToken, revisedLifetime) == (offsetof(UA_ChannelSecurityToken, createdAt) + sizeof(UA_DateTime)),
+  .binaryEncodingId = 443,
   .membersSize = 4,
-  .members = CreateMonitoredItemsRequest_members },
-
-/* CreateMonitoredItemsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 752},
-  .typeIndex = UA_TYPES_CREATEMONITOREDITEMSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateMonitoredItemsResponse",
-#endif
-  .memSize = sizeof(UA_CreateMonitoredItemsResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 754,
-  .membersSize = 3,
-  .members = CreateMonitoredItemsResponse_members },
-
-/* MonitoredItemModifyRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 755},
-  .typeIndex = UA_TYPES_MONITOREDITEMMODIFYREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoredItemModifyRequest",
-#endif
-  .memSize = sizeof(UA_MonitoredItemModifyRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 757,
-  .membersSize = 2,
-  .members = MonitoredItemModifyRequest_members },
-
-/* MonitoredItemModifyResult */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 758},
-  .typeIndex = UA_TYPES_MONITOREDITEMMODIFYRESULT,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MonitoredItemModifyResult",
-#endif
-  .memSize = sizeof(UA_MonitoredItemModifyResult),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 760,
-  .membersSize = 4,
-  .members = MonitoredItemModifyResult_members },
-
-/* ModifyMonitoredItemsRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 761},
-  .typeIndex = UA_TYPES_MODIFYMONITOREDITEMSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ModifyMonitoredItemsRequest",
-#endif
-  .memSize = sizeof(UA_ModifyMonitoredItemsRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 763,
-  .membersSize = 4,
-  .members = ModifyMonitoredItemsRequest_members },
-
-/* ModifyMonitoredItemsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 764},
-  .typeIndex = UA_TYPES_MODIFYMONITOREDITEMSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ModifyMonitoredItemsResponse",
-#endif
-  .memSize = sizeof(UA_ModifyMonitoredItemsResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 766,
-  .membersSize = 3,
-  .members = ModifyMonitoredItemsResponse_members },
-
-/* SetMonitoringModeRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 767},
-  .typeIndex = UA_TYPES_SETMONITORINGMODEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SetMonitoringModeRequest",
-#endif
-  .memSize = sizeof(UA_SetMonitoringModeRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 769,
-  .membersSize = 4,
-  .members = SetMonitoringModeRequest_members },
-
-/* SetMonitoringModeResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 770},
-  .typeIndex = UA_TYPES_SETMONITORINGMODERESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SetMonitoringModeResponse",
-#endif
-  .memSize = sizeof(UA_SetMonitoringModeResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 772,
-  .membersSize = 3,
-  .members = SetMonitoringModeResponse_members },
-
-/* DeleteMonitoredItemsRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 779},
-  .typeIndex = UA_TYPES_DELETEMONITOREDITEMSREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteMonitoredItemsRequest",
-#endif
-  .memSize = sizeof(UA_DeleteMonitoredItemsRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 781,
-  .membersSize = 3,
-  .members = DeleteMonitoredItemsRequest_members },
-
-/* DeleteMonitoredItemsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 782},
-  .typeIndex = UA_TYPES_DELETEMONITOREDITEMSRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteMonitoredItemsResponse",
-#endif
-  .memSize = sizeof(UA_DeleteMonitoredItemsResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 784,
-  .membersSize = 3,
-  .members = DeleteMonitoredItemsResponse_members },
-
-/* CreateSubscriptionRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 785},
-  .typeIndex = UA_TYPES_CREATESUBSCRIPTIONREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateSubscriptionRequest",
-#endif
-  .memSize = sizeof(UA_CreateSubscriptionRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 787,
-  .membersSize = 7,
-  .members = CreateSubscriptionRequest_members },
-
-/* CreateSubscriptionResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 788},
-  .typeIndex = UA_TYPES_CREATESUBSCRIPTIONRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "CreateSubscriptionResponse",
-#endif
-  .memSize = sizeof(UA_CreateSubscriptionResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 790,
-  .membersSize = 5,
-  .members = CreateSubscriptionResponse_members },
-
-/* ModifySubscriptionRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 791},
-  .typeIndex = UA_TYPES_MODIFYSUBSCRIPTIONREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ModifySubscriptionRequest",
-#endif
-  .memSize = sizeof(UA_ModifySubscriptionRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 793,
-  .membersSize = 7,
-  .members = ModifySubscriptionRequest_members },
-
-/* ModifySubscriptionResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 794},
-  .typeIndex = UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ModifySubscriptionResponse",
-#endif
-  .memSize = sizeof(UA_ModifySubscriptionResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 796,
-  .membersSize = 4,
-  .members = ModifySubscriptionResponse_members },
-
-/* SetPublishingModeRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 797},
-  .typeIndex = UA_TYPES_SETPUBLISHINGMODEREQUEST,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SetPublishingModeRequest",
-#endif
-  .memSize = sizeof(UA_SetPublishingModeRequest),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 799,
-  .membersSize = 3,
-  .members = SetPublishingModeRequest_members },
-
-/* SetPublishingModeResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 800},
-  .typeIndex = UA_TYPES_SETPUBLISHINGMODERESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SetPublishingModeResponse",
-#endif
-  .memSize = sizeof(UA_SetPublishingModeResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 802,
-  .membersSize = 3,
-  .members = SetPublishingModeResponse_members },
-
-/* NotificationMessage */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 803},
-  .typeIndex = UA_TYPES_NOTIFICATIONMESSAGE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "NotificationMessage",
-#endif
-  .memSize = sizeof(UA_NotificationMessage),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 805,
-  .membersSize = 3,
-  .members = NotificationMessage_members },
+  .members = ChannelSecurityToken_members },
 
 /* MonitoredItemNotification */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 806},
@@ -13899,6 +12709,20 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 2,
   .members = MonitoredItemNotification_members },
 
+/* DeleteNodesItem */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 382},
+  .typeIndex = UA_TYPES_DELETENODESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteNodesItem",
+#endif
+  .memSize = sizeof(UA_DeleteNodesItem),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 384,
+  .membersSize = 2,
+  .members = DeleteNodesItem_members },
+
 /* SubscriptionAcknowledgement */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 821},
   .typeIndex = UA_TYPES_SUBSCRIPTIONACKNOWLEDGEMENT,
@@ -13913,61 +12737,47 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 2,
   .members = SubscriptionAcknowledgement_members },
 
-/* PublishRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 824},
-  .typeIndex = UA_TYPES_PUBLISHREQUEST,
+/* ReadValueId */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 626},
+  .typeIndex = UA_TYPES_READVALUEID,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "PublishRequest",
+  .typeName = "ReadValueId",
 #endif
-  .memSize = sizeof(UA_PublishRequest),
+  .memSize = sizeof(UA_ReadValueId),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 826,
-  .membersSize = 2,
-  .members = PublishRequest_members },
+  .binaryEncodingId = 628,
+  .membersSize = 4,
+  .members = ReadValueId_members },
 
-/* PublishResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 827},
-  .typeIndex = UA_TYPES_PUBLISHRESPONSE,
+/* DataTypeAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 370},
+  .typeIndex = UA_TYPES_DATATYPEATTRIBUTES,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "PublishResponse",
+  .typeName = "DataTypeAttributes",
 #endif
-  .memSize = sizeof(UA_PublishResponse),
+  .memSize = sizeof(UA_DataTypeAttributes),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 829,
-  .membersSize = 7,
-  .members = PublishResponse_members },
+  .binaryEncodingId = 372,
+  .membersSize = 6,
+  .members = DataTypeAttributes_members },
 
-/* RepublishRequest */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 830},
-  .typeIndex = UA_TYPES_REPUBLISHREQUEST,
+/* ResponseHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 392},
+  .typeIndex = UA_TYPES_RESPONSEHEADER,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RepublishRequest",
+  .typeName = "ResponseHeader",
 #endif
-  .memSize = sizeof(UA_RepublishRequest),
+  .memSize = sizeof(UA_ResponseHeader),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 832,
-  .membersSize = 3,
-  .members = RepublishRequest_members },
-
-/* RepublishResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 833},
-  .typeIndex = UA_TYPES_REPUBLISHRESPONSE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "RepublishResponse",
-#endif
-  .memSize = sizeof(UA_RepublishResponse),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 835,
-  .membersSize = 2,
-  .members = RepublishResponse_members },
+  .binaryEncodingId = 394,
+  .membersSize = 6,
+  .members = ResponseHeader_members },
 
 /* DeleteSubscriptionsRequest */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 845},
@@ -13983,33 +12793,187 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 2,
   .members = DeleteSubscriptionsRequest_members },
 
-/* DeleteSubscriptionsResponse */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 848},
-  .typeIndex = UA_TYPES_DELETESUBSCRIPTIONSRESPONSE,
+/* ViewDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 511},
+  .typeIndex = UA_TYPES_VIEWDESCRIPTION,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "DeleteSubscriptionsResponse",
+  .typeName = "ViewDescription",
 #endif
-  .memSize = sizeof(UA_DeleteSubscriptionsResponse),
+  .memSize = sizeof(UA_ViewDescription),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 850,
+  .binaryEncodingId = 513,
   .membersSize = 3,
-  .members = DeleteSubscriptionsResponse_members },
+  .members = ViewDescription_members },
 
-/* BuildInfo */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 338},
-  .typeIndex = UA_TYPES_BUILDINFO,
+/* DeleteMonitoredItemsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 782},
+  .typeIndex = UA_TYPES_DELETEMONITOREDITEMSRESPONSE,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "BuildInfo",
+  .typeName = "DeleteMonitoredItemsResponse",
 #endif
-  .memSize = sizeof(UA_BuildInfo),
+  .memSize = sizeof(UA_DeleteMonitoredItemsResponse),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 340,
+  .binaryEncodingId = 784,
+  .membersSize = 3,
+  .members = DeleteMonitoredItemsResponse_members },
+
+/* NodeAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 349},
+  .typeIndex = UA_TYPES_NODEATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "NodeAttributes",
+#endif
+  .memSize = sizeof(UA_NodeAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 351,
+  .membersSize = 5,
+  .members = NodeAttributes_members },
+
+/* RegisterNodesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 558},
+  .typeIndex = UA_TYPES_REGISTERNODESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RegisterNodesRequest",
+#endif
+  .memSize = sizeof(UA_RegisterNodesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 560,
+  .membersSize = 2,
+  .members = RegisterNodesRequest_members },
+
+/* DeleteNodesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 498},
+  .typeIndex = UA_TYPES_DELETENODESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteNodesRequest",
+#endif
+  .memSize = sizeof(UA_DeleteNodesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 500,
+  .membersSize = 2,
+  .members = DeleteNodesRequest_members },
+
+/* PublishResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 827},
+  .typeIndex = UA_TYPES_PUBLISHRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "PublishResponse",
+#endif
+  .memSize = sizeof(UA_PublishResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 829,
+  .membersSize = 7,
+  .members = PublishResponse_members },
+
+/* MonitoredItemModifyRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 755},
+  .typeIndex = UA_TYPES_MONITOREDITEMMODIFYREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoredItemModifyRequest",
+#endif
+  .memSize = sizeof(UA_MonitoredItemModifyRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 757,
+  .membersSize = 2,
+  .members = MonitoredItemModifyRequest_members },
+
+/* UserNameIdentityToken */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 322},
+  .typeIndex = UA_TYPES_USERNAMEIDENTITYTOKEN,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "UserNameIdentityToken",
+#endif
+  .memSize = sizeof(UA_UserNameIdentityToken),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 324,
+  .membersSize = 4,
+  .members = UserNameIdentityToken_members },
+
+/* IdType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "IdType",
+#endif
+  .memSize = sizeof(UA_IdType),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = IdType_members },
+
+/* UserTokenType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "UserTokenType",
+#endif
+  .memSize = sizeof(UA_UserTokenType),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = UserTokenType_members },
+
+/* ActivateSessionRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 465},
+  .typeIndex = UA_TYPES_ACTIVATESESSIONREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ActivateSessionRequest",
+#endif
+  .memSize = sizeof(UA_ActivateSessionRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 467,
   .membersSize = 6,
-  .members = BuildInfo_members },
+  .members = ActivateSessionRequest_members },
+
+/* OpenSecureChannelResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 447},
+  .typeIndex = UA_TYPES_OPENSECURECHANNELRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "OpenSecureChannelResponse",
+#endif
+  .memSize = sizeof(UA_OpenSecureChannelResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 449,
+  .membersSize = 4,
+  .members = OpenSecureChannelResponse_members },
+
+/* ApplicationType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ApplicationType",
+#endif
+  .memSize = sizeof(UA_ApplicationType),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = ApplicationType_members },
 
 /* ServerState */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
@@ -14025,19 +12989,369 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .membersSize = 1,
   .members = ServerState_members },
 
-/* ServerStatusDataType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 862},
-  .typeIndex = UA_TYPES_SERVERSTATUSDATATYPE,
+/* QueryNextResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 622},
+  .typeIndex = UA_TYPES_QUERYNEXTRESPONSE,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ServerStatusDataType",
+  .typeName = "QueryNextResponse",
 #endif
-  .memSize = sizeof(UA_ServerStatusDataType),
+  .memSize = sizeof(UA_QueryNextResponse),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
-  .binaryEncodingId = 864,
+  .binaryEncodingId = 624,
+  .membersSize = 3,
+  .members = QueryNextResponse_members },
+
+/* ActivateSessionResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 468},
+  .typeIndex = UA_TYPES_ACTIVATESESSIONRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ActivateSessionResponse",
+#endif
+  .memSize = sizeof(UA_ActivateSessionResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 470,
+  .membersSize = 4,
+  .members = ActivateSessionResponse_members },
+
+/* FilterOperator */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 6},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "FilterOperator",
+#endif
+  .memSize = sizeof(UA_FilterOperator),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = FilterOperator_members },
+
+/* QueryNextRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 619},
+  .typeIndex = UA_TYPES_QUERYNEXTREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "QueryNextRequest",
+#endif
+  .memSize = sizeof(UA_QueryNextRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 621,
+  .membersSize = 3,
+  .members = QueryNextRequest_members },
+
+/* WriteResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 674},
+  .typeIndex = UA_TYPES_WRITERESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "WriteResponse",
+#endif
+  .memSize = sizeof(UA_WriteResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 676,
+  .membersSize = 3,
+  .members = WriteResponse_members },
+
+/* BrowseNextRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 531},
+  .typeIndex = UA_TYPES_BROWSENEXTREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseNextRequest",
+#endif
+  .memSize = sizeof(UA_BrowseNextRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 533,
+  .membersSize = 3,
+  .members = BrowseNextRequest_members },
+
+/* CreateSubscriptionRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 785},
+  .typeIndex = UA_TYPES_CREATESUBSCRIPTIONREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateSubscriptionRequest",
+#endif
+  .memSize = sizeof(UA_CreateSubscriptionRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 787,
+  .membersSize = 7,
+  .members = CreateSubscriptionRequest_members },
+
+/* VariableTypeAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 364},
+  .typeIndex = UA_TYPES_VARIABLETYPEATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "VariableTypeAttributes",
+#endif
+  .memSize = sizeof(UA_VariableTypeAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 366,
+  .membersSize = 10,
+  .members = VariableTypeAttributes_members },
+
+/* BrowsePathResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 549},
+  .typeIndex = UA_TYPES_BROWSEPATHRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowsePathResult",
+#endif
+  .memSize = sizeof(UA_BrowsePathResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 551,
+  .membersSize = 2,
+  .members = BrowsePathResult_members },
+
+/* ModifySubscriptionResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 794},
+  .typeIndex = UA_TYPES_MODIFYSUBSCRIPTIONRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ModifySubscriptionResponse",
+#endif
+  .memSize = sizeof(UA_ModifySubscriptionResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 796,
+  .membersSize = 4,
+  .members = ModifySubscriptionResponse_members },
+
+/* OpenSecureChannelRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 444},
+  .typeIndex = UA_TYPES_OPENSECURECHANNELREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "OpenSecureChannelRequest",
+#endif
+  .memSize = sizeof(UA_OpenSecureChannelRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 446,
   .membersSize = 6,
-  .members = ServerStatusDataType_members },
+  .members = OpenSecureChannelRequest_members },
+
+/* RegisterNodesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 561},
+  .typeIndex = UA_TYPES_REGISTERNODESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RegisterNodesResponse",
+#endif
+  .memSize = sizeof(UA_RegisterNodesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 563,
+  .membersSize = 2,
+  .members = RegisterNodesResponse_members },
+
+/* CloseSessionRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 471},
+  .typeIndex = UA_TYPES_CLOSESESSIONREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CloseSessionRequest",
+#endif
+  .memSize = sizeof(UA_CloseSessionRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 473,
+  .membersSize = 2,
+  .members = CloseSessionRequest_members },
+
+/* ModifySubscriptionRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 791},
+  .typeIndex = UA_TYPES_MODIFYSUBSCRIPTIONREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ModifySubscriptionRequest",
+#endif
+  .memSize = sizeof(UA_ModifySubscriptionRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 793,
+  .membersSize = 7,
+  .members = ModifySubscriptionRequest_members },
+
+/* UserTokenPolicy */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 304},
+  .typeIndex = UA_TYPES_USERTOKENPOLICY,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "UserTokenPolicy",
+#endif
+  .memSize = sizeof(UA_UserTokenPolicy),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 306,
+  .membersSize = 5,
+  .members = UserTokenPolicy_members },
+
+/* DeleteMonitoredItemsRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 779},
+  .typeIndex = UA_TYPES_DELETEMONITOREDITEMSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteMonitoredItemsRequest",
+#endif
+  .memSize = sizeof(UA_DeleteMonitoredItemsRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 781,
+  .membersSize = 3,
+  .members = DeleteMonitoredItemsRequest_members },
+
+/* ReferenceTypeAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 367},
+  .typeIndex = UA_TYPES_REFERENCETYPEATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ReferenceTypeAttributes",
+#endif
+  .memSize = sizeof(UA_ReferenceTypeAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 369,
+  .membersSize = 8,
+  .members = ReferenceTypeAttributes_members },
+
+/* SetMonitoringModeRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 767},
+  .typeIndex = UA_TYPES_SETMONITORINGMODEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SetMonitoringModeRequest",
+#endif
+  .memSize = sizeof(UA_SetMonitoringModeRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 769,
+  .membersSize = 4,
+  .members = SetMonitoringModeRequest_members },
+
+/* UnregisterNodesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 567},
+  .typeIndex = UA_TYPES_UNREGISTERNODESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "UnregisterNodesResponse",
+#endif
+  .memSize = sizeof(UA_UnregisterNodesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 569,
+  .membersSize = 1,
+  .members = UnregisterNodesResponse_members },
+
+/* WriteRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 671},
+  .typeIndex = UA_TYPES_WRITEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "WriteRequest",
+#endif
+  .memSize = sizeof(UA_WriteRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 673,
+  .membersSize = 2,
+  .members = WriteRequest_members },
+
+/* ObjectAttributes */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 352},
+  .typeIndex = UA_TYPES_OBJECTATTRIBUTES,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ObjectAttributes",
+#endif
+  .memSize = sizeof(UA_ObjectAttributes),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 354,
+  .membersSize = 6,
+  .members = ObjectAttributes_members },
+
+/* BrowseDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 514},
+  .typeIndex = UA_TYPES_BROWSEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseDescription",
+#endif
+  .memSize = sizeof(UA_BrowseDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 516,
+  .membersSize = 6,
+  .members = BrowseDescription_members },
+
+/* RepublishRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 830},
+  .typeIndex = UA_TYPES_REPUBLISHREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RepublishRequest",
+#endif
+  .memSize = sizeof(UA_RepublishRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 832,
+  .membersSize = 3,
+  .members = RepublishRequest_members },
+
+/* GetEndpointsRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 426},
+  .typeIndex = UA_TYPES_GETENDPOINTSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "GetEndpointsRequest",
+#endif
+  .memSize = sizeof(UA_GetEndpointsRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 428,
+  .membersSize = 4,
+  .members = GetEndpointsRequest_members },
+
+/* PublishRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 824},
+  .typeIndex = UA_TYPES_PUBLISHREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "PublishRequest",
+#endif
+  .memSize = sizeof(UA_PublishRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 826,
+  .membersSize = 2,
+  .members = PublishRequest_members },
+
+/* AddNodesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 489},
+  .typeIndex = UA_TYPES_ADDNODESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddNodesResponse",
+#endif
+  .memSize = sizeof(UA_AddNodesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 491,
+  .membersSize = 3,
+  .members = AddNodesResponse_members },
 
 /* DataChangeNotification */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 809},
@@ -14052,53 +13366,736 @@ const UA_DataType UA_TYPES[UA_TYPES_COUNT] = {
   .binaryEncodingId = 811,
   .membersSize = 2,
   .members = DataChangeNotification_members },
+
+/* CloseSecureChannelResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 453},
+  .typeIndex = UA_TYPES_CLOSESECURECHANNELRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CloseSecureChannelResponse",
+#endif
+  .memSize = sizeof(UA_CloseSecureChannelResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 455,
+  .membersSize = 1,
+  .members = CloseSecureChannelResponse_members },
+
+/* ModifyMonitoredItemsRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 761},
+  .typeIndex = UA_TYPES_MODIFYMONITOREDITEMSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ModifyMonitoredItemsRequest",
+#endif
+  .memSize = sizeof(UA_ModifyMonitoredItemsRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 763,
+  .membersSize = 4,
+  .members = ModifyMonitoredItemsRequest_members },
+
+/* SetMonitoringModeResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 770},
+  .typeIndex = UA_TYPES_SETMONITORINGMODERESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SetMonitoringModeResponse",
+#endif
+  .memSize = sizeof(UA_SetMonitoringModeResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 772,
+  .membersSize = 3,
+  .members = SetMonitoringModeResponse_members },
+
+/* FindServersRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 420},
+  .typeIndex = UA_TYPES_FINDSERVERSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "FindServersRequest",
+#endif
+  .memSize = sizeof(UA_FindServersRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 422,
+  .membersSize = 4,
+  .members = FindServersRequest_members },
+
+/* ReferenceDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 518},
+  .typeIndex = UA_TYPES_REFERENCEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ReferenceDescription",
+#endif
+  .memSize = sizeof(UA_ReferenceDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 520,
+  .membersSize = 7,
+  .members = ReferenceDescription_members },
+
+/* SetPublishingModeResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 800},
+  .typeIndex = UA_TYPES_SETPUBLISHINGMODERESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SetPublishingModeResponse",
+#endif
+  .memSize = sizeof(UA_SetPublishingModeResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 802,
+  .membersSize = 3,
+  .members = SetPublishingModeResponse_members },
+
+/* ContentFilterResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 607},
+  .typeIndex = UA_TYPES_CONTENTFILTERRESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ContentFilterResult",
+#endif
+  .memSize = sizeof(UA_ContentFilterResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 609,
+  .membersSize = 2,
+  .members = ContentFilterResult_members },
+
+/* AddReferencesItem */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 379},
+  .typeIndex = UA_TYPES_ADDREFERENCESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddReferencesItem",
+#endif
+  .memSize = sizeof(UA_AddReferencesItem),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 381,
+  .membersSize = 6,
+  .members = AddReferencesItem_members },
+
+/* CreateSubscriptionResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 788},
+  .typeIndex = UA_TYPES_CREATESUBSCRIPTIONRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateSubscriptionResponse",
+#endif
+  .memSize = sizeof(UA_CreateSubscriptionResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 790,
+  .membersSize = 5,
+  .members = CreateSubscriptionResponse_members },
+
+/* DeleteSubscriptionsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 848},
+  .typeIndex = UA_TYPES_DELETESUBSCRIPTIONSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteSubscriptionsResponse",
+#endif
+  .memSize = sizeof(UA_DeleteSubscriptionsResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 850,
+  .membersSize = 3,
+  .members = DeleteSubscriptionsResponse_members },
+
+/* RelativePath */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 540},
+  .typeIndex = UA_TYPES_RELATIVEPATH,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RelativePath",
+#endif
+  .memSize = sizeof(UA_RelativePath),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 542,
+  .membersSize = 1,
+  .members = RelativePath_members },
+
+/* DeleteReferencesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 507},
+  .typeIndex = UA_TYPES_DELETEREFERENCESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteReferencesResponse",
+#endif
+  .memSize = sizeof(UA_DeleteReferencesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 509,
+  .membersSize = 3,
+  .members = DeleteReferencesResponse_members },
+
+/* CreateMonitoredItemsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 752},
+  .typeIndex = UA_TYPES_CREATEMONITOREDITEMSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateMonitoredItemsResponse",
+#endif
+  .memSize = sizeof(UA_CreateMonitoredItemsResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 754,
+  .membersSize = 3,
+  .members = CreateMonitoredItemsResponse_members },
+
+/* CallResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 713},
+  .typeIndex = UA_TYPES_CALLRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CallResponse",
+#endif
+  .memSize = sizeof(UA_CallResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 715,
+  .membersSize = 3,
+  .members = CallResponse_members },
+
+/* DeleteNodesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 501},
+  .typeIndex = UA_TYPES_DELETENODESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteNodesResponse",
+#endif
+  .memSize = sizeof(UA_DeleteNodesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 503,
+  .membersSize = 3,
+  .members = DeleteNodesResponse_members },
+
+/* RepublishResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 833},
+  .typeIndex = UA_TYPES_REPUBLISHRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "RepublishResponse",
+#endif
+  .memSize = sizeof(UA_RepublishResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 835,
+  .membersSize = 2,
+  .members = RepublishResponse_members },
+
+/* MonitoredItemCreateRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 743},
+  .typeIndex = UA_TYPES_MONITOREDITEMCREATEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MonitoredItemCreateRequest",
+#endif
+  .memSize = sizeof(UA_MonitoredItemCreateRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 745,
+  .membersSize = 3,
+  .members = MonitoredItemCreateRequest_members },
+
+/* DeleteReferencesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 504},
+  .typeIndex = UA_TYPES_DELETEREFERENCESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DeleteReferencesRequest",
+#endif
+  .memSize = sizeof(UA_DeleteReferencesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 506,
+  .membersSize = 2,
+  .members = DeleteReferencesRequest_members },
+
+/* ModifyMonitoredItemsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 764},
+  .typeIndex = UA_TYPES_MODIFYMONITOREDITEMSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ModifyMonitoredItemsResponse",
+#endif
+  .memSize = sizeof(UA_ModifyMonitoredItemsResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 766,
+  .membersSize = 3,
+  .members = ModifyMonitoredItemsResponse_members },
+
+/* ReadResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 632},
+  .typeIndex = UA_TYPES_READRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ReadResponse",
+#endif
+  .memSize = sizeof(UA_ReadResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 634,
+  .membersSize = 3,
+  .members = ReadResponse_members },
+
+/* AddReferencesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 492},
+  .typeIndex = UA_TYPES_ADDREFERENCESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddReferencesRequest",
+#endif
+  .memSize = sizeof(UA_AddReferencesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 494,
+  .membersSize = 2,
+  .members = AddReferencesRequest_members },
+
+/* ReadRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 629},
+  .typeIndex = UA_TYPES_READREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ReadRequest",
+#endif
+  .memSize = sizeof(UA_ReadRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 631,
+  .membersSize = 4,
+  .members = ReadRequest_members },
+
+/* AddNodesItem */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 376},
+  .typeIndex = UA_TYPES_ADDNODESITEM,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddNodesItem",
+#endif
+  .memSize = sizeof(UA_AddNodesItem),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 378,
+  .membersSize = 7,
+  .members = AddNodesItem_members },
+
+/* ServerStatusDataType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 862},
+  .typeIndex = UA_TYPES_SERVERSTATUSDATATYPE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ServerStatusDataType",
+#endif
+  .memSize = sizeof(UA_ServerStatusDataType),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 864,
+  .membersSize = 6,
+  .members = ServerStatusDataType_members },
+
+/* AddReferencesResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 495},
+  .typeIndex = UA_TYPES_ADDREFERENCESRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddReferencesResponse",
+#endif
+  .memSize = sizeof(UA_AddReferencesResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 497,
+  .membersSize = 3,
+  .members = AddReferencesResponse_members },
+
+/* TranslateBrowsePathsToNodeIdsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 555},
+  .typeIndex = UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "TranslateBrowsePathsToNodeIdsResponse",
+#endif
+  .memSize = sizeof(UA_TranslateBrowsePathsToNodeIdsResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 557,
+  .membersSize = 3,
+  .members = TranslateBrowsePathsToNodeIdsResponse_members },
+
+/* DataChangeFilter */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 722},
+  .typeIndex = UA_TYPES_DATACHANGEFILTER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "DataChangeFilter",
+#endif
+  .memSize = sizeof(UA_DataChangeFilter),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_DataChangeFilter, deadbandType) == (offsetof(UA_DataChangeFilter, trigger) + sizeof(UA_DataChangeTrigger)) && UA_BINARY_OVERLAYABLE_FLOAT && offsetof(UA_DataChangeFilter, deadbandValue) == (offsetof(UA_DataChangeFilter, deadbandType) + sizeof(UA_UInt32)),
+  .binaryEncodingId = 724,
+  .membersSize = 3,
+  .members = DataChangeFilter_members },
+
+/* ContentFilterElement */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 583},
+  .typeIndex = UA_TYPES_CONTENTFILTERELEMENT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ContentFilterElement",
+#endif
+  .memSize = sizeof(UA_ContentFilterElement),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 585,
+  .membersSize = 2,
+  .members = ContentFilterElement_members },
+
+/* CloseSessionResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 474},
+  .typeIndex = UA_TYPES_CLOSESESSIONRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CloseSessionResponse",
+#endif
+  .memSize = sizeof(UA_CloseSessionResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 476,
+  .membersSize = 1,
+  .members = CloseSessionResponse_members },
+
+/* ApplicationDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 308},
+  .typeIndex = UA_TYPES_APPLICATIONDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ApplicationDescription",
+#endif
+  .memSize = sizeof(UA_ApplicationDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 310,
+  .membersSize = 7,
+  .members = ApplicationDescription_members },
+
+/* ServiceFault */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 395},
+  .typeIndex = UA_TYPES_SERVICEFAULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ServiceFault",
+#endif
+  .memSize = sizeof(UA_ServiceFault),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 397,
+  .membersSize = 1,
+  .members = ServiceFault_members },
+
+/* FindServersResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 423},
+  .typeIndex = UA_TYPES_FINDSERVERSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "FindServersResponse",
+#endif
+  .memSize = sizeof(UA_FindServersResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 425,
+  .membersSize = 2,
+  .members = FindServersResponse_members },
+
+/* CreateMonitoredItemsRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 749},
+  .typeIndex = UA_TYPES_CREATEMONITOREDITEMSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateMonitoredItemsRequest",
+#endif
+  .memSize = sizeof(UA_CreateMonitoredItemsRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 751,
+  .membersSize = 4,
+  .members = CreateMonitoredItemsRequest_members },
+
+/* ContentFilter */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 586},
+  .typeIndex = UA_TYPES_CONTENTFILTER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ContentFilter",
+#endif
+  .memSize = sizeof(UA_ContentFilter),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 588,
+  .membersSize = 1,
+  .members = ContentFilter_members },
+
+/* QueryFirstResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 616},
+  .typeIndex = UA_TYPES_QUERYFIRSTRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "QueryFirstResponse",
+#endif
+  .memSize = sizeof(UA_QueryFirstResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 618,
+  .membersSize = 6,
+  .members = QueryFirstResponse_members },
+
+/* AddNodesRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 486},
+  .typeIndex = UA_TYPES_ADDNODESREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AddNodesRequest",
+#endif
+  .memSize = sizeof(UA_AddNodesRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 488,
+  .membersSize = 2,
+  .members = AddNodesRequest_members },
+
+/* BrowseRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 525},
+  .typeIndex = UA_TYPES_BROWSEREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseRequest",
+#endif
+  .memSize = sizeof(UA_BrowseRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 527,
+  .membersSize = 4,
+  .members = BrowseRequest_members },
+
+/* BrowsePath */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 543},
+  .typeIndex = UA_TYPES_BROWSEPATH,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowsePath",
+#endif
+  .memSize = sizeof(UA_BrowsePath),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 545,
+  .membersSize = 2,
+  .members = BrowsePath_members },
+
+/* BrowseResult */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 522},
+  .typeIndex = UA_TYPES_BROWSERESULT,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseResult",
+#endif
+  .memSize = sizeof(UA_BrowseResult),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 524,
+  .membersSize = 3,
+  .members = BrowseResult_members },
+
+/* CreateSessionRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 459},
+  .typeIndex = UA_TYPES_CREATESESSIONREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateSessionRequest",
+#endif
+  .memSize = sizeof(UA_CreateSessionRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 461,
+  .membersSize = 9,
+  .members = CreateSessionRequest_members },
+
+/* QueryDataDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 570},
+  .typeIndex = UA_TYPES_QUERYDATADESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "QueryDataDescription",
+#endif
+  .memSize = sizeof(UA_QueryDataDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 572,
+  .membersSize = 3,
+  .members = QueryDataDescription_members },
+
+/* EndpointDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 312},
+  .typeIndex = UA_TYPES_ENDPOINTDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "EndpointDescription",
+#endif
+  .memSize = sizeof(UA_EndpointDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 314,
+  .membersSize = 8,
+  .members = EndpointDescription_members },
+
+/* GetEndpointsResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 429},
+  .typeIndex = UA_TYPES_GETENDPOINTSRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "GetEndpointsResponse",
+#endif
+  .memSize = sizeof(UA_GetEndpointsResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 431,
+  .membersSize = 2,
+  .members = GetEndpointsResponse_members },
+
+/* NodeTypeDescription */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 573},
+  .typeIndex = UA_TYPES_NODETYPEDESCRIPTION,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "NodeTypeDescription",
+#endif
+  .memSize = sizeof(UA_NodeTypeDescription),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 575,
+  .membersSize = 3,
+  .members = NodeTypeDescription_members },
+
+/* BrowseNextResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 534},
+  .typeIndex = UA_TYPES_BROWSENEXTRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseNextResponse",
+#endif
+  .memSize = sizeof(UA_BrowseNextResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 536,
+  .membersSize = 3,
+  .members = BrowseNextResponse_members },
+
+/* TranslateBrowsePathsToNodeIdsRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 552},
+  .typeIndex = UA_TYPES_TRANSLATEBROWSEPATHSTONODEIDSREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "TranslateBrowsePathsToNodeIdsRequest",
+#endif
+  .memSize = sizeof(UA_TranslateBrowsePathsToNodeIdsRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 554,
+  .membersSize = 2,
+  .members = TranslateBrowsePathsToNodeIdsRequest_members },
+
+/* BrowseResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 528},
+  .typeIndex = UA_TYPES_BROWSERESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "BrowseResponse",
+#endif
+  .memSize = sizeof(UA_BrowseResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 530,
+  .membersSize = 3,
+  .members = BrowseResponse_members },
+
+/* CreateSessionResponse */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 462},
+  .typeIndex = UA_TYPES_CREATESESSIONRESPONSE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "CreateSessionResponse",
+#endif
+  .memSize = sizeof(UA_CreateSessionResponse),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 464,
+  .membersSize = 10,
+  .members = CreateSessionResponse_members },
+
+/* QueryFirstRequest */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 613},
+  .typeIndex = UA_TYPES_QUERYFIRSTREQUEST,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "QueryFirstRequest",
+#endif
+  .memSize = sizeof(UA_QueryFirstRequest),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 615,
+  .membersSize = 6,
+  .members = QueryFirstRequest_members },
 };
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_transport_generated.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_transport_generated.c" ***********************************/
 
-/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_datatypes.py
- * on host Canopus by user florian at 2018-03-05 04:31:19 */
+/* Generated from Opc.Ua.Types.bsd, Custom.Opc.Ua.Transport.bsd with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_datatypes.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08 */
 
 
-/* MessageType */
-static UA_DataTypeMember MessageType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* ChunkType */
-static UA_DataTypeMember ChunkType_members[1] = {
-  { .memberTypeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
-/* TcpMessageHeader */
-static UA_DataTypeMember TcpMessageHeader_members[2] = {
+/* SecureConversationMessageAbortBody */
+static UA_DataTypeMember SecureConversationMessageAbortBody_members[2] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "messageTypeAndChunkType",
+    .memberName = "error",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_UINT32,
+  { .memberTypeIndex = UA_TYPES_STRING,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "messageSize",
+    .memberName = "reason",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_TcpMessageHeader, messageSize) - offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) - sizeof(UA_UInt32),
+    .padding = offsetof(UA_SecureConversationMessageAbortBody, reason) - offsetof(UA_SecureConversationMessageAbortBody, error) - sizeof(UA_UInt32),
+    .isArray = false
+  },};
+
+/* SecureConversationMessageFooter */
+static UA_DataTypeMember SecureConversationMessageFooter_members[2] = {
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "padding",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = true
+  },
+  { .memberTypeIndex = UA_TYPES_BYTE,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "signature",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SecureConversationMessageFooter, signature) - offsetof(UA_SecureConversationMessageFooter, padding) - sizeof(void*),
     .isArray = false
   },};
 
@@ -14153,6 +14150,44 @@ static UA_DataTypeMember TcpHelloMessage_members[6] = {
     .isArray = false
   },};
 
+/* MessageType */
+static UA_DataTypeMember MessageType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* AsymmetricAlgorithmSecurityHeader */
+static UA_DataTypeMember AsymmetricAlgorithmSecurityHeader_members[3] = {
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "securityPolicyUri",
+#endif
+    .namespaceZero = true,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "senderCertificate",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AsymmetricAlgorithmSecurityHeader, senderCertificate) - offsetof(UA_AsymmetricAlgorithmSecurityHeader, securityPolicyUri) - sizeof(UA_ByteString),
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_BYTESTRING,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "receiverCertificateThumbprint",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_AsymmetricAlgorithmSecurityHeader, receiverCertificateThumbprint) - offsetof(UA_AsymmetricAlgorithmSecurityHeader, senderCertificate) - sizeof(UA_ByteString),
+    .isArray = false
+  },};
+
 /* TcpAcknowledgeMessage */
 static UA_DataTypeMember TcpAcknowledgeMessage_members[5] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -14196,63 +14231,6 @@ static UA_DataTypeMember TcpAcknowledgeMessage_members[5] = {
     .isArray = false
   },};
 
-/* SecureConversationMessageHeader */
-static UA_DataTypeMember SecureConversationMessageHeader_members[2] = {
-  { .memberTypeIndex = UA_TRANSPORT_TCPMESSAGEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "messageHeader",
-#endif
-    .namespaceZero = false,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "secureChannelId",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_SecureConversationMessageHeader, secureChannelId) - offsetof(UA_SecureConversationMessageHeader, messageHeader) - sizeof(UA_TcpMessageHeader),
-    .isArray = false
-  },};
-
-/* AsymmetricAlgorithmSecurityHeader */
-static UA_DataTypeMember AsymmetricAlgorithmSecurityHeader_members[3] = {
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "securityPolicyUri",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "senderCertificate",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AsymmetricAlgorithmSecurityHeader, senderCertificate) - offsetof(UA_AsymmetricAlgorithmSecurityHeader, securityPolicyUri) - sizeof(UA_ByteString),
-    .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_BYTESTRING,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "receiverCertificateThumbprint",
-#endif
-    .namespaceZero = true,
-    .padding = offsetof(UA_AsymmetricAlgorithmSecurityHeader, receiverCertificateThumbprint) - offsetof(UA_AsymmetricAlgorithmSecurityHeader, senderCertificate) - sizeof(UA_ByteString),
-    .isArray = false
-  },};
-
-/* SymmetricAlgorithmSecurityHeader */
-static UA_DataTypeMember SymmetricAlgorithmSecurityHeader_members[1] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
-#ifdef UA_ENABLE_TYPENAMES
-    .memberName = "tokenId",
-#endif
-    .namespaceZero = true,
-    .padding = 0,
-    .isArray = false
-  },};
-
 /* SequenceHeader */
 static UA_DataTypeMember SequenceHeader_members[2] = {
   { .memberTypeIndex = UA_TYPES_UINT32,
@@ -14272,170 +14250,80 @@ static UA_DataTypeMember SequenceHeader_members[2] = {
     .isArray = false
   },};
 
-/* SecureConversationMessageFooter */
-static UA_DataTypeMember SecureConversationMessageFooter_members[2] = {
-  { .memberTypeIndex = UA_TYPES_BYTE,
+/* TcpMessageHeader */
+static UA_DataTypeMember TcpMessageHeader_members[2] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "padding",
+    .memberName = "messageTypeAndChunkType",
 #endif
     .namespaceZero = true,
     .padding = 0,
-    .isArray = true
+    .isArray = false
   },
-  { .memberTypeIndex = UA_TYPES_BYTE,
+  { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "signature",
+    .memberName = "messageSize",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_SecureConversationMessageFooter, signature) - offsetof(UA_SecureConversationMessageFooter, padding) - sizeof(void*),
+    .padding = offsetof(UA_TcpMessageHeader, messageSize) - offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) - sizeof(UA_UInt32),
     .isArray = false
   },};
 
-/* SecureConversationMessageAbortBody */
-static UA_DataTypeMember SecureConversationMessageAbortBody_members[2] = {
-  { .memberTypeIndex = UA_TYPES_UINT32,
+/* ChunkType */
+static UA_DataTypeMember ChunkType_members[1] = {
+  { .memberTypeIndex = UA_TYPES_INT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "error",
+    .memberName = "",
 #endif
     .namespaceZero = true,
     .padding = 0,
     .isArray = false
-  },
-  { .memberTypeIndex = UA_TYPES_STRING,
+  },};
+
+/* SymmetricAlgorithmSecurityHeader */
+static UA_DataTypeMember SymmetricAlgorithmSecurityHeader_members[1] = {
+  { .memberTypeIndex = UA_TYPES_UINT32,
 #ifdef UA_ENABLE_TYPENAMES
-    .memberName = "reason",
+    .memberName = "tokenId",
 #endif
     .namespaceZero = true,
-    .padding = offsetof(UA_SecureConversationMessageAbortBody, reason) - offsetof(UA_SecureConversationMessageAbortBody, error) - sizeof(UA_UInt32),
+    .padding = 0,
+    .isArray = false
+  },};
+
+/* SecureConversationMessageHeader */
+static UA_DataTypeMember SecureConversationMessageHeader_members[2] = {
+  { .memberTypeIndex = UA_TRANSPORT_TCPMESSAGEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "messageHeader",
+#endif
+    .namespaceZero = false,
+    .padding = 0,
+    .isArray = false
+  },
+  { .memberTypeIndex = UA_TYPES_UINT32,
+#ifdef UA_ENABLE_TYPENAMES
+    .memberName = "secureChannelId",
+#endif
+    .namespaceZero = true,
+    .padding = offsetof(UA_SecureConversationMessageHeader, secureChannelId) - offsetof(UA_SecureConversationMessageHeader, messageHeader) - sizeof(UA_TcpMessageHeader),
     .isArray = false
   },};
 const UA_DataType UA_TRANSPORT[UA_TRANSPORT_COUNT] = {
 
-/* MessageType */
+/* SecureConversationMessageAbortBody */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TYPES_INT32,
+  .typeIndex = UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "MessageType",
+  .typeName = "SecureConversationMessageAbortBody",
 #endif
-  .memSize = sizeof(UA_MessageType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = MessageType_members },
-
-/* ChunkType */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TYPES_INT32,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "ChunkType",
-#endif
-  .memSize = sizeof(UA_ChunkType),
-  .builtin = true,
-  .fixedSize = true,
-  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = ChunkType_members },
-
-/* TcpMessageHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_TCPMESSAGEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TcpMessageHeader",
-#endif
-  .memSize = sizeof(UA_TcpMessageHeader),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpMessageHeader, messageSize) == (offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) + sizeof(UA_UInt32)),
-  .binaryEncodingId = 0,
-  .membersSize = 2,
-  .members = TcpMessageHeader_members },
-
-/* TcpHelloMessage */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_TCPHELLOMESSAGE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TcpHelloMessage",
-#endif
-  .memSize = sizeof(UA_TcpHelloMessage),
+  .memSize = sizeof(UA_SecureConversationMessageAbortBody),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
   .binaryEncodingId = 0,
-  .membersSize = 6,
-  .members = TcpHelloMessage_members },
-
-/* TcpAcknowledgeMessage */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "TcpAcknowledgeMessage",
-#endif
-  .memSize = sizeof(UA_TcpAcknowledgeMessage),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, receiveBufferSize) == (offsetof(UA_TcpAcknowledgeMessage, protocolVersion) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, sendBufferSize) == (offsetof(UA_TcpAcknowledgeMessage, receiveBufferSize) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, maxMessageSize) == (offsetof(UA_TcpAcknowledgeMessage, sendBufferSize) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, maxChunkCount) == (offsetof(UA_TcpAcknowledgeMessage, maxMessageSize) + sizeof(UA_UInt32)),
-  .binaryEncodingId = 0,
-  .membersSize = 5,
-  .members = TcpAcknowledgeMessage_members },
-
-/* SecureConversationMessageHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SecureConversationMessageHeader",
-#endif
-  .memSize = sizeof(UA_SecureConversationMessageHeader),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpMessageHeader, messageSize) == (offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_SecureConversationMessageHeader, secureChannelId) == (offsetof(UA_SecureConversationMessageHeader, messageHeader) + sizeof(UA_TcpMessageHeader)),
-  .binaryEncodingId = 0,
   .membersSize = 2,
-  .members = SecureConversationMessageHeader_members },
-
-/* AsymmetricAlgorithmSecurityHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "AsymmetricAlgorithmSecurityHeader",
-#endif
-  .memSize = sizeof(UA_AsymmetricAlgorithmSecurityHeader),
-  .builtin = false,
-  .fixedSize = false,
-  .overlayable = false,
-  .binaryEncodingId = 0,
-  .membersSize = 3,
-  .members = AsymmetricAlgorithmSecurityHeader_members },
-
-/* SymmetricAlgorithmSecurityHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SymmetricAlgorithmSecurityHeader",
-#endif
-  .memSize = sizeof(UA_SymmetricAlgorithmSecurityHeader),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER,
-  .binaryEncodingId = 0,
-  .membersSize = 1,
-  .members = SymmetricAlgorithmSecurityHeader_members },
-
-/* SequenceHeader */
-{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_SEQUENCEHEADER,
-#ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SequenceHeader",
-#endif
-  .memSize = sizeof(UA_SequenceHeader),
-  .builtin = false,
-  .fixedSize = true,
-  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_SequenceHeader, requestId) == (offsetof(UA_SequenceHeader, sequenceNumber) + sizeof(UA_UInt32)),
-  .binaryEncodingId = 0,
-  .membersSize = 2,
-  .members = SequenceHeader_members },
+  .members = SecureConversationMessageAbortBody_members },
 
 /* SecureConversationMessageFooter */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
@@ -14451,23 +14339,135 @@ const UA_DataType UA_TRANSPORT[UA_TRANSPORT_COUNT] = {
   .membersSize = 2,
   .members = SecureConversationMessageFooter_members },
 
-/* SecureConversationMessageAbortBody */
+/* TcpHelloMessage */
 { .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
-  .typeIndex = UA_TRANSPORT_SECURECONVERSATIONMESSAGEABORTBODY,
+  .typeIndex = UA_TRANSPORT_TCPHELLOMESSAGE,
 #ifdef UA_ENABLE_TYPENAMES
-  .typeName = "SecureConversationMessageAbortBody",
+  .typeName = "TcpHelloMessage",
 #endif
-  .memSize = sizeof(UA_SecureConversationMessageAbortBody),
+  .memSize = sizeof(UA_TcpHelloMessage),
   .builtin = false,
   .fixedSize = false,
   .overlayable = false,
   .binaryEncodingId = 0,
+  .membersSize = 6,
+  .members = TcpHelloMessage_members },
+
+/* MessageType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "MessageType",
+#endif
+  .memSize = sizeof(UA_MessageType),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = MessageType_members },
+
+/* AsymmetricAlgorithmSecurityHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_ASYMMETRICALGORITHMSECURITYHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "AsymmetricAlgorithmSecurityHeader",
+#endif
+  .memSize = sizeof(UA_AsymmetricAlgorithmSecurityHeader),
+  .builtin = false,
+  .fixedSize = false,
+  .overlayable = false,
+  .binaryEncodingId = 0,
+  .membersSize = 3,
+  .members = AsymmetricAlgorithmSecurityHeader_members },
+
+/* TcpAcknowledgeMessage */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_TCPACKNOWLEDGEMESSAGE,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "TcpAcknowledgeMessage",
+#endif
+  .memSize = sizeof(UA_TcpAcknowledgeMessage),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, receiveBufferSize) == (offsetof(UA_TcpAcknowledgeMessage, protocolVersion) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, sendBufferSize) == (offsetof(UA_TcpAcknowledgeMessage, receiveBufferSize) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, maxMessageSize) == (offsetof(UA_TcpAcknowledgeMessage, sendBufferSize) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpAcknowledgeMessage, maxChunkCount) == (offsetof(UA_TcpAcknowledgeMessage, maxMessageSize) + sizeof(UA_UInt32)),
+  .binaryEncodingId = 0,
+  .membersSize = 5,
+  .members = TcpAcknowledgeMessage_members },
+
+/* SequenceHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_SEQUENCEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SequenceHeader",
+#endif
+  .memSize = sizeof(UA_SequenceHeader),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_SequenceHeader, requestId) == (offsetof(UA_SequenceHeader, sequenceNumber) + sizeof(UA_UInt32)),
+  .binaryEncodingId = 0,
   .membersSize = 2,
-  .members = SecureConversationMessageAbortBody_members },
+  .members = SequenceHeader_members },
+
+/* TcpMessageHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_TCPMESSAGEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "TcpMessageHeader",
+#endif
+  .memSize = sizeof(UA_TcpMessageHeader),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpMessageHeader, messageSize) == (offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) + sizeof(UA_UInt32)),
+  .binaryEncodingId = 0,
+  .membersSize = 2,
+  .members = TcpMessageHeader_members },
+
+/* ChunkType */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TYPES_INT32,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "ChunkType",
+#endif
+  .memSize = sizeof(UA_ChunkType),
+  .builtin = true,
+  .fixedSize = true,
+  .overlayable = UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = ChunkType_members },
+
+/* SymmetricAlgorithmSecurityHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_SYMMETRICALGORITHMSECURITYHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SymmetricAlgorithmSecurityHeader",
+#endif
+  .memSize = sizeof(UA_SymmetricAlgorithmSecurityHeader),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && UA_BINARY_OVERLAYABLE_INTEGER,
+  .binaryEncodingId = 0,
+  .membersSize = 1,
+  .members = SymmetricAlgorithmSecurityHeader_members },
+
+/* SecureConversationMessageHeader */
+{ .typeId = {.namespaceIndex = 0, .identifierType = UA_NODEIDTYPE_NUMERIC, .identifier.numeric = 0},
+  .typeIndex = UA_TRANSPORT_SECURECONVERSATIONMESSAGEHEADER,
+#ifdef UA_ENABLE_TYPENAMES
+  .typeName = "SecureConversationMessageHeader",
+#endif
+  .memSize = sizeof(UA_SecureConversationMessageHeader),
+  .builtin = false,
+  .fixedSize = true,
+  .overlayable = true && true && UA_BINARY_OVERLAYABLE_INTEGER && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_TcpMessageHeader, messageSize) == (offsetof(UA_TcpMessageHeader, messageTypeAndChunkType) + sizeof(UA_UInt32)) && UA_BINARY_OVERLAYABLE_INTEGER && offsetof(UA_SecureConversationMessageHeader, secureChannelId) == (offsetof(UA_SecureConversationMessageHeader, messageHeader) + sizeof(UA_TcpMessageHeader)),
+  .binaryEncodingId = 0,
+  .membersSize = 2,
+  .members = SecureConversationMessageHeader_members },
 };
 
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_connection.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_connection.c" ***********************************/
 
 
 void UA_Connection_deleteMembers(UA_Connection *connection) {
@@ -14728,7 +14728,7 @@ size_t UA_readNumber(UA_Byte *buf, size_t buflen, UA_UInt32 *number) {
     return progress;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_securechannel.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_securechannel.c" ***********************************/
 
 
 #define UA_SECURE_MESSAGE_HEADER_LENGTH 24
@@ -15153,7 +15153,7 @@ UA_SecureChannel_processChunks(UA_SecureChannel *channel, const UA_ByteString *c
     return retval;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/ua_session.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/ua_session.c" ***********************************/
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS
 #endif
@@ -15261,7 +15261,7 @@ UA_UInt32 UA_Session_getUniqueSubscriptionID(UA_Session *session) {
 
 #endif
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_server.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_server.c" ***********************************/
 
 
 #ifdef UA_ENABLE_GENERATE_NAMESPACE0
@@ -16593,7 +16593,7 @@ UA_Server * UA_Server_new(const UA_ServerConfig config) {
     return server;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_server_binary.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_server_binary.c" ***********************************/
 
 
 /********************/
@@ -17177,7 +17177,7 @@ UA_Server_processBinaryMessage(UA_Server *server, UA_Connection *connection,
     }
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_server_utils.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_server_utils.c" ***********************************/
 
 
 /**********************/
@@ -17456,7 +17456,7 @@ UA_Server_editNode(UA_Server *server, UA_Session *session,
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_server_worker.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_server_worker.c" ***********************************/
 
 
 /**
@@ -18159,7 +18159,7 @@ UA_StatusCode UA_Server_run(UA_Server *server, volatile UA_Boolean *running) {
     return UA_Server_run_shutdown(server);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_securechannel_manager.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_securechannel_manager.c" ***********************************/
 
 
 #define STARTCHANNELID 1
@@ -18329,7 +18329,7 @@ UA_SecureChannelManager_close(UA_SecureChannelManager *cm, UA_UInt32 channelId) 
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_session_manager.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_session_manager.c" ***********************************/
 
 
 UA_StatusCode
@@ -18434,7 +18434,7 @@ UA_SessionManager_removeSession(UA_SessionManager *sm, const UA_NodeId *token) {
     return UA_STATUSCODE_GOOD;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_nodes.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_nodes.c" ***********************************/
 
 
 void UA_Node_deleteMembersAnyNodeClass(UA_Node *node) {
@@ -18636,7 +18636,7 @@ UA_StatusCode UA_Node_copyAnyNodeClass(const UA_Node *src, UA_Node *dst) {
     return retval;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_nodestore.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_nodestore.c" ***********************************/
 
 
 #ifndef UA_ENABLE_MULTITHREADING /* conditional compilation */
@@ -18962,7 +18962,7 @@ UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor) {
 
 #endif /* UA_ENABLE_MULTITHREADING */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_nodestore_concurrent.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_nodestore_concurrent.c" ***********************************/
 
 
 #ifdef UA_ENABLE_MULTITHREADING /* conditional compilation */
@@ -19190,7 +19190,7 @@ void UA_NodeStore_iterate(UA_NodeStore *ns, UA_NodeStore_nodeVisitor visitor) {
 
 #endif /* UA_ENABLE_MULTITHREADING */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_discovery.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_discovery.c" ***********************************/
 
 
 void Service_FindServers(UA_Server *server, UA_Session *session,
@@ -19310,7 +19310,7 @@ void Service_GetEndpoints(UA_Server *server, UA_Session *session, const UA_GetEn
     }
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_securechannel.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_securechannel.c" ***********************************/
 
 
 void Service_OpenSecureChannel(UA_Server *server, UA_Connection *connection,
@@ -19352,7 +19352,7 @@ void Service_CloseSecureChannel(UA_Server *server, UA_SecureChannel *channel) {
     UA_SecureChannelManager_close(&server->secureChannelManager, channel->securityToken.channelId);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_session.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_session.c" ***********************************/
 
 
 void Service_CreateSession(UA_Server *server, UA_SecureChannel *channel,
@@ -19502,7 +19502,7 @@ Service_CloseSession(UA_Server *server, UA_Session *session, const UA_CloseSessi
         UA_SessionManager_removeSession(&server->sessionManager, &session->authenticationToken);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_attribute.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_attribute.c" ***********************************/
 
 #ifdef UA_ENABLE_NONSTANDARD_STATELESS
 #endif
@@ -20676,7 +20676,7 @@ __UA_Server_write(UA_Server *server, const UA_NodeId *nodeId,
     return UA_Server_write(server, &wvalue);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_nodemanagement.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_nodemanagement.c" ***********************************/
 
 
 /**********************/
@@ -22115,7 +22115,7 @@ UA_Server_setMethodNode_callback(UA_Server *server, const UA_NodeId methodNodeId
 
 #endif
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_view.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_view.c" ***********************************/
 
 
 static UA_StatusCode
@@ -22725,7 +22725,7 @@ void Service_UnregisterNodes(UA_Server *server, UA_Session *session, const UA_Un
         response->responseHeader.serviceResult = UA_STATUSCODE_BADNOTHINGTODO;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_call.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_call.c" ***********************************/
 
 
 #ifdef UA_ENABLE_METHODCALLS /* conditional compilation */
@@ -22920,7 +22920,7 @@ void Service_Call(UA_Server *server, UA_Session *session,
 
 #endif /* UA_ENABLE_METHODCALLS */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_subscription.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_subscription.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -23512,7 +23512,7 @@ UA_Subscription_answerPublishRequestsNoSubscription(UA_Server *server, UA_NodeId
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/server/ua_services_subscription.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/server/ua_services_subscription.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -24085,7 +24085,7 @@ void Service_Republish(UA_Server *server, UA_Session *session, const UA_Republis
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/client/ua_client.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/client/ua_client.c" ***********************************/
 
 
 /* Listen with a timeout until at least one complete message is received */
@@ -24937,7 +24937,7 @@ __UA_Client_Service(UA_Client *client, const void *request, const UA_DataType *r
     UA_NodeId_deleteMembers(&rr->authenticationToken);
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/client/ua_client_highlevel.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/client/ua_client_highlevel.c" ***********************************/
 
 
 UA_StatusCode
@@ -25348,7 +25348,7 @@ UA_Client_readArrayDimensionsAttribute(UA_Client *client, const UA_NodeId nodeId
 
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/src/client/ua_client_highlevel_subscriptions.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/src/client/ua_client_highlevel_subscriptions.c" ***********************************/
 
 
 #ifdef UA_ENABLE_SUBSCRIPTIONS /* conditional compilation */
@@ -25671,7 +25671,7 @@ UA_Client_Subscriptions_manuallySendPublishRequest(UA_Client *client) {
 
 #endif /* UA_ENABLE_SUBSCRIPTIONS */
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/plugins/ua_network_tcp.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/plugins/ua_network_tcp.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26390,7 +26390,7 @@ UA_ClientConnectionTCP(UA_ConnectionConfig conf, const char *endpointUrl,
     return connection;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/plugins/ua_clock.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/plugins/ua_clock.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26455,7 +26455,7 @@ UA_DateTime UA_DateTime_nowMonotonic(void) {
 #endif
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/plugins/ua_log_stdout.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/plugins/ua_log_stdout.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26486,7 +26486,7 @@ void UA_Log_Stdout(UA_LogLevel level, UA_LogCategory category, const char *msg, 
 # pragma GCC diagnostic pop
 #endif
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/plugins/ua_config_standard.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/plugins/ua_config_standard.c" ***********************************/
 
 /* This work is licensed under a Creative Commons CCZero 1.0 Universal License.
  * See http://creativecommons.org/publicdomain/zero/1.0/ for more information. */
@@ -26616,7 +26616,7 @@ const UA_SubscriptionSettings UA_SubscriptionSettings_standard = {
 
 #endif
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/deps/libc_time.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/deps/libc_time.c" ***********************************/
 
 /*
  * Originally released by the musl project (http://www.musl-libc.org/) under the
@@ -26703,7 +26703,7 @@ int __secs_to_tm(long long t, struct tm *tm)
     return 0;
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external/open62541/deps/pcg_basic.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external/open62541/deps/pcg_basic.c" ***********************************/
 
 /*
  * PCG Random Number Generation for C.
@@ -26745,13 +26745,13 @@ uint32_t pcg32_random_r(pcg32_random_t* rng) {
     return (xorshifted >> rot) | (xorshifted << ((~rot + 1u) & 31)); /* was (xorshifted >> rot) | (xorshifted << ((-rot) & 31)) */
 }
 
-/*********************************** amalgamated original file "C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_statuscode_descriptions.c" ***********************************/
+/*********************************** amalgamated original file "/home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_statuscode_descriptions.c" ***********************************/
 
 /**********************************************************
- * C:/Users/florian/Downloads/oaasw1/external_generated/src_generated/ua_statuscode_descriptions.hgen -- do not modify
+ * /home/acplt1404/openAAS_workshop_1/external_generated/src_generated/ua_statuscode_descriptions.hgen -- do not modify
  **********************************************************
- * Generated from C:/Users/florian/Downloads/oaasw1/external/open62541/tools/schema/Opc.Ua.StatusCodes.csv with script C:/Users/florian/Downloads/oaasw1/external/open62541/tools/generate_statuscode_descriptions.py
- * on host Canopus by user florian at 2018-03-05 04:31:19
+ * Generated from /home/acplt1404/openAAS_workshop_1/external/open62541/tools/schema/Opc.Ua.StatusCodes.csv with script /home/acplt1404/openAAS_workshop_1/external/open62541/tools/generate_statuscode_descriptions.py
+ * on host acplt1404-VirtualBox by user acplt1404 at 2018-03-23 02:58:08
  **********************************************************/
 
 
@@ -26766,6 +26766,233 @@ static const size_t statusCodeDescriptionsSize = 229;
 static const UA_StatusCodeDescription statusCodeDescriptions[229] =
 {
  {UA_STATUSCODE_GOOD, "Good", "Success / No error"},
+ {UA_STATUSCODE_BADUNEXPECTEDERROR, "BadUnexpectedError", "An unexpected error occurred."},
+ {UA_STATUSCODE_BADINTERNALERROR, "BadInternalError", "An internal error occurred as a result of a programming or configuration error."},
+ {UA_STATUSCODE_BADOUTOFMEMORY, "BadOutOfMemory", "Not enough memory to complete the operation."},
+ {UA_STATUSCODE_BADRESOURCEUNAVAILABLE, "BadResourceUnavailable", "An operating system resource is not available."},
+ {UA_STATUSCODE_BADCOMMUNICATIONERROR, "BadCommunicationError", "A low level communication error occurred."},
+ {UA_STATUSCODE_BADENCODINGERROR, "BadEncodingError", "Encoding halted because of invalid data in the objects being serialized."},
+ {UA_STATUSCODE_BADDECODINGERROR, "BadDecodingError", "Decoding halted because of invalid data in the stream."},
+ {UA_STATUSCODE_BADENCODINGLIMITSEXCEEDED, "BadEncodingLimitsExceeded", "The message encoding/decoding limits imposed by the stack have been exceeded."},
+ {UA_STATUSCODE_BADREQUESTTOOLARGE, "BadRequestTooLarge", "The request message size exceeds limits set by the server."},
+ {UA_STATUSCODE_BADRESPONSETOOLARGE, "BadResponseTooLarge", "The response message size exceeds limits set by the client."},
+ {UA_STATUSCODE_BADUNKNOWNRESPONSE, "BadUnknownResponse", "An unrecognized response was received from the server."},
+ {UA_STATUSCODE_BADTIMEOUT, "BadTimeout", "The operation timed out."},
+ {UA_STATUSCODE_BADSERVICEUNSUPPORTED, "BadServiceUnsupported", "The server does not support the requested service."},
+ {UA_STATUSCODE_BADSHUTDOWN, "BadShutdown", "The operation was cancelled because the application is shutting down."},
+ {UA_STATUSCODE_BADSERVERNOTCONNECTED, "BadServerNotConnected", "The operation could not complete because the client is not connected to the server."},
+ {UA_STATUSCODE_BADSERVERHALTED, "BadServerHalted", "The server has stopped and cannot process any requests."},
+ {UA_STATUSCODE_BADNOTHINGTODO, "BadNothingToDo", "There was nothing to do because the client passed a list of operations with no elements."},
+ {UA_STATUSCODE_BADTOOMANYOPERATIONS, "BadTooManyOperations", "The request could not be processed because it specified too many operations."},
+ {UA_STATUSCODE_BADTOOMANYMONITOREDITEMS, "BadTooManyMonitoredItems", "The request could not be processed because there are too many monitored items in the subscription."},
+ {UA_STATUSCODE_BADDATATYPEIDUNKNOWN, "BadDataTypeIdUnknown", "The extension object cannot be (de)serialized because the data type id is not recognized."},
+ {UA_STATUSCODE_BADCERTIFICATEINVALID, "BadCertificateInvalid", "The certificate provided as a parameter is not valid."},
+ {UA_STATUSCODE_BADSECURITYCHECKSFAILED, "BadSecurityChecksFailed", "An error occurred verifying security."},
+ {UA_STATUSCODE_BADCERTIFICATETIMEINVALID, "BadCertificateTimeInvalid", "The Certificate has expired or is not yet valid."},
+ {UA_STATUSCODE_BADCERTIFICATEISSUERTIMEINVALID, "BadCertificateIssuerTimeInvalid", "An Issuer Certificate has expired or is not yet valid."},
+ {UA_STATUSCODE_BADCERTIFICATEHOSTNAMEINVALID, "BadCertificateHostNameInvalid", "The HostName used to connect to a Server does not match a HostName in the Certificate."},
+ {UA_STATUSCODE_BADCERTIFICATEURIINVALID, "BadCertificateUriInvalid", "The URI specified in the ApplicationDescription does not match the URI in the Certificate."},
+ {UA_STATUSCODE_BADCERTIFICATEUSENOTALLOWED, "BadCertificateUseNotAllowed", "The Certificate may not be used for the requested operation."},
+ {UA_STATUSCODE_BADCERTIFICATEISSUERUSENOTALLOWED, "BadCertificateIssuerUseNotAllowed", "The Issuer Certificate may not be used for the requested operation."},
+ {UA_STATUSCODE_BADCERTIFICATEUNTRUSTED, "BadCertificateUntrusted", "The Certificate is not trusted."},
+ {UA_STATUSCODE_BADCERTIFICATEREVOCATIONUNKNOWN, "BadCertificateRevocationUnknown", "It was not possible to determine if the Certificate has been revoked."},
+ {UA_STATUSCODE_BADCERTIFICATEISSUERREVOCATIONUNKNOWN, "BadCertificateIssuerRevocationUnknown", "It was not possible to determine if the Issuer Certificate has been revoked."},
+ {UA_STATUSCODE_BADCERTIFICATEREVOKED, "BadCertificateRevoked", "The certificate has been revoked."},
+ {UA_STATUSCODE_BADCERTIFICATEISSUERREVOKED, "BadCertificateIssuerRevoked", "The issuer certificate has been revoked."},
+ {UA_STATUSCODE_BADCERTIFICATECHAININCOMPLETE, "BadCertificateChainIncomplete", "The certificate chain is incomplete."},
+ {UA_STATUSCODE_BADUSERACCESSDENIED, "BadUserAccessDenied", "User does not have permission to perform the requested operation."},
+ {UA_STATUSCODE_BADIDENTITYTOKENINVALID, "BadIdentityTokenInvalid", "The user identity token is not valid."},
+ {UA_STATUSCODE_BADIDENTITYTOKENREJECTED, "BadIdentityTokenRejected", "The user identity token is valid but the server has rejected it."},
+ {UA_STATUSCODE_BADSECURECHANNELIDINVALID, "BadSecureChannelIdInvalid", "The specified secure channel is no longer valid."},
+ {UA_STATUSCODE_BADINVALIDTIMESTAMP, "BadInvalidTimestamp", "The timestamp is outside the range allowed by the server."},
+ {UA_STATUSCODE_BADNONCEINVALID, "BadNonceInvalid", "The nonce does appear to be not a random value or it is not the correct length."},
+ {UA_STATUSCODE_BADSESSIONIDINVALID, "BadSessionIdInvalid", "The session id is not valid."},
+ {UA_STATUSCODE_BADSESSIONCLOSED, "BadSessionClosed", "The session was closed by the client."},
+ {UA_STATUSCODE_BADSESSIONNOTACTIVATED, "BadSessionNotActivated", "The session cannot be used because ActivateSession has not been called."},
+ {UA_STATUSCODE_BADSUBSCRIPTIONIDINVALID, "BadSubscriptionIdInvalid", "The subscription id is not valid."},
+ {UA_STATUSCODE_BADREQUESTHEADERINVALID, "BadRequestHeaderInvalid", "The header for the request is missing or invalid."},
+ {UA_STATUSCODE_BADTIMESTAMPSTORETURNINVALID, "BadTimestampsToReturnInvalid", "The timestamps to return parameter is invalid."},
+ {UA_STATUSCODE_BADREQUESTCANCELLEDBYCLIENT, "BadRequestCancelledByClient", "The request was cancelled by the client."},
+ {UA_STATUSCODE_BADTOOMANYARGUMENTS, "BadTooManyArguments", "Too many arguments were provided."},
+ {UA_STATUSCODE_GOODSUBSCRIPTIONTRANSFERRED, "GoodSubscriptionTransferred", "The subscription was transferred to another session."},
+ {UA_STATUSCODE_GOODCOMPLETESASYNCHRONOUSLY, "GoodCompletesAsynchronously", "The processing will complete asynchronously."},
+ {UA_STATUSCODE_GOODOVERLOAD, "GoodOverload", "Sampling has slowed down due to resource limitations."},
+ {UA_STATUSCODE_GOODCLAMPED, "GoodClamped", "The value written was accepted but was clamped."},
+ {UA_STATUSCODE_BADNOCOMMUNICATION, "BadNoCommunication", "Communication with the data source is defined"},
+ {UA_STATUSCODE_BADWAITINGFORINITIALDATA, "BadWaitingForInitialData", "Waiting for the server to obtain values from the underlying data source."},
+ {UA_STATUSCODE_BADNODEIDINVALID, "BadNodeIdInvalid", "The syntax of the node id is not valid."},
+ {UA_STATUSCODE_BADNODEIDUNKNOWN, "BadNodeIdUnknown", "The node id refers to a node that does not exist in the server address space."},
+ {UA_STATUSCODE_BADATTRIBUTEIDINVALID, "BadAttributeIdInvalid", "The attribute is not supported for the specified Node."},
+ {UA_STATUSCODE_BADINDEXRANGEINVALID, "BadIndexRangeInvalid", "The syntax of the index range parameter is invalid."},
+ {UA_STATUSCODE_BADINDEXRANGENODATA, "BadIndexRangeNoData", "No data exists within the range of indexes specified."},
+ {UA_STATUSCODE_BADDATAENCODINGINVALID, "BadDataEncodingInvalid", "The data encoding is invalid."},
+ {UA_STATUSCODE_BADDATAENCODINGUNSUPPORTED, "BadDataEncodingUnsupported", "The server does not support the requested data encoding for the node."},
+ {UA_STATUSCODE_BADNOTREADABLE, "BadNotReadable", "The access level does not allow reading or subscribing to the Node."},
+ {UA_STATUSCODE_BADNOTWRITABLE, "BadNotWritable", "The access level does not allow writing to the Node."},
+ {UA_STATUSCODE_BADOUTOFRANGE, "BadOutOfRange", "The value was out of range."},
+ {UA_STATUSCODE_BADNOTSUPPORTED, "BadNotSupported", "The requested operation is not supported."},
+ {UA_STATUSCODE_BADNOTFOUND, "BadNotFound", "A requested item was not found or a search operation ended without success."},
+ {UA_STATUSCODE_BADOBJECTDELETED, "BadObjectDeleted", "The object cannot be used because it has been deleted."},
+ {UA_STATUSCODE_BADNOTIMPLEMENTED, "BadNotImplemented", "Requested operation is not implemented."},
+ {UA_STATUSCODE_BADMONITORINGMODEINVALID, "BadMonitoringModeInvalid", "The monitoring mode is invalid."},
+ {UA_STATUSCODE_BADMONITOREDITEMIDINVALID, "BadMonitoredItemIdInvalid", "The monitoring item id does not refer to a valid monitored item."},
+ {UA_STATUSCODE_BADMONITOREDITEMFILTERINVALID, "BadMonitoredItemFilterInvalid", "The monitored item filter parameter is not valid."},
+ {UA_STATUSCODE_BADMONITOREDITEMFILTERUNSUPPORTED, "BadMonitoredItemFilterUnsupported", "The server does not support the requested monitored item filter."},
+ {UA_STATUSCODE_BADFILTERNOTALLOWED, "BadFilterNotAllowed", "A monitoring filter cannot be used in combination with the attribute specified."},
+ {UA_STATUSCODE_BADSTRUCTUREMISSING, "BadStructureMissing", "A mandatory structured parameter was missing or null."},
+ {UA_STATUSCODE_BADEVENTFILTERINVALID, "BadEventFilterInvalid", "The event filter is not valid."},
+ {UA_STATUSCODE_BADCONTENTFILTERINVALID, "BadContentFilterInvalid", "The content filter is not valid."},
+ {UA_STATUSCODE_BADFILTEROPERATORINVALID, "BadFilterOperatorInvalid", "An unregognized operator was provided in a filter."},
+ {UA_STATUSCODE_BADFILTEROPERATORUNSUPPORTED, "BadFilterOperatorUnsupported", "A valid operator was provided"},
+ {UA_STATUSCODE_BADFILTEROPERANDCOUNTMISMATCH, "BadFilterOperandCountMismatch", "The number of operands provided for the filter operator was less then expected for the operand provided."},
+ {UA_STATUSCODE_BADFILTEROPERANDINVALID, "BadFilterOperandInvalid", "The operand used in a content filter is not valid."},
+ {UA_STATUSCODE_BADFILTERELEMENTINVALID, "BadFilterElementInvalid", "The referenced element is not a valid element in the content filter."},
+ {UA_STATUSCODE_BADFILTERLITERALINVALID, "BadFilterLiteralInvalid", "The referenced literal is not a valid value."},
+ {UA_STATUSCODE_BADCONTINUATIONPOINTINVALID, "BadContinuationPointInvalid", "The continuation point provide is longer valid."},
+ {UA_STATUSCODE_BADNOCONTINUATIONPOINTS, "BadNoContinuationPoints", "The operation could not be processed because all continuation points have been allocated."},
+ {UA_STATUSCODE_BADREFERENCETYPEIDINVALID, "BadReferenceTypeIdInvalid", "The operation could not be processed because all continuation points have been allocated."},
+ {UA_STATUSCODE_BADBROWSEDIRECTIONINVALID, "BadBrowseDirectionInvalid", "The browse direction is not valid."},
+ {UA_STATUSCODE_BADNODENOTINVIEW, "BadNodeNotInView", "The node is not part of the view."},
+ {UA_STATUSCODE_BADSERVERURIINVALID, "BadServerUriInvalid", "The ServerUri is not a valid URI."},
+ {UA_STATUSCODE_BADSERVERNAMEMISSING, "BadServerNameMissing", "No ServerName was specified."},
+ {UA_STATUSCODE_BADDISCOVERYURLMISSING, "BadDiscoveryUrlMissing", "No DiscoveryUrl was specified."},
+ {UA_STATUSCODE_BADSEMPAHOREFILEMISSING, "BadSempahoreFileMissing", "The semaphore file specified by the client is not valid."},
+ {UA_STATUSCODE_BADREQUESTTYPEINVALID, "BadRequestTypeInvalid", "The security token request type is not valid."},
+ {UA_STATUSCODE_BADSECURITYMODEREJECTED, "BadSecurityModeRejected", "The security mode does not meet the requirements set by the Server."},
+ {UA_STATUSCODE_BADSECURITYPOLICYREJECTED, "BadSecurityPolicyRejected", "The security policy does not meet the requirements set by the Server."},
+ {UA_STATUSCODE_BADTOOMANYSESSIONS, "BadTooManySessions", "The server has reached its maximum number of sessions."},
+ {UA_STATUSCODE_BADUSERSIGNATUREINVALID, "BadUserSignatureInvalid", "The user token signature is missing or invalid."},
+ {UA_STATUSCODE_BADAPPLICATIONSIGNATUREINVALID, "BadApplicationSignatureInvalid", "The signature generated with the client certificate is missing or invalid."},
+ {UA_STATUSCODE_BADNOVALIDCERTIFICATES, "BadNoValidCertificates", "The client did not provide at least one software certificate that is valid and meets the profile requirements for the server."},
+ {UA_STATUSCODE_BADIDENTITYCHANGENOTSUPPORTED, "BadIdentityChangeNotSupported", "The Server does not support changing the user identity assigned to the session."},
+ {UA_STATUSCODE_BADREQUESTCANCELLEDBYREQUEST, "BadRequestCancelledByRequest", "The request was cancelled by the client with the Cancel service."},
+ {UA_STATUSCODE_BADPARENTNODEIDINVALID, "BadParentNodeIdInvalid", "The parent node id does not to refer to a valid node."},
+ {UA_STATUSCODE_BADREFERENCENOTALLOWED, "BadReferenceNotAllowed", "The reference could not be created because it violates constraints imposed by the data model."},
+ {UA_STATUSCODE_BADNODEIDREJECTED, "BadNodeIdRejected", "The requested node id was reject because it was either invalid or server does not allow node ids to be specified by the client."},
+ {UA_STATUSCODE_BADNODEIDEXISTS, "BadNodeIdExists", "The requested node id is already used by another node."},
+ {UA_STATUSCODE_BADNODECLASSINVALID, "BadNodeClassInvalid", "The node class is not valid."},
+ {UA_STATUSCODE_BADBROWSENAMEINVALID, "BadBrowseNameInvalid", "The browse name is invalid."},
+ {UA_STATUSCODE_BADBROWSENAMEDUPLICATED, "BadBrowseNameDuplicated", "The browse name is not unique among nodes that share the same relationship with the parent."},
+ {UA_STATUSCODE_BADNODEATTRIBUTESINVALID, "BadNodeAttributesInvalid", "The node attributes are not valid for the node class."},
+ {UA_STATUSCODE_BADTYPEDEFINITIONINVALID, "BadTypeDefinitionInvalid", "The type definition node id does not reference an appropriate type node."},
+ {UA_STATUSCODE_BADSOURCENODEIDINVALID, "BadSourceNodeIdInvalid", "The source node id does not reference a valid node."},
+ {UA_STATUSCODE_BADTARGETNODEIDINVALID, "BadTargetNodeIdInvalid", "The target node id does not reference a valid node."},
+ {UA_STATUSCODE_BADDUPLICATEREFERENCENOTALLOWED, "BadDuplicateReferenceNotAllowed", "The reference type between the nodes is already defined."},
+ {UA_STATUSCODE_BADINVALIDSELFREFERENCE, "BadInvalidSelfReference", "The server does not allow this type of self reference on this node."},
+ {UA_STATUSCODE_BADREFERENCELOCALONLY, "BadReferenceLocalOnly", "The reference type is not valid for a reference to a remote server."},
+ {UA_STATUSCODE_BADNODELETERIGHTS, "BadNoDeleteRights", "The server will not allow the node to be deleted."},
+ {UA_STATUSCODE_UNCERTAINREFERENCENOTDELETED, "UncertainReferenceNotDeleted", "The server was not able to delete all target references."},
+ {UA_STATUSCODE_BADSERVERINDEXINVALID, "BadServerIndexInvalid", "The server index is not valid."},
+ {UA_STATUSCODE_BADVIEWIDUNKNOWN, "BadViewIdUnknown", "The view id does not refer to a valid view node."},
+ {UA_STATUSCODE_BADVIEWTIMESTAMPINVALID, "BadViewTimestampInvalid", "The view timestamp is not available or not supported."},
+ {UA_STATUSCODE_BADVIEWPARAMETERMISMATCH, "BadViewParameterMismatch", "The view parameters are not consistent with each other."},
+ {UA_STATUSCODE_BADVIEWVERSIONINVALID, "BadViewVersionInvalid", "The view version is not available or not supported."},
+ {UA_STATUSCODE_UNCERTAINNOTALLNODESAVAILABLE, "UncertainNotAllNodesAvailable", "The list of references may not be complete because the underlying system is not available."},
+ {UA_STATUSCODE_GOODRESULTSMAYBEINCOMPLETE, "GoodResultsMayBeIncomplete", "The server should have followed a reference to a node in a remote server but did not. The result set may be incomplete."},
+ {UA_STATUSCODE_BADNOTTYPEDEFINITION, "BadNotTypeDefinition", "The provided Nodeid was not a type definition nodeid."},
+ {UA_STATUSCODE_UNCERTAINREFERENCEOUTOFSERVER, "UncertainReferenceOutOfServer", "One of the references to follow in the relative path references to a node in the address space in another server."},
+ {UA_STATUSCODE_BADTOOMANYMATCHES, "BadTooManyMatches", "The requested operation has too many matches to return."},
+ {UA_STATUSCODE_BADQUERYTOOCOMPLEX, "BadQueryTooComplex", "The requested operation requires too many resources in the server."},
+ {UA_STATUSCODE_BADNOMATCH, "BadNoMatch", "The requested operation has no match to return."},
+ {UA_STATUSCODE_BADMAXAGEINVALID, "BadMaxAgeInvalid", "The max age parameter is invalid."},
+ {UA_STATUSCODE_BADSECURITYMODEINSUFFICIENT, "BadSecurityModeInsufficient", "The operation is not permitted over the current secure channel."},
+ {UA_STATUSCODE_BADHISTORYOPERATIONINVALID, "BadHistoryOperationInvalid", "The history details parameter is not valid."},
+ {UA_STATUSCODE_BADHISTORYOPERATIONUNSUPPORTED, "BadHistoryOperationUnsupported", "The server does not support the requested operation."},
+ {UA_STATUSCODE_BADINVALIDTIMESTAMPARGUMENT, "BadInvalidTimestampArgument", "The defined timestamp to return was invalid."},
+ {UA_STATUSCODE_BADWRITENOTSUPPORTED, "BadWriteNotSupported", "The server not does support writing the combination of value"},
+ {UA_STATUSCODE_BADTYPEMISMATCH, "BadTypeMismatch", "The value supplied for the attribute is not of the same type as the attribute's value."},
+ {UA_STATUSCODE_BADMETHODINVALID, "BadMethodInvalid", "The method id does not refer to a method for the specified object."},
+ {UA_STATUSCODE_BADARGUMENTSMISSING, "BadArgumentsMissing", "The client did not specify all of the input arguments for the method."},
+ {UA_STATUSCODE_BADTOOMANYSUBSCRIPTIONS, "BadTooManySubscriptions", "The server has reached its  maximum number of subscriptions."},
+ {UA_STATUSCODE_BADTOOMANYPUBLISHREQUESTS, "BadTooManyPublishRequests", "The server has reached the maximum number of queued publish requests."},
+ {UA_STATUSCODE_BADNOSUBSCRIPTION, "BadNoSubscription", "There is no subscription available for this session."},
+ {UA_STATUSCODE_BADSEQUENCENUMBERUNKNOWN, "BadSequenceNumberUnknown", "The sequence number is unknown to the server."},
+ {UA_STATUSCODE_BADMESSAGENOTAVAILABLE, "BadMessageNotAvailable", "The requested notification message is no longer available."},
+ {UA_STATUSCODE_BADINSUFFICIENTCLIENTPROFILE, "BadInsufficientClientProfile", "The Client of the current Session does not support one or more Profiles that are necessary for the Subscription."},
+ {UA_STATUSCODE_BADSTATENOTACTIVE, "BadStateNotActive", "The sub-state machine is not currently active."},
+ {UA_STATUSCODE_BADTCPSERVERTOOBUSY, "BadTcpServerTooBusy", "The server cannot process the request because it is too busy."},
+ {UA_STATUSCODE_BADTCPMESSAGETYPEINVALID, "BadTcpMessageTypeInvalid", "The type of the message specified in the header invalid."},
+ {UA_STATUSCODE_BADTCPSECURECHANNELUNKNOWN, "BadTcpSecureChannelUnknown", "The SecureChannelId and/or TokenId are not currently in use."},
+ {UA_STATUSCODE_BADTCPMESSAGETOOLARGE, "BadTcpMessageTooLarge", "The size of the message specified in the header is too large."},
+ {UA_STATUSCODE_BADTCPNOTENOUGHRESOURCES, "BadTcpNotEnoughResources", "There are not enough resources to process the request."},
+ {UA_STATUSCODE_BADTCPINTERNALERROR, "BadTcpInternalError", "An internal error occurred."},
+ {UA_STATUSCODE_BADTCPENDPOINTURLINVALID, "BadTcpEndpointUrlInvalid", "The Server does not recognize the QueryString specified."},
+ {UA_STATUSCODE_BADREQUESTINTERRUPTED, "BadRequestInterrupted", "The request could not be sent because of a network interruption."},
+ {UA_STATUSCODE_BADREQUESTTIMEOUT, "BadRequestTimeout", "Timeout occurred while processing the request."},
+ {UA_STATUSCODE_BADSECURECHANNELCLOSED, "BadSecureChannelClosed", "The secure channel has been closed."},
+ {UA_STATUSCODE_BADSECURECHANNELTOKENUNKNOWN, "BadSecureChannelTokenUnknown", "The token has expired or is not recognized."},
+ {UA_STATUSCODE_BADSEQUENCENUMBERINVALID, "BadSequenceNumberInvalid", "The sequence number is not valid."},
+ {UA_STATUSCODE_BADPROTOCOLVERSIONUNSUPPORTED, "BadProtocolVersionUnsupported", "The applications do not have compatible protocol versions."},
+ {UA_STATUSCODE_BADCONFIGURATIONERROR, "BadConfigurationError", "There is a problem with the configuration that affects the usefulness of the value."},
+ {UA_STATUSCODE_BADNOTCONNECTED, "BadNotConnected", "The variable should receive its value from another variable"},
+ {UA_STATUSCODE_BADDEVICEFAILURE, "BadDeviceFailure", "There has been a failure in the device/data source that generates the value that has affected the value."},
+ {UA_STATUSCODE_BADSENSORFAILURE, "BadSensorFailure", "There has been a failure in the sensor from which the value is derived by the device/data source."},
+ {UA_STATUSCODE_BADOUTOFSERVICE, "BadOutOfService", "The source of the data is not operational."},
+ {UA_STATUSCODE_BADDEADBANDFILTERINVALID, "BadDeadbandFilterInvalid", "The deadband filter is not valid."},
+ {UA_STATUSCODE_UNCERTAINNOCOMMUNICATIONLASTUSABLEVALUE, "UncertainNoCommunicationLastUsableValue", "Communication to the data source has failed. The variable value is the last value that had a good quality."},
+ {UA_STATUSCODE_UNCERTAINLASTUSABLEVALUE, "UncertainLastUsableValue", "Whatever was updating this value has stopped doing so."},
+ {UA_STATUSCODE_UNCERTAINSUBSTITUTEVALUE, "UncertainSubstituteValue", "The value is an operational value that was manually overwritten."},
+ {UA_STATUSCODE_UNCERTAININITIALVALUE, "UncertainInitialValue", "The value is an initial value for a variable that normally receives its value from another variable."},
+ {UA_STATUSCODE_UNCERTAINSENSORNOTACCURATE, "UncertainSensorNotAccurate", "The value is at one of the sensor limits."},
+ {UA_STATUSCODE_UNCERTAINENGINEERINGUNITSEXCEEDED, "UncertainEngineeringUnitsExceeded", "The value is outside of the range of values defined for this parameter."},
+ {UA_STATUSCODE_UNCERTAINSUBNORMAL, "UncertainSubNormal", "The value is derived from multiple sources and has less than the required number of Good sources."},
+ {UA_STATUSCODE_GOODLOCALOVERRIDE, "GoodLocalOverride", "The value has been overridden."},
+ {UA_STATUSCODE_BADREFRESHINPROGRESS, "BadRefreshInProgress", "This Condition refresh failed"},
+ {UA_STATUSCODE_BADCONDITIONALREADYDISABLED, "BadConditionAlreadyDisabled", "This condition has already been disabled."},
+ {UA_STATUSCODE_BADCONDITIONALREADYENABLED, "BadConditionAlreadyEnabled", "This condition has already been enabled."},
+ {UA_STATUSCODE_BADCONDITIONDISABLED, "BadConditionDisabled", "Property not available"},
+ {UA_STATUSCODE_BADEVENTIDUNKNOWN, "BadEventIdUnknown", "The specified event id is not recognized."},
+ {UA_STATUSCODE_BADEVENTNOTACKNOWLEDGEABLE, "BadEventNotAcknowledgeable", "The event cannot be acknowledged."},
+ {UA_STATUSCODE_BADDIALOGNOTACTIVE, "BadDialogNotActive", "The dialog condition is not active."},
+ {UA_STATUSCODE_BADDIALOGRESPONSEINVALID, "BadDialogResponseInvalid", "The response is not valid for the dialog."},
+ {UA_STATUSCODE_BADCONDITIONBRANCHALREADYACKED, "BadConditionBranchAlreadyAcked", "The condition branch has already been acknowledged."},
+ {UA_STATUSCODE_BADCONDITIONBRANCHALREADYCONFIRMED, "BadConditionBranchAlreadyConfirmed", "The condition branch has already been confirmed."},
+ {UA_STATUSCODE_BADCONDITIONALREADYSHELVED, "BadConditionAlreadyShelved", "The condition has already been shelved."},
+ {UA_STATUSCODE_BADCONDITIONNOTSHELVED, "BadConditionNotShelved", "The condition is not currently shelved."},
+ {UA_STATUSCODE_BADSHELVINGTIMEOUTOFRANGE, "BadShelvingTimeOutOfRange", "The shelving time not within an acceptable range."},
+ {UA_STATUSCODE_BADNODATA, "BadNoData", "No data exists for the requested time range or event filter."},
+ {UA_STATUSCODE_BADBOUNDNOTFOUND, "BadBoundNotFound", "No data found to provide upper or lower bound value."},
+ {UA_STATUSCODE_BADBOUNDNOTSUPPORTED, "BadBoundNotSupported", "The server cannot retrieve a bound for the variable."},
+ {UA_STATUSCODE_BADDATALOST, "BadDataLost", "Data is missing due to collection started/stopped/lost."},
+ {UA_STATUSCODE_BADDATAUNAVAILABLE, "BadDataUnavailable", "Expected data is unavailable for the requested time range due to an un-mounted volume"},
+ {UA_STATUSCODE_BADENTRYEXISTS, "BadEntryExists", "The data or event was not successfully inserted because a matching entry exists."},
+ {UA_STATUSCODE_BADNOENTRYEXISTS, "BadNoEntryExists", "The data or event was not successfully updated because no matching entry exists."},
+ {UA_STATUSCODE_BADTIMESTAMPNOTSUPPORTED, "BadTimestampNotSupported", "The client requested history using a timestamp format the server does not support (i.e requested ServerTimestamp when server only supports SourceTimestamp)."},
+ {UA_STATUSCODE_GOODENTRYINSERTED, "GoodEntryInserted", "The data or event was successfully inserted into the historical database."},
+ {UA_STATUSCODE_GOODENTRYREPLACED, "GoodEntryReplaced", "The data or event field was successfully replaced in the historical database."},
+ {UA_STATUSCODE_UNCERTAINDATASUBNORMAL, "UncertainDataSubNormal", "The value is derived from multiple values and has less than the required number of Good values."},
+ {UA_STATUSCODE_GOODNODATA, "GoodNoData", "No data exists for the requested time range or event filter."},
+ {UA_STATUSCODE_GOODMOREDATA, "GoodMoreData", "The data or event field was successfully replaced in the historical database."},
+ {UA_STATUSCODE_BADAGGREGATELISTMISMATCH, "BadAggregateListMismatch", "The requested number of Aggregates does not match the requested number of NodeIds."},
+ {UA_STATUSCODE_BADAGGREGATENOTSUPPORTED, "BadAggregateNotSupported", "The requested Aggregate is not support by the server."},
+ {UA_STATUSCODE_BADAGGREGATEINVALIDINPUTS, "BadAggregateInvalidInputs", "The aggregate value could not be derived due to invalid data inputs."},
+ {UA_STATUSCODE_BADAGGREGATECONFIGURATIONREJECTED, "BadAggregateConfigurationRejected", "The aggregate configuration is not valid for specified node."},
+ {UA_STATUSCODE_GOODDATAIGNORED, "GoodDataIgnored", "The request pecifies fields which are not valid for the EventType or cannot be saved by the historian."},
+ {UA_STATUSCODE_BADREQUESTNOTALLOWED, "BadRequestNotAllowed", "The request was rejected by the server because it did not meet the criteria set by the server."},
+ {UA_STATUSCODE_GOODEDITED, "GoodEdited", "The value does not come from the real source and has been edited by the server."},
+ {UA_STATUSCODE_GOODPOSTACTIONFAILED, "GoodPostActionFailed", "There was an error in execution of these post-actions."},
+ {UA_STATUSCODE_UNCERTAINDOMINANTVALUECHANGED, "UncertainDominantValueChanged", "The related EngineeringUnit has been changed but the Variable Value is still provided based on the previous unit."},
+ {UA_STATUSCODE_GOODDEPENDENTVALUECHANGED, "GoodDependentValueChanged", "A dependent value has been changed but the change has not been applied to the device."},
+ {UA_STATUSCODE_BADDOMINANTVALUECHANGED, "BadDominantValueChanged", "The related EngineeringUnit has been changed but this change has not been applied to the device. The Variable Value is still dependent on the previous unit but its status is currently Bad."},
+ {UA_STATUSCODE_UNCERTAINDEPENDENTVALUECHANGED, "UncertainDependentValueChanged", "A dependent value has been changed but the change has not been applied to the device. The quality of the dominant variable is uncertain."},
+ {UA_STATUSCODE_BADDEPENDENTVALUECHANGED, "BadDependentValueChanged", "A dependent value has been changed but the change has not been applied to the device. The quality of the dominant variable is Bad."},
+ {UA_STATUSCODE_GOODCOMMUNICATIONEVENT, "GoodCommunicationEvent", "The communication layer has raised an event."},
+ {UA_STATUSCODE_GOODSHUTDOWNEVENT, "GoodShutdownEvent", "The system is shutting down."},
+ {UA_STATUSCODE_GOODCALLAGAIN, "GoodCallAgain", "The operation is not finished and needs to be called again."},
+ {UA_STATUSCODE_GOODNONCRITICALTIMEOUT, "GoodNonCriticalTimeout", "A non-critical timeout occurred."},
+ {UA_STATUSCODE_BADINVALIDARGUMENT, "BadInvalidArgument", "One or more arguments are invalid."},
+ {UA_STATUSCODE_BADCONNECTIONREJECTED, "BadConnectionRejected", "Could not establish a network connection to remote server."},
+ {UA_STATUSCODE_BADDISCONNECT, "BadDisconnect", "The server has disconnected from the client."},
+ {UA_STATUSCODE_BADCONNECTIONCLOSED, "BadConnectionClosed", "The network connection has been closed."},
+ {UA_STATUSCODE_BADINVALIDSTATE, "BadInvalidState", "The operation cannot be completed because the object is closed"},
+ {UA_STATUSCODE_BADENDOFSTREAM, "BadEndOfStream", "Cannot move beyond end of the stream."},
+ {UA_STATUSCODE_BADNODATAAVAILABLE, "BadNoDataAvailable", "No data is currently available for reading from a non-blocking stream."},
+ {UA_STATUSCODE_BADWAITINGFORRESPONSE, "BadWaitingForResponse", "The asynchronous operation is waiting for a response."},
+ {UA_STATUSCODE_BADOPERATIONABANDONED, "BadOperationAbandoned", "The asynchronous operation was abandoned by the caller."},
+ {UA_STATUSCODE_BADEXPECTEDSTREAMTOBLOCK, "BadExpectedStreamToBlock", "The stream did not return all data requested (possibly because it is a non-blocking stream)."},
+ {UA_STATUSCODE_BADWOULDBLOCK, "BadWouldBlock", "Non blocking behaviour is required and the operation would block."},
+ {UA_STATUSCODE_BADSYNTAXERROR, "BadSyntaxError", "A value had an invalid syntax."},
+ {UA_STATUSCODE_BADMAXCONNECTIONSREACHED, "BadMaxConnectionsReached", "The operation could not be finished because all available connections are in use."},
  {0xffffffff, "Unknown", "Unknown StatusCode"},
 
 };
