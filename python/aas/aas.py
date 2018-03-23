@@ -646,21 +646,14 @@ def getSubModel(endpointStr,subModel_NodeId):
 #
 #        break
 #    if i!= -1:
-
-
 #      print("Looking for AAS at entry point %s,%s" % (subModel_NodeId))
 
     path = client.get_node(subModel_NodeId)
     print("path is %s"  % path)
-    print ("11")
-    subModelInst = subModel.fromOPCUANodes(node=path) #in line 259, classmethod of 'subModel' exists
-    print ("2")                                  #no print out of "2" during tests
+    subModelInst = subModel.fromOPCUANodes(node=path)
     for pvsContainer in subModelInst.PropertyValueStatementContainers:
       print(pvsContainer.Name)
-  except Exception as e:
-    print (str(e))
   finally:
-
     client.disconnect()
     return subModel
 
