@@ -1266,7 +1266,6 @@ def deletePVS (pathToLibrary, ip, AASIdSpec, AASIdType, PVSName):
   PVSName_c = PVSName.encode('utf-8')
 
   print(AASIdType)
-  print (TypeToInt_Id(AASIdType))
   print (AASIdType_c)
   StatusCall = lib.call_DeletePVS(c_char_p(ip_c), c_char_p(AASIdSpec_c), AASIdType_c,c_char_p(PVSName_c),c_int(0))
 
