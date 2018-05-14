@@ -1,6 +1,6 @@
 **update**
 
-*NEW* : The Image for the Workshop on 01/29/18 is available [VirtualBox Image](https://rwth-aachen.sciebo.de/s/kwgqJl88ub4SdYl)
+*NEW* : The Image for the Workshop on 01/29/18 is available [VirtualBox Image](https://rwth-aachen.sciebo.de/s/VNb1fweodqtyCX6)
 
 To be prepared for the workshop, download it and unzip it. Further information on how to use the software will be given on 01/29/2018.
 # openAAS_workshop
